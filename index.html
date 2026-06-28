@@ -1469,10 +1469,10 @@ function initDirMap(){
   if(typeof L==="undefined"){ el.innerHTML='<div style="padding:34px;color:var(--muted);font-family:JetBrains Mono,monospace">⚠ MAP NEEDS AN INTERNET CONNECTION TO LOAD TILES.</div>'; return; }
   stopDirMap();
   _dirMap=L.map('dirMap',{scrollWheelZoom:false,zoomControl:true}).setView([20.62,105.35],9);
-  const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxZoom:17,subdomains:'abc',attribution:'© OpenTopoMap (CC-BY-SA)'}).addTo(_dirMap);
-  const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
+  const terrain=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'© Esri — Topographic'}).addTo(_dirMap);
+  const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
   const dark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'});
-  L.control.layers({'Topographic (DEM)':terrain,'Satellite':sat,'Dark':dark},{},{collapsed:false,position:'topright'}).addTo(_dirMap);
+  L.control.layers({'Topographic':terrain,'Satellite':sat,'Dark':dark},{},{collapsed:false,position:'topright'}).addTo(_dirMap);
   const colorOf=c=>c.rank==="National Special"?"#f0a94e":c.rank==="National"?"#3ad1da":"#b08ce0";
   const grp=L.featureGroup();
   CAVES.forEach(c=>{
@@ -1495,9 +1495,9 @@ function initCaveMap(){
   if(typeof L==="undefined"){ el.innerHTML='<div style="padding:30px;color:var(--muted);font-family:JetBrains Mono,monospace">⚠ MAP NEEDS AN INTERNET CONNECTION TO LOAD TILES.</div>'; return; }
   stopCaveMap();
   _caveMap=L.map('caveMap',{scrollWheelZoom:false,zoomControl:true}).setView([lat,lng],12);
-  const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxZoom:17,subdomains:'abc',attribution:'© OpenTopoMap (CC-BY-SA)'}).addTo(_caveMap);
-  const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
-  L.control.layers({'Terrain (DEM)':terrain,'Satellite':sat},{},{collapsed:false,position:'topright'}).addTo(_caveMap);
+  const terrain=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'© Esri — Topographic'}).addTo(_caveMap);
+  const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
+  L.control.layers({'Topographic':terrain,'Satellite':sat},{},{collapsed:false,position:'topright'}).addTo(_caveMap);
   const color="#f0a94e";
   L.circle([lat,lng],{radius:2600,color:color,weight:1,opacity:.45,fillColor:color,fillOpacity:.05}).addTo(_caveMap);
   L.circleMarker([lat,lng],{radius:9,color:color,weight:2,fillColor:color,fillOpacity:.4}).addTo(_caveMap)
