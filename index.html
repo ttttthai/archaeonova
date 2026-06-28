@@ -109,12 +109,14 @@ em{color:var(--amber-2);font-style:normal}
 .brand{display:flex;align-items:center;gap:.7em;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:1.12rem;color:#fff;cursor:pointer;letter-spacing:-.01em}
 .brand .logo{width:38px;height:38px;flex:none;filter:drop-shadow(0 0 10px rgba(240,169,78,.35))}
 .brand small{display:block;font-family:"JetBrains Mono",monospace;font-weight:400;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-top:2px}
-.nav-links{display:flex;gap:2px;align-items:center}
-.nav-links a{font-family:"Space Grotesk",sans-serif;color:var(--text-2);font-weight:500;font-size:.9rem;padding:.55em .85em;border-radius:8px;transition:color .15s,background .15s;position:relative}
+/* nav is always a hamburger dropdown */
+.nav-links{display:none;position:absolute;top:72px;right:24px;flex-direction:column;background:rgba(8,9,11,.97);backdrop-filter:blur(16px) saturate(140%);border:1px solid var(--border);border-radius:12px;padding:10px;gap:2px;min-width:210px;box-shadow:0 18px 44px rgba(0,0,0,.55);z-index:1100}
+.nav-links.open{display:flex}
+.nav-links a{font-family:"Space Grotesk",sans-serif;color:var(--text-2);font-weight:500;font-size:.95rem;padding:.7em .9em;border-radius:8px;transition:color .15s,background .15s}
 .nav-links a:hover{color:#fff;background:var(--surface)}
-.nav-links a.active{color:var(--amber)}
-.nav-links a.active::after{content:"";position:absolute;left:.85em;right:.85em;bottom:.2em;height:1px;background:var(--amber);box-shadow:0 0 8px var(--amber)}
-.nav-toggle{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#fff}
+.nav-links a.active{color:var(--amber);background:var(--surface)}
+.nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;background:var(--surface);border:1px solid var(--border-soft);border-radius:10px;font-size:1.2rem;cursor:pointer;color:#fff}
+.nav-toggle:hover{background:var(--surface-2)}
 
 /* hero */
 .hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;overflow:hidden;padding:60px 0}
@@ -718,62 +720,21 @@ function viewHome(){
   </section>
 
   <section class="section">
-    <div class="container grid cols-2" style="align-items:center;gap:56px">
-      <div class="reveal">
-        <p class="eyebrow">// 01 — MISSION</p>
-        <h2>Turning robot surveys into a tool researchers and communities can use</h2>
-        <p>Many prehistoric cave sites stay undocumented because they sit in remote, hazardous karst terrain. Our robot system <strong>SEAR-X</strong> surveys these caves safely and builds <em>digital twins</em> — 3D scans, photos, maps and environmental data — <strong>before</strong> any digging begins.</p>
-        <p>The <strong>Digital Cave Directory</strong> is where that data lives. It gives archaeologists a searchable record, and gives everyone else a way to discover and help protect this heritage.</p>
-        <a class="btn tech" style="margin-top:8px" href="#about">How the robot feeds the Directory <span class="arw">→</span></a>
-      </div>
-      <div class="card reveal d1">
-        <p class="eyebrow cyan">OBJECTIVE</p>
-        <h3 style="font-size:1.5rem">Document · Educate · Protect</h3>
-        <p>Bridge scientific research and the public — using technology to document, share and preserve the prehistoric cave heritage of Hòa Bình (the Hoabinhian, northern Vietnam's Stone-Age culture).</p>
-        <div class="grid cols-3" style="margin-top:18px;gap:14px">
-          <div><div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v4h6V3M9 12h6M9 16h4"/></svg></div><strong>Document</strong><p class="muted" style="font-size:.84rem;margin:.2em 0 0">Permanent digital records of fragile sites.</p></div>
-          <div><div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.2"/><path d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M6 6a9 9 0 0 0 0 12M18 6a9 9 0 0 1 0 12"/></svg></div><strong>Educate</strong><p class="muted" style="font-size:.84rem;margin:.2em 0 0">Make archaeology easy to understand.</p></div>
-          <div><div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div><strong>Protect</strong><p class="muted" style="font-size:.84rem;margin:.2em 0 0">Raise awareness against looting.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container card reveal" style="background:linear-gradient(150deg,rgba(58,209,218,.07),rgba(240,169,78,.05));border-color:var(--border)">
-      <div class="grid cols-2" style="align-items:center;gap:46px">
-        <div>
-          <p class="eyebrow cyan">// 03 — PAYLOAD</p>
-          <h2>SEAR-X — our cave-survey robot system</h2>
-          <p>A three-part system that explores caves humans can't safely enter: <strong>SEAR-HEX</strong>, a six-legged walking robot; <strong>SEAR-AIR</strong>, a survey drone; and <strong>SEAR-RELAY</strong>, a wireless mesh that keeps them connected underground. Together they build the digital twins this Directory is made from.</p>
-          <a class="btn tech" href="#about">See how SEAR-X works <span class="arw">→</span></a>
-        </div>
-        <div class="center">
-          <svg viewBox="0 0 220 170" width="100%" style="max-width:330px;filter:drop-shadow(0 10px 30px rgba(58,209,218,.25))" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SEAR-HEX hexapod robot">
-            <ellipse cx="110" cy="150" rx="82" ry="9" fill="#3ad1da" opacity=".08"/>
-            <g stroke="#39414c" stroke-width="3" stroke-linecap="round" fill="none">
-              <path d="M70 96 L40 114 M70 104 L42 130 M72 112 L50 142"/><path d="M150 96 L180 114 M150 104 L178 130 M148 112 L170 142"/>
-            </g>
-            <rect x="62" y="76" width="96" height="44" rx="15" fill="#13161c" stroke="#2b313b"/>
-            <rect x="76" y="66" width="68" height="22" rx="10" fill="#1b1f27" stroke="#2b313b"/>
-            <circle cx="110" cy="98" r="12" fill="#0c2a2c" stroke="#3ad1da"/><circle cx="110" cy="98" r="4.5" fill="#3ad1da"/>
-            <rect x="104" y="44" width="12" height="24" rx="4" fill="#f0a94e"/><circle cx="110" cy="40" r="7" fill="#f0a94e"/>
-            <line x1="110" y1="33" x2="110" y2="18" stroke="#f0a94e" stroke-width="3"/><circle cx="110" cy="16" r="3" fill="#f6c178"/>
-          </svg>
-          <p class="kicker" style="margin-top:10px">SEAR-HEX HEXAPOD · ILLUSTRATION</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section center">
-    <div class="container reveal">
-      <p class="eyebrow" style="justify-content:center">// READY</p>
-      <h2 style="max-width:18ch;margin-left:auto;margin-right:auto">Discover the caves Vietnam's earliest peoples called home</h2>
-      <p class="muted" style="max-width:54ch;margin:14px auto 28px">Start with the interactive Directory, or learn the story of one of Southeast Asia's most important ancient cultures.</p>
-      <div class="hero-cta" style="justify-content:center">
-        <a class="btn" href="#directory">Launch the Directory <span class="arw">→</span></a>
-        <a class="btn ghost" href="#learn">Learn the basics</a>
+    <div class="container">
+      <div class="center reveal"><p class="eyebrow" style="justify-content:center">CHOOSE YOUR PATH</p><h2>Where would you like to go?</h2></div>
+      <div class="grid cols-2" style="margin-top:34px">
+        <a class="card hover reveal" href="#directory" style="text-decoration:none">
+          <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 7v13l6-3 6 3 6-3V4l-6 3-6-3z"/><path d="M9 4v13M15 7v13"/></svg></div>
+          <h3 style="font-size:1.7rem">Cave Directory</h3>
+          <p>Explore the interactive map, site records, stratigraphy and 3D scans of the prehistoric caves of Hòa Bình.</p>
+          <span class="btn sm" style="margin-top:8px">Open the Directory <span class="arw">→</span></span>
+        </a>
+        <a class="card hover reveal d1" href="#about" style="text-decoration:none">
+          <div class="icon-badge cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7.5" y="8.5" width="9" height="7" rx="2"/><circle cx="12" cy="12" r="1.6"/><path d="M7.5 10L4 8M7.5 12H3.5M7.5 14l-3.5 2M16.5 10L20 8M16.5 12H20.5M16.5 14l3.5 2"/></svg></div>
+          <h3 style="font-size:1.7rem">Meet SEAR-X</h3>
+          <p>See the three-robot system that surveys and digitally preserves caves humans can't safely enter.</p>
+          <span class="btn sm tech" style="margin-top:8px">Meet SEAR-X <span class="arw">→</span></span>
+        </a>
       </div>
     </div>
   </section>`;
@@ -1591,8 +1552,16 @@ function initDirMap(){
     grp.addLayer(m);
   });
   grp.addTo(_dirMap);
-  try{ _dirMap.fitBounds(grp.getBounds().pad(0.15)); }catch(e){}
-  setTimeout(()=>{ if(_dirMap)_dirMap.invalidateSize(); },240);
+  mapFix(_dirMap, el, ()=>{ try{ _dirMap.fitBounds(grp.getBounds().pad(0.15)); }catch(e){} });
+}
+
+/* Robustly fix Leaflet sizing: maps often init before their container is laid out,
+   leaving tiles unrendered until an invalidateSize. Retry + observe. */
+function mapFix(map, el, refit){
+  const inv=()=>{ try{ map.invalidateSize(); }catch(e){} };
+  [60,250,600,1200,2000].forEach(t=>setTimeout(()=>{ inv(); if(refit)refit(); },t));
+  try{ if('ResizeObserver' in window){ new ResizeObserver(inv).observe(el); } }catch(e){}
+  try{ if('IntersectionObserver' in window){ new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting)inv();});},{threshold:0.01}).observe(el); } }catch(e){}
 }
 
 /* ===================== PER-CAVE LAYER-1 LANDSCAPE MAP ===================== */
@@ -1611,7 +1580,7 @@ function initCaveMap(){
   L.circle([lat,lng],{radius:2600,color:color,weight:1,opacity:.45,fillColor:color,fillOpacity:.05}).addTo(_caveMap);
   L.circleMarker([lat,lng],{radius:9,color:color,weight:2,fillColor:color,fillOpacity:.4}).addTo(_caveMap)
     .bindPopup('<div class="cave-popup"><b>'+(el.dataset.name||'')+'</b><br><span style="font-size:.78rem;color:#9aa">Approximate location · commune-level</span></div>');
-  setTimeout(()=>{ if(_caveMap)_caveMap.invalidateSize(); },240);
+  mapFix(_caveMap, el, ()=>{ try{ _caveMap.setView([lat,lng],12); }catch(e){} });
 }
 
 /* ===================== ATTRIBUTE DATABASE (graphical, site-driven) ===================== */
@@ -1862,33 +1831,48 @@ function makeCloud(canvas){
     const g=Math.round(255*Math.min(Math.max(1.5-Math.abs(4*t-2),0),1));
     const b=Math.round(255*Math.min(Math.max(1.5-Math.abs(4*t-1),0),1));
     return 'rgb('+r+','+g+','+b+')';};
-  // per-site geometry parameters
-  const Lx=2.0+rnd()*1.6;            // half-length of chamber
-  const Rb=0.78+rnd()*0.55;          // base radius
-  const rough=0.12+rnd()*0.20;       // wall roughness
-  const nStal=4+Math.floor(rnd()*8); // stalactites
-  const ph1=rnd()*6, ph2=rnd()*6;
-  const pts=[]; const N=3200;
+  // per-site cave geometry — varies strongly by seed (chamber shape, speleothems, alcove)
+  const Lx=1.9+rnd()*1.9;                  // half-length of chamber
+  const Rb=0.7+rnd()*0.6;                   // base radius
+  const ceilF=1.0+rnd()*0.55;              // ceiling height factor
+  const ph1=rnd()*6.28, ph2=rnd()*6.28, ph3=rnd()*6.28;
+  const sway=0.18+rnd()*0.5, swayF=0.6+rnd()*1.5;   // axis meander
+  const floorY=-Rb*0.92;
+  const nStal=6+Math.floor(rnd()*12);      // stalactites (ceiling↓)
+  const nStag=4+Math.floor(rnd()*9);       // stalagmites (floor↑)
+  const nCol=Math.floor(rnd()*4);          // columns
+  const hasAlcove=rnd()<0.6;
+  const axisZ=x=>Math.sin((x/Lx)*Math.PI*swayF+ph3)*sway;
+  const radAt=x=>Math.max(0.34,Rb*(1+0.34*Math.sin((x/Lx)*Math.PI*1.4+ph1)+0.18*Math.sin((x/Lx)*Math.PI*3.1+ph2)));
+  const pts=[]; const N=3400;
   for(let i=0;i<N;i++){
-    const x=(rnd()-0.5)*Lx*2, k=rnd();
-    if(k<0.60){ // ceiling + walls (upper arch), irregular
-      const a=(rnd()*0.96+0.02)*Math.PI;
-      const wob=1+Math.sin(x*2.3+ph1+a*1.7)*rough+(rnd()-0.5)*rough*0.7;
-      const r=Rb*wob;
-      pts.push({x,y:Math.sin(a)*r-0.08,z:Math.cos(a)*r,i:0.5+rnd()*0.5});
-    } else if(k<0.82){ // uneven floor
-      const z=(rnd()-0.5)*Rb*1.9;
-      const y=-Rb*0.92+Math.sin(x*1.9+z*2.4+ph2)*0.09+(rnd()-0.5)*0.06;
-      pts.push({x,y,z,i:0.55+rnd()*0.45});
-    } else { // interior scatter / breakdown
-      const a=rnd()*2*Math.PI,r=rnd()*Rb*0.85;
-      pts.push({x,y:Math.sin(a)*r*0.6-0.2,z:Math.cos(a)*r,i:0.4+rnd()*0.4});
+    const x=(rnd()-0.5)*Lx*2, k=rnd(), zc=axisZ(x), R=radAt(x);
+    if(k<0.52){ // ceiling + walls (irregular arch)
+      const a=(rnd()*0.98+0.01)*Math.PI;
+      const r=R*(1+(rnd()-0.5)*0.16+Math.sin(x*3+a*2)*0.06);
+      pts.push({x,y:floorY+Math.sin(a)*r*ceilF,z:zc+Math.cos(a)*r,i:0.5+rnd()*0.5});
+    } else if(k<0.78){ // uneven floor + breakdown
+      const z=zc+(rnd()-0.5)*R*1.85;
+      pts.push({x,y:floorY+Math.sin(x*2.2+z*2.6+ph2)*0.08+(rnd()-0.5)*0.05,z,i:0.55+rnd()*0.45});
+    } else { // lower walls
+      const a=rnd()*Math.PI, r=R*(0.55+rnd()*0.45);
+      pts.push({x,y:floorY+Math.abs(Math.sin(a))*r*0.55,z:zc+Math.cos(a)*r,i:0.45+rnd()*0.4});
     }
   }
-  for(let st=0;st<nStal;st++){ // stalactites hanging from ceiling
-    const sx=(rnd()-0.5)*Lx*1.9, sz=(rnd()-0.5)*Rb*0.7, top=Rb*(0.78+rnd()*0.2), len=0.22+rnd()*0.55, m=9+Math.floor(rnd()*11);
-    for(let j=0;j<m;j++){const tt=j/m; pts.push({x:sx+(rnd()-0.5)*0.05*(1-tt),y:top-tt*len,z:sz+(rnd()-0.5)*0.05*(1-tt),i:0.6+rnd()*0.4});}
+  if(hasAlcove){ // a rounded side alcove
+    const ax=(rnd()-0.5)*Lx*1.2, side=rnd()<.5?1:-1, ar=Rb*(0.5+rnd()*0.4);
+    for(let i=0;i<260;i++){const a=rnd()*Math.PI,r=ar*(0.7+rnd()*0.4);
+      pts.push({x:ax+(rnd()-0.5)*ar*1.2,y:floorY+Math.sin(a)*r*0.9,z:axisZ(ax)+side*(radAt(ax)*0.8+Math.abs(Math.cos(a))*r),i:0.5+rnd()*0.4});}
   }
+  for(let b=0;b<3+Math.floor(rnd()*4);b++){ // breakdown rock clusters on floor
+    const bx=(rnd()-0.5)*Lx*1.8, bz=axisZ(bx)+(rnd()-0.5)*Rb*1.2, br=0.1+rnd()*0.2;
+    for(let i=0;i<40;i++){const a=rnd()*6.28,rr=rnd()*br; pts.push({x:bx+Math.cos(a)*rr,y:floorY+rnd()*0.12,z:bz+Math.sin(a)*rr,i:0.5+rnd()*0.4});}
+  }
+  const cone=(cx,cz,baseY,len,up,rad,m)=>{for(let j=0;j<m;j++){const tt=j/m,rr=rad*(1-tt); pts.push({x:cx+(rnd()-0.5)*rr,y:baseY+(up?tt*len:-tt*len),z:cz+(rnd()-0.5)*rr,i:0.62+rnd()*0.38});}};
+  for(let s=0;s<nStal;s++){const sx=(rnd()-0.5)*Lx*1.85,sz=axisZ(sx)+(rnd()-0.5)*radAt(sx)*0.7,top=floorY+radAt(sx)*ceilF*(0.7+rnd()*0.24);cone(sx,sz,top,0.2+rnd()*0.6,false,0.05+rnd()*0.04,10+Math.floor(rnd()*10));}
+  for(let s=0;s<nStag;s++){const sx=(rnd()-0.5)*Lx*1.8,sz=axisZ(sx)+(rnd()-0.5)*radAt(sx)*0.8;cone(sx,sz,floorY,0.14+rnd()*0.5,true,0.06+rnd()*0.05,9+Math.floor(rnd()*9));}
+  for(let s=0;s<nCol;s++){const sx=(rnd()-0.5)*Lx*1.6,sz=axisZ(sx)+(rnd()-0.5)*radAt(sx)*0.5,h=radAt(sx)*ceilF*(0.7+rnd()*0.2),m=16+Math.floor(rnd()*8);
+    for(let j=0;j<m;j++){const tt=j/m,rr=0.03+0.02*Math.abs(Math.sin(tt*3.14)); pts.push({x:sx+(rnd()-0.5)*rr,y:floorY+tt*h,z:sz+(rnd()-0.5)*rr,i:0.65+rnd()*0.35});}}
   let ymin=1e9,ymax=-1e9; pts.forEach(p=>{if(p.y<ymin)ymin=p.y;if(p.y>ymax)ymax=p.y;});
   const span=(ymax-ymin)||1; pts.forEach(p=>{p.c=jet((p.y-ymin)/span);});
   let yaw=0.6,pitch=0.30,zoom=1,drag=false,px=0,py=0,auto=!reduce,raf=null;
