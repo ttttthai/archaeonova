@@ -381,6 +381,73 @@ em{color:var(--amber-2);font-style:normal}
 #dirMap{height:520px;width:100%;background:#0a0c0f}
 .cat-coord{font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.04em;color:var(--amber);opacity:.85;font-weight:400}
 @media(max-width:640px){#dirMap{height:60vh}}
+/* attribute database dashboard */
+.attr-toolbar{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.attr-select{display:flex;align-items:center;gap:10px}
+.attr-select label{white-space:nowrap}
+.attr-select select{padding:.6em .9em;border:1px solid var(--border);border-radius:10px;background:var(--bg-2);color:var(--text);font-family:"Inter";font-size:.95rem;min-width:220px}
+.attr-select select:focus{outline:none;border-color:var(--amber)}
+.attr-btns{display:flex;flex-wrap:wrap;gap:8px}
+.attr-btn{font-family:"Space Grotesk";font-weight:500;font-size:.82rem;color:var(--text-2);background:var(--surface);border:1px solid var(--border-soft);border-radius:999px;padding:.45em .95em;cursor:pointer;transition:.15s}
+.attr-btn:hover{color:#fff;border-color:var(--border)}
+.attr-btn.active{color:#11130f;background:var(--amber);border-color:var(--amber)}
+.attr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.attr-panel{padding:22px}
+.attr-panel.span2{grid-column:span 2}
+.attr-panel.span3{grid-column:span 3}
+.id-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+.id-code{font-family:"JetBrains Mono",monospace;font-size:1.15rem;font-weight:600;color:var(--amber);letter-spacing:.06em}
+/* donut */
+.donut-wrap{display:flex;align-items:center;gap:16px;margin-top:10px;flex-wrap:wrap}
+.donut{width:120px;height:120px;flex:none}
+.donut-leg{display:flex;flex-direction:column;gap:5px;font-size:.82rem}
+.donut-leg .leg{display:flex;align-items:center;gap:7px;color:var(--text-2)}
+.donut-leg .leg i{width:10px;height:10px;border-radius:3px;flex:none}
+.donut-leg .leg span{flex:1}
+.donut-leg .leg b{color:#fff;font-family:"JetBrains Mono",monospace;font-size:.78rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:"JetBrains Mono",monospace;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;padding:.3em .6em;border-radius:6px;background:var(--surface-2);color:var(--text-2);border:1px solid var(--border-soft)}
+.art-row{display:flex;gap:10px}
+.art-img{width:54px;height:54px;border:1px solid var(--border-soft);border-radius:10px;background:var(--bg-2);display:grid;place-items:center;padding:6px}
+.art-img.sm{width:46px;height:46px;flex:none}
+.art-img svg{width:100%;height:100%}
+/* chronology */
+.chrono{margin-top:6px}
+.chrono-track{position:relative;height:30px;border-radius:7px;background:linear-gradient(90deg,#1a232a,#12181d);border:1px solid var(--border-soft);overflow:hidden}
+.chrono-band{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,var(--amber),var(--cyan));opacity:.8;border-radius:4px;box-shadow:0 0 14px rgba(240,169,78,.5)}
+.chrono-ticks{position:relative;height:18px;margin-top:4px}
+.chrono-tick{position:absolute;transform:translateX(-50%);font-family:"JetBrains Mono",monospace;font-size:.62rem;color:var(--muted)}
+.chrono-axislabel{display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:.58rem;color:var(--muted);letter-spacing:.06em;margin-top:6px}
+/* organic abundance */
+.abund{display:flex;align-items:center;gap:12px;margin:9px 0}
+.abund-meta{flex:1}
+.abund-meta b{font-size:.9rem;color:#fff}
+.abund-bar{height:6px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden;margin:5px 0 3px}
+.abund-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--moss),var(--cyan));border-radius:99px}
+/* burials */
+.burial-grid{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.burial{width:100%;max-width:230px;height:auto}
+.burial-facts{display:flex;gap:18px;flex-wrap:wrap}
+.burial-facts>div{display:flex;flex-direction:column;gap:3px}
+.burial-facts b{color:#fff;font-size:.92rem}
+.compass{width:60px;height:60px}
+.ochre-sw{display:inline-block;width:12px;height:12px;border-radius:3px;background:#b5491f;vertical-align:middle}
+.empty-note{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;opacity:.7}
+/* conservation gauge + media */
+.cons-row{display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start}
+.gauge{display:flex;gap:5px;margin:8px 0 6px}
+.gseg{width:46px;height:12px;border-radius:4px}
+.media-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.media-pill{background:var(--bg-2);border:1px solid var(--border-soft);border-radius:10px;padding:8px 14px;text-align:center;min-width:64px}
+.media-pill b{display:block;font-family:"Space Grotesk";font-size:1.2rem;color:var(--cyan)}
+.media-pill span{font-family:"JetBrains Mono",monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:900px){.attr-grid{grid-template-columns:repeat(2,1fr)}.attr-panel.span2,.attr-panel.span3{grid-column:span 2}}
+@media(max-width:640px){.attr-grid{grid-template-columns:1fr}.attr-panel.span2,.attr-panel.span3{grid-column:span 1}}
+/* 3D + stratigraphy section */
+.strat-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.strat-wrap{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#0c0f13}
+.strat-svg{display:block;width:100%;height:auto}
+@media(max-width:860px){.strat-grid{grid-template-columns:1fr}}
 /* 3D viewer */
 .viewer{position:relative;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:radial-gradient(circle at 50% 38%,#0c1519,#070a0c);aspect-ratio:16/11;margin-top:14px}
 .viewer canvas{display:block;width:100%;height:100%;cursor:grab;touch-action:none}
@@ -807,36 +874,25 @@ function viewDirectory(){
   <!-- ATTRIBUTE DATABASE -->
   <section class="section" style="border-top:1px solid var(--border-soft)">
     <div class="container">
-      <div class="reveal" style="max-width:66ch"><p class="eyebrow">03 · ATTRIBUTE DATABASE</p><h2>What every record holds</h2><p>Each cave and artifact carries a structured set of metadata, so the directory works as a research database — not just a map.</p></div>
-      <div class="grid cols-3 schema" style="margin-top:30px">
-        <div class="card reveal"><p class="eyebrow" style="font-size:.66rem">SITE ATTRIBUTES</p><ul><li><b>Identifier code</b> — unique ID (e.g. HB-XT, HB-HM)</li><li><b>Legal status</b> — National Special, National, provincial, or newly discovered</li><li><b>Excavation history</b> — year, lead researcher, institution</li></ul></div>
-        <div class="card reveal d1"><p class="eyebrow" style="font-size:.66rem">STONE TOOLS</p><ul><li><b>Typology</b> — short axes, disc tools, almond tools, notched cutters</li><li><b>Technique</b> — unifacial / bifacial flaking, edge-grinding traces</li></ul></div>
-        <div class="card reveal d2"><p class="eyebrow" style="font-size:.66rem">ORGANIC REMAINS</p><ul><li><b>Faunal</b> — teeth &amp; bone of large / small animals</li><li><b>Molluscs</b> — stream snails, river clams</li><li><b>Botanical</b> — seeds &amp; dried fruit (diet evidence)</li></ul></div>
-        <div class="card reveal"><p class="eyebrow" style="font-size:.66rem">BURIALS</p><ul><li><b>Posture</b> — flexed or supine</li><li><b>Head orientation</b> &amp; grave goods</li><li><b>Red ochre</b> traces</li></ul></div>
-        <div class="card reveal d1"><p class="eyebrow" style="font-size:.66rem">CHRONOLOGY</p><ul><li><b>Absolute</b> — C-14 / AMS from charcoal &amp; shell</li><li><b>Relative</b> — Hoabinhian phase (Early–Middle–Late, ~30,000–10,000 BP)</li></ul></div>
-        <div class="card reveal d2"><p class="eyebrow" style="font-size:.66rem">CONSERVATION &amp; MEDIA</p><ul><li><b>Status</b> — intact · encroached · tourism pressure · at risk</li><li><b>Linked media</b> — PDFs, articles, photos, video</li></ul></div>
-      </div>
+      <div class="reveal" style="max-width:70ch"><p class="eyebrow">03 · ATTRIBUTE DATABASE</p><h2>Explore a site's record — visually</h2><p>Pick a cave to load its attribute record as live infographics. Identity, dating, burials and conservation use the catalogue data; the tool-typology, faunal and media breakdowns are <b style="color:var(--text)">representative samples</b> shown for illustration.</p></div>
+      <div class="attr-toolbar reveal" id="attrTabs" style="margin-top:22px"></div>
+      <div id="attrDB" class="reveal" style="margin-top:20px"></div>
     </div>
   </section>
 
   <!-- 3D & STRATIGRAPHY -->
   <section class="section" style="border-top:1px solid var(--border-soft)">
-    <div class="container grid cols-2" style="gap:44px;align-items:center">
-      <div class="reveal">
-        <p class="eyebrow cyan">04 · 3D &amp; STRATIGRAPHY</p>
-        <h2>Reading the layers, in 2D and 3D</h2>
-        <p>Each soil profile is digitised as a vector model showing every layer's colour, compactness and composition — how many centimetres of snail-shell midden, how thick the hearth ash. A mobile-LiDAR scan preserves the whole chamber as a 3D model researchers can revisit without disturbing the real cave.</p>
-        <a class="btn sm" href="#cave/xom-trai">See a full stratigraphy <span class="arw">→</span></a>
-      </div>
-      <div class="reveal d1">
-        <div class="strata">
-          <div class="strata-row" style="height:46px"><div class="strata-swatch" style="background:#9c8466"></div><div class="strata-info"><b>Topsoil</b><br><span class="muted">Recent surface · loose</span></div></div>
-          <div class="strata-row" style="height:64px"><div class="strata-swatch" style="background:#c9b59a"></div><div class="strata-info"><b>Shell midden</b><br><span class="muted">Freshwater snail shells · ~40 cm</span></div></div>
-          <div class="strata-row" style="height:44px"><div class="strata-swatch" style="background:#5b5048"></div><div class="strata-info"><b>Hearth ash</b><br><span class="muted">Charcoal &amp; burnt bone</span></div></div>
-          <div class="strata-row" style="height:74px"><div class="strata-swatch" style="background:#8a6d4b"></div><div class="strata-info"><b>Cultural layer</b><br><span class="muted">Stone tools · burials</span></div></div>
-          <div class="strata-row" style="height:38px"><div class="strata-swatch" style="background:#6e6e6e"></div><div class="strata-info"><b>Bedrock</b><br><span class="muted">Limestone floor</span></div></div>
+    <div class="container">
+      <div class="reveal" style="max-width:70ch"><p class="eyebrow cyan">04 · 3D &amp; STRATIGRAPHY</p><h2>Reading the layers, in 2D and 3D</h2><p>Both views follow the site selected above. The <b style="color:var(--text)">3D model</b> is a LiDAR-style point cloud coloured by elevation — like the scans SEAR-X produces — and the <b style="color:var(--text)">2D section</b> shows each layer's wavy boundaries, composition textures and depth. Every site's scan and section differ.</p></div>
+      <div class="strat-grid reveal" style="margin-top:24px">
+        <div>
+          <div class="viewer"><canvas class="cave-cloud" id="secCloud" data-cave="xom-trai"></canvas><div class="viewer-hud"><span><i class="rec-dot"></i> LiDAR · ELEVATION-COLOURED</span><span class="vp-coord">DRAG TO ORBIT · SCROLL TO ZOOM</span></div><span class="hud-corner tl"></span><span class="hud-corner tr"></span><span class="hud-corner bl"></span><span class="hud-corner br"></span></div>
+          <p class="kicker" style="margin-top:8px">FIG. — 3D POINT-CLOUD RECONSTRUCTION (REPRESENTATIVE)</p>
         </div>
-        <div class="viewer" style="margin-top:14px"><canvas class="cave-cloud" data-cave="xom-trai"></canvas><div class="viewer-hud"><span><i class="rec-dot"></i> LiDAR · LIVE TWIN</span><span class="vp-coord">DRAG TO ORBIT · SCROLL TO ZOOM</span></div><span class="hud-corner tl"></span><span class="hud-corner tr"></span><span class="hud-corner bl"></span><span class="hud-corner br"></span></div>
+        <div>
+          <div class="strat-wrap" id="secStrata"></div>
+          <p class="kicker" style="margin-top:8px">FIG. — STRATIGRAPHIC SECTION · WAVY BOUNDARIES &amp; COMPOSITION TEXTURES</p>
+        </div>
       </div>
     </div>
   </section>
@@ -903,7 +959,7 @@ function viewCave(id){
   const srcHtml = c.sources.map(s=>`<li><a href="${s.url}" target="_blank" rel="noopener">${s.label} ↗</a></li>`).join("");
   const totalT = (c.strata.reduce((a,s)=>a+s.thickness,0))||1;
   const findsSec = c.finds.length ? `<h3 style="margin-top:34px;font-size:1.4rem">Key finds</h3><ul class="finds-list">${c.finds.map(f=>`<li>${f}</li>`).join("")}</ul>` : "";
-  const strataSec = c.strata.length ? `<h3 style="margin-top:34px;font-size:1.4rem">Stratigraphy — reading the layers</h3><p class="muted" style="font-size:.92rem">Each band is a layer of deposit built up over thousands of years. Deeper layers are older. This simplified profile shows the kind of sequence found at the site (thicknesses illustrative).</p><div class="strata">${c.strata.map(s=>{const h=Math.max(38,(s.thickness/totalT)*340);return `<div class="strata-row" style="height:${h}px"><div class="strata-swatch" style="background:${s.color}"></div><div class="strata-info"><b>${s.label}</b><br><span class="muted">${s.note}</span></div></div>`;}).join("")}</div>` : "";
+  const strataSec = `<h3 style="margin-top:34px;font-size:1.4rem">Stratigraphy — reading the layers</h3><p class="muted" style="font-size:.92rem">A vector section of the deposits${c.strata.length?'':' (representative — this site has a limited public record)'}. Deeper layers are older; boundaries are drawn wavy with composition textures and a depth scale. Depths are illustrative.</p><div class="strat-wrap">${stratSection(c)}</div>`;
   const exSec = c.excavations.length ? `<h3 style="margin-top:34px;font-size:1.4rem">Excavation history</h3><ul class="timeline">${c.excavations.map(e=>`<li><b>${e.year}</b> ${e.note}</li>`).join("")}</ul>` : "";
   const catalogBanner = c.catalog ? `<div class="note-banner" style="margin-bottom:24px;background:rgba(176,140,224,.07);border-color:rgba(176,140,224,.28)"><strong style="color:#c4a7ec">Limited public record.</strong> This entry is compiled from the team's survey catalogue. Detailed finds, stratigraphy and precise coordinates are held in restricted internal archives — see the two-tier access model on the Directory page.</div>` : "";
   const mapSec = `<h3 style="margin-top:34px;font-size:1.4rem">Layer 1 — macro landscape</h3><p class="muted" style="font-size:.92rem">The real terrain, rivers and relief around the site (approximate, commune-level location). Switch between <b style="color:var(--text)">Terrain (DEM)</b> and <b style="color:var(--text)">Satellite</b> using the control on the map.</p><div class="cave-map-wrap"><div id="caveMap" data-lat="${c.lat}" data-lng="${c.lng}" data-name="${(c.name||'').replace(/"/g,'&quot;')}"></div></div>`;
@@ -1505,6 +1561,158 @@ function initCaveMap(){
   setTimeout(()=>{ if(_caveMap)_caveMap.invalidateSize(); },240);
 }
 
+/* ===================== ATTRIBUTE DATABASE (graphical, site-driven) ===================== */
+function attrSeed(id){let s=0;for(let i=0;i<id.length;i++)s=(s*31+id.charCodeAt(i))>>>0;return ()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296;};}
+function attrParseBP(t){const m=(t||'').replace(/,/g,'').match(/\d{4,6}/g);if(!m)return null;const n=m.map(Number);return {min:Math.min(...n),max:Math.max(...n)};}
+function attrDonut(data){
+  const total=data.reduce((a,d)=>a+d.val,0)||1,r=42,C=2*Math.PI*r;let off=0;
+  const rings=data.map(d=>{const len=d.val/total*C;const s=`<circle cx="60" cy="60" r="${r}" fill="none" stroke="${d.color}" stroke-width="15" stroke-dasharray="${len.toFixed(2)} ${(C-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 60 60)"/>`;off+=len;return s;}).join('');
+  const leg=data.map(d=>`<div class="leg"><i style="background:${d.color}"></i><span>${d.label}</span><b>${Math.round(d.val/total*100)}%</b></div>`).join('');
+  return `<div class="donut-wrap"><svg viewBox="0 0 120 120" class="donut">${rings}<circle cx="60" cy="60" r="33" fill="#0c0f13"/><text x="60" y="58" text-anchor="middle" font-size="12" fill="#fff" font-family="Space Grotesk">${total}</text><text x="60" y="72" text-anchor="middle" font-size="7" fill="#7c828c" font-family="JetBrains Mono">SAMPLE</text></svg><div class="donut-leg">${leg}</div></div>`;
+}
+function attrChrono(bp){
+  const A=32000,B=7000,x=v=>((A-v)/(A-B))*100;
+  let band='';if(bp){const x1=x(bp.max),x2=x(bp.min);band=`<div class="chrono-band" style="left:${x1}%;width:${Math.max(2.5,x2-x1)}%"></div>`;}
+  const ticks=[30000,25000,20000,15000,10000].map(t=>`<span class="chrono-tick" style="left:${x(t)}%">${t/1000}k</span>`).join('');
+  return `<div class="chrono"><div class="chrono-track">${band}</div><div class="chrono-ticks">${ticks}</div><div class="chrono-axislabel"><span>OLDER · 32k BP</span><span>10k BP · YOUNGER</span></div></div>`;
+}
+const ART={
+  axe:'<svg viewBox="0 0 60 60"><path d="M30 5 C43 14 47 35 30 56 C13 35 17 14 30 5 Z" fill="#9c7b54" stroke="#5b4a33" stroke-width="1.5"/><path d="M30 12 L26 26 M31 14 L36 28 M24 32 L30 40 M37 32 L31 42" stroke="#5b4a33" stroke-width="1" fill="none" opacity=".55"/></svg>',
+  disc:'<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="22" fill="#b29470" stroke="#5b4a33" stroke-width="1.5"/><path d="M11 26 a19 11 0 0 0 38 0" stroke="#5b4a33" fill="none" opacity=".5"/><path d="M30 9 l3 7 M30 51 l-3-7" stroke="#5b4a33" opacity=".4"/></svg>',
+  shell:'<svg viewBox="0 0 60 60"><g fill="none" stroke="#cbb79b" stroke-width="3" stroke-linecap="round"><path d="M30 30 a3 3 0 1 1 4 2 a7 7 0 1 1 -11 -1 a12 12 0 1 1 20 6 a17 17 0 1 1 -28 -8"/></g></svg>',
+  bone:'<svg viewBox="0 0 60 60"><g fill="#e6ddcf" stroke="#b3a88f" stroke-width="1.5"><circle cx="16" cy="17" r="6"/><circle cx="23" cy="13" r="5"/><circle cx="44" cy="43" r="6"/><circle cx="37" cy="47" r="5"/><rect x="16" y="20" width="28" height="9" rx="4.5" transform="rotate(45 30 30)"/></g></svg>',
+  seed:'<svg viewBox="0 0 60 60"><ellipse cx="30" cy="30" rx="11" ry="17" fill="#7f8f4c" stroke="#56632f" stroke-width="1.5"/><path d="M30 15 L30 45" stroke="#56632f" stroke-width="1" opacity=".6"/><ellipse cx="30" cy="30" rx="5" ry="9" fill="none" stroke="#56632f" stroke-width="1" opacity=".4"/></svg>'
+};
+function attrCompass(dir){const map={E:90,SE:135,S:180,SW:225,N:0,NE:45};const a=(map[dir]||90)*Math.PI/180;const ex=35+Math.sin(a)*22,ey=35-Math.cos(a)*22;
+  return `<svg viewBox="0 0 70 70" class="compass"><circle cx="35" cy="35" r="28" fill="none" stroke="#3a4654" stroke-width="1.5"/><circle cx="35" cy="35" r="28" fill="none" stroke="#3a4654" stroke-width="6" stroke-dasharray="1 8" opacity=".5"/><text x="35" y="13" text-anchor="middle" font-size="9" fill="#7c828c" font-family="JetBrains Mono">N</text><line x1="35" y1="35" x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}" stroke="#f0a94e" stroke-width="2.6"/><circle cx="35" cy="35" r="3" fill="#f0a94e"/></svg>`;}
+function attrBurial(posture){
+  return `<svg viewBox="0 0 150 84" class="burial"><rect x="3" y="46" width="144" height="34" rx="5" fill="#160f09" stroke="#3a2f22"/><g opacity=".25" stroke="#3a2f22"><line x1="40" y1="46" x2="40" y2="80"/><line x1="77" y1="46" x2="77" y2="80"/><line x1="114" y1="46" x2="114" y2="80"/></g>`+
+  (posture==='Flexed'
+   ? '<g stroke="#d8cdb8" stroke-width="3" fill="none" stroke-linecap="round"><circle cx="40" cy="46" r="7" fill="#d8cdb8" stroke="none"/><path d="M46 52 C66 48 80 56 92 62"/><path d="M52 54 C55 66 64 67 72 64"/><path d="M76 58 C79 67 88 68 96 65"/></g>'
+   : '<g stroke="#d8cdb8" stroke-width="3" fill="none" stroke-linecap="round"><circle cx="28" cy="63" r="7" fill="#d8cdb8" stroke="none"/><path d="M35 63 H120"/><path d="M55 63 l8 9 M85 63 l8 9"/></g>')+
+  '</svg>';
+}
+function genStrata(rnd){return [
+ {label:'Topsoil / humus',color:'#9c8466',thickness:0.8+rnd()*0.5,note:'Loose recent surface'},
+ {label:'Upper shell midden',color:'#c9b59a',thickness:1.4+rnd()*1.4,note:'Freshwater snail shells'},
+ {label:'Ash & hearth lens',color:'#5b5048',thickness:0.7+rnd()*0.9,note:'Charcoal, burnt bone'},
+ {label:'Main cultural layer',color:'#8a6d4b',thickness:1.8+rnd()*1.6,note:'Stone & bone tools'},
+ {label:'Lower deposit',color:'#bfa988',thickness:1.1+rnd()*1.0,note:'Earliest occupation'},
+ {label:'Bedrock',color:'#6e6e6e',thickness:0.9+rnd()*0.3,note:'Limestone floor'}
+];}
+function stratTexType(s){const t=((s.label||'')+' '+(s.note||'')).toLowerCase();
+  if(/shell|snail|midden|mollusc/.test(t))return 'shell';
+  if(/ash|hearth|charcoal|burnt/.test(t))return 'ash';
+  if(/bedrock|limestone|rock/.test(t))return 'rock';
+  if(/topsoil|humus|surface|disturb/.test(t))return 'soil';
+  return 'cultural';}
+function stratSection(cave){
+  const rnd=attrSeed(((cave&&cave.id)||'x')+'-strat');
+  const strata=(cave&&cave.strata&&cave.strata.length)?cave.strata:genStrata(rnd);
+  const totalT=strata.reduce((a,s)=>a+s.thickness,0)||1, depthCm=Math.round(totalT*34);
+  const X0=70,X1=372,W=X1-X0,topPad=16,secH=336,steps=12;
+  let ys=[topPad],acc=0; strata.forEach(s=>{acc+=s.thickness;ys.push(topPad+acc/totalT*secH);});
+  const bpts=ys.map((yb,bi)=>{const amp=(bi===0||bi===ys.length-1)?2:5+rnd()*4,phs=rnd()*6,arr=[];for(let i=0;i<=steps;i++){const x=X0+W*i/steps,y=yb+(bi===0?0:Math.sin(i*0.85+phs)*amp+(rnd()-0.5)*amp*0.5);arr.push([x,Math.max(topPad,y)]);}return arr;});
+  function tex(s,tA,tB){const type=stratTexType(s),yTop=(tA[0][1]+tA[tA.length-1][1])/2,yBot=(tB[0][1]+tB[tB.length-1][1])/2,h=yBot-yTop;if(h<6)return '';
+    if(type==='rock'){let m='';for(let yy=yTop+6;yy<yBot-2;yy+=7)m+=`<line x1="${X0+4}" y1="${yy.toFixed(1)}" x2="${X1-4}" y2="${yy.toFixed(1)}" stroke="#3a3a3a" stroke-width="1" opacity=".4"/>`;for(let xx=X0+16;xx<X1;xx+=28)m+=`<line x1="${xx}" y1="${yTop.toFixed(1)}" x2="${xx}" y2="${yBot.toFixed(1)}" stroke="#3a3a3a" stroke-width="1" opacity=".25"/>`;return m;}
+    const n=Math.round(W*h/520*1.6);let m='';for(let i=0;i<n;i++){const x=(X0+6+rnd()*(W-12)).toFixed(1),y=(yTop+4+rnd()*(h-8)).toFixed(1);
+      if(type==='shell')m+=`<path d="M${x} ${y} q2.2 -2.4 4.4 0" stroke="#3a2f22" stroke-width="1" fill="none" opacity=".5"/>`;
+      else if(type==='ash')m+=`<circle cx="${x}" cy="${y}" r="0.9" fill="#d8cdb8" opacity=".5"/>`;
+      else if(type==='cultural')m+=`<path d="M${x} ${y} l2.4 3.4 l-4.8 0 z" fill="#3a2f22" opacity=".5"/>`;
+      else m+=`<circle cx="${x}" cy="${y}" r="0.8" fill="#3a2f22" opacity=".3"/>`;}
+    return m;}
+  let bands='';
+  strata.forEach((s,i)=>{const tA=bpts[i],tB=bpts[i+1];let d='M '+tA[0][0]+' '+tA[0][1].toFixed(1);tA.forEach(p=>d+=` L ${p[0].toFixed(1)} ${p[1].toFixed(1)}`);for(let k=tB.length-1;k>=0;k--)d+=` L ${tB[k][0].toFixed(1)} ${tB[k][1].toFixed(1)}`;d+=' Z';
+    bands+=`<path d="${d}" fill="${s.color}" stroke="rgba(0,0,0,.45)" stroke-width="1"/>`+tex(s,tA,tB);});
+  let axis=`<line x1="${X0-10}" y1="${topPad}" x2="${X0-10}" y2="${topPad+secH}" stroke="#3a4654" stroke-width="1.4"/>`;
+  ys.forEach((y,i)=>{const cm=Math.round(i/strata.length*depthCm);axis+=`<line x1="${X0-14}" y1="${y.toFixed(1)}" x2="${X0-10}" y2="${y.toFixed(1)}" stroke="#3a4654" stroke-width="1.2"/><text x="${X0-18}" y="${(y+3).toFixed(1)}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="8" fill="#7c828c">${cm}</text>`;});
+  axis+=`<text x="22" y="${topPad+secH/2}" transform="rotate(-90 22 ${topPad+secH/2})" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#6c727c" letter-spacing=".12em">DEPTH (cm)</text>`;
+  let labels='';
+  strata.forEach((s,i)=>{const cy=(ys[i]+ys[i+1])/2,cm=Math.round(s.thickness/totalT*depthCm);
+    labels+=`<g><rect x="384" y="${(cy-5).toFixed(1)}" width="12" height="12" rx="2" fill="${s.color}" stroke="rgba(0,0,0,.4)"/><line x1="${X1}" y1="${cy.toFixed(1)}" x2="382" y2="${cy.toFixed(1)}" stroke="#3a4654" stroke-width="1" stroke-dasharray="2 2"/><text x="402" y="${(cy-1).toFixed(1)}" font-family="Space Grotesk" font-size="11" fill="#fff">${s.label}</text><text x="402" y="${(cy+11).toFixed(1)}" font-family="Inter" font-size="9" fill="#8b929c">${s.note} · ~${cm} cm</text></g>`;});
+  return `<svg viewBox="0 0 600 ${topPad+secH+14}" class="strat-svg" role="img" aria-label="Stratigraphic section of ${(cave&&cave.name)||'cave'}"><rect width="600" height="${topPad+secH+14}" fill="#0c0f13"/>${axis}${bands}<rect x="${X0}" y="${topPad}" width="${W}" height="${secH}" fill="none" stroke="#2b3640" stroke-width="1"/>${labels}</svg>`;
+}
+function attrRender(id){
+  const c=CAVES.find(x=>x.id===id)||CAVES[0];
+  // drive Section 04 (stratigraphy + LiDAR) from the same selection
+  const ss=document.getElementById('secStrata'); if(ss)ss.innerHTML=stratSection(c);
+  const sc=document.getElementById('secCloud'); if(sc){ sc.dataset.cave=c.id; initViewers(); }
+  document.querySelectorAll('.attr-btn').forEach(b=>b.classList.toggle('active',b.dataset.id===id));
+  const sel=document.getElementById('attrSelect'); if(sel)sel.value=id;
+  const rnd=attrSeed(c.id);
+  // identity
+  const exc=c.excavations.length?('<ul class="timeline" style="margin-top:10px">'+c.excavations.map(e=>`<li><b>${e.year}</b> ${e.note}</li>`).join('')+'</ul>'):'<p class="muted" style="font-size:.86rem;margin-top:10px">No public excavation record.</p>';
+  // chronology
+  const bp=attrParseBP(c.datingText);
+  // tools donut
+  const toolData=[['Short axes','#f0a94e'],['Disc tools','#3ad1da'],['Almond','#8fb56a'],['Choppers','#c4a7ec'],['Scrapers','#e8825a']].map(([label,color])=>({label,color,val:8+Math.floor(rnd()*42)}));
+  const techniques=['Unifacial','Bifacial','Edge-ground'].filter(()=>rnd()<.75); if(!techniques.length)techniques.push('Unifacial');
+  const toolArt=[ART.axe,ART.disc].map(s=>`<div class="art-img">${s}</div>`).join('');
+  // organic
+  const lvl=()=>1+Math.floor(rnd()*3),lab=['Few','Some','Abundant'];
+  const fauna=[['Freshwater snails',ART.shell],['Animal bone & teeth',ART.bone],['Seeds & dried fruit',ART.seed]].map(([n,img])=>({n,img,l:lvl()}));
+  const faunaHtml=fauna.map(f=>`<div class="abund"><div class="art-img sm">${f.img}</div><div class="abund-meta"><b>${f.n}</b><div class="abund-bar"><i style="width:${f.l/3*100}%"></i></div><span class="kicker">${lab[f.l-1]}</span></div></div>`).join('');
+  // burials
+  const dirs=['E','SE','S','NE'],od=dirs[Math.floor(rnd()*dirs.length)],posture=rnd()<.6?'Flexed':'Supine',ochre=rnd()<.6;
+  const burialHtml=c.hasBurials
+   ? `<div class="burial-grid">${attrBurial(posture)}<div class="burial-facts"><div><span class="kicker">POSTURE</span><b>${posture}</b></div><div><span class="kicker">HEAD ORIENTATION</span>${attrCompass(od)}<b>${od}</b></div><div><span class="kicker">RED OCHRE</span><b>${ochre?'<span class="ochre-sw"></span> Present':'Not noted'}</b></div></div></div>`
+   : `<div class="empty-note"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#5b6470" stroke-width="1.4"><path d="M4 20h16M7 20V9l5-4 5 4v11"/></svg><p class="muted" style="margin:.4em 0 0;font-size:.9rem">No burials recorded at this site.</p></div>`;
+  // conservation + media
+  const consMap={'Protected':{lvl:3,c:'#8fb56a'},'Tourism pressure':{lvl:2,c:'#f0a94e'},'At risk':{lvl:1,c:'#e8825a'}};
+  const cons=consMap[c.conservation]||{lvl:0,c:'#7c828c'};
+  const gauge=[1,2,3].map(i=>`<span class="gseg" style="background:${i<=cons.lvl?cons.c:'rgba(255,255,255,.08)'}"></span>`).join('');
+  const media=[['PDF',1+Math.floor(rnd()*4)],['Photos',4+Math.floor(rnd()*14)],['Video',Math.floor(rnd()*3)],['Articles',1+Math.floor(rnd()*5)]];
+  const mediaHtml=media.map(([k,n])=>`<div class="media-pill"><b>${n}</b><span>${k}</span></div>`).join('');
+  const rankCls=rankClass(c.rank);
+
+  document.getElementById('attrDB').innerHTML=`
+  <div class="attr-grid">
+    <div class="card attr-panel">
+      <p class="eyebrow" style="font-size:.62rem">SITE IDENTITY</p>
+      <div class="id-row"><span class="id-code">${c.code}</span><span class="tag ${rankCls}">${c.rank}</span>${c.catalog?'<span class="tag illustrative">limited</span>':''}</div>
+      <h3 style="margin:8px 0 2px">${c.name}</h3>
+      <p class="muted" style="font-size:.88rem;margin:0">${c.type} · ${c.commune}, ${c.district}</p>
+      <p class="eyebrow cyan" style="font-size:.6rem;margin-top:14px">EXCAVATION HISTORY</p>${exc}
+    </div>
+    <div class="card attr-panel span2">
+      <p class="eyebrow" style="font-size:.62rem">CHRONOLOGY · ${c.phase}</p>
+      <h3 style="margin:6px 0 2px;font-size:1.2rem">${c.datingText}</h3>
+      <p class="muted" style="font-size:.84rem;margin:0 0 10px">${bp?'Absolute (C-14/AMS) &amp; relative phase placement on the Hoabinhian timeline.':'Dating unconfirmed — shown across the full Hoabinhian span.'}</p>
+      ${attrChrono(bp)}
+    </div>
+    <div class="card attr-panel">
+      <p class="eyebrow" style="font-size:.62rem">STONE TOOLS · TYPOLOGY</p>
+      ${attrDonut(toolData)}
+      <div class="chips" style="margin-top:8px">${techniques.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+      <div class="art-row" style="margin-top:10px">${toolArt}<span class="kicker" style="align-self:center">SAMPLE TOOLS</span></div>
+    </div>
+    <div class="card attr-panel">
+      <p class="eyebrow" style="font-size:.62rem">ORGANIC REMAINS</p>
+      <div style="margin-top:8px">${faunaHtml}</div>
+    </div>
+    <div class="card attr-panel">
+      <p class="eyebrow" style="font-size:.62rem">BURIALS</p>
+      <div style="margin-top:10px">${burialHtml}</div>
+    </div>
+    <div class="card attr-panel span3">
+      <div class="cons-row">
+        <div><p class="eyebrow" style="font-size:.62rem">CONSERVATION STATUS</p><div class="gauge">${gauge}</div><b style="color:${cons.c};font-family:Space Grotesk">${c.conservation==='—'?'Unrecorded':c.conservation}</b></div>
+        <div style="flex:1"><p class="eyebrow cyan" style="font-size:.62rem">LINKED MEDIA · SAMPLE</p><div class="media-row">${mediaHtml}</div></div>
+      </div>
+    </div>
+  </div>`;
+}
+function initAttrDB(){
+  const tabs=document.getElementById('attrTabs'); if(!tabs)return;
+  const opts=CAVES.map(c=>`<option value="${c.id}">${c.name}${c.catalog?' (limited)':''}</option>`).join('');
+  const btns=CAVES.filter(c=>!c.catalog).map(c=>`<button class="attr-btn" data-id="${c.id}">${c.name}</button>`).join('');
+  tabs.innerHTML=`<div class="attr-select"><label class="kicker">SELECT SITE</label><select id="attrSelect">${opts}</select></div><div class="attr-btns">${btns}</div>`;
+  const sel=document.getElementById('attrSelect');
+  sel.addEventListener('change',()=>attrRender(sel.value));
+  tabs.querySelectorAll('.attr-btn').forEach(b=>b.addEventListener('click',()=>attrRender(b.dataset.id)));
+  attrRender('xom-trai');
+}
+
 /* ===================== COMPARE WIRING ===================== */
 function initCompare(){
   const defaults=["xom-trai","hang-muoi","hang-khoai"];
@@ -1589,39 +1797,61 @@ function initSearViewer(){
 /* ===================== 3D LiDAR POINT-CLOUD VIEWER ===================== */
 const _viewers=[];
 function stopViewers(){ _viewers.forEach(v=>{try{v.stop();}catch(e){}}); _viewers.length=0; }
-function initViewers(){ document.querySelectorAll('canvas.cave-cloud').forEach(cv=>{ const v=makeCloud(cv); if(v)_viewers.push(v); }); }
+function initViewers(){ stopViewers(); document.querySelectorAll('canvas.cave-cloud').forEach(cv=>{ const v=makeCloud(cv); if(v)_viewers.push(v); }); }
 function makeCloud(canvas){
   let ctx; try{ctx=canvas.getContext('2d');}catch(e){return null;} if(!ctx)return null;
   const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const cave=CAVES.find(c=>c.id===canvas.dataset.cave);
   let seed=0; const s=(canvas.dataset.cave||'cave'); for(let i=0;i<s.length;i++)seed=(seed*31+s.charCodeAt(i))>>>0;
   const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
-  const strata=(cave&&cave.strata&&cave.strata.length)?cave.strata:[{color:'#8a6d4b'},{color:'#bfa988'},{color:'#6e6e6e'}];
-  const Lx=2.6,R=1.0,pts=[];
-  const N=720;
-  for(let i=0;i<N*4;i++){
+  // jet/turbo colormap (classic LiDAR elevation colouring): t 0..1 -> rgb string
+  const jet=t=>{t=Math.max(0,Math.min(1,t));
+    const r=Math.round(255*Math.min(Math.max(1.5-Math.abs(4*t-3),0),1));
+    const g=Math.round(255*Math.min(Math.max(1.5-Math.abs(4*t-2),0),1));
+    const b=Math.round(255*Math.min(Math.max(1.5-Math.abs(4*t-1),0),1));
+    return 'rgb('+r+','+g+','+b+')';};
+  // per-site geometry parameters
+  const Lx=2.0+rnd()*1.6;            // half-length of chamber
+  const Rb=0.78+rnd()*0.55;          // base radius
+  const rough=0.12+rnd()*0.20;       // wall roughness
+  const nStal=4+Math.floor(rnd()*8); // stalactites
+  const ph1=rnd()*6, ph2=rnd()*6;
+  const pts=[]; const N=3200;
+  for(let i=0;i<N;i++){
     const x=(rnd()-0.5)*Lx*2, k=rnd();
-    if(k<0.46){ const a=(rnd()*0.92+0.04)*Math.PI, r=R*(0.9+rnd()*0.14);
-      pts.push({x,y:Math.sin(a)*r*0.85+0.18,z:Math.cos(a)*r,c:'#86abb2',i:0.45+rnd()*0.5}); }
-    else if(k<0.74){ const side=rnd()<.5?-1:1,h=rnd();
-      pts.push({x,y:-0.65+h*1.35,z:side*R*(0.82+rnd()*0.12),c:'#6f7d85',i:0.4+rnd()*0.45}); }
-    else { const li=Math.floor(rnd()*strata.length);
-      pts.push({x,y:-0.72-li*0.12-rnd()*0.09,z:(rnd()-0.5)*R*1.7,c:strata[li].color,i:0.6+rnd()*0.4}); }
+    if(k<0.60){ // ceiling + walls (upper arch), irregular
+      const a=(rnd()*0.96+0.02)*Math.PI;
+      const wob=1+Math.sin(x*2.3+ph1+a*1.7)*rough+(rnd()-0.5)*rough*0.7;
+      const r=Rb*wob;
+      pts.push({x,y:Math.sin(a)*r-0.08,z:Math.cos(a)*r,i:0.5+rnd()*0.5});
+    } else if(k<0.82){ // uneven floor
+      const z=(rnd()-0.5)*Rb*1.9;
+      const y=-Rb*0.92+Math.sin(x*1.9+z*2.4+ph2)*0.09+(rnd()-0.5)*0.06;
+      pts.push({x,y,z,i:0.55+rnd()*0.45});
+    } else { // interior scatter / breakdown
+      const a=rnd()*2*Math.PI,r=rnd()*Rb*0.85;
+      pts.push({x,y:Math.sin(a)*r*0.6-0.2,z:Math.cos(a)*r,i:0.4+rnd()*0.4});
+    }
   }
-  let yaw=0.6,pitch=0.34,zoom=1,drag=false,px=0,py=0,auto=!reduce,raf=null;
+  for(let st=0;st<nStal;st++){ // stalactites hanging from ceiling
+    const sx=(rnd()-0.5)*Lx*1.9, sz=(rnd()-0.5)*Rb*0.7, top=Rb*(0.78+rnd()*0.2), len=0.22+rnd()*0.55, m=9+Math.floor(rnd()*11);
+    for(let j=0;j<m;j++){const tt=j/m; pts.push({x:sx+(rnd()-0.5)*0.05*(1-tt),y:top-tt*len,z:sz+(rnd()-0.5)*0.05*(1-tt),i:0.6+rnd()*0.4});}
+  }
+  let ymin=1e9,ymax=-1e9; pts.forEach(p=>{if(p.y<ymin)ymin=p.y;if(p.y>ymax)ymax=p.y;});
+  const span=(ymax-ymin)||1; pts.forEach(p=>{p.c=jet((p.y-ymin)/span);});
+  let yaw=0.6,pitch=0.30,zoom=1,drag=false,px=0,py=0,auto=!reduce,raf=null;
   const DPR=Math.min(2,window.devicePixelRatio||1);
   function resize(){const r=canvas.getBoundingClientRect(); if(!r.width)return; canvas.width=r.width*DPR; canvas.height=r.height*DPR;}
   resize();
   function draw(){
     const W=canvas.width,H=canvas.height; if(!W){raf=requestAnimationFrame(draw);return;}
     ctx.clearRect(0,0,W,H);
-    const cx=W/2,cy=H/2,sc=Math.min(W,H)*0.34*zoom;
+    const cx=W/2,cy=H/2,sc=Math.min(W,H)*0.30*zoom;
     const cY=Math.cos(yaw),sY=Math.sin(yaw),cP=Math.cos(pitch),sP=Math.sin(pitch);
     const proj=pts.map(p=>{const x=p.x*cY-p.z*sY,z=p.x*sY+p.z*cY,y2=p.y*cP-z*sP,z2=p.y*sP+z*cP;
       return {sx:cx+x*sc,sy:cy-y2*sc,d:z2,c:p.c,i:p.i};}).sort((a,b)=>a.d-b.d);
-    const sz=Math.max(1.2,sc*0.013);
-    for(const q of proj){ ctx.globalAlpha=0.45+q.i*0.55; ctx.fillStyle=q.c; ctx.fillRect(q.sx,q.sy,sz,sz); }
-    ctx.globalAlpha=1; if(auto&&!drag)yaw+=0.0026; raf=requestAnimationFrame(draw);
+    const sz=Math.max(1,sc*0.011);
+    for(const q of proj){ ctx.globalAlpha=0.4+q.i*0.6; ctx.fillStyle=q.c; ctx.fillRect(q.sx,q.sy,sz,sz); }
+    ctx.globalAlpha=1; if(auto&&!drag)yaw+=0.0024; raf=requestAnimationFrame(draw);
   }
   const down=e=>{drag=true;auto=false;const t=e.touches?e.touches[0]:e;px=t.clientX;py=t.clientY;};
   const move=e=>{if(!drag)return;const t=e.touches?e.touches[0]:e;yaw+=(t.clientX-px)*0.01;pitch=Math.max(-0.25,Math.min(0.95,pitch+(t.clientY-py)*0.006));px=t.clientX;py=t.clientY;if(e.touches)e.preventDefault();};
@@ -1710,7 +1940,7 @@ function router(){
   let html='', after=null, nav=view;
   switch(view){
     case 'home': html=viewHome(); after=()=>{initStarfield();initCounters();}; break;
-    case 'directory': html=viewDirectory(); after=()=>{initDirectory();initCounters();initDirMap();}; break;
+    case 'directory': html=viewDirectory(); after=()=>{initDirectory();initCounters();initDirMap();initAttrDB();}; break;
     case 'cave': html=viewCave(param); nav='directory'; after=initCaveMap; break;
     case 'compare': html=viewCompare(); after=initCompare; break;
     case 'learn': html=viewLearn(); break;
