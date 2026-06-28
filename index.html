@@ -376,6 +376,11 @@ em{color:var(--amber-2);font-style:normal}
 /* per-cave Layer-1 map */
 .cave-map-wrap{margin-top:14px;border:1px solid var(--border);border-radius:14px;overflow:hidden}
 #caveMap{height:380px;width:100%;background:#0a0c0f}
+/* directory province map */
+.dir-map-wrap{border:1px solid var(--border);border-radius:16px;overflow:hidden}
+#dirMap{height:520px;width:100%;background:#0a0c0f}
+.cat-coord{font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.04em;color:var(--amber);opacity:.85;font-weight:400}
+@media(max-width:640px){#dirMap{height:60vh}}
 /* 3D viewer */
 .viewer{position:relative;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:radial-gradient(circle at 50% 38%,#0c1519,#070a0c);aspect-ratio:16/11;margin-top:14px}
 .viewer canvas{display:block;width:100%;height:100%;cursor:grab;touch-action:none}
@@ -733,7 +738,7 @@ function gisGrid(){return `<svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2
 function viewDirectory(){
   // build grouped catalogue from data
   const grp=c=>c.group||(c.rank==='National Special'?'special':'national');
-  const entry=c=>`<a class="cat-item" href="#cave/${c.id}"><span class="cat-dot ${rankClass(c.rank)}"></span><span class="cat-name">${c.name}${c.catalog?' <span class="tag illustrative cat-lim">limited</span>':''}</span><span class="cat-meta">${c.commune}, ${c.district}</span></a>`;
+  const entry=c=>`<a class="cat-item" href="#cave/${c.id}"><span class="cat-dot ${rankClass(c.rank)}"></span><span class="cat-name">${c.name}${c.catalog?' <span class="tag illustrative cat-lim">limited</span>':''}<br><span class="cat-coord">◎ ${c.lat.toFixed(4)}°N, ${c.lng.toFixed(4)}°E · approx</span></span><span class="cat-meta">${c.commune}, ${c.district}</span></a>`;
   const special=CAVES.filter(c=>grp(c)==='special');
   const national=CAVES.filter(c=>grp(c)==='national');
   const survey=CAVES.filter(c=>grp(c)==='survey');
@@ -752,6 +757,22 @@ function viewDirectory(){
         <div><b>${CAVES.length}</b><span>Indexed in this directory</span></div>
         <div><b>3</b><span>GIS spatial levels</span></div>
         <div><b>2</b><span>Data-security tiers</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVINCE MAP -->
+  <section class="section" style="padding-top:60px">
+    <div class="container">
+      <div class="reveal" style="max-width:66ch"><p class="eyebrow">01 · PROVINCE MAP</p><h2>Where the sites are</h2><p>Every catalogued cave plotted on a real map. Switch between <b style="color:var(--text)">topographic terrain (DEM)</b>, satellite and dark base layers. Positions are approximate (commune-level) to protect the sites — open a marker for its coordinates.</p></div>
+    </div>
+    <div class="container reveal" style="margin-top:24px">
+      <div class="dir-map-wrap"><div id="dirMap"></div></div>
+      <div class="map-legend" style="margin-top:14px">
+        <span><i class="lg special"></i>National Special</span>
+        <span><i class="lg national"></i>National</span>
+        <span><i class="lg survey"></i>Newly discovered</span>
+        <span><i class="lg cat"></i>Limited record</span>
       </div>
     </div>
   </section>
@@ -929,6 +950,7 @@ function viewCave(id){
             <tr><th>Type</th><td>${c.type}</td></tr>
             <tr><th>District</th><td>${c.district}</td></tr>
             <tr><th>Commune</th><td>${c.commune}</td></tr>
+            <tr><th>Coordinates (approx.)</th><td>${c.lat.toFixed(4)}°N, ${c.lng.toFixed(4)}°E</td></tr>
             <tr><th>Heritage rank</th><td>${c.rank} (${c.rankYear})</td></tr>
             <tr><th>Cave-mouth facing</th><td>${c.orientation}</td></tr>
             <tr><th>Dating</th><td>${c.datingText}</td></tr>
@@ -1439,6 +1461,31 @@ function initDirectory(){
   const lo=document.getElementById('expLogout'); if(lo)lo.addEventListener('click',()=>setExpert(false));
 }
 
+/* ===================== DIRECTORY PROVINCE MAP ===================== */
+let _dirMap=null;
+function stopDirMap(){ if(_dirMap){ try{_dirMap.remove();}catch(e){} _dirMap=null; } }
+function initDirMap(){
+  const el=document.getElementById('dirMap'); if(!el)return;
+  if(typeof L==="undefined"){ el.innerHTML='<div style="padding:34px;color:var(--muted);font-family:JetBrains Mono,monospace">⚠ MAP NEEDS AN INTERNET CONNECTION TO LOAD TILES.</div>'; return; }
+  stopDirMap();
+  _dirMap=L.map('dirMap',{scrollWheelZoom:false,zoomControl:true}).setView([20.62,105.35],9);
+  const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxZoom:17,subdomains:'abc',attribution:'© OpenTopoMap (CC-BY-SA)'}).addTo(_dirMap);
+  const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
+  const dark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'});
+  L.control.layers({'Topographic (DEM)':terrain,'Satellite':sat,'Dark':dark},{},{collapsed:false,position:'topright'}).addTo(_dirMap);
+  const colorOf=c=>c.rank==="National Special"?"#f0a94e":c.rank==="National"?"#3ad1da":"#b08ce0";
+  const grp=L.featureGroup();
+  CAVES.forEach(c=>{
+    const color=c.catalog?"#b08ce0":colorOf(c); const sz=c.catalog?11:15;
+    const icon=L.divIcon({className:'',html:`<div style="width:${sz}px;height:${sz}px;border-radius:50%;background:${c.catalog?'transparent':color};border:2px solid ${color};box-shadow:0 0 0 3px ${color}26,0 0 12px ${color}"></div>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],popupAnchor:[0,-sz/2]});
+    const m=L.marker([c.lat,c.lng],{icon}).bindPopup(`<div class="cave-popup"><span class="tag ${rankClass(c.rank)}">${c.rank}</span> ${c.catalog?'<span class="tag illustrative">limited record</span>':''}<h4>${c.name}</h4><div class="meta">${c.commune}, ${c.district}<br>${c.lat.toFixed(4)}°N, ${c.lng.toFixed(4)}°E · approx</div><p style="font-size:.85rem;margin:.3em 0">${c.summary}</p><a class="btn sm" href="#cave/${c.id}">Open record →</a></div>`);
+    grp.addLayer(m);
+  });
+  grp.addTo(_dirMap);
+  try{ _dirMap.fitBounds(grp.getBounds().pad(0.15)); }catch(e){}
+  setTimeout(()=>{ if(_dirMap)_dirMap.invalidateSize(); },240);
+}
+
 /* ===================== PER-CAVE LAYER-1 LANDSCAPE MAP ===================== */
 let _caveMap=null;
 function stopCaveMap(){ if(_caveMap){ try{_caveMap.remove();}catch(e){} _caveMap=null; } }
@@ -1655,7 +1702,7 @@ function scrollToId(id){ const el=document.getElementById(id); if(el&&el.scrollI
 function setActiveNav(view){ document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===view)); }
 
 function router(){
-  stopStarfield(); stopSearViewer(); stopViewers(); stopCaveMap();
+  stopStarfield(); stopSearViewer(); stopViewers(); stopCaveMap(); stopDirMap();
   const raw=(location.hash||'#home').replace(/^#/,'');
   const [view,param]=raw.split('/');
   const mount=document.getElementById('view');
@@ -1663,7 +1710,7 @@ function router(){
   let html='', after=null, nav=view;
   switch(view){
     case 'home': html=viewHome(); after=()=>{initStarfield();initCounters();}; break;
-    case 'directory': html=viewDirectory(); after=()=>{initDirectory();initCounters();}; break;
+    case 'directory': html=viewDirectory(); after=()=>{initDirectory();initCounters();initDirMap();}; break;
     case 'cave': html=viewCave(param); nav='directory'; after=initCaveMap; break;
     case 'compare': html=viewCompare(); after=initCompare; break;
     case 'learn': html=viewLearn(); break;
