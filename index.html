@@ -373,6 +373,9 @@ em{color:var(--amber-2);font-style:normal}
 .cat-item .cat-name{color:#fff;font-weight:500;font-size:.92rem;flex:1}
 .cat-item .cat-meta{font-family:"JetBrains Mono",monospace;font-size:.64rem;color:var(--muted);text-align:right}
 .cat-lim{font-size:.52rem!important;vertical-align:middle;padding:.2em .45em!important}
+/* per-cave Layer-1 map */
+.cave-map-wrap{margin-top:14px;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+#caveMap{height:380px;width:100%;background:#0a0c0f}
 /* 3D viewer */
 .viewer{position:relative;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:radial-gradient(circle at 50% 38%,#0c1519,#070a0c);aspect-ratio:16/11;margin-top:14px}
 .viewer canvas{display:block;width:100%;height:100%;cursor:grab;touch-action:none}
@@ -775,45 +778,6 @@ function viewDirectory(){
     </div>
   </section>
 
-  <!-- INTERACTIVE MAP -->
-  <section class="section" style="padding-top:60px" id="map-section">
-    <div class="container">
-      <div class="reveal" style="max-width:64ch"><p class="eyebrow">01 · INTERACTIVE MAP</p><h2>Locate &amp; filter the sites</h2><p>Browse documented and catalogued caves across Hòa Bình. Use the smart filter to find sites by what they contain, then open any record.</p></div>
-    </div>
-    <div class="container dir-mapwrap reveal" style="margin-top:24px">
-      <aside class="dir-sidebar">
-        <div class="filter-group">
-          <h4>Smart filter — caves with</h4>
-          <label class="check"><input type="checkbox" data-filter="hasBurials"> Burials</label>
-          <label class="check"><input type="checkbox" data-filter="hasStoneTools"> Stone tools</label>
-          <label class="check"><input type="checkbox" data-filter="hasFossils"> Fossils / faunal remains</label>
-          <label class="check"><input type="checkbox" data-filter="hasHearths"> Hearths (cooking fires)</label>
-        </div>
-        <div class="filter-group">
-          <h4>Heritage rank</h4>
-          <label class="check"><input type="checkbox" data-rank="National Special"> National Special</label>
-          <label class="check"><input type="checkbox" data-rank="National"> National</label>
-          <label class="check"><input type="checkbox" data-rank="Newly discovered"> Newly discovered</label>
-        </div>
-        <button class="btn ghost sm" id="clearFilters" style="margin-bottom:18px">Reset filters</button>
-        <div class="filter-group">
-          <h4>Results <span id="countBadge" class="tag" style="margin-left:6px"></span></h4>
-          <div id="caveList"></div>
-        </div>
-        <p class="kicker" style="border-top:1px solid var(--border-soft);padding-top:12px;line-height:1.7">⚠ PINS ARE APPROXIMATE (COMMUNE-LEVEL). PRECISE GPS IS RESTRICTED TO PROTECT SITES FROM LOOTING.</p>
-      </aside>
-      <div id="map"></div>
-    </div>
-    <div class="container reveal" style="margin-top:14px">
-      <div class="map-legend">
-        <span><i class="lg special"></i>National Special</span>
-        <span><i class="lg national"></i>National</span>
-        <span><i class="lg survey"></i>Newly discovered</span>
-        <span><i class="lg cat"></i>Limited record</span>
-      </div>
-    </div>
-  </section>
-
   <!-- GIS SPATIAL DATA MODEL -->
   <section class="section" style="border-top:1px solid var(--border-soft)">
     <div class="container">
@@ -821,9 +785,9 @@ function viewDirectory(){
       <div class="grid cols-3" style="margin-top:30px">
         <div class="card reveal">
           <div class="gis-fig">${gisMacro()}</div>
-          <span class="tag">MACRO</span>
+          <span class="tag">MACRO · LAYER 1</span>
           <h3 style="margin:10px 0 4px">Landscape</h3>
-          <p class="muted" style="font-size:.92rem">Terrain elevation (DEM), ancient river &amp; stream systems, sources of raw cobble stone, and traces of prehistoric vegetation.</p>
+          <p class="muted" style="font-size:.92rem">Terrain elevation (DEM), ancient river &amp; stream systems, sources of raw cobble stone, and traces of prehistoric vegetation. <b style="color:var(--text)">Every cave page now carries a real Layer-1 terrain &amp; satellite map.</b></p>
         </div>
         <div class="card reveal d1">
           <div class="gis-fig">${gisMicro()}</div>
@@ -943,6 +907,7 @@ function viewCave(id){
   const strataSec = c.strata.length ? `<h3 style="margin-top:34px;font-size:1.4rem">Stratigraphy — reading the layers</h3><p class="muted" style="font-size:.92rem">Each band is a layer of deposit built up over thousands of years. Deeper layers are older. This simplified profile shows the kind of sequence found at the site (thicknesses illustrative).</p><div class="strata">${c.strata.map(s=>{const h=Math.max(38,(s.thickness/totalT)*340);return `<div class="strata-row" style="height:${h}px"><div class="strata-swatch" style="background:${s.color}"></div><div class="strata-info"><b>${s.label}</b><br><span class="muted">${s.note}</span></div></div>`;}).join("")}</div>` : "";
   const exSec = c.excavations.length ? `<h3 style="margin-top:34px;font-size:1.4rem">Excavation history</h3><ul class="timeline">${c.excavations.map(e=>`<li><b>${e.year}</b> ${e.note}</li>`).join("")}</ul>` : "";
   const catalogBanner = c.catalog ? `<div class="note-banner" style="margin-bottom:24px;background:rgba(176,140,224,.07);border-color:rgba(176,140,224,.28)"><strong style="color:#c4a7ec">Limited public record.</strong> This entry is compiled from the team's survey catalogue. Detailed finds, stratigraphy and precise coordinates are held in restricted internal archives — see the two-tier access model on the Directory page.</div>` : "";
+  const mapSec = `<h3 style="margin-top:34px;font-size:1.4rem">Layer 1 — macro landscape</h3><p class="muted" style="font-size:.92rem">The real terrain, rivers and relief around the site (approximate, commune-level location). Switch between <b style="color:var(--text)">Terrain (DEM)</b> and <b style="color:var(--text)">Satellite</b> using the control on the map.</p><div class="cave-map-wrap"><div id="caveMap" data-lat="${c.lat}" data-lng="${c.lng}" data-name="${(c.name||'').replace(/"/g,'&quot;')}"></div></div>`;
   const viewerSec = `<h3 style="margin-top:34px;font-size:1.4rem">Digital twin — interactive LiDAR point cloud</h3><p class="muted" style="font-size:.92rem">A 3-D point-cloud reconstruction of the chamber${c.catalog?' (representative model — this site has a limited record)':''}, the kind SEAR-X generates from a scan. <b style="color:var(--text)">Drag to orbit · scroll to zoom.</b></p><div class="viewer"><canvas class="cave-cloud" data-cave="${c.id}"></canvas><div class="viewer-hud"><span><i class="rec-dot"></i> LiDAR · ${c.code}</span><span class="vp-coord">${c.catalog?'REPRESENTATIVE':'DIGITAL TWIN'}</span></div><span class="hud-corner tl"></span><span class="hud-corner tr"></span><span class="hud-corner bl"></span><span class="hud-corner br"></span></div>`;
   const preciseGps = `${c.lat.toFixed(5)}°N, ${c.lng.toFixed(5)}°E`;
   const expertPanel = isExpert()
@@ -971,6 +936,7 @@ function viewCave(id){
         <p class="eyebrow">FIELD REPORT</p>
         <h2>The story of this cave</h2>
         <p>${c.story}</p>
+        ${mapSec}
         ${findsSec}
         ${strataSec}
         ${viewerSec}
@@ -1485,59 +1451,33 @@ function initCardGlow(){
   });
 }
 
-/* ===================== DIRECTORY WIRING ===================== */
-let _map=null;
+/* ===================== DIRECTORY WIRING (expert login) ===================== */
 function initDirectory(){
-  if(typeof L==="undefined"){ const m=document.getElementById('map'); if(m)m.innerHTML='<div style="padding:34px;color:var(--muted);font-family:JetBrains Mono,monospace">⚠ MAP REQUIRES AN INTERNET CONNECTION TO LOAD TILES.<br>All other content works offline.</div>'; return; }
-  if(_map){ _map.remove(); _map=null; }
-  _map = L.map('map',{scrollWheelZoom:true,zoomControl:true}).setView([20.62,105.45],9);
-  const baseDark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'}).addTo(_map);
-  const baseTerrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxZoom:17,subdomains:'abc',attribution:'© OpenTopoMap (CC-BY-SA)'});
-  // --- GIS overlay layers (rivers & raw-material sources are illustrative) ---
-  const rivers=L.layerGroup([
-    L.polyline([[20.95,105.30],[20.80,105.36],[20.66,105.30],[20.52,105.34],[20.42,105.45]],{color:'#3ad1da',weight:2,opacity:.7,dashArray:'6 6'}),
-    L.polyline([[20.74,104.90],[20.66,105.05],[20.60,105.22],[20.55,105.40]],{color:'#3ad1da',weight:2,opacity:.7,dashArray:'6 6'}),
-    L.polyline([[20.50,105.78],[20.46,105.66],[20.43,105.55]],{color:'#3ad1da',weight:2,opacity:.7,dashArray:'6 6'})
-  ]);
-  const rawMat=L.layerGroup([[20.78,105.34,'Cobble source'],[20.63,105.28,'Cobble source'],[20.58,105.42,'Chert outcrop'],[20.68,104.98,'Cobble source']]
-    .map(([la,ln,t])=>L.circleMarker([la,ln],{radius:6,color:'#f0a94e',fillColor:'#f0a94e',fillOpacity:.5,weight:1.5}).bindTooltip(t+' (illustrative)')));
-  L.control.layers(
-    {'Dark base':baseDark,'Terrain (DEM)':baseTerrain},
-    {'Ancient rivers ⓘ':rivers,'Raw-material sources ⓘ':rawMat},
-    {collapsed:false,position:'topright'}
-  ).addTo(_map);
-  const markers={};
-  const colorOf=c=>c.rank==="National Special"?"#f0a94e":c.rank==="National"?"#3ad1da":"#b08ce0";
-  const makeIcon=c=>{const color=c.catalog?"#b08ce0":colorOf(c);const sz=c.catalog?11:15;
-    return L.divIcon({className:'',html:`<div style="width:${sz}px;height:${sz}px;border-radius:50%;background:${c.catalog?'transparent':color};border:2px solid ${color};box-shadow:0 0 0 3px ${color}26,0 0 12px ${color}"></div>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],popupAnchor:[0,-sz/2]});};
-  CAVES.forEach(c=>{
-    const m=L.marker([c.lat,c.lng],{icon:makeIcon(c)}).addTo(_map);
-    m.bindPopup(`<div class="cave-popup"><span class="tag ${rankClass(c.rank)}">${c.rank}</span> ${c.catalog?'<span class="tag illustrative">limited record</span>':c.illustrative?'<span class="tag illustrative">illustrative</span>':''}<h4>${c.name}</h4><div class="meta">${c.commune}, ${c.district} · ${c.datingText}</div><p style="font-size:.85rem;margin:.3em 0">${c.summary}</p><a class="btn sm" href="#cave/${c.id}">Open record →</a></div>`);
-    markers[c.id]=m;
-  });
-  const listEl=document.getElementById('caveList');
-  const countBadge=document.getElementById('countBadge');
-  const activeFilters=()=>({flags:[...document.querySelectorAll('[data-filter]:checked')].map(i=>i.dataset.filter),ranks:[...document.querySelectorAll('[data-rank]:checked')].map(i=>i.dataset.rank)});
-  const passes=(c,f)=>{ if(f.ranks.length&&!f.ranks.includes(c.rank))return false; return f.flags.every(flag=>c[flag]); };
-  function render(){
-    const f=activeFilters();
-    const shown=CAVES.filter(c=>passes(c,f));
-    countBadge.textContent=shown.length+" / "+CAVES.length;
-    listEl.innerHTML=shown.map(c=>`<a class="cave-list-item" href="#cave/${c.id}" onmouseenter="window.__hoverCave&&window.__hoverCave('${c.id}')"><h4>${c.name}${c.catalog?' <span class="tag illustrative cat-lim">limited</span>':''}</h4><div class="meta"><span class="tag ${rankClass(c.rank)}">${c.rank}</span> ${c.commune.toUpperCase()} · ${c.district.toUpperCase()}</div></a>`).join("")||`<p class="muted">No caves match these filters.</p>`;
-    CAVES.forEach(c=>{const on=_map.hasLayer(markers[c.id]); if(passes(c,f)&&!on)markers[c.id].addTo(_map); if(!passes(c,f)&&on)_map.removeLayer(markers[c.id]);});
-  }
-  window.__hoverCave=id=>{ if(markers[id]&&_map.hasLayer(markers[id]))markers[id].openPopup(); };
-  document.querySelectorAll('[data-filter],[data-rank]').forEach(el=>el.addEventListener('change',render));
-  document.getElementById('clearFilters').addEventListener('click',()=>{document.querySelectorAll('[data-filter],[data-rank]').forEach(el=>el.checked=false);render();});
-  render();
-  setTimeout(()=>_map.invalidateSize(),220);
-  // expert tier login / logout
   const lf=document.getElementById('expertLogin');
   if(lf)lf.addEventListener('submit',e=>{e.preventDefault();
     const k=(document.getElementById('expKey')||{}).value||'';
     if(k.trim().toUpperCase()==='HOABINH2026'){ setExpert(true); }
     else{ const m=document.getElementById('expMsg'); if(m)m.textContent='Invalid access key. Try the demo key shown above.'; }});
   const lo=document.getElementById('expLogout'); if(lo)lo.addEventListener('click',()=>setExpert(false));
+}
+
+/* ===================== PER-CAVE LAYER-1 LANDSCAPE MAP ===================== */
+let _caveMap=null;
+function stopCaveMap(){ if(_caveMap){ try{_caveMap.remove();}catch(e){} _caveMap=null; } }
+function initCaveMap(){
+  const el=document.getElementById('caveMap'); if(!el)return;
+  const lat=parseFloat(el.dataset.lat), lng=parseFloat(el.dataset.lng);
+  if(typeof L==="undefined"){ el.innerHTML='<div style="padding:30px;color:var(--muted);font-family:JetBrains Mono,monospace">⚠ MAP NEEDS AN INTERNET CONNECTION TO LOAD TILES.</div>'; return; }
+  stopCaveMap();
+  _caveMap=L.map('caveMap',{scrollWheelZoom:false,zoomControl:true}).setView([lat,lng],12);
+  const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxZoom:17,subdomains:'abc',attribution:'© OpenTopoMap (CC-BY-SA)'}).addTo(_caveMap);
+  const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
+  L.control.layers({'Terrain (DEM)':terrain,'Satellite':sat},{},{collapsed:false,position:'topright'}).addTo(_caveMap);
+  const color="#f0a94e";
+  L.circle([lat,lng],{radius:2600,color:color,weight:1,opacity:.45,fillColor:color,fillOpacity:.05}).addTo(_caveMap);
+  L.circleMarker([lat,lng],{radius:9,color:color,weight:2,fillColor:color,fillOpacity:.4}).addTo(_caveMap)
+    .bindPopup('<div class="cave-popup"><b>'+(el.dataset.name||'')+'</b><br><span style="font-size:.78rem;color:#9aa">Approximate location · commune-level</span></div>');
+  setTimeout(()=>{ if(_caveMap)_caveMap.invalidateSize(); },240);
 }
 
 /* ===================== COMPARE WIRING ===================== */
@@ -1737,7 +1677,7 @@ function scrollToId(id){ const el=document.getElementById(id); if(el&&el.scrollI
 function setActiveNav(view){ document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===view)); }
 
 function router(){
-  stopStarfield(); stopSearViewer(); stopViewers();
+  stopStarfield(); stopSearViewer(); stopViewers(); stopCaveMap();
   const raw=(location.hash||'#home').replace(/^#/,'');
   const [view,param]=raw.split('/');
   const mount=document.getElementById('view');
@@ -1746,7 +1686,7 @@ function router(){
   switch(view){
     case 'home': html=viewHome(); after=()=>{initStarfield();initCounters();}; break;
     case 'directory': html=viewDirectory(); after=()=>{initDirectory();initCounters();}; break;
-    case 'cave': html=viewCave(param); nav='directory'; break;
+    case 'cave': html=viewCave(param); nav='directory'; after=initCaveMap; break;
     case 'compare': html=viewCompare(); after=initCompare; break;
     case 'learn': html=viewLearn(); break;
     case 'news': html=viewNews(); break;
