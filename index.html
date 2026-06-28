@@ -60,7 +60,7 @@ body::after{
   mask-image:radial-gradient(circle at 50% 30%, #000 0%, transparent 80%);
 }
 h1,h2,h3,h4{font-family:"Space Grotesk",sans-serif;line-height:1.08;color:#fff;font-weight:600;letter-spacing:-.02em;margin:.2em 0}
-h1{font-size:clamp(2.4rem,6vw,5rem);font-weight:700}
+h1{font-size:clamp(2.1rem,5vw,4rem);font-weight:700}
 h2{font-size:clamp(1.7rem,3.6vw,2.7rem)}
 h3{font-size:1.2rem}
 p{margin:.6em 0;color:var(--text-2)}
@@ -132,7 +132,7 @@ em{color:var(--amber-2);font-style:normal}
 .hero-stats .stat b{font-family:"Space Grotesk",sans-serif;font-size:2.1rem;font-weight:700;color:#fff;display:block;line-height:1}
 .hero-stats .stat span{font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:8px;display:block}
 /* telemetry ticker */
-.telemetry{position:absolute;left:0;right:0;bottom:0;z-index:2;border-top:1px solid var(--border-soft);background:rgba(8,9,11,.5);backdrop-filter:blur(8px);overflow:hidden;height:40px;display:flex;align-items:center}
+.telemetry{display:none}
 .telemetry .track{display:flex;gap:42px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--muted);letter-spacing:.1em;animation:ticker 38s linear infinite;padding-left:24px}
 .telemetry .track span b{color:var(--cyan);font-weight:500}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -342,6 +342,16 @@ em{color:var(--amber-2);font-style:normal}
 .tlm b{display:block;font-family:"Space Grotesk";font-size:1.05rem;color:var(--cyan);margin-top:4px;font-variant-numeric:tabular-nums}
 .photo-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .photo-gallery .photo-slot{margin-top:0;min-height:150px}
+/* team page */
+.team-card{text-align:center}
+.tm-photo{position:relative;width:118px;height:118px;margin:0 auto;border-radius:50%;overflow:hidden;border:1px solid var(--border);background:var(--bg-2)}
+.tm-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.tm-ph{position:absolute;inset:0;display:grid;place-items:center;gap:4px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.012) 0 10px,transparent 10px 20px)}
+.team-card .eyebrow{justify-content:center}
+/* footnote legibility */
+.kicker{font-size:.72rem}
+.footer-bottom{font-size:.76rem!important}
+.figure .cap,.ph-label{font-size:.68rem!important}
 /* ---- Directory page ---- */
 .tag.survey{background:rgba(176,140,224,.12);color:#c4a7ec;border-color:rgba(176,140,224,.28)}
 .dir-mapwrap{display:grid;grid-template-columns:340px 1fr;border:1px solid var(--border-soft);border-radius:16px;overflow:hidden;background:var(--bg-2)}
@@ -555,6 +565,7 @@ em{color:var(--amber-2);font-style:normal}
       <a href="#directory" data-nav="directory">Cave Directory</a>
       <a href="#news" data-nav="news">Signals</a>
       <a href="#about" data-nav="about">SEAR-X</a>
+      <a href="#team" data-nav="team">Team</a>
     </nav>
   </div>
 </header>
@@ -685,6 +696,20 @@ const NEWS = [
   {tag:"History",date:"ARCHIVE",title:"Madeleine Colani and the naming of the Hoabinhian",body:"In the 1920s, French archaeologist Madeleine Colani excavated dozens of caves in Hòa Bình. Her work led to the term 'Hoabinhian' being adopted in 1932 — a name now used by archaeologists across Southeast Asia."}
 ];
 
+/* TEAM — edit names, roles, bios and photos here. For a photo, set photo to an image
+   file you upload next to index.html, e.g. photo:"team/an.jpg". Leave "" for a placeholder. */
+const TEAM = [
+  {name:"Team member 1", role:"Role / specialty", bio:"Short bio — add later.", photo:""},
+  {name:"Team member 2", role:"Role / specialty", bio:"Short bio — add later.", photo:""},
+  {name:"Team member 3", role:"Role / specialty", bio:"Short bio — add later.", photo:""},
+  {name:"Team member 4", role:"Role / specialty", bio:"Short bio — add later.", photo:""},
+  {name:"Team member 5", role:"Role / specialty", bio:"Short bio — add later.", photo:""},
+  {name:"Team member 6", role:"Role / specialty", bio:"Short bio — add later.", photo:""}
+];
+const TEAM_MENTORS = [
+  {name:"Coach / mentor", role:"Team coach", bio:"Short bio — add later.", photo:""}
+];
+
 /* ===================== HELPERS ===================== */
 const rankClass = r => r==="National Special" ? "special" : r==="National" ? "national" : "survey";
 const yn = v => v ? '<span class="tag national">Yes</span>' : '<span class="muted">—</span>';
@@ -693,7 +718,7 @@ const ynCompare = v => v ? '<span class="yes">● Yes</span>' : '<span class="no
 /* ===================== VIEWS ===================== */
 function viewHome(){
   return `
-  <section class="hero">
+  <section class="hero" style="min-height:auto;padding:72px 0 76px">
     <canvas id="heroCanvas"></canvas>
     <div class="veil"></div>
     <div class="container">
@@ -703,12 +728,7 @@ function viewHome(){
       <div class="hero-cta reveal d3">
         <a class="btn" href="#directory">Launch the Directory <span class="arw">→</span></a>
         <a class="btn ghost" href="#about">Meet SEAR-X</a>
-      </div>
-      <div class="hero-stats reveal d4">
-        <div class="stat"><b data-count="72" data-suffix="+">0</b><span>Known sites · Hòa Bình</span></div>
-        <div class="stat"><b data-count="30000" data-format="comma">0</b><span>Years of human history</span></div>
-        <div class="stat"><b data-count="6">0</b><span>Caves in this directory</span></div>
-        <div class="stat"><b data-count="3">0</b><span>SEAR-X subsystems</span></div>
+        <a class="btn ghost" href="#team">Meet the Team</a>
       </div>
     </div>
     <div class="telemetry">
@@ -890,55 +910,10 @@ function viewDirectory(){
     </div>
   </section>
 
-  <!-- TWO-TIER SECURITY -->
-  <section class="section" style="border-top:1px solid var(--border-soft)">
-    <div class="container">
-      <div class="reveal" style="max-width:66ch"><p class="eyebrow">05 · DATA SECURITY</p><h2>Two access tiers — by design</h2><p>Hoabinhian sites are targeted by antiquities traffickers, so sensitive data is split into two tiers. The public sees enough to learn; only credentialed researchers reach precise locations and unpublished records.</p></div>
-      <div class="grid cols-2" style="margin-top:28px;gap:24px">
-        <div class="card reveal tier-public">
-          <div style="display:flex;align-items:center;gap:10px"><span class="tier-ic">🌐</span><span class="tag national">PUBLIC TIER</span></div>
-          <h3 style="margin:14px 0 4px">Open to everyone</h3>
-          <ul><li>Approximate location on the district / province map</li><li>Images of representative artifacts already held in museums</li><li>General history and educational content</li></ul>
-          <p class="kicker" style="margin-top:10px;color:var(--moss)">● ACTIVE — YOU ARE HERE</p>
-        </div>
-        <div class="card reveal d1 tier-expert">
-          <div style="display:flex;align-items:center;gap:10px"><span class="tier-ic">🔒</span><span class="tag">EXPERT TIER · INTERNAL</span></div>
-          <h3 style="margin:14px 0 4px">Credentialed researchers only</h3>
-          <ul><li>GPS coordinates accurate to the metre</li><li>Technical excavation-pit drawings</li><li>Burial distribution maps</li><li>Records of unpublished artifacts</li></ul>
-          ${isExpert()
-            ? `<div class="lock-form" style="opacity:1"><p class="kicker" style="color:var(--moss);line-height:1.6">● EXPERT MODE ACTIVE — precise GPS, pit drawings &amp; burial maps are unlocked on every cave page.</p><button class="btn sm ghost" id="expLogout">Lock expert tier</button></div>`
-            : `<form id="expertLogin" class="lock-form" style="opacity:1"><input type="text" id="expId" placeholder="Researcher ID" autocomplete="off"><input type="password" id="expKey" placeholder="Access key" autocomplete="off"><button class="btn sm" type="submit">🔓 Unlock expert tier</button><span class="kicker" style="color:var(--cyan)">DEMO KEY: HOABINH2026</span><span id="expMsg" class="kicker" style="color:#e8825a"></span></form>`}
-          <p class="kicker" style="margin-top:8px">ACCOUNT ISSUED BY THE HERITAGE MANAGEMENT AUTHORITY</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CATALOGUE LISTING -->
-  <section class="section" style="border-top:1px solid var(--border-soft)">
-    <div class="container">
-      <div class="reveal" style="max-width:68ch"><p class="eyebrow cyan">06 · SITE CATALOGUE</p><h2>The prehistoric caves of Hòa Bình</h2><p>The province holds <strong>72 catalogued Hoabinhian (Stone-Age) sites</strong> (with hundreds more discovered but unpublished). Representative entries are indexed below; sites marked <span class="tag illustrative cat-lim">limited</span> are catalogue records pending full documentation.</p></div>
-      <div class="catalogue reveal" style="margin-top:26px">
-        <div class="cat-block">
-          <h3 class="cat-h"><span class="cat-dot special"></span>National Special relics</h3>
-          <div class="cat-items">${special.map(entry).join('')}</div>
-        </div>
-        <div class="cat-block">
-          <h3 class="cat-h"><span class="cat-dot national"></span>National relics — by district</h3>
-          <div class="cat-districts">${natHtml}</div>
-        </div>
-        <div class="cat-block">
-          <h3 class="cat-h"><span class="cat-dot survey"></span>Newly discovered &amp; under survey</h3>
-          <div class="cat-items">${survey.map(entry).join('')}</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- COMPARE CTA -->
   <section class="section center" style="border-top:1px solid var(--border-soft)">
     <div class="container reveal">
-      <p class="eyebrow" style="justify-content:center">07 · RESEARCH TOOL</p>
+      <p class="eyebrow" style="justify-content:center">05 · RESEARCH TOOL</p>
       <h2>Compare caves side by side</h2>
       <p class="muted" style="max-width:54ch;margin:0 auto 24px">Line up dating, finds and features across sites — the kind of comparison archaeologists use to spot patterns.</p>
       <a class="btn" href="#compare">Open the comparison tool <span class="arw">→</span></a>
@@ -1197,70 +1172,95 @@ const SX_ICN={
 
 function specRow(p,v,u){return `<tr><th>${p}</th><td><b style="color:#fff;font-family:'Space Grotesk'">${v}</b> <span class="muted" style="font-size:.82rem">${u||''}</span></td></tr>`;}
 
-function bpHex(){return `<svg viewBox="0 0 440 280" xmlns="http://www.w3.org/2000/svg" class="bp" role="img" aria-label="SEAR-HEX technical diagram">
-  <defs><pattern id="g1" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#ffffff" stroke-opacity=".04"/></pattern></defs>
-  <rect width="440" height="280" fill="url(#g1)"/>
-  <g stroke="#3ad1da" fill="none" stroke-width="1.6" stroke-linecap="round">
-    <path d="M150 150 L96 120 M150 168 L84 168 M150 186 L100 216"/>
-    <path d="M290 150 L344 120 M290 168 L356 168 M290 186 L340 216"/>
-    <circle cx="96" cy="120" r="3.5" fill="#070809"/><circle cx="84" cy="168" r="3.5" fill="#070809"/><circle cx="100" cy="216" r="3.5" fill="#070809"/>
-    <circle cx="344" cy="120" r="3.5" fill="#070809"/><circle cx="356" cy="168" r="3.5" fill="#070809"/><circle cx="340" cy="216" r="3.5" fill="#070809"/>
-  </g>
-  <rect x="150" y="138" width="140" height="62" rx="14" fill="#0e141a" stroke="#2b3a44" stroke-width="1.6"/>
-  <rect x="180" y="120" width="80" height="26" rx="9" fill="#0c1116" stroke="#2b3a44" stroke-width="1.4"/>
-  <circle cx="220" cy="133" r="12" fill="#06222428" stroke="#3ad1da" stroke-width="1.6"/><circle cx="220" cy="133" r="4" fill="#3ad1da"/>
-  <path d="M198 121 A28 28 0 0 1 242 121" fill="none" stroke="#3ad1da" stroke-width="1" stroke-dasharray="2 3"/>
-  <circle cx="172" cy="186" r="3.6" fill="#f0a94e"/><circle cx="268" cy="186" r="3.6" fill="#f0a94e"/>
-  <g stroke="#5b6470" stroke-width="1" fill="none"><path d="M220 105 V92 M150 230 H290"/><path d="M150 224 V236 M290 224 V236"/></g>
-  <g font-family="JetBrains Mono, monospace" font-size="9" fill="#7c828c" letter-spacing=".06em">
-    <text x="226" y="90">ROTATING LiDAR · ±3 cm</text>
-    <text x="300" y="124">TELESCOPING LIMB</text>
-    <text x="300" y="170">0.8 m → 5 m REACH</text>
-    <text x="150" y="248" fill="#8b929c">CHASSIS 0.55 × 0.45 m</text>
-    <text x="120" y="200" fill="#f0a94e">FOOT LOAD CELL 0–2000 N</text>
-  </g>
-</svg>`;}
-
-function bpAir(){return `<svg viewBox="0 0 440 280" xmlns="http://www.w3.org/2000/svg" class="bp" role="img" aria-label="SEAR-AIR technical diagram">
-  <defs><pattern id="g1" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#ffffff" stroke-opacity=".04"/></pattern></defs>
-  <rect width="440" height="280" fill="url(#g1)"/>
-  <g stroke="#2b3a44" stroke-width="1.6" fill="#0e141a">
-    <rect x="206" y="70" width="28" height="150" rx="14"/>
-  </g>
-  <rect x="120" y="128" width="200" height="20" rx="8" fill="#0c1116" stroke="#2b3a44" stroke-width="1.4"/>
-  <g stroke="#3ad1da" stroke-width="1.6" fill="#06222420">
-    <circle cx="120" cy="110" r="20"/><circle cx="320" cy="110" r="20"/><circle cx="120" cy="166" r="20"/><circle cx="320" cy="166" r="20"/>
-  </g>
-  <g stroke="#3ad1da" stroke-width="1" opacity=".55" fill="none">
-    <path d="M104 110h32M120 94v32M304 110h32M320 94v32M104 166h32M120 150v32M304 166h32M320 150v32"/>
-  </g>
-  <rect x="200" y="150" width="40" height="30" rx="6" fill="none" stroke="#f0a94e" stroke-width="1.4" stroke-dasharray="4 3"/>
-  <circle cx="220" cy="100" r="6" fill="#0c1116" stroke="#3ad1da" stroke-width="1.4"/><circle cx="220" cy="100" r="2" fill="#3ad1da"/>
-  <g stroke="#5b6470" stroke-width="1" fill="none"><path d="M120 200 H320 M120 194v12 M320 194v12"/></g>
-  <g font-family="JetBrains Mono, monospace" font-size="9" fill="#7c828c" letter-spacing=".06em">
-    <text x="150" y="218">WINGSPAN 2.4–2.8 m</text>
-    <text x="226" y="98">LiDAR + CAMERA POD</text>
-    <text x="244" y="170" fill="#f0a94e">HEX CRADLE</text>
-    <text x="60" y="92" fill="#8b929c">VTOL ROTOR ×4</text>
+function isoGrid(gx,gy,ux,uy,vx,vy,n){let g='';for(let i=-n;i<=n;i++){g+=`<line x1="${(gx+i*ux-n*vx).toFixed(0)}" y1="${(gy+i*uy-n*vy).toFixed(0)}" x2="${(gx+i*ux+n*vx).toFixed(0)}" y2="${(gy+i*uy+n*vy).toFixed(0)}"/>`;g+=`<line x1="${(gx-n*ux+i*vx).toFixed(0)}" y1="${(gy-n*uy+i*vy).toFixed(0)}" x2="${(gx+n*ux+i*vx).toFixed(0)}" y2="${(gy+n*uy+i*vy).toFixed(0)}"/>`;}return g;}
+function bpHex(){
+  const legs=[[[150,150],[108,150],[78,178]],[[150,168],[104,178],[70,212]],[[153,184],[112,202],[94,238]],[[290,150],[332,150],[362,178]],[[290,168],[336,178],[370,212]],[[287,184],[328,202],[346,238]]];
+  const legSvg=legs.map(([h,k,f])=>`<ellipse cx="${f[0]}" cy="${f[1]+6}" rx="12" ry="3.5" fill="url(#hxsh)"/><polyline points="${h[0]},${h[1]} ${k[0]},${k[1]} ${f[0]},${f[1]}" fill="none" stroke="#080e12" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="${h[0]},${h[1]} ${k[0]},${k[1]} ${f[0]},${f[1]}" fill="none" stroke="url(#hxleg)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="${h[0]},${h[1]} ${k[0]},${k[1]} ${f[0]},${f[1]}" fill="none" stroke="#bfe0ea" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/><circle cx="${k[0]}" cy="${k[1]}" r="4.6" fill="url(#hxjoint)" stroke="#0a1216"/><circle cx="${f[0]}" cy="${f[1]}" r="4.4" fill="url(#hxfoot)" stroke="#6e4416"/>`).join('');
+  return `<svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" class="bp" role="img" aria-label="SEAR-HEX 3D render">
+  <defs>
+    <radialGradient id="hxbg" cx="50%" cy="36%" r="72%"><stop offset="0" stop-color="#17262d"/><stop offset="1" stop-color="#080b0e"/></radialGradient>
+    <radialGradient id="hxsh" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <linearGradient id="hxT" x1="0" y1="0" x2=".35" y2="1"><stop offset="0" stop-color="#46636e"/><stop offset=".5" stop-color="#26404a"/><stop offset="1" stop-color="#16262d"/></linearGradient>
+    <linearGradient id="hxL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2f37"/><stop offset="1" stop-color="#0b161b"/></linearGradient>
+    <linearGradient id="hxR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#13242c"/><stop offset="1" stop-color="#070f13"/></linearGradient>
+    <linearGradient id="hxleg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6a8893"/><stop offset="1" stop-color="#1f2c33"/></linearGradient>
+    <radialGradient id="hxjoint" cx="36%" cy="32%" r="72%"><stop offset="0" stop-color="#bfe0ea"/><stop offset="1" stop-color="#1d2a31"/></radialGradient>
+    <radialGradient id="hxfoot" cx="38%" cy="32%" r="72%"><stop offset="0" stop-color="#ffd9a0"/><stop offset="1" stop-color="#a8691b"/></radialGradient>
+    <radialGradient id="hxglass" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="#e3f9fd"/><stop offset=".4" stop-color="#3ad1da"/><stop offset="1" stop-color="#0a2e31"/></radialGradient>
+  </defs>
+  <rect width="440" height="300" fill="url(#hxbg)"/>
+  <ellipse cx="220" cy="250" rx="155" ry="30" fill="url(#hxsh)"/>
+  ${legSvg}
+  <polygon points="144,142 220,178 296,142 220,106" fill="url(#hxT)" stroke="#5a808c" stroke-width="1.2"/>
+  <polygon points="144,142 220,178 220,224 144,188" fill="url(#hxL)" stroke="#2b3a44" stroke-width="1"/>
+  <polygon points="296,142 220,178 220,224 296,188" fill="url(#hxR)" stroke="#2b3a44" stroke-width="1"/>
+  <polygon points="162,142 220,170 278,142 220,116" fill="none" stroke="#6a8e9a" stroke-width="1" opacity=".5"/>
+  <polygon points="150,140 176,150 166,156 142,146" fill="#ffffff" opacity=".07"/>
+  <g stroke="#070f13" stroke-width="1" opacity=".55"><line x1="172" y1="160" x2="172" y2="206"/><line x1="268" y1="160" x2="268" y2="206"/></g>
+  <ellipse cx="220" cy="123" rx="22" ry="11" fill="#0b1418" stroke="#3a525d" stroke-width="1.1"/>
+  <ellipse cx="220" cy="117" rx="20" ry="13" fill="url(#hxglass)" stroke="#3ad1da" stroke-width="1"/>
+  <ellipse cx="213" cy="111" rx="6" ry="3" fill="#ffffff" opacity=".65"/><circle cx="220" cy="107" r="2.4" fill="#eafcff"/>
+  <ellipse cx="220" cy="117" rx="32" ry="15" fill="none" stroke="#3ad1da" stroke-width="1" stroke-dasharray="2 4" opacity=".4"/>
+  <circle cx="236" cy="168" r="5.6" fill="url(#hxfoot)" stroke="#6e4416" stroke-width="1.2"/><circle cx="234" cy="166" r="1.6" fill="#fff" opacity=".85"/>
+  <g stroke="#5b6470" stroke-width="1" fill="none" opacity=".7"><path d="M220 99 L252 80 L300 80"/><path d="M236 168 L300 152"/></g>
+  <g font-family="JetBrains Mono,monospace" font-size="9" fill="#8b929c" letter-spacing=".05em">
+    <text x="302" y="83">ROTATING LiDAR · ±3 cm</text>
+    <text x="304" y="155" fill="#f0a94e">RGB / LED CAMERA</text>
+    <text x="118" y="288">SEAR-HEX · HEXAPOD · 0.55 × 0.45 m</text>
   </g>
 </svg>`;}
-
-function bpRelay(){return `<svg viewBox="0 0 440 280" xmlns="http://www.w3.org/2000/svg" class="bp" role="img" aria-label="SEAR-RELAY technical diagram">
-  <defs><pattern id="g1" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#ffffff" stroke-opacity=".04"/></pattern></defs>
-  <rect width="440" height="280" fill="url(#g1)"/>
-  <path d="M30 210 Q90 120 170 150 Q250 180 330 120 Q380 90 410 140 L410 250 L30 250 Z" fill="#0c1116" stroke="#2b3a44" stroke-width="1.4"/>
-  <g>
-    <g transform="translate(70,196)"><rect x="-9" y="0" width="18" height="20" rx="3" fill="#0e141a" stroke="#3ad1da" stroke-width="1.4"/><line x1="0" y1="0" x2="0" y2="-10" stroke="#3ad1da" stroke-width="1.4"/><circle cx="0" cy="-12" r="2" fill="#3ad1da"/></g>
-    <g transform="translate(170,150)"><rect x="-9" y="0" width="18" height="20" rx="3" fill="#0e141a" stroke="#3ad1da" stroke-width="1.4"/><line x1="0" y1="0" x2="0" y2="-10" stroke="#3ad1da" stroke-width="1.4"/><circle cx="0" cy="-12" r="2" fill="#3ad1da"/></g>
-    <g transform="translate(280,162)"><rect x="-9" y="0" width="18" height="20" rx="3" fill="#0e141a" stroke="#3ad1da" stroke-width="1.4"/><line x1="0" y1="0" x2="0" y2="-10" stroke="#3ad1da" stroke-width="1.4"/><circle cx="0" cy="-12" r="2" fill="#3ad1da"/></g>
-    <g transform="translate(360,150)"><rect x="-11" y="-2" width="22" height="24" rx="3" fill="#0e141a" stroke="#f0a94e" stroke-width="1.6"/><line x1="0" y1="-2" x2="0" y2="-14" stroke="#f0a94e" stroke-width="1.6"/><circle cx="0" cy="-16" r="2.4" fill="#f0a94e"/></g>
+function bpAir(){
+  const rotors=[[118,116],[322,116],[118,188],[322,188]];
+  const rotSvg=rotors.map(([x,y])=>`<ellipse cx="${x}" cy="${y+6}" rx="28" ry="6" fill="url(#arsh)"/><circle cx="${x}" cy="${y}" r="28" fill="url(#rot)"/><ellipse cx="${x}" cy="${y}" rx="28" ry="9" fill="none" stroke="#3ad1da" stroke-width="1.2" opacity=".7"/><ellipse cx="${x}" cy="${y}" rx="9" ry="28" fill="none" stroke="#3ad1da" stroke-width="1" opacity=".35"/><circle cx="${x}" cy="${y}" r="5.5" fill="url(#arhub)" stroke="#0a1216" stroke-width="1"/><circle cx="${x-1.5}" cy="${y-1.5}" r="1.6" fill="#fff" opacity=".7"/>`).join('');
+  return `<svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" class="bp" role="img" aria-label="SEAR-AIR 3D render">
+  <defs>
+    <radialGradient id="arbg" cx="50%" cy="40%" r="72%"><stop offset="0" stop-color="#16242b"/><stop offset="1" stop-color="#080b0e"/></radialGradient>
+    <radialGradient id="arsh" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000" stop-opacity=".4"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <linearGradient id="arBody" x1="0" y1="0" x2=".25" y2="1"><stop offset="0" stop-color="#4a666f"/><stop offset=".5" stop-color="#27414b"/><stop offset="1" stop-color="#15262d"/></linearGradient>
+    <linearGradient id="arWing" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#33505a"/><stop offset="1" stop-color="#11202700"/></linearGradient>
+    <linearGradient id="arBoom" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a7884"/><stop offset="1" stop-color="#1c2930"/></linearGradient>
+    <radialGradient id="arhub" cx="36%" cy="32%" r="72%"><stop offset="0" stop-color="#bfe0ea"/><stop offset="1" stop-color="#1d2a31"/></radialGradient>
+    <radialGradient id="rot" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#3ad1da" stop-opacity=".30"/><stop offset="70%" stop-color="#3ad1da" stop-opacity=".05"/><stop offset="100%" stop-color="#3ad1da" stop-opacity="0"/></radialGradient>
+    <radialGradient id="arlens" cx="40%" cy="32%" r="75%"><stop offset="0" stop-color="#e3f9fd"/><stop offset=".4" stop-color="#3ad1da"/><stop offset="1" stop-color="#0a2e31"/></radialGradient>
+  </defs>
+  <rect width="440" height="300" fill="url(#arbg)"/>
+  <ellipse cx="220" cy="276" rx="150" ry="16" fill="url(#arsh)"/>
+  <g stroke="url(#arBoom)" stroke-width="7" stroke-linecap="round"><line x1="220" y1="150" x2="118" y2="116"/><line x1="220" y1="150" x2="322" y2="116"/><line x1="220" y1="162" x2="118" y2="188"/><line x1="220" y1="162" x2="322" y2="188"/></g>
+  <polygon points="150,152 220,138 290,152 220,166" fill="url(#arWing)" stroke="#3a565f" stroke-width="1.1"/>
+  <polygon points="206,124 234,124 240,150 200,150" fill="url(#arBody)" stroke="#5a808c" stroke-width="1.2"/>
+  <polygon points="200,150 240,150 233,200 207,200" fill="url(#arBody)" stroke="#2b3a44" stroke-width="1.1"/>
+  <polygon points="206,124 234,124 230,138 210,138" fill="#ffffff" opacity=".06"/>
+  <circle cx="220" cy="131" r="6" fill="url(#arlens)" stroke="#3ad1da" stroke-width="1.1"/><circle cx="218" cy="129" r="1.6" fill="#fff" opacity=".85"/>
+  ${rotSvg}
+  <path d="M210 200 L210 214 M230 200 L230 214" stroke="#f0a94e" stroke-width="1.8"/>
+  <rect x="207" y="212" width="26" height="14" rx="3" fill="#0c2a2c" stroke="#f0a94e" stroke-width="1.4"/>
+  <circle cx="220" cy="219" r="2" fill="#f0a94e"/>
+  <g font-family="JetBrains Mono,monospace" font-size="9" fill="#8b929c" letter-spacing=".05em">
+    <text x="46" y="98">VTOL ROTOR ×4</text>
+    <text x="248" y="128" fill="#3ad1da">LiDAR + CAMERA</text>
+    <text x="240" y="228" fill="#f0a94e">HEX CRADLE</text>
+    <text x="138" y="290">SEAR-AIR · VTOL · SPAN 2.4–2.8 m</text>
   </g>
-  <g stroke="#3ad1da" stroke-width="1.3" stroke-dasharray="3 4" opacity=".8"><path d="M70 190 L170 150 L280 158 L360 150"/></g>
-  <g stroke="#3ad1da" fill="none" opacity=".5"><path d="M360 132a14 14 0 0 1 0 0M348 130a20 20 0 0 1 24 0M342 124a28 28 0 0 1 36 0"/></g>
-  <g font-family="JetBrains Mono, monospace" font-size="9" fill="#7c828c" letter-spacing=".06em">
-    <text x="40" y="232">SELF-HEALING MESH · NODE SPACING 50–100 m</text>
-    <text x="300" y="120" fill="#f0a94e">SEAR-HEX</text>
-    <text x="40" y="40" fill="#8b929c">IEEE 802.11s · 2.4 / 5 GHz · IP65</text>
+</svg>`;}
+function bpRelay(){
+  const rings=[[112,206,92,46],[202,172,64,32],[264,154,44,22],[308,142,30,15],[338,134,20,10]];
+  let tube='';for(let i=0;i<rings.length-1;i++){const a=rings[i],b=rings[i+1];tube+=`<line x1="${a[0]-a[2]}" y1="${a[1]}" x2="${b[0]-b[2]}" y2="${b[1]}" stroke="#1c2730" stroke-width="1"/><line x1="${a[0]+a[2]}" y1="${a[1]}" x2="${b[0]+b[2]}" y2="${b[1]}" stroke="#1c2730" stroke-width="1"/><line x1="${a[0]}" y1="${a[1]+a[3]}" x2="${b[0]}" y2="${b[1]+b[3]}" stroke="#1c2730" stroke-width="1"/>`;}
+  const ringSvg=rings.map((r,i)=>`<ellipse cx="${r[0]}" cy="${r[1]}" rx="${r[2]}" ry="${r[3]}" fill="${i===0?'#0a1014':'none'}" stroke="#33454f" stroke-width="${(1.6-i*0.2).toFixed(2)}" opacity="${(1-i*0.12).toFixed(2)}"/>`).join('');
+  const nodes=[[112,242,1],[202,196,0.82],[264,172,0.64],[308,154,0.48]];
+  const nodeSvg=nodes.map(([x,y,s])=>`<g transform="translate(${x},${y})"><ellipse cx="0" cy="4" rx="${12*s}" ry="3.4" fill="#000" opacity=".4"/><rect x="${-9*s}" y="${-18*s}" width="${18*s}" height="${18*s}" rx="2.5" fill="url(#rnode)" stroke="#3a525d" stroke-width="1.1"/><rect x="${-9*s}" y="${-18*s}" width="${18*s}" height="${5*s}" rx="2.5" fill="#ffffff" opacity=".08"/><circle cx="0" cy="${-9*s}" r="${2*s}" fill="#3ad1da"/><line x1="0" y1="${-18*s}" x2="0" y2="${-30*s}" stroke="#8aa3ad" stroke-width="${1.4*s}"/><circle cx="0" cy="${-31*s}" r="${2.2*s}" fill="#3ad1da"/><path d="M${-8*s} ${-33*s} a${11*s} ${9*s} 0 0 1 ${16*s} 0" fill="none" stroke="#3ad1da" stroke-width="1" opacity=".5"/><path d="M${-12*s} ${-36*s} a${15*s} ${12*s} 0 0 1 ${24*s} 0" fill="none" stroke="#3ad1da" stroke-width="1" opacity=".28"/></g>`).join('');
+  const links=`<polyline points="${nodes.map(n=>n[0]+','+(n[1]-9*n[2])).join(' ')}" fill="none" stroke="#3ad1da" stroke-width="1.4" stroke-dasharray="3 4" opacity=".85"/>`;
+  return `<svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" class="bp" role="img" aria-label="SEAR-RELAY 3D render">
+  <defs>
+    <radialGradient id="tun" cx="78%" cy="44%" r="62%"><stop offset="0" stop-color="#13202a"/><stop offset="1" stop-color="#070b0e"/></radialGradient>
+    <radialGradient id="rnode" cx="36%" cy="28%" r="80%"><stop offset="0" stop-color="#2a3d46"/><stop offset="1" stop-color="#0b1318"/></radialGradient>
+  </defs>
+  <rect width="440" height="300" fill="url(#tun)"/>
+  ${tube}${ringSvg}${links}${nodeSvg}
+  <g transform="translate(338,140)"><polygon points="-9,-3 0,2 9,-3 0,-8" fill="#13202a" stroke="#f0a94e" stroke-width="1.2"/><circle cx="0" cy="-3" r="1.4" fill="#f0a94e"/></g>
+  <g font-family="JetBrains Mono,monospace" font-size="9" fill="#8b929c" letter-spacing=".05em">
+    <text x="356" y="142" fill="#f0a94e">SEAR-HEX</text>
+    <text x="30" y="288">SELF-HEALING MESH · 50–100 m SPACING</text>
+    <text x="30" y="34" fill="#3ad1da">IEEE 802.11s · 2.4 / 5 GHz · IP65</text>
   </g>
 </svg>`;}
 
@@ -1309,6 +1309,29 @@ function heroDrone(){return `<svg viewBox="0 0 1000 250" preserveAspectRatio="xM
     <text x="690" y="226" fill="#8b929c">SCAN ████░ 78%</text>
   </g>
 </svg>`;}
+function teamCard(m){
+  const img = m.photo ? `<img src="${m.photo}" alt="${m.name}" class="tm-img" onerror="this.remove()">` : '';
+  return `<div class="card team-card"><div class="tm-photo">${img}<div class="tm-ph"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5b6470" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg><span class="kicker">ADD PHOTO</span></div></div><h3 style="margin:14px 0 2px;font-size:1.12rem">${m.name}</h3><p class="eyebrow" style="font-size:.6rem">${m.role}</p><p class="muted" style="font-size:.86rem;margin-top:8px">${m.bio}</p></div>`;
+}
+function viewTeam(){
+  return `
+  <section class="detail-hero" style="padding:48px 0 30px">
+    <div class="container reveal">
+      <p class="eyebrow cyan">THE TEAM</p>
+      <h1 style="font-size:clamp(2rem,4.5vw,3.2rem)">Team ArchaeoNova</h1>
+      <p style="max-width:64ch;font-size:1.02rem">A six-member team (ages 11–15) from <strong>Wellspring Bilingual International School, Hanoi</strong>, competing at the FIRST LEGO League Championship in Sydney — 2026 season theme <strong>UNEARTHED</strong>. Photos and full bios are coming soon.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:42px">
+    <div class="container">
+      <p class="eyebrow reveal">MEMBERS</p>
+      <div class="grid cols-3 reveal" style="margin-top:16px">${TEAM.map(teamCard).join('')}</div>
+      <p class="eyebrow cyan reveal" style="margin-top:38px">COACH &amp; MENTORS</p>
+      <div class="grid cols-3 reveal" style="margin-top:16px">${TEAM_MENTORS.map(teamCard).join('')}</div>
+      <div class="note-banner reveal" style="margin-top:28px">To add each person, edit the <b>TEAM</b> list near the top of the file — set their name, role, bio, and a <code>photo</code> (upload the image next to the page, e.g. <code>photo:"team/an.jpg"</code>).</div>
+    </div>
+  </section>`;
+}
 function viewAbout(){
   return `
   <section class="hero" style="min-height:auto;padding:84px 0 56px">
@@ -1363,15 +1386,6 @@ function viewAbout(){
           <div id="subBars" style="margin-top:12px"></div>
           <div class="tlm-grid" id="subTlm"></div>
           <table class="fact-table" id="subSpecs" style="margin-top:16px"></table>
-        </div>
-      </div>
-      <div class="reveal" style="margin-top:44px">
-        <p class="eyebrow">BRING YOUR OWN RENDERS</p>
-        <h3 style="font-size:1.3rem;margin-bottom:14px">Drop in real photos or CAD of each build</h3>
-        <div class="photo-gallery">
-          ${photoSlot('SEAR-HEX — ADD PHOTO / CAD RENDER')}
-          ${photoSlot('SEAR-AIR — ADD PHOTO / CAD RENDER')}
-          ${photoSlot('SEAR-RELAY — ADD PHOTO / CAD RENDER')}
         </div>
       </div>
     </div>
@@ -1540,10 +1554,12 @@ function initDirMap(){
 /* Robustly fix Leaflet sizing: maps often init before their container is laid out,
    leaving tiles unrendered until an invalidateSize. Retry + observe. */
 function mapFix(map, el, refit){
-  const inv=()=>{ try{ map.invalidateSize(); }catch(e){} };
-  [60,250,600,1200,2000].forEach(t=>setTimeout(()=>{ inv(); if(refit)refit(); },t));
+  const inv=()=>{ try{ map.invalidateSize(); if(refit)refit(); }catch(e){} };
+  [40,150,350,700,1200,2000,3500].forEach(t=>setTimeout(inv,t));
+  try{ map.whenReady(inv); }catch(e){}
   try{ if('ResizeObserver' in window){ new ResizeObserver(inv).observe(el); } }catch(e){}
   try{ if('IntersectionObserver' in window){ new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting)inv();});},{threshold:0.01}).observe(el); } }catch(e){}
+  try{ window.addEventListener('load',inv,{once:true}); }catch(e){}
 }
 
 /* ===================== PER-CAVE LAYER-1 LANDSCAPE MAP ===================== */
@@ -1708,11 +1724,8 @@ function attrRender(id){
 }
 function initAttrDB(){
   const tabs=document.getElementById('attrTabs'); if(!tabs)return;
-  const opts=CAVES.map(c=>`<option value="${c.id}">${c.name}${c.catalog?' (limited)':''}</option>`).join('');
-  const btns=CAVES.filter(c=>!c.catalog).map(c=>`<button class="attr-btn" data-id="${c.id}">${c.name}</button>`).join('');
-  tabs.innerHTML=`<div class="attr-select"><label class="kicker">SELECT SITE</label><select id="attrSelect">${opts}</select></div><div class="attr-btns">${btns}</div>`;
-  const sel=document.getElementById('attrSelect');
-  sel.addEventListener('change',()=>attrRender(sel.value));
+  const btns=CAVES.map(c=>`<button class="attr-btn" data-id="${c.id}">${c.name}${c.catalog?' <span style="opacity:.6">·ltd</span>':''}</button>`).join('');
+  tabs.innerHTML=`<div class="attr-btns">${btns}</div>`;
   tabs.querySelectorAll('.attr-btn').forEach(b=>b.addEventListener('click',()=>attrRender(b.dataset.id)));
   attrRender('xom-trai');
 }
@@ -1966,6 +1979,7 @@ function router(){
     case 'news': html=viewNews(); break;
     case 'contribute': html=viewContribute(); after=initContribute; break;
     case 'about': html=viewAbout(); after=()=>{initStarfield();initSearViewer();}; break;
+    case 'team': html=viewTeam(); break;
     default: html=viewHome(); nav='home'; after=()=>{initStarfield();initCounters();};
   }
   mount.innerHTML=html;
