@@ -81,6 +81,7 @@ em{color:var(--amber-2);font-style:normal}
   font-size:.72rem;font-weight:500;color:var(--amber);display:inline-flex;align-items:center;gap:.7em;
 }
 .eyebrow::before{content:"";width:22px;height:1px;background:var(--amber);display:inline-block;opacity:.7}
+.eyebrow.nodash::before{display:none}
 .eyebrow.cyan{color:var(--cyan)} .eyebrow.cyan::before{background:var(--cyan)}
 .kicker{font-family:"JetBrains Mono",monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 
@@ -738,7 +739,7 @@ function viewHome(){
     <canvas id="heroCanvas"></canvas>
     <div class="veil"></div>
     <div class="container">
-      <p class="eyebrow reveal">SURVEY · EXPLORATION · ARCHAEOLOGICAL RECONNAISSANCE</p>
+      <p class="eyebrow nodash reveal">SURVEY · EXPLORATION · ARCHAEOLOGICAL RECONNAISSANCE · CULTURAL PRESERVATION</p>
       <h1 class="reveal d1">A <span class="hl">Digital Directory</span> for the prehistoric caves of Vietnam</h1>
       <p class="lead reveal d2">From robot reconnaissance to permanent digital record. ArchaeoNova maps, documents, and protects the 30,000-year-old caves of prehistoric northern Vietnam — the homeland of its earliest peoples — and opens this heritage to the world.</p>
       <div class="hero-cta reveal d3">
