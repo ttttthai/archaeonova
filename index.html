@@ -124,9 +124,9 @@ em{color:var(--amber-2);font-style:normal}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.85}
 .hero .veil{position:absolute;inset:0;z-index:1;background:radial-gradient(60% 60% at 50% 40%,transparent,rgba(7,8,9,.4) 80%, var(--bg));pointer-events:none}
 .hero .container{position:relative;z-index:2;width:100%}
-.hero h1{max-width:16ch}
+.hero h1{max-width:15ch;font-size:clamp(2rem,4.3vw,3.45rem);line-height:1.05}
 .hero h1 .hl{background:linear-gradient(120deg,var(--amber),var(--amber-2) 60%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .lead{font-size:clamp(1.05rem,1.8vw,1.3rem);max-width:58ch;color:var(--text-2);margin-top:1.1em}
+.hero .lead{font-size:clamp(1.02rem,1.45vw,1.18rem);max-width:52ch;line-height:1.6;color:var(--text-2);margin-top:1.1em}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
 .hero-stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:54px}
 .hero-stats .stat{padding:16px 22px 14px;border:1px solid var(--border-soft);border-radius:14px;background:var(--surface);backdrop-filter:blur(6px);min-width:150px}
@@ -278,6 +278,22 @@ em{color:var(--amber-2);font-style:normal}
 .icon-badge.sx{width:54px;height:54px;color:var(--amber)}
 .icon-badge.sx svg{width:26px;height:26px}
 .icon-badge.sx.cyan{color:var(--cyan)}
+/* operations data-flow pipeline */
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:nowrap}
+.flow-stage{flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--border-soft);border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;gap:7px;position:relative;transition:border-color .18s,transform .18s}
+.flow-stage:hover{border-color:rgba(240,169,78,.4);transform:translateY(-3px)}
+.flow-top{display:flex;align-items:center;justify-content:space-between}
+.flow-top .icon-badge{margin-bottom:0}
+.flow-num{font-family:"JetBrains Mono",monospace;font-size:1.7rem;font-weight:700;line-height:1;color:rgba(255,255,255,.12)}
+.flow-sub{font-family:"JetBrains Mono",monospace;font-size:.6rem;letter-spacing:.14em;color:var(--cyan)}
+.flow-stage.amber .flow-sub{color:var(--amber)}
+.flow-stage strong{font-size:1rem;color:#fff}
+.flow-stage p{font-size:.83rem;line-height:1.45;color:var(--text-2);margin:0;flex:1}
+.flow-out{margin-top:6px;border-top:1px solid var(--border-soft);padding-top:8px;font-size:.74rem;color:var(--text-2);font-family:"JetBrains Mono",monospace;line-height:1.35}
+.flow-out span{display:block;color:var(--amber);font-size:.56rem;letter-spacing:.14em;margin-bottom:3px}
+.flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--amber);flex:0 0 26px}
+.flow-arrow svg{width:18px;height:18px}
+@media(max-width:760px){.flow{flex-direction:column}.flow-arrow{flex-basis:auto;padding:6px 0;transform:rotate(90deg)}}
 /* hero spec strip */
 .spec-strip{display:flex;flex-wrap:wrap;gap:0;margin-top:40px;border:1px solid var(--border-soft);border-radius:14px;overflow:hidden;background:var(--surface);backdrop-filter:blur(6px)}
 .spec-strip>div{flex:1;min-width:140px;padding:18px 22px;border-right:1px solid var(--border-soft)}
@@ -1396,12 +1412,39 @@ function viewAbout(){
 
   <section class="section">
     <div class="container">
-      <div class="reveal" style="max-width:64ch"><p class="eyebrow">OPERATIONS · DATA FLOW</p><h2>From sky to cave to record</h2><p>Each subsystem performs one stage of a single survey mission, feeding the next — ending in a permanent digital record published to the Cave Directory.</p></div>
-      <div class="steps" style="margin-top:34px">
-        <div class="card reveal"><span class="num">PHASE 01</span><div class="icon-badge sx" style="margin-top:12px">${SX_ICN.drone}</div><strong>Aerial survey</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">SEAR-AIR scouts rugged karst terrain and pinpoints cave entrances under forest cover.</p></div>
-        <div class="card reveal d1"><span class="num">PHASE 02</span><div class="icon-badge sx cyan" style="margin-top:12px">${SX_ICN.hex}</div><strong>Cave exploration</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">SEAR-HEX walks in on six legs, scanning with rotating LiDAR, cameras and gas sensors.</p></div>
-        <div class="card reveal d2"><span class="num">PHASE 03</span><div class="icon-badge sx" style="margin-top:12px">${SX_ICN.relay}</div><strong>Comms relay</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">SEAR-RELAY drops a self-healing mesh of nodes so live data escapes solid rock.</p></div>
-        <div class="card reveal d3"><span class="num">PHASE 04</span><div class="icon-badge sx cyan" style="margin-top:12px">${SX_ICN.cube}</div><strong>Digital twin</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">Point clouds and imagery fuse into a survey-grade 3D record, published here.</p></div>
+      <div class="reveal" style="max-width:66ch"><p class="eyebrow">OPERATIONS · DATA FLOW</p><h2>From sky to cave to record</h2><p>One survey mission, four linked stages. Each subsystem hands its data to the next — turning an unexplored, unsafe cave into a permanent digital record published to the Cave Directory.</p></div>
+      <div class="flow" style="margin-top:30px">
+        <div class="flow-stage amber reveal">
+          <div class="flow-top"><span class="flow-sub">SEAR-AIR</span><span class="flow-num">01</span></div>
+          <div class="icon-badge sx">${SX_ICN.drone}</div>
+          <strong>Aerial survey</strong>
+          <p>The VTOL drone scouts rugged karst terrain from above and pinpoints hidden cave entrances under dense forest cover.</p>
+          <div class="flow-out"><span>OUTPUT →</span>Terrain map · entrance GPS fixes</div>
+        </div>
+        <div class="flow-arrow reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="flow-stage reveal d1">
+          <div class="flow-top"><span class="flow-sub">SEAR-HEX</span><span class="flow-num">02</span></div>
+          <div class="icon-badge sx cyan">${SX_ICN.hex}</div>
+          <strong>Cave exploration</strong>
+          <p>The six-legged hexapod walks in over rubble, scanning with rotating LiDAR and stereo cameras while sensors check the air is safe.</p>
+          <div class="flow-out"><span>OUTPUT →</span>Point cloud · imagery · gas &amp; climate</div>
+        </div>
+        <div class="flow-arrow reveal d1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="flow-stage amber reveal d2">
+          <div class="flow-top"><span class="flow-sub">SEAR-RELAY</span><span class="flow-num">03</span></div>
+          <div class="icon-badge sx">${SX_ICN.relay}</div>
+          <strong>Comms relay</strong>
+          <p>As it advances, the hexapod drops a chain of nodes forming a self-healing mesh, so live data escapes hundreds of metres of solid rock.</p>
+          <div class="flow-out"><span>OUTPUT →</span>Live telemetry to the surface</div>
+        </div>
+        <div class="flow-arrow reveal d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="flow-stage reveal d3">
+          <div class="flow-top"><span class="flow-sub">DIGITAL TWIN</span><span class="flow-num">04</span></div>
+          <div class="icon-badge sx cyan">${SX_ICN.cube}</div>
+          <strong>Digital record</strong>
+          <p>Point clouds and photographs fuse into a survey-grade 3D model and stratigraphy — published here for anyone to study, without disturbing the cave.</p>
+          <div class="flow-out"><span>OUTPUT →</span>3D twin in the Cave Directory</div>
+        </div>
       </div>
     </div>
   </section>
