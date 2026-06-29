@@ -926,18 +926,10 @@ function viewDirectory(){
     </div>
   </section>
 
-  <!-- ATTRIBUTE DATABASE -->
-  <section class="section" style="border-top:1px solid var(--border-soft)">
-    <div class="container">
-      <div class="reveal" style="max-width:70ch"><p class="eyebrow">03 · ATTRIBUTE DATABASE</p><h2>The selected site's record — visually</h2><p>Live infographics for the site chosen at the top of the page. Identity, dating, burials and conservation use the catalogue data; the tool-typology, faunal and media breakdowns are <b style="color:var(--text)">representative samples</b> shown for illustration.</p></div>
-      <div id="attrDB" class="reveal" style="margin-top:20px"></div>
-    </div>
-  </section>
-
   <!-- 3D & STRATIGRAPHY -->
   <section class="section" style="border-top:1px solid var(--border-soft)">
     <div class="container">
-      <div class="reveal" style="max-width:70ch"><p class="eyebrow cyan">04 · 3D &amp; STRATIGRAPHY</p><h2>Reading the layers, in 2D and 3D</h2><p>Both views follow the site selected above. The <b style="color:var(--text)">3D model</b> is a LiDAR-style point cloud coloured by elevation — like the scans SEAR-X produces — and the <b style="color:var(--text)">2D section</b> shows each layer's wavy boundaries, composition textures and depth. Every site's scan and section differ.</p></div>
+      <div class="reveal" style="max-width:70ch"><p class="eyebrow cyan">03 · 3D &amp; STRATIGRAPHY</p><h2>Reading the layers, in 2D and 3D</h2><p>Both views follow the site selected above. The <b style="color:var(--text)">3D model</b> is a LiDAR-style point cloud coloured by elevation — like the scans SEAR-X produces — and the <b style="color:var(--text)">2D section</b> shows each layer's wavy boundaries, composition textures and depth. Every site's scan and section differ.</p></div>
       <div class="strat-grid" style="margin-top:24px">
         <div>
           <div class="viewer"><canvas class="cave-cloud" id="secCloud" data-cave="xom-trai"></canvas><div class="viewer-hud"><span><i class="rec-dot"></i> LiDAR · ELEVATION-COLOURED</span><span class="vp-coord">DRAG TO ORBIT · SCROLL TO ZOOM</span></div><span class="hud-corner tl"></span><span class="hud-corner tr"></span><span class="hud-corner bl"></span><span class="hud-corner br"></span></div>
@@ -948,6 +940,14 @@ function viewDirectory(){
           <p class="kicker" style="margin-top:8px">FIG. — STRATIGRAPHIC SECTION · WAVY BOUNDARIES &amp; COMPOSITION TEXTURES</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ATTRIBUTE DATABASE -->
+  <section class="section" style="border-top:1px solid var(--border-soft)">
+    <div class="container">
+      <div class="reveal" style="max-width:70ch"><p class="eyebrow">04 · ATTRIBUTE DATABASE</p><h2>The selected site's record — visually</h2><p>Live infographics for the site chosen at the top of the page. Identity, dating, burials and conservation use the catalogue data; the tool-typology, faunal and media breakdowns are <b style="color:var(--text)">representative samples</b> shown for illustration.</p></div>
+      <div id="attrDB" class="reveal" style="margin-top:20px"></div>
     </div>
   </section>
 
