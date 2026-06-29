@@ -742,71 +742,74 @@ function viewHome(){
   `;
 }
 
-function gisMacro(){
-  // contour rings around two peaks
-  let cont='';
-  [[90,66,5],[196,104,4]].forEach(([cx,cy,n])=>{for(let i=1;i<=n;i++){const rx=10+i*9,ry=7+i*6.5;cont+=`<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="none" stroke="#241f16" stroke-opacity=".55" stroke-width="1" transform="rotate(${cx===90?-18:14} ${cx} ${cy})"/>`;}});
-  return `<svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Landscape DEM layer">
-  <defs>
-    <linearGradient id="demg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#41502f"/><stop offset=".5" stop-color="#7a6f3e"/><stop offset="1" stop-color="#8a6d4b"/></linearGradient>
-    <radialGradient id="hs1" cx="34%" cy="28%" r="72%"><stop offset="0" stop-color="#ffffff" stop-opacity=".22"/><stop offset="1" stop-color="#000000" stop-opacity=".28"/></radialGradient>
-    <linearGradient id="demleg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2f5d3a"/><stop offset=".5" stop-color="#caa94e"/><stop offset="1" stop-color="#9c6a3a"/></linearGradient>
-  </defs>
-  <rect width="280" height="170" fill="url(#demg)"/>
-  <rect width="280" height="170" fill="url(#hs1)"/>
+const ORI_ABBR={East:"E",Southeast:"SE",South:"S",Southwest:"SW",West:"W",Northwest:"NW",North:"N",Northeast:"NE"};
+const ORI_VEC={East:[1,0],Southeast:[0.72,0.69],South:[0,1],Southwest:[-0.72,0.69],West:[-1,0],Northwest:[-0.72,-0.69],North:[0,-1],Northeast:[0.72,-0.69]};
+function gisMacro(cave){
+  const rnd=attrSeed(((cave&&cave.id)||'x')+'-macro');
+  const peaks=[[35+rnd()*70,46+rnd()*40],[150+rnd()*80,74+rnd()*54]];
+  let cont='';peaks.forEach(([cx,cy])=>{const nn=3+Math.floor(rnd()*3),rot=(rnd()*44-22);for(let i=1;i<=nn;i++){const rx=8+i*(6+rnd()*4),ry=6+i*(4.5+rnd()*3);cont+=`<ellipse cx="${cx.toFixed(0)}" cy="${cy.toFixed(0)}" rx="${rx.toFixed(0)}" ry="${ry.toFixed(0)}" fill="none" stroke="#241f16" stroke-opacity=".5" stroke-width="1" transform="rotate(${rot.toFixed(0)} ${cx.toFixed(0)} ${cy.toFixed(0)})"/>`;}});
+  let ry=110+rnd()*40,river=`M0 ${ry.toFixed(0)}`;for(let x=42;x<=280;x+=42){ry+=(rnd()-0.5)*46;ry=Math.max(64,Math.min(162,ry));river+=` Q${x-21} ${(ry+(rnd()-0.5)*22).toFixed(0)} ${x} ${ry.toFixed(0)}`;}
+  let trib=`M${(80+rnd()*120).toFixed(0)} ${(60+rnd()*30).toFixed(0)} Q${(100+rnd()*60).toFixed(0)} ${(100+rnd()*20).toFixed(0)} ${(120+rnd()*60).toFixed(0)} ${(120+rnd()*20).toFixed(0)}`;
+  let src='';for(let i=0;i<3;i++)src+=`<circle cx="${(40+rnd()*200).toFixed(0)}" cy="${(66+rnd()*84).toFixed(0)}" r="3.4" fill="#f0a94e" stroke="#1a1208" stroke-width="1"/>`;
+  const mx=(60+rnd()*150).toFixed(0),my=(72+rnd()*68).toFixed(0);
+  let veg='';for(let i=0;i<3;i++){const vx=(30+rnd()*220).toFixed(0),vy=(100+rnd()*55).toFixed(0);veg+=`<path d="M${vx} ${vy} l3.4 -7 3.4 7z" fill="#cfe6a8"/>`;}
+  return `<svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Landscape DEM layer"><defs><linearGradient id="demg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#41502f"/><stop offset=".5" stop-color="#7a6f3e"/><stop offset="1" stop-color="#8a6d4b"/></linearGradient><radialGradient id="hs1" cx="34%" cy="28%" r="72%"><stop offset="0" stop-color="#ffffff" stop-opacity=".22"/><stop offset="1" stop-color="#000000" stop-opacity=".28"/></radialGradient><linearGradient id="demleg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2f5d3a"/><stop offset=".5" stop-color="#caa94e"/><stop offset="1" stop-color="#9c6a3a"/></linearGradient></defs>
+  <rect width="280" height="170" fill="url(#demg)"/><rect width="280" height="170" fill="url(#hs1)"/>
   ${cont}
-  <g fill="none" stroke="#4ab8d6" stroke-width="1.7" stroke-linecap="round" opacity=".9"><path d="M14 158 Q70 128 112 138 Q156 148 206 116 Q236 100 270 106"/><path d="M112 138 Q124 104 104 74"/><path d="M206 116 Q214 86 232 64"/><path d="M104 74 Q96 60 110 50"/></g>
-  <g><circle cx="66" cy="124" r="3.6" fill="#f0a94e" stroke="#1a1208" stroke-width="1"/><circle cx="150" cy="92" r="3.6" fill="#f0a94e" stroke="#1a1208" stroke-width="1"/><circle cx="120" cy="150" r="3.6" fill="#f0a94e" stroke="#1a1208" stroke-width="1"/></g>
-  <g transform="translate(206,138)"><circle r="6" fill="#1a1208" stroke="#fff" stroke-width="1.4"/><circle r="2.4" fill="#fff"/></g>
-  <g fill="#cfe6a8"><path d="M44 116l3.5-7 3.5 7z"/><path d="M232 150l3-6 3 6z"/><path d="M250 146l2.5-5 2.5 5z"/></g>
+  <path d="${river}" fill="none" stroke="#4ab8d6" stroke-width="1.7" stroke-linecap="round" opacity=".9"/><path d="${trib}" fill="none" stroke="#4ab8d6" stroke-width="1.2" opacity=".7"/>
+  ${veg}${src}
+  <g transform="translate(${mx},${my})"><circle r="6" fill="#1a1208" stroke="#fff" stroke-width="1.4"/><circle r="2.4" fill="#fff"/></g>
   <g transform="translate(248,20)"><path d="M0 12 L0 0 L-3.5 4 M0 0 L3.5 4" stroke="#e7ecf2" stroke-width="1.4" fill="none"/><text x="-3" y="22" font-family="JetBrains Mono,monospace" font-size="7" fill="#e7ecf2">N</text></g>
   <g transform="translate(14,150)"><rect width="40" height="4" fill="#0b0e12" stroke="#cdd3da" stroke-width="1"/><rect width="20" height="4" fill="#cdd3da"/><text x="0" y="-3" font-family="JetBrains Mono,monospace" font-size="7" fill="#cdd3da">5 km</text></g>
   <rect x="200" y="12" width="60" height="6" fill="url(#demleg)" rx="1"/><text x="200" y="9" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#cdd3da">LOW→HIGH ELEV.</text>
-  <rect x="6" y="6" width="118" height="14" rx="2" fill="#0b0e12" opacity=".55"/><text x="12" y="16" font-family="JetBrains Mono,monospace" font-size="8" fill="#dfe4ea">DEM · RIVERS · COBBLE ⬤</text>
+  <rect x="6" y="6" width="142" height="14" rx="2" fill="#0b0e12" opacity=".55"/><text x="12" y="16" font-family="JetBrains Mono,monospace" font-size="8" fill="#dfe4ea">DEM · ${((cave&&cave.code)||'')}</text>
 </svg>`;}
-function gisMicro(){
-  let hatch='';
-  // wall hatch ticks along an approximate outline
-  [[42,118],[40,96],[44,74],[58,54],[84,42],[120,38],[160,40],[192,52],[214,78],[218,104],[206,126]].forEach(([x,y],i,a)=>{if(i===0)return;const px=a[i-1][0],py=a[i-1][1];const mx=(x+px)/2,my=(y+py)/2;hatch+=`<line x1="${mx}" y1="${my}" x2="${mx+6}" y2="${my+5}" stroke="#3a4654" stroke-width="1"/>`;});
+function gisMicro(cave){
+  const rnd=attrSeed(((cave&&cave.id)||'x')+'-micro');
+  const cx=126,cy=88,k=13,pts=[];
+  for(let i=0;i<k;i++){const a=i/k*2*Math.PI;const r=(40+rnd()*30)*(1+0.13*Math.sin(a*3+rnd()));pts.push([cx+Math.cos(a)*r*1.28,cy+Math.sin(a)*r*0.86]);}
+  const outline='M'+pts.map(p=>p[0].toFixed(0)+' '+p[1].toFixed(0)).join(' L')+' Z';
+  let hatch='';pts.forEach((p,i)=>{const q=pts[(i+1)%k];const mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2;const ix=(cx-mx),iy=(cy-my),l=Math.hypot(ix,iy)||1;hatch+=`<line x1="${mx.toFixed(0)}" y1="${my.toFixed(0)}" x2="${(mx+ix/l*5).toFixed(0)}" y2="${(my+iy/l*5).toFixed(0)}" stroke="#3a4654" stroke-width="1"/>`;});
+  const o=(cave&&cave.orientation&&ORI_VEC[cave.orientation])?cave.orientation:'Southeast';
+  const [dx,dy]=ORI_VEC[o];const ex=cx+dx*92,ey=cy+dy*64,sx=cx+dx*46,sy=cy+dy*40;
+  const bx=-dx*8-(-dy)*5,by=-dy*8-dx*5,bx2=-dx*8+(-dy)*5,by2=-dy*8+dx*5;
+  const arrow=`<g stroke="#f0a94e" stroke-width="2" fill="none"><path d="M${sx.toFixed(0)} ${sy.toFixed(0)} L${ex.toFixed(0)} ${ey.toFixed(0)}"/><path d="M${(ex+bx).toFixed(0)} ${(ey+by).toFixed(0)} L${ex.toFixed(0)} ${ey.toFixed(0)} L${(ex+bx2).toFixed(0)} ${(ey+by2).toFixed(0)}"/></g><text x="${(ex+dx*6).toFixed(0)}" y="${(ey+dy*10).toFixed(0)}" font-family="JetBrains Mono,monospace" font-size="7" fill="#f0a94e" text-anchor="middle">${ORI_ABBR[o]}</text>`;
+  const px=(80+rnd()*60).toFixed(0),py=(80+rnd()*24).toFixed(0);
+  const tx=(120+rnd()*50).toFixed(0),ty=(58+rnd()*30).toFixed(0);
+  let rocks='';for(let i=0;i<3;i++){const rx=(90+rnd()*90).toFixed(0),rry=(80+rnd()*40).toFixed(0);rocks+=`<path d="M${rx} ${rry} l7 3 -2 7 -7 -2 z" fill="#222a31" stroke="#3a4654" stroke-width="1"/>`;}
   return `<svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cave plan layer">
   <rect width="280" height="170" fill="#0c1014"/>
-  <path d="M42 118 Q40 96 44 74 Q50 56 84 42 Q120 34 160 40 Q198 46 214 78 Q222 104 206 126 Q190 142 150 138 Q150 152 138 156 Q126 152 126 138 Q92 138 70 132 Q48 128 42 118 Z" fill="#161c22" stroke="#5b6470" stroke-width="1.8"/>
-  ${hatch}
-  <ellipse cx="100" cy="90" rx="20" ry="11" fill="#13343a" stroke="#3ad1da" stroke-width="1" opacity=".8"/>
-  <g fill="#222a31" stroke="#3a4654" stroke-width="1"><path d="M150 78 l8 4 -3 8 -9 -3 z"/><path d="M172 100 l7 2 -2 7 -7 -2 z"/><path d="M120 116 l6 3 -2 6 -7 -2 z"/></g>
-  <rect x="150" y="60" width="34" height="34" fill="#f0a94e" opacity=".14" stroke="#f0a94e" stroke-width="1.2" stroke-dasharray="3 2"/>
-  <g stroke="#f0a94e" stroke-width="1" opacity=".5"><line x1="167" y1="60" x2="167" y2="94"/><line x1="150" y1="77" x2="184" y2="77"/></g>
-  <g stroke="#f0a94e" stroke-width="2" fill="none"><path d="M138 156 l4 14 M133 165 l9 5 M151 165 l-9 5"/></g>
-  <text x="144" y="178" font-family="JetBrains Mono,monospace" font-size="7" fill="#f0a94e">ENTRANCE · SE</text>
+  <path d="${outline}" fill="#161c22" stroke="#5b6470" stroke-width="1.8"/>${hatch}
+  <ellipse cx="${px}" cy="${py}" rx="18" ry="10" fill="#13343a" stroke="#3ad1da" stroke-width="1" opacity=".8"/><text x="${px}" y="${(+py+2)}" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#7fcdd6" text-anchor="middle">POOL</text>
+  ${rocks}
+  <rect x="${tx}" y="${ty}" width="30" height="30" fill="#f0a94e" opacity=".14" stroke="#f0a94e" stroke-width="1.2" stroke-dasharray="3 2"/><g stroke="#f0a94e" stroke-width="1" opacity=".5"><line x1="${+tx+15}" y1="${ty}" x2="${+tx+15}" y2="${+ty+30}"/><line x1="${tx}" y1="${+ty+15}" x2="${+tx+30}" y2="${+ty+15}"/></g>
+  ${arrow}
   <g transform="translate(250,22)"><path d="M0 12 L0 0 L-3.5 4 M0 0 L3.5 4" stroke="#e7ecf2" stroke-width="1.4" fill="none"/><text x="-3" y="22" font-family="JetBrains Mono,monospace" font-size="7" fill="#e7ecf2">N</text></g>
   <g transform="translate(206,150)"><rect width="30" height="4" fill="#0b0e12" stroke="#cdd3da" stroke-width="1"/><rect width="15" height="4" fill="#cdd3da"/><text x="0" y="-3" font-family="JetBrains Mono,monospace" font-size="7" fill="#cdd3da">10 m</text></g>
-  <g font-family="JetBrains Mono,monospace" font-size="8" fill="#dfe4ea"><rect x="6" y="6" width="86" height="14" rx="2" fill="#0b0e12" opacity=".55"/><text x="12" y="16">CAVE PLAN VIEW</text></g>
-  <text x="86" y="92" font-family="JetBrains Mono,monospace" font-size="7" fill="#7fcdd6">POOL</text>
-  <text x="150" y="55" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#f0a94e">TRENCH</text>
+  <g font-family="JetBrains Mono,monospace" font-size="8" fill="#dfe4ea"><rect x="6" y="6" width="120" height="14" rx="2" fill="#0b0e12" opacity=".55"/><text x="12" y="16">PLAN · MOUTH ${ORI_ABBR[o]}</text></g>
 </svg>`;}
-function gisGrid(){
+function gisGrid(cave){
+  const rnd=attrSeed(((cave&&cave.id)||'x')+'-grid');
   const cols=['A','B','C','D','E'],ox=40,oy=40,cw=34,n=5,m=3;
   let grid='';for(let i=0;i<=n;i++)grid+=`<line x1="${ox+i*cw}" y1="${oy}" x2="${ox+i*cw}" y2="${oy+m*cw}" stroke="#2b3640" stroke-width="1"/>`;
   for(let j=0;j<=m;j++)grid+=`<line x1="${ox}" y1="${oy+j*cw}" x2="${ox+n*cw}" y2="${oy+j*cw}" stroke="#2b3640" stroke-width="1"/>`;
   let labels='';cols.forEach((c,i)=>labels+=`<text x="${ox+i*cw+cw/2}" y="${oy-6}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#8b929c">${c}</text>`);
   for(let j=0;j<m;j++)labels+=`<text x="${ox-8}" y="${oy+j*cw+cw/2+3}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="8" fill="#8b929c">${j+1}</text>`;
-  // excavated units (shaded) + finds
-  let units='';[[1,1],[2,1],[2,0]].forEach(([gx,gy])=>units+=`<rect x="${ox+gx*cw}" y="${oy+gy*cw}" width="${cw}" height="${cw}" fill="#f0a94e" opacity=".12"/>`);
-  // find symbols: tools(dots amber), bone(triangle cyan), pottery(square purple)
-  let finds='';
-  const F=[[1,1,'t'],[2,1,'t'],[1,1,'b'],[2,0,'p'],[2,1,'p'],[2,0,'t']];
-  F.forEach(([gx,gy,k])=>{
-    if(k==='t')finds+=`<circle cx="${ox+gx*cw+cw*0.4}" cy="${oy+gy*cw+cw*0.35}" r="3" fill="#f0a94e"/>`;
-    if(k==='b')finds+=`<path d="M${ox+gx*cw+cw*0.65} ${oy+gy*cw+cw*0.7} l4 6 l-8 0 z" fill="#3ad1da"/>`;
-    if(k==='p')finds+=`<rect x="${ox+gx*cw+cw*0.6}" y="${oy+gy*cw+cw*0.3}" width="6" height="6" fill="#c4a7ec"/>`;});
+  const ex=[];const nu=2+Math.floor(rnd()*3);for(let i=0;i<nu;i++)ex.push([Math.floor(rnd()*n),Math.floor(rnd()*m)]);
+  let units=ex.map(([gx,gy])=>`<rect x="${ox+gx*cw}" y="${oy+gy*cw}" width="${cw}" height="${cw}" fill="#f0a94e" opacity=".12"/>`).join('');
+  let finds='';const jit=()=>6+rnd()*(cw-12);
+  ex.forEach(([gx,gy])=>{
+    if(cave&&cave.hasStoneTools&&rnd()<0.92)finds+=`<circle cx="${(ox+gx*cw+jit()).toFixed(0)}" cy="${(oy+gy*cw+jit()).toFixed(0)}" r="3" fill="#f0a94e"/>`;
+    if(cave&&cave.hasFossils&&rnd()<0.7){const x=ox+gx*cw+jit(),y=oy+gy*cw+jit();finds+=`<path d="M${x.toFixed(0)} ${y.toFixed(0)} l4 6 l-8 0 z" fill="#3ad1da"/>`;}
+    if(rnd()<0.45)finds+=`<rect x="${(ox+gx*cw+jit()).toFixed(0)}" y="${(oy+gy*cw+jit()).toFixed(0)}" width="6" height="6" fill="#c4a7ec"/>`;});
+  if(cave&&cave.hasBurials){const[gx,gy]=ex[0]||[1,1];finds+=`<rect x="${ox+gx*cw+6}" y="${oy+gy*cw+6}" width="${cw-12}" height="${cw-12}" fill="none" stroke="#e8825a" stroke-width="1.4"/><text x="${ox+gx*cw+cw/2}" y="${oy+gy*cw+cw/2+3}" font-family="JetBrains Mono,monospace" font-size="8" fill="#e8825a" text-anchor="middle">B</text>`;}
   return `<svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Excavation grid layer">
   <rect width="280" height="170" fill="#0c1014"/>
   ${units}${grid}${labels}${finds}
   <g transform="translate(${ox},${oy})"><line x1="0" y1="0" x2="0" y2="-14" stroke="#3ad1da" stroke-width="1.4"/><circle r="2.4" fill="#3ad1da"/><text x="4" y="-14" font-family="JetBrains Mono,monospace" font-size="7" fill="#3ad1da">DATUM 0,0</text></g>
   <g transform="translate(232,30)"><path d="M0 12 L0 0 L-3.5 4 M0 0 L3.5 4" stroke="#e7ecf2" stroke-width="1.4" fill="none"/><text x="-3" y="22" font-family="JetBrains Mono,monospace" font-size="7" fill="#e7ecf2">N</text></g>
-  <g transform="translate(40,158)"><text x="0" y="0" font-family="JetBrains Mono,monospace" font-size="7" fill="#cdd3da">⬤ tool</text><text x="42" y="0" font-family="JetBrains Mono,monospace" font-size="7" fill="#3ad1da">▲ bone</text><text x="86" y="0" font-family="JetBrains Mono,monospace" font-size="7" fill="#c4a7ec">■ pottery</text></g>
-  <g font-family="JetBrains Mono,monospace" font-size="8" fill="#dfe4ea"><rect x="6" y="6" width="120" height="14" rx="2" fill="#0b0e12" opacity=".55"/><text x="12" y="16">EXCAVATION GRID · 1×1 m</text></g>
-  <text x="${ox+n*cw+6}" y="${oy+m*cw}" font-family="JetBrains Mono,monospace" font-size="7" fill="#3ad1da">Z↓ depth</text>
+  <g transform="translate(40,158)"><text x="0" y="0" font-family="JetBrains Mono,monospace" font-size="7" fill="#cdd3da">⬤ tool</text><text x="42" y="0" font-family="JetBrains Mono,monospace" font-size="7" fill="#3ad1da">▲ bone</text><text x="86" y="0" font-family="JetBrains Mono,monospace" font-size="7" fill="#c4a7ec">■ pot</text>${cave&&cave.hasBurials?'<text x="120" y="0" font-family="JetBrains Mono,monospace" font-size="7" fill="#e8825a">▭ burial</text>':''}</g>
+  <g font-family="JetBrains Mono,monospace" font-size="8" fill="#dfe4ea"><rect x="6" y="6" width="120" height="14" rx="2" fill="#0b0e12" opacity=".55"/><text x="12" y="16">GRID 1×1 m · ${((cave&&cave.code)||'')}</text></g>
 </svg>`;}
 function viewDirectory(){
   // build grouped catalogue from data
@@ -861,25 +864,25 @@ function viewDirectory(){
   <!-- GIS SPATIAL DATA MODEL -->
   <section class="section" style="border-top:1px solid var(--border-soft)">
     <div class="container">
-      <div class="reveal" style="max-width:66ch"><p class="eyebrow cyan">02 · SPATIAL DATA MODEL (GIS)</p><h2>Three levels of spatial context</h2><p>Every site is held in a three-tier spatial model — from the surrounding landscape, down to the structure of the cave, down to the centimetre inside an excavation grid.</p></div>
+      <div class="reveal" style="max-width:66ch"><p class="eyebrow cyan">02 · SPATIAL DATA MODEL (GIS)</p><h2>Three levels of spatial context</h2><p>Every site is held in a three-tier spatial model — from the surrounding landscape, down to the structure of the cave, down to the centimetre inside an excavation grid. <b style="color:var(--text)">All three layers below are drawn for the site you select at the top of the page.</b></p><p class="muted" style="font-size:.9rem;margin-top:6px">Now showing: <b id="gisSiteLabel" style="color:var(--cyan)">—</b></p></div>
       <div class="grid cols-3" style="margin-top:30px">
         <div class="card reveal">
-          <div class="gis-fig">${gisMacro()}</div>
+          <div class="gis-fig" id="gisFigMacro"></div>
           <span class="tag">MACRO · LAYER 1</span>
           <h3 style="margin:10px 0 4px">Landscape</h3>
-          <p class="muted" style="font-size:.92rem">Terrain elevation (DEM), ancient river &amp; stream systems, sources of raw cobble stone, and traces of prehistoric vegetation. <b style="color:var(--text)">Every cave page now carries a real Layer-1 terrain &amp; satellite map.</b></p>
+          <p class="muted" style="font-size:.92rem">Terrain elevation (DEM), ancient river &amp; stream systems, sources of raw cobble stone, and traces of prehistoric vegetation — generated for the selected site. <b style="color:var(--text)">Every cave page also carries a real Layer-1 terrain &amp; satellite map.</b></p>
         </div>
         <div class="card reveal d1">
-          <div class="gis-fig">${gisMicro()}</div>
+          <div class="gis-fig" id="gisFigMicro"></div>
           <span class="tag tech">MICRO</span>
           <h3 style="margin:10px 0 4px">Cave structure</h3>
-          <p class="muted" style="font-size:.92rem">The ceiling vault boundary, the cave chamber, and the cave-mouth orientation — Hoabinhian people favoured east / south-east mouths to catch the morning sun.</p>
+          <p class="muted" style="font-size:.92rem">The chamber outline, interior pools, fallen rock and the cave-mouth orientation — the entrance arrow points the way this site's mouth actually faces, a key clue to how it was used.</p>
         </div>
         <div class="card reveal d2">
-          <div class="gis-fig">${gisGrid()}</div>
+          <div class="gis-fig" id="gisFigGrid"></div>
           <span class="tag">EXCAVATION GRID</span>
           <h3 style="margin:10px 0 4px">1 × 1 m grid</h3>
-          <p class="muted" style="font-size:.92rem">An archaeological coordinate grid (typically 1 × 1 m) locates each find precisely by horizontal position (X, Y) and stratigraphic depth (Z).</p>
+          <p class="muted" style="font-size:.92rem">An archaeological coordinate grid (1 × 1 m) locating each find by position (X, Y) and depth (Z). The finds shown reflect what this site actually yielded — stone tools, animal bone, pottery, burials.</p>
         </div>
       </div>
     </div>
@@ -1659,6 +1662,11 @@ function attrRender(id){
   const sc=document.getElementById('secCloud'); if(sc){ sc.dataset.cave=c.id; initViewers(); }
   document.querySelectorAll('.attr-btn').forEach(b=>b.classList.toggle('active',b.dataset.id===id));
   const sel=document.getElementById('attrSelect'); if(sel)sel.value=id;
+  // drive Section 02 (GIS spatial layers) from the same selection
+  const gM=document.getElementById('gisFigMacro'); if(gM)gM.innerHTML=gisMacro(c);
+  const gm=document.getElementById('gisFigMicro'); if(gm)gm.innerHTML=gisMicro(c);
+  const gg=document.getElementById('gisFigGrid'); if(gg)gg.innerHTML=gisGrid(c);
+  const gl=document.getElementById('gisSiteLabel'); if(gl)gl.textContent=c.name+' · '+c.code;
   const rnd=attrSeed(c.id);
   // identity
   const exc=c.excavations.length?('<ul class="timeline" style="margin-top:10px">'+c.excavations.map(e=>`<li><b>${e.year}</b> ${e.note}</li>`).join('')+'</ul>'):'<p class="muted" style="font-size:.86rem;margin-top:10px">No public excavation record.</p>';
