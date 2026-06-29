@@ -70,7 +70,7 @@ img{max-width:100%}
 strong{color:#fff;font-weight:600}
 em{color:var(--amber-2);font-style:normal}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-.section{padding:92px 0;position:relative}
+.section{padding:52px 0;position:relative}
 .muted{color:var(--muted)}
 .center{text-align:center}
 ::selection{background:rgba(240,169,78,.3);color:#fff}
@@ -119,7 +119,7 @@ em{color:var(--amber-2);font-style:normal}
 .nav-toggle:hover{background:var(--surface-2)}
 
 /* hero */
-.hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;overflow:hidden;padding:60px 0}
+.hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;overflow:hidden;padding:44px 0}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.85}
 .hero .veil{position:absolute;inset:0;z-index:1;background:radial-gradient(60% 60% at 50% 40%,transparent,rgba(7,8,9,.4) 80%, var(--bg));pointer-events:none}
 .hero .container{position:relative;z-index:2;width:100%}
@@ -206,7 +206,7 @@ em{color:var(--amber-2);font-style:normal}
 .leaflet-bar a:hover{background:#191d26}
 
 /* detail */
-.detail-hero{position:relative;padding:64px 0 40px;border-bottom:1px solid var(--border-soft);overflow:hidden}
+.detail-hero{position:relative;padding:44px 0 30px;border-bottom:1px solid var(--border-soft);overflow:hidden}
 .detail-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(700px 300px at 15% 0%,rgba(240,169,78,.12),transparent 60%)}
 .detail-hero .breadcrumb{font-family:"JetBrains Mono",monospace;font-size:.74rem;color:var(--muted);letter-spacing:.08em}
 .detail-hero .breadcrumb a{color:var(--cyan)}
@@ -548,7 +548,7 @@ em{color:var(--amber-2);font-style:normal}
   .nav-toggle{display:block}
   .grid.cols-2,.grid.cols-3,.grid.cols-4,.steps{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
-  .section{padding:64px 0}
+  .section{padding:38px 0}
   .hero{min-height:auto;padding:70px 0 90px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -734,7 +734,7 @@ const ynCompare = v => v ? '<span class="yes">● Yes</span>' : '<span class="no
 /* ===================== VIEWS ===================== */
 function viewHome(){
   return `
-  <section class="hero" style="min-height:auto;padding:72px 0 76px">
+  <section class="hero" style="min-height:auto;padding:50px 0 46px">
     <canvas id="heroCanvas"></canvas>
     <div class="veil"></div>
     <div class="container">
@@ -855,7 +855,7 @@ function viewDirectory(){
   </section>
 
   <!-- PROVINCE MAP -->
-  <section class="section" style="padding-top:60px">
+  <section class="section" style="padding-top:36px">
     <div class="container">
       <div class="reveal" style="max-width:66ch"><p class="eyebrow">01 · PROVINCE MAP</p><h2>Where the sites are</h2><p>Every catalogued cave plotted on a real map. Switch between <b style="color:var(--text)">topographic terrain (DEM)</b>, satellite and dark base layers. Positions are approximate (commune-level) to protect the sites — open a marker for its coordinates.</p></div>
     </div>
@@ -1350,7 +1350,7 @@ function viewTeam(){
 }
 function viewAbout(){
   return `
-  <section class="hero" style="min-height:auto;padding:84px 0 56px">
+  <section class="hero" style="min-height:auto;padding:54px 0 40px">
     <canvas id="heroCanvas"></canvas>
     <div class="veil"></div>
     <div class="container reveal">
