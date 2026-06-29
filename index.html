@@ -124,9 +124,9 @@ em{color:var(--amber-2);font-style:normal}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.85}
 .hero .veil{position:absolute;inset:0;z-index:1;background:radial-gradient(60% 60% at 50% 40%,transparent,rgba(7,8,9,.4) 80%, var(--bg));pointer-events:none}
 .hero .container{position:relative;z-index:2;width:100%}
-.hero h1{max-width:15ch;font-size:clamp(2rem,4.3vw,3.45rem);line-height:1.05}
+.hero h1{max-width:34ch;font-size:clamp(1.9rem,4vw,3.2rem);line-height:1.07}
 .hero h1 .hl{background:linear-gradient(120deg,var(--amber),var(--amber-2) 60%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .lead{font-size:clamp(1rem,1.35vw,1.1rem);max-width:62ch;line-height:1.6;color:var(--text-2);margin-top:1.1em}
+.hero .lead{font-size:clamp(.9rem,1.15vw,1rem);max-width:60ch;line-height:1.6;color:var(--text-2);margin-top:1.1em}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
 .hero-stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:54px}
 .hero-stats .stat{padding:16px 22px 14px;border:1px solid var(--border-soft);border-radius:14px;background:var(--surface);backdrop-filter:blur(6px);min-width:150px}
@@ -764,7 +764,7 @@ function viewHome(){
     <div class="veil"></div>
     <div class="container">
       <p class="eyebrow nodash reveal">SURVEY · EXPLORATION · ARCHAEOLOGICAL RECONNAISSANCE · CULTURAL PRESERVATION</p>
-      <h1 class="reveal d1">A <span class="hl">Digital Directory</span> for the prehistoric caves of Vietnam</h1>
+      <h1 class="reveal d1">A <span class="hl">Digital Directory</span> for the<br>prehistoric caves of Vietnam</h1>
       <p class="lead reveal d2">From robot reconnaissance to permanent digital record. ArchaeoNova maps, documents, and protects the 30,000-year-old caves of prehistoric northern Vietnam — the homeland of its earliest peoples — and opens this heritage to the world.</p>
       <div class="hero-cta reveal d3">
         <a class="btn" href="#directory">Launch the Directory <span class="arw">→</span></a>
@@ -787,38 +787,65 @@ const QR_SVG=`<svg viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg" shape-
 const ORI_ABBR={East:"E",Southeast:"SE",South:"S",Southwest:"SW",West:"W",Northwest:"NW",North:"N",Northeast:"NE"};
 const ORI_VEC={East:[1,0],Southeast:[0.72,0.69],South:[0,1],Southwest:[-0.72,0.69],West:[-1,0],Northwest:[-0.72,-0.69],North:[0,-1],Northeast:[0.72,-0.69]};
 function smoothClosed(pts){const n=pts.length,mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2];let m0=mid(pts[n-1],pts[0]),d=`M${m0[0].toFixed(1)} ${m0[1].toFixed(1)}`;for(let i=0;i<n;i++){const c=pts[i],nx=pts[(i+1)%n],mm=mid(c,nx);d+=` Q${c[0].toFixed(1)} ${c[1].toFixed(1)} ${mm[0].toFixed(1)} ${mm[1].toFixed(1)}`;}return d+' Z';}
-function gisFrame(){return `<rect x=".6" y=".6" width="278.8" height="168.8" fill="none" stroke="#28313d" stroke-width="1.2"/>`;}
-function gisN(x,y){return `<g transform="translate(${x},${y})"><circle r="9" fill="#0b0e12" stroke="#39424e" stroke-width=".8"/><path d="M0 -6.5 L3 4 L0 1.6 L-3 4 Z" fill="#e7ecf2"/><text x="0" y="-10" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">N</text></g>`;}
-function gisScale(x,y,w,lab){return `<g transform="translate(${x},${y})"><rect width="${w}" height="3.6" fill="#0b0e12" stroke="#cdd3da" stroke-width=".8"/><rect width="${w/4}" height="3.6" fill="#cdd3da"/><rect x="${w/2}" width="${w/4}" height="3.6" fill="#cdd3da"/><text x="0" y="-2.6" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">0</text><text x="${w}" y="-2.6" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">${lab}</text></g>`;}
-function gisTitle(t){const w=t.length*5.3+16;return `<g><rect x="6" y="6" width="${w.toFixed(0)}" height="15" rx="2" fill="#0b0e12" opacity=".68" stroke="#2a3340" stroke-width=".6"/><text x="12" y="16.2" font-family="JetBrains Mono,monospace" font-size="8" letter-spacing=".03em" fill="#e6ebf1">${t}</text></g>`;}
+function gisC(v,s){return v.toFixed(2)+'°'+s;}
+function gisApp(o){
+  const W=362,H=206,TY=15,SY=H-15,PX=78,MX=PX,MY=TY,MW=W-PX,MH=SY-TY,lat=o.lat||20.5,lng=o.lng||105.4,sLng=0.04,sLat=0.03,cid='gcl_'+o.id,rmp='rmp_'+o.id;
+  let grat='',glab='';
+  for(let i=0;i<=4;i++){const x=MX+MW*i/4;grat+=`<line x1="${x.toFixed(1)}" y1="${MY}" x2="${x.toFixed(1)}" y2="${SY}" stroke="#fff" stroke-opacity=".06" stroke-width=".6"/>`;if(i<4)glab+=`<text x="${(x+2).toFixed(1)}" y="${MY+7}" font-family="JetBrains Mono,monospace" font-size="5" fill="#838b95">${gisC(lng-sLng/2+sLng*i/4,'E')}</text>`;}
+  for(let j=0;j<=3;j++){const y=MY+MH*j/3;grat+=`<line x1="${MX}" y1="${y.toFixed(1)}" x2="${W}" y2="${y.toFixed(1)}" stroke="#fff" stroke-opacity=".06" stroke-width=".6"/>`;if(j>0)glab+=`<text x="${MX+2}" y="${(y-2).toFixed(1)}" font-family="JetBrains Mono,monospace" font-size="5" fill="#838b95">${gisC(lat+sLat/2-sLat*j/3,'N')}</text>`;}
+  let rows='';o.layers.forEach((L,i)=>{const y=TY+27+i*14.5,on=L[1]!==false,col=L[2]||'#3ad1da';rows+=`<g><rect x="8" y="${(y-7).toFixed(1)}" width="8" height="8" rx="1.6" fill="${on?'#16202a':'#0d1217'}" stroke="${on?col:'#39424e'}" stroke-width="1"/>${on?`<path d="M9.6 ${(y-3.2).toFixed(1)} l1.6 1.9 l3-4.1" stroke="${col}" stroke-width="1.2" fill="none"/>`:''}<text x="20" y="${y.toFixed(1)}" font-family="JetBrains Mono,monospace" font-size="6" fill="${on?'#cdd3da':'#69707a'}">${L[0]}</text></g>`;});
+  const lh=o.legend.length*9+13,lw=82,lx=W-lw-6,ly=SY-lh-6;
+  let leg=`<rect x="${lx}" y="${ly}" width="${lw}" height="${lh}" rx="2" fill="#0b0e12" opacity=".84" stroke="#2a3340" stroke-width=".6"/><text x="${lx+5}" y="${ly+9}" font-family="JetBrains Mono,monospace" font-size="5.4" letter-spacing=".08em" fill="#8a929c">LEGEND</text>`;
+  o.legend.forEach((L,i)=>{const ry=ly+18+i*9,sx=lx+6,[type,color,label]=L;let sym='';
+    if(type==='ramp')sym=`<rect x="${sx}" y="${ry-4}" width="14" height="5" fill="url(#${rmp})" stroke="#2a3340" stroke-width=".3"/>`;
+    else if(type==='line')sym=`<line x1="${sx}" y1="${ry-1.5}" x2="${sx+14}" y2="${ry-1.5}" stroke="${color}" stroke-width="1.6"/>`;
+    else if(type==='dash')sym=`<line x1="${sx}" y1="${ry-1.5}" x2="${sx+14}" y2="${ry-1.5}" stroke="${color}" stroke-width="1.2" stroke-dasharray="3 2"/>`;
+    else if(type==='tri')sym=`<path d="M${sx+5} ${ry-5} l3 5.4 h-6 z" fill="${color}"/>`;
+    else if(type==='ring')sym=`<circle cx="${sx+5}" cy="${ry-1.6}" r="2.6" fill="none" stroke="${color}" stroke-width="1.3"/>`;
+    else if(type==='dot')sym=`<circle cx="${sx+5}" cy="${ry-1.6}" r="2.4" fill="${color}"/>`;
+    else sym=`<rect x="${sx+1}" y="${ry-4.6}" width="6" height="6" rx="1" fill="${color}"/>`;
+    leg+=sym+`<text x="${sx+18}" y="${ry}" font-family="JetBrains Mono,monospace" font-size="5.6" fill="#cdd3da">${label}</text>`;});
+  const north=`<g transform="translate(${MX+MW-13},${MY+15})"><circle r="8.5" fill="#0b0e12" stroke="#39424e" stroke-width=".8"/><path d="M0 -6 L2.8 3.6 L0 1.4 L-2.8 3.6 Z" fill="#e7ecf2"/><text x="0" y="-9" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="5.6" fill="#cdd3da">N</text></g>`;
+  const sbw=46,sbx=MX+10,sby=SY-12;
+  const sbar=`<g transform="translate(${sbx},${sby})"><rect width="${sbw}" height="3.4" fill="#0b0e12" stroke="#cdd3da" stroke-width=".7"/><rect width="${sbw/4}" height="3.4" fill="#cdd3da"/><rect x="${sbw/2}" width="${sbw/4}" height="3.4" fill="#cdd3da"/><text x="0" y="-2.4" font-family="JetBrains Mono,monospace" font-size="5.4" fill="#cdd3da">0</text><text x="${sbw}" y="-2.4" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="5.4" fill="#cdd3da">${o.barLabel}</text></g>`;
+  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${o.aria||'GIS layer'}"><defs><clipPath id="${cid}"><rect x="${MX}" y="${MY}" width="${MW}" height="${MH}"/></clipPath><linearGradient id="${rmp}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#33482b"/><stop offset=".5" stop-color="#caa94e"/><stop offset="1" stop-color="#9a6a3a"/></linearGradient>${o.defs||''}</defs>
+  <rect width="${W}" height="${H}" fill="#0c1014"/>
+  <g clip-path="url(#${cid})"><rect x="${MX}" y="${MY}" width="${MW}" height="${MH}" fill="${o.bg||'#0c1014'}"/><g transform="translate(${MX},${MY}) scale(${(MW/280).toFixed(4)})">${o.map}</g>${grat}</g>
+  ${glab}${north}${sbar}${leg}
+  <rect x="${MX}" y="${MY}" width="${MW}" height="${MH}" fill="none" stroke="#2a3340" stroke-width="1"/>
+  <rect x="0" y="0" width="${W}" height="${TY}" fill="#12181e"/><line x1="0" y1="${TY}" x2="${W}" y2="${TY}" stroke="#28313d" stroke-width=".8"/>
+  <circle cx="8" cy="7.6" r="2.1" fill="#3ad1da"/><text x="15" y="10.3" font-family="JetBrains Mono,monospace" font-size="6.3" fill="#e6ebf1">ArchaeoNova GIS · ${o.title}</text>
+  <text x="${W-6}" y="10.3" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="6" fill="#7fcdd6">◎ ${gisC(lat,'N')} ${gisC(lng,'E')}</text>
+  <rect x="0" y="${TY}" width="${PX}" height="${MH}" fill="#0d1217"/><line x1="${PX}" y1="${TY}" x2="${PX}" y2="${SY}" stroke="#28313d" stroke-width=".8"/>
+  <text x="8" y="${TY+13}" font-family="JetBrains Mono,monospace" font-size="6" letter-spacing=".12em" fill="#8a929c">LAYERS</text>${rows}
+  <rect x="0" y="${SY}" width="${W}" height="15" fill="#12181e"/><line x1="0" y1="${SY}" x2="${W}" y2="${SY}" stroke="#28313d" stroke-width=".8"/>
+  <text x="6" y="${SY+10}" font-family="JetBrains Mono,monospace" font-size="5.6" fill="#8a929c">EPSG:4326 · WGS 84</text>
+  <text x="${W/2}" y="${SY+10}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="5.6" fill="#8a929c">SCALE ${o.scale}</text>
+  <text x="${W-6}" y="${SY+10}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="5.6" fill="#8a929c">${o.code} · ●REC</text>
+</svg>`;}
 function gisMacro(cave){
   const rnd=attrSeed(((cave&&cave.id)||'x')+'-macro');
-  let grat='';for(let x=28;x<280;x+=42)grat+=`<line x1="${x}" y1="0" x2="${x}" y2="170" stroke="#000" stroke-opacity=".11" stroke-width=".6"/>`;for(let y=24;y<170;y+=34)grat+=`<line x1="0" y1="${y}" x2="280" y2="${y}" stroke="#000" stroke-opacity=".11" stroke-width=".6"/>`;
   const peaks=[[52+rnd()*40,58+rnd()*28,28+rnd()*14],[166+rnd()*74,82+rnd()*42,24+rnd()*16]];
   let relief='',cont='';
   peaks.forEach(([cx,cy,r0])=>{
     relief+=`<ellipse cx="${(cx-r0*0.3).toFixed(0)}" cy="${(cy-r0*0.3).toFixed(0)}" rx="${(r0*1.15).toFixed(0)}" ry="${(r0*0.82).toFixed(0)}" fill="url(#demHi)"/>`;
     relief+=`<ellipse cx="${(cx+r0*0.28).toFixed(0)}" cy="${(cy+r0*0.3).toFixed(0)}" rx="${(r0*1.02).toFixed(0)}" ry="${(r0*0.74).toFixed(0)}" fill="url(#demSh)"/>`;
     const noise=[];for(let i=0;i<16;i++)noise.push(0.8+rnd()*0.4);
-    [0.34,0.52,0.7,0.88,1.06].forEach((f,ri)=>{const pts=[];for(let i=0;i<16;i++){const a=i/16*2*Math.PI;const rr=r0*f*noise[i];pts.push([cx+Math.cos(a)*rr*1.16,cy+Math.sin(a)*rr*0.8]);}cont+=`<path d="${smoothClosed(pts)}" fill="none" stroke="#241a0e" stroke-opacity="${(0.4+ri*0.08).toFixed(2)}" stroke-width="${ri===4?1.1:0.7}"/>`;});
+    [0.3,0.44,0.58,0.72,0.86,1.0,1.12].forEach((f,ri)=>{const pts=[];for(let i=0;i<16;i++){const a=i/16*2*Math.PI;const rr=r0*f*noise[i];pts.push([cx+Math.cos(a)*rr*1.16,cy+Math.sin(a)*rr*0.8]);}cont+=`<path d="${smoothClosed(pts)}" fill="none" stroke="#241a0e" stroke-opacity="${(0.34+ri*0.07).toFixed(2)}" stroke-width="${ri===6?1.1:0.6}"/>`;});
     cont+=`<path d="M${cx.toFixed(0)} ${(cy-3).toFixed(0)} l2.4 5 h-4.8 z" fill="#2a1f11"/>`;
   });
   let ry=104+rnd()*46,river=`M0 ${ry.toFixed(0)}`;for(let x=40;x<=280;x+=40){ry+=(rnd()-0.5)*44;ry=Math.max(58,Math.min(160,ry));river+=` Q${x-20} ${(ry+(rnd()-0.5)*20).toFixed(0)} ${x} ${ry.toFixed(0)}`;}
   const trib=`M${(70+rnd()*120).toFixed(0)} ${(52+rnd()*26).toFixed(0)} Q${(96+rnd()*60).toFixed(0)} ${(96+rnd()*22).toFixed(0)} ${(118+rnd()*60).toFixed(0)} ${(120+rnd()*18).toFixed(0)}`;
   let springs='';for(let i=0;i<2;i++)springs+=`<circle cx="${(46+rnd()*186).toFixed(0)}" cy="${(64+rnd()*80).toFixed(0)}" r="2.6" fill="#7fdfff" stroke="#0b2a33" stroke-width="1"/>`;
-  const mx=+(72+rnd()*146).toFixed(0),my=+(78+rnd()*54).toFixed(0);
-  const pin=`<g transform="translate(${mx},${my})"><path d="M0 0 C-5 -7 -5 -13 0 -13 C5 -13 5 -7 0 0 Z" fill="#f0a94e" stroke="#1a1208" stroke-width="1"/><circle cy="-8.4" r="2" fill="#1a1208"/><text x="7" y="-7" font-family="JetBrains Mono,monospace" font-size="6.4" fill="#f4ddb6">SITE</text></g>`;
-  return `<svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Landscape digital elevation model"><defs><linearGradient id="demRamp" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#33482b"/><stop offset=".45" stop-color="#6e6a3c"/><stop offset=".8" stop-color="#896c47"/><stop offset="1" stop-color="#9a8358"/></linearGradient><radialGradient id="demHi" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" stop-opacity=".34"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><radialGradient id="demSh" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000" stop-opacity=".36"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient><linearGradient id="demLeg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#33482b"/><stop offset=".5" stop-color="#caa94e"/><stop offset="1" stop-color="#9a6a3a"/></linearGradient></defs>
-  <rect width="280" height="170" fill="url(#demRamp)"/>
-  ${relief}${grat}${cont}
-  <path d="${river}" fill="none" stroke="#0b2730" stroke-width="3" opacity=".45" stroke-linecap="round"/><path d="${river}" fill="none" stroke="#5cc6e6" stroke-width="1.5" stroke-linecap="round"/><path d="${trib}" fill="none" stroke="#5cc6e6" stroke-width="1" opacity=".8"/>
-  ${springs}${pin}
-  ${gisFrame()}
-  ${gisN(250,22)}
-  ${gisScale(14,156,42,'5 km')}
-  <g><rect x="196" y="148" width="72" height="15" rx="2" fill="#0b0e12" opacity=".64"/><text x="200" y="155" font-family="JetBrains Mono,monospace" font-size="5.6" fill="#cdd3da">ELEVATION</text><rect x="200" y="157.5" width="44" height="4" fill="url(#demLeg)" stroke="#2a3340" stroke-width=".4"/><text x="247" y="161" font-family="JetBrains Mono,monospace" font-size="5.6" fill="#cdd3da">HIGH</text></g>
-  ${gisTitle('DEM · HILLSHADE · '+((cave&&cave.code)||''))}
-</svg>`;}
+  let cobble='';for(let i=0;i<3;i++)cobble+=`<rect x="${(40+rnd()*200).toFixed(0)}" y="${(60+rnd()*86).toFixed(0)}" width="4" height="4" rx="1" fill="#f0a94e" stroke="#1a1208" stroke-width=".6" transform="rotate(45 ${(42+rnd()*0).toFixed(0)} ${(62).toFixed(0)})"/>`;
+  const mx=+(70+rnd()*146).toFixed(0),my=+(78+rnd()*54).toFixed(0);
+  const pin=`<g transform="translate(${mx},${my})"><path d="M0 0 C-5 -7 -5 -13 0 -13 C5 -13 5 -7 0 0 Z" fill="#f0a94e" stroke="#1a1208" stroke-width="1"/><circle cy="-8.4" r="2" fill="#1a1208"/></g>`;
+  const map=`<rect width="280" height="170" fill="url(#demRamp)"/>${relief}${cont}<path d="${river}" fill="none" stroke="#0b2730" stroke-width="3" opacity=".45" stroke-linecap="round"/><path d="${river}" fill="none" stroke="#5cc6e6" stroke-width="1.5" stroke-linecap="round"/><path d="${trib}" fill="none" stroke="#5cc6e6" stroke-width="1" opacity=".8"/>${springs}${cobble}${pin}`;
+  const defs=`<linearGradient id="demRamp" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#33482b"/><stop offset=".45" stop-color="#6e6a3c"/><stop offset=".8" stop-color="#896c47"/><stop offset="1" stop-color="#9a8358"/></linearGradient><radialGradient id="demHi" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" stop-opacity=".34"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><radialGradient id="demSh" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000" stop-opacity=".36"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>`;
+  return gisApp({id:'ma',title:'DEM · HILLSHADE',code:(cave&&cave.code)||'',lat:cave&&cave.lat,lng:cave&&cave.lng,defs,map,bg:'#33482b',aria:'GIS digital elevation model layer',scale:'1:25 000',barLabel:'5 km',
+    layers:[['DEM hillshade'],['Contours 5 m'],['Hydrology','true','#5cc6e6'],['Raw-material src',true,'#f0a94e'],['Site marker',true,'#f0a94e'],['Graticule']],
+    legend:[['ramp',null,'Elevation L→H'],['line','#5cc6e6','Rivers / streams'],['dot','#7fdfff','Springs'],['box','#f0a94e','Cobble source'],['pin','#f0a94e','Cave site']]});
+}
 function gisMicro(cave){
   const rnd=attrSeed(((cave&&cave.id)||'x')+'-micro');
   const cx=124,cy=88,k=14,base=[];
@@ -835,24 +862,20 @@ function gisMicro(cave){
   const bx=-dx*7+dy*4.5,by=-dy*7-dx*4.5,bx2=-dx*7-dy*4.5,by2=-dy*7+dx*4.5;
   const arrow=`<g stroke="#f0a94e" stroke-width="1.8" fill="none"><path d="M${sx.toFixed(1)} ${sy.toFixed(1)} L${ex.toFixed(1)} ${ey.toFixed(1)}"/><path d="M${(ex+bx).toFixed(1)} ${(ey+by).toFixed(1)} L${ex.toFixed(1)} ${ey.toFixed(1)} L${(ex+bx2).toFixed(1)} ${(ey+by2).toFixed(1)}"/></g><text x="${(ex+dx*6).toFixed(1)}" y="${(ey+dy*9+2).toFixed(1)}" font-family="JetBrains Mono,monospace" font-size="6.4" fill="#f0a94e" text-anchor="middle">${ORI_ABBR[o]}</text>`;
   const plx=+(82+rnd()*40).toFixed(0),ply=+(84+rnd()*20).toFixed(0);
-  let pool=`<ellipse cx="${plx}" cy="${ply}" rx="16" ry="8.5" fill="#103038" stroke="#3ad1da" stroke-width=".9" opacity=".92"/>`;for(let i=-1;i<=1;i++)pool+=`<line x1="${plx-10}" y1="${ply+i*3}" x2="${plx+10}" y2="${ply+i*3}" stroke="#3ad1da" stroke-width=".5" opacity=".45"/>`;pool+=`<text x="${plx}" y="${ply+17}" font-family="JetBrains Mono,monospace" font-size="6" fill="#7fcdd6" text-anchor="middle">POOL</text>`;
-  let rocks='';for(let i=0;i<4;i++){const rx=+(86+rnd()*78).toFixed(0),rry=+(70+rnd()*42).toFixed(0),s=3+rnd()*2.5;rocks+=`<path d="M${rx} ${rry} l${s.toFixed(1)} ${(s*0.4).toFixed(1)} l${(-s*0.3).toFixed(1)} ${s.toFixed(1)} l${(-s).toFixed(1)} ${(-s*0.3).toFixed(1)} z" fill="#1e262e" stroke="#3a4654" stroke-width=".7"/>`;}
+  let pool=`<ellipse cx="${plx}" cy="${ply}" rx="16" ry="8.5" fill="#103038" stroke="#3ad1da" stroke-width=".9" opacity=".92"/>`;for(let i=-1;i<=1;i++)pool+=`<line x1="${plx-10}" y1="${ply+i*3}" x2="${plx+10}" y2="${ply+i*3}" stroke="#3ad1da" stroke-width=".5" opacity=".45"/>`;
+  let rocks='';for(let i=0;i<5;i++){const rx=+(86+rnd()*78).toFixed(0),rry=+(70+rnd()*42).toFixed(0),s=3+rnd()*2.5;rocks+=`<path d="M${rx} ${rry} l${s.toFixed(1)} ${(s*0.4).toFixed(1)} l${(-s*0.3).toFixed(1)} ${s.toFixed(1)} l${(-s).toFixed(1)} ${(-s*0.3).toFixed(1)} z" fill="#1e262e" stroke="#3a4654" stroke-width=".7"/>`;}
   const tx=+(116+rnd()*40).toFixed(0),ty=+(62+rnd()*26).toFixed(0);
   const trench=`<rect x="${tx}" y="${ty}" width="26" height="26" fill="#f0a94e" opacity=".12" stroke="#f0a94e" stroke-width="1.1" stroke-dasharray="3 2"/><line x1="${tx+13}" y1="${ty}" x2="${tx+13}" y2="${ty+26}" stroke="#f0a94e" stroke-width=".6" opacity=".5"/><line x1="${tx}" y1="${ty+13}" x2="${tx+26}" y2="${ty+13}" stroke="#f0a94e" stroke-width=".6" opacity=".5"/><text x="${tx+13}" y="${ty-2.5}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="5.6" fill="#f0a94e">TR.1</text>`;
   const secY=+(cy+(rnd()*18-9)).toFixed(0);
-  const sec=`<line x1="40" y1="${secY}" x2="210" y2="${secY}" stroke="#cdd3da" stroke-width=".7" stroke-dasharray="5 3" opacity=".5"/><text x="36" y="${secY+2}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">A</text><text x="214" y="${secY+2}" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">A'</text>`;
-  return `<svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cave plan drawing">
-  <rect width="280" height="170" fill="#0c1014"/>
-  <path d="${outline}" fill="#161d24" stroke="#6b7682" stroke-width="2"/><path d="${outline}" fill="none" stroke="#9aa6b2" stroke-width=".6" opacity=".5"/>
-  ${hatch}${fc}${sec}${pool}${rocks}${trench}${drip}${arrow}
-  ${gisFrame()}
-  ${gisN(252,22)}
-  ${gisScale(204,154,30,'10 m')}
-  ${gisTitle('CAVE PLAN · MOUTH '+ORI_ABBR[o])}
-</svg>`;}
+  const sec=`<line x1="40" y1="${secY}" x2="210" y2="${secY}" stroke="#cdd3da" stroke-width=".7" stroke-dasharray="5 3" opacity=".55"/><text x="36" y="${secY+2}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">A</text><text x="214" y="${secY+2}" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">A'</text>`;
+  const map=`<rect width="280" height="170" fill="#0c1014"/><path d="${outline}" fill="#161d24" stroke="#6b7682" stroke-width="2"/><path d="${outline}" fill="none" stroke="#9aa6b2" stroke-width=".6" opacity=".5"/>${hatch}${fc}${sec}${pool}${rocks}${trench}${drip}${arrow}`;
+  return gisApp({id:'mi',title:'CAVE PLAN',code:(cave&&cave.code)||'',lat:cave&&cave.lat,lng:cave&&cave.lng,map,bg:'#0c1014',aria:'GIS cave plan layer',scale:'1:200',barLabel:'10 m',
+    layers:[['Cave outline'],['Wall hatch'],['Floor contours'],['Excav. trench',true,'#f0a94e'],['Entrance vec.',true,'#f0a94e'],['Section A–A′']],
+    legend:[['line','#9aa6b2','Cave wall'],['line','#27313b','Floor contour'],['box','#103038','Pool / water'],['box','#f0a94e','Excavation TR'],['dash','#6b7682','Drip line']]});
+}
 function gisGrid(cave){
   const rnd=attrSeed(((cave&&cave.id)||'x')+'-grid');
-  const cols=['A','B','C','D','E'],ox=44,oy=40,cw=30,n=5,m=3,gw=n*cw,gh=m*cw;
+  const cols=['A','B','C','D','E'],ox=46,oy=40,cw=30,n=5,m=3,gw=n*cw,gh=m*cw;
   let grid='';for(let i=0;i<=n;i++)grid+=`<line x1="${ox+i*cw}" y1="${oy}" x2="${ox+i*cw}" y2="${oy+gh}" stroke="#2c3742" stroke-width=".8"/>`;for(let j=0;j<=m;j++)grid+=`<line x1="${ox}" y1="${oy+j*cw}" x2="${ox+gw}" y2="${oy+j*cw}" stroke="#2c3742" stroke-width=".8"/>`;
   let labels='';cols.forEach((c,i)=>labels+=`<text x="${ox+i*cw+cw/2}" y="${oy-5}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#8b929c">${c}</text>`);for(let j=0;j<m;j++)labels+=`<text x="${ox-7}" y="${oy+j*cw+cw/2+3}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#8b929c">${j+1}</text>`;
   const ex=[];const nu=3+Math.floor(rnd()*3);for(let i=0;i<nu;i++)ex.push([Math.floor(rnd()*n),Math.floor(rnd()*m)]);
@@ -866,18 +889,14 @@ function gisGrid(cave){
     if(rnd()<0.5)finds+=`<rect x="${(ox+gx*cw+jit()).toFixed(0)}" y="${(oy+gy*cw+jit()).toFixed(0)}" width="5" height="5" fill="#c4a7ec"/>`;});
   if(cave&&cave.hasBurials){const gx=ex[0]?ex[0][0]:1,gy=ex[0]?ex[0][1]:1;finds+=`<rect x="${ox+gx*cw+5}" y="${oy+gy*cw+5}" width="${cw-10}" height="${cw-10}" fill="none" stroke="#e8825a" stroke-width="1.2"/><text x="${ox+gx*cw+cw/2}" y="${oy+gy*cw+cw/2+3}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#e8825a">B</text>`;}
   const datum=`<g transform="translate(${ox},${oy})"><path d="M0 -16 L4 -9 L-4 -9 Z" fill="#3ad1da"/><circle r="2.2" fill="#0c1014" stroke="#3ad1da" stroke-width="1.2"/><text x="6" y="-10" font-family="JetBrains Mono,monospace" font-size="6" fill="#3ad1da">BM 0,0</text></g>`;
-  const syl=oy+gh+9,sec=`<line x1="${ox}" y1="${syl}" x2="${ox+gw}" y2="${syl}" stroke="#cdd3da" stroke-width=".7" stroke-dasharray="5 3" opacity=".5"/><text x="${ox-4}" y="${syl+2}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">B</text><text x="${ox+gw+4}" y="${syl+2}" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">B'</text>`;
-  const lg=`<g transform="translate(${ox},160)" font-family="JetBrains Mono,monospace" font-size="6.2"><circle cx="2" cy="-2" r="2.4" fill="#f0a94e"/><text x="8" y="0" fill="#cdd3da">tool</text><path d="M36 -4 l3 5 h-6 z" fill="#3ad1da"/><text x="44" y="0" fill="#cdd3da">bone</text><rect x="72" y="-4.4" width="5" height="5" fill="#c4a7ec"/><text x="82" y="0" fill="#cdd3da">pot</text>${cave&&cave.hasBurials?'<rect x="102" y="-4.4" width="5" height="5" fill="none" stroke="#e8825a"/><text x="112" y="0" fill="#cdd3da">burial</text>':''}</g>`;
-  return `<svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Excavation grid plan">
-  <rect width="280" height="170" fill="#0c1014"/>
-  ${cells}${grid}${labels}${trench}${finds}${datum}${sec}
-  <text x="${ox+gw+7}" y="${oy+gh}" font-family="JetBrains Mono,monospace" font-size="6" fill="#3ad1da">Z&#8595;</text>
-  ${gisFrame()}
-  ${gisN(252,24)}
-  ${gisScale(208,150,30,'1 m')}
-  ${lg}
-  ${gisTitle('EXCAVATION GRID · '+((cave&&cave.code)||''))}
-</svg>`;}
+  const syl=oy+gh+10,sec=`<line x1="${ox}" y1="${syl}" x2="${ox+gw}" y2="${syl}" stroke="#cdd3da" stroke-width=".7" stroke-dasharray="5 3" opacity=".55"/><text x="${ox-4}" y="${syl+2}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">B</text><text x="${ox+gw+4}" y="${syl+2}" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">B'</text><text x="${ox+gw+7}" y="${oy+gh}" font-family="JetBrains Mono,monospace" font-size="6" fill="#3ad1da">Z↓</text>`;
+  const map=`<rect width="280" height="170" fill="#0c1014"/>${cells}${grid}${labels}${trench}${finds}${datum}${sec}`;
+  const lg=[['box','#f0a94e','Lithics'],['tri','#3ad1da','Bone'],['box','#c4a7ec','Pottery']];
+  if(cave&&cave.hasBurials)lg.push(['ring','#e8825a','Burial']);
+  return gisApp({id:'gr',title:'EXCAVATION GRID',code:(cave&&cave.code)||'',lat:cave&&cave.lat,lng:cave&&cave.lng,map,bg:'#0c1014',aria:'GIS excavation grid layer',scale:'1:50',barLabel:'1 m',
+    layers:[['1 m grid'],['Excavated units',true,'#f0a94e'],['Finds'],['Datum / BM','true','#3ad1da'],['Section B–B′'],['Spoil heap',false]],
+    legend:lg});
+}
 function viewDirectory(){
   // build grouped catalogue from data
   const grp=c=>c.group||(c.rank==='National Special'?'special':'national');
@@ -891,7 +910,6 @@ function viewDirectory(){
   return `
   <section class="detail-hero">
     <div class="container reveal">
-      <div class="breadcrumb">SECTION A · DIGITAL CAVE DIRECTORY</div>
       <h1 style="font-size:clamp(2.4rem,5.5vw,4rem);margin-top:12px">The Cave Directory</h1>
       <p style="max-width:none;font-size:1rem">A spatial research platform and public record for the prehistoric caves in Northern Vietnam's Stone-Age cave culture — combining an interactive map, a structured site &amp; artifact database, stratigraphy, and protected expert data.</p>
     </div>
@@ -1690,11 +1708,11 @@ function attrChrono(bp,c){
   return `<div class="chrono"><div class="chrono-track tall">${zhtml}${band}</div><div class="chrono-ticks">${ticks}</div><div class="chrono-axislabel"><span>OLDER · 32k BP</span><span>HOABINHIAN SEQUENCE</span><span>7k BP · YOUNGER</span></div><div class="chrono-stats">${sh}</div></div>`;
 }
 const ART={
-  axe:'<svg viewBox="0 0 60 60"><path d="M30 5 C43 14 47 35 30 56 C13 35 17 14 30 5 Z" fill="#9c7b54" stroke="#5b4a33" stroke-width="1.5"/><path d="M30 12 L26 26 M31 14 L36 28 M24 32 L30 40 M37 32 L31 42" stroke="#5b4a33" stroke-width="1" fill="none" opacity=".55"/></svg>',
-  disc:'<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="22" fill="#b29470" stroke="#5b4a33" stroke-width="1.5"/><path d="M11 26 a19 11 0 0 0 38 0" stroke="#5b4a33" fill="none" opacity=".5"/><path d="M30 9 l3 7 M30 51 l-3-7" stroke="#5b4a33" opacity=".4"/></svg>',
-  shell:'<svg viewBox="0 0 60 60"><g fill="none" stroke="#cbb79b" stroke-width="3" stroke-linecap="round"><path d="M30 30 a3 3 0 1 1 4 2 a7 7 0 1 1 -11 -1 a12 12 0 1 1 20 6 a17 17 0 1 1 -28 -8"/></g></svg>',
-  bone:'<svg viewBox="0 0 60 60"><g fill="#e6ddcf" stroke="#b3a88f" stroke-width="1.5"><circle cx="16" cy="17" r="6"/><circle cx="23" cy="13" r="5"/><circle cx="44" cy="43" r="6"/><circle cx="37" cy="47" r="5"/><rect x="16" y="20" width="28" height="9" rx="4.5" transform="rotate(45 30 30)"/></g></svg>',
-  seed:'<svg viewBox="0 0 60 60"><ellipse cx="30" cy="30" rx="11" ry="17" fill="#7f8f4c" stroke="#56632f" stroke-width="1.5"/><path d="M30 15 L30 45" stroke="#56632f" stroke-width="1" opacity=".6"/><ellipse cx="30" cy="30" rx="5" ry="9" fill="none" stroke="#56632f" stroke-width="1" opacity=".4"/></svg>'
+  axe:'<svg viewBox="0 0 60 60"><defs><linearGradient id="axeG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bd9a6c"/><stop offset=".55" stop-color="#8f7048"/><stop offset="1" stop-color="#675034"/></linearGradient></defs><path d="M30 4 C46 16 48 40 30 57 C12 40 14 16 30 4 Z" fill="url(#axeG)" stroke="#46361f" stroke-width="1.5"/><g fill="none" stroke="#5b4732" stroke-width="1" opacity=".5"><path d="M30 9 C40 18 41 33 32 46"/><path d="M30 12 C24 22 24 36 29 47"/><path d="M18 23 C24 27 26 34 23 42"/><path d="M42 25 C37 29 36 36 39 43"/><path d="M30 30 C33 35 33 41 30 46"/></g><path d="M30 4 C46 16 48 40 30 57" fill="none" stroke="#e1cba2" stroke-width="1.1" opacity=".55"/><g stroke="#46361f" stroke-width=".7" opacity=".5"><path d="M25 16 l3 2"/><path d="M35 21 l-3 2"/><path d="M24 31 l3 1.6"/><path d="M36 33 l-3 1.6"/></g></svg>',
+  disc:'<svg viewBox="0 0 60 60"><defs><radialGradient id="discG" cx="42%" cy="36%" r="64%"><stop offset="0" stop-color="#c9ad82"/><stop offset=".6" stop-color="#9c7e54"/><stop offset="1" stop-color="#6c5336"/></radialGradient></defs><circle cx="30" cy="30" r="23" fill="url(#discG)" stroke="#46361f" stroke-width="1.5"/><g fill="none" stroke="#5b4732" stroke-width="1" opacity=".5"><path d="M30 8 C33 16 33 18 30 22"/><path d="M44 13 C40 20 38 21 33 23"/><path d="M52 30 C44 31 42 31 38 30"/><path d="M45 46 C40 40 38 39 33 37"/><path d="M30 52 C33 44 33 42 30 38"/><path d="M15 46 C20 40 22 39 27 37"/><path d="M8 30 C16 31 18 31 22 30"/><path d="M15 13 C20 20 22 21 27 23"/></g><circle cx="30" cy="30" r="6.5" fill="none" stroke="#46361f" stroke-width="1" opacity=".55"/><path d="M14 22 a18 18 0 0 1 9 -8" fill="none" stroke="#e1cba2" stroke-width="1" opacity=".4"/></svg>',
+  shell:'<svg viewBox="0 0 60 60"><defs><radialGradient id="shellG" cx="40%" cy="36%" r="64%"><stop offset="0" stop-color="#eee1c7"/><stop offset=".55" stop-color="#cdb488"/><stop offset="1" stop-color="#94794f"/></radialGradient></defs><circle cx="31" cy="30" r="19" fill="url(#shellG)" stroke="#776140" stroke-width="1.3"/><path d="M31 30 a3 3 0 1 1 3.4 1.4 a7.6 7.6 0 1 1 -11 -1.6 a12 12 0 1 1 19 4.6 a16.5 16.5 0 1 1 -26 -7.4" fill="none" stroke="#776140" stroke-width="1.4" opacity=".75"/><path d="M15 23 a18 18 0 0 1 7 -7" fill="none" stroke="#fff" stroke-width="1" opacity=".22"/><path d="M44 36 a16 16 0 0 1 -6 8" fill="none" stroke="#5e4d34" stroke-width="1" opacity=".4"/></svg>',
+  bone:'<svg viewBox="0 0 60 60"><defs><linearGradient id="boneG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0e8d7"/><stop offset="1" stop-color="#c6bba1"/></linearGradient></defs><g transform="rotate(38 30 30)"><rect x="14" y="25" width="32" height="9" rx="4.5" fill="url(#boneG)" stroke="#988c70" stroke-width="1.1"/><circle cx="14" cy="24" r="5.6" fill="url(#boneG)" stroke="#988c70" stroke-width="1.1"/><circle cx="14" cy="35" r="5.6" fill="url(#boneG)" stroke="#988c70" stroke-width="1.1"/><circle cx="46" cy="24" r="5.6" fill="url(#boneG)" stroke="#988c70" stroke-width="1.1"/><circle cx="46" cy="35" r="5.6" fill="url(#boneG)" stroke="#988c70" stroke-width="1.1"/><line x1="20" y1="29.5" x2="40" y2="29.5" stroke="#988c70" stroke-width=".6" opacity=".4"/></g><g transform="translate(45,47)"><path d="M0 -1 C-4 -3 -4 -9 -1 -10 C2 -11 5 -8 4 -3 C7 -1 5 4 1 4 C-2 5 -3 1 0 -1 Z" fill="#f0e8d7" stroke="#988c70" stroke-width="1"/><path d="M-2 4 l-1.4 4 M2 4 l1.4 4" stroke="#c6bba1" stroke-width="1.5"/></g></svg>',
+  seed:'<svg viewBox="0 0 60 60"><defs><linearGradient id="seedG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a3b167"/><stop offset="1" stop-color="#5f6d36"/></linearGradient><radialGradient id="nutG" cx="40%" cy="34%" r="66%"><stop offset="0" stop-color="#b67e46"/><stop offset="1" stop-color="#67411f"/></radialGradient></defs><g transform="rotate(-14 24 28)"><ellipse cx="24" cy="28" rx="11" ry="17" fill="url(#seedG)" stroke="#414e22" stroke-width="1.3"/><path d="M24 13 C20 22 20 36 25 44" fill="none" stroke="#414e22" stroke-width="1" opacity=".6"/><path d="M24 13 C28 22 28 36 23 44" fill="none" stroke="#414e22" stroke-width=".7" opacity=".4"/></g><circle cx="43" cy="41" r="10" fill="url(#nutG)" stroke="#46301a" stroke-width="1.2"/><path d="M37 37 q6 -4 12 0" fill="none" stroke="#33230f" stroke-width="1" opacity=".55"/><path d="M43 31 l0 -4" stroke="#46301a" stroke-width="1.4"/></svg>'
 };
 function attrCompass(dir){const map={N:0,NE:45,E:90,SE:135,S:180,SW:225,W:270,NW:315};const deg=map[dir]!=null?map[dir]:90;const a=deg*Math.PI/180;const ex=35+Math.sin(a)*21,ey=35-Math.cos(a)*21,bx=35-Math.sin(a)*8,by=35+Math.cos(a)*8;
   let ticks='';for(let i=0;i<12;i++){const t=i/12*2*Math.PI,r1=26,r2=i%3===0?19:23;ticks+=`<line x1="${(35+Math.sin(t)*r1).toFixed(1)}" y1="${(35-Math.cos(t)*r1).toFixed(1)}" x2="${(35+Math.sin(t)*r2).toFixed(1)}" y2="${(35-Math.cos(t)*r2).toFixed(1)}" stroke="#3a4654" stroke-width="${i%3===0?1.4:0.7}"/>`;}
@@ -1702,9 +1720,10 @@ function attrCompass(dir){const map={N:0,NE:45,E:90,SE:135,S:180,SW:225,W:270,NW
 function attrBurial(posture){
   const grave='<rect x="3" y="6" width="144" height="72" rx="6" fill="#140d07" stroke="#3a2f22" stroke-width="1.4"/><rect x="5.5" y="8.5" width="139" height="67" rx="5" fill="none" stroke="#241a0f" stroke-width="2" opacity=".6"/>';
   let g='<g stroke="#2c2114" stroke-width=".7" opacity=".55">';for(let x=33;x<147;x+=30)g+=`<line x1="${x}" y1="6" x2="${x}" y2="78"/>`;for(let y=29;y<78;y+=24)g+=`<line x1="3" y1="${y}" x2="147" y2="${y}"/>`;g+='</g>';
+  const bn='#e7ddc7', rb='#cdbf9f';
   const sk = posture==='Flexed'
-   ? `<g stroke="#e4dac4" stroke-width="2.3" fill="none" stroke-linecap="round"><circle cx="27" cy="40" r="7.5" fill="#e4dac4" stroke="none"/><path d="M34 41 C54 39 68 43 82 46"/><g stroke="#cdbf9f" stroke-width="1.5"><path d="M44 37 C49 33 55 33 59 37"/><path d="M52 39 C57 35 63 35 67 39"/><path d="M60 41 C65 37 71 38 75 42"/></g><circle cx="84" cy="47" r="4.5" fill="#e4dac4" stroke="none"/><path d="M84 47 C97 41 104 52 96 60 C91 65 100 67 110 63"/><path d="M84 48 C95 45 102 56 95 64"/><path d="M40 43 C50 51 58 53 66 51"/></g>`
-   : `<g stroke="#e4dac4" stroke-width="2.3" fill="none" stroke-linecap="round"><circle cx="19" cy="42" r="7.5" fill="#e4dac4" stroke="none"/><line x1="27" y1="42" x2="92" y2="42"/><g stroke="#cdbf9f" stroke-width="1.5"><path d="M38 36 C44 32 50 32 54 36"/><path d="M46 36 C52 32 58 32 62 36"/><path d="M54 37 C60 33 66 33 70 37"/></g><circle cx="95" cy="42" r="4.5" fill="#e4dac4" stroke="none"/><path d="M95 42 L130 35 M95 42 L130 49"/><path d="M40 42 L62 55 M52 42 L72 53"/></g>`;
+   ? `<g fill="none" stroke="${bn}" stroke-width="2" stroke-linecap="round"><circle cx="20" cy="40" r="7" fill="${bn}" stroke="none"/><path d="M16 45 q4 3 8 1" stroke="${rb}" stroke-width="1.3"/><line x1="27" y1="41" x2="62" y2="45" stroke="${rb}" stroke-width="2.3"/><g stroke="${rb}" stroke-width="1.2"><path d="M33 39 q5 -5 10 -2"/><path d="M40 40 q5 -5 10 -2"/><path d="M47 41 q5 -5 10 -2"/><path d="M33 43 q5 5 10 2"/><path d="M40 44 q5 5 10 2"/></g><circle cx="66" cy="46" r="4" fill="${bn}" stroke="none"/><path d="M66 46 L84 40 L98 50 L86 60"/><path d="M66 48 L82 44 L96 54 L84 63"/><path d="M30 42 L46 52 L60 50"/><path d="M30 44 L44 55 L58 54"/><g fill="${bn}"><circle cx="30" cy="43" r="1.5"/><circle cx="66" cy="46" r="1.6"/><circle cx="84" cy="41" r="1.4"/></g></g>`
+   : `<g fill="none" stroke="${bn}" stroke-width="2" stroke-linecap="round"><circle cx="17" cy="42" r="7" fill="${bn}" stroke="none"/><path d="M13 47 q4 3 8 1" stroke="${rb}" stroke-width="1.3"/><line x1="24" y1="42" x2="88" y2="42" stroke="${rb}" stroke-width="2.4"/><g stroke="${rb}" stroke-width="1.2"><path d="M32 40 q6 -5 12 -2"/><path d="M40 40 q6 -5 12 -2"/><path d="M48 40 q6 -5 12 -2"/><path d="M32 44 q6 5 12 2"/><path d="M40 44 q6 5 12 2"/><path d="M48 44 q6 5 12 2"/></g><path d="M88 38 q6 -2 7 4 M88 46 q6 2 7 -4" stroke="${bn}" stroke-width="2"/><path d="M31 41 L46 53 L60 58"/><path d="M31 43 L44 56 L58 61"/><path d="M95 41 L116 38 L134 36"/><path d="M95 44 L116 47 L134 50"/><g fill="${bn}"><circle cx="31" cy="42" r="1.6"/><circle cx="46" cy="53" r="1.3"/><circle cx="95" cy="42" r="1.6"/><circle cx="116" cy="38" r="1.3"/><circle cx="116" cy="47" r="1.3"/></g></g>`;
   const furn='<g transform="translate(137,20)"><path d="M0 0 L0 -9 L-2.6 -3.4 M0 -9 L2.6 -3.4" stroke="#9a8a6f" stroke-width="1.1" fill="none"/><text x="-1.5" y="9" font-family="JetBrains Mono,monospace" font-size="6" fill="#9a8a6f">N</text></g><g stroke="#9a8a6f" stroke-width="1.1"><line x1="11" y1="72" x2="41" y2="72"/><line x1="11" y1="69.5" x2="11" y2="74.5"/><line x1="41" y1="69.5" x2="41" y2="74.5"/></g><text x="11" y="68" font-family="JetBrains Mono,monospace" font-size="5.6" fill="#9a8a6f">1 m</text>';
   return `<svg viewBox="0 0 150 84" class="burial">${grave}${g}${sk}${furn}</svg>`;
 }
