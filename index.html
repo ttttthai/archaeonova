@@ -289,6 +289,45 @@ img{max-width:100%;height:auto}
 .wh-name{font-weight:600;font-size:.9rem;color:var(--text);line-height:1.25}
 @media(max-width:900px){.wh-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.wh-grid{grid-template-columns:1fr}}
+/* prehistoric sites by province */
+.prov-browser{margin-top:20px}
+.prov-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.prov-tab{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.04em;padding:8px 15px;border:1px solid var(--border-soft);border-radius:22px;background:var(--bg-2);color:var(--muted);cursor:pointer;transition:color .15s,background .15s,border-color .15s}
+.prov-tab:hover{color:var(--text);border-color:var(--border)}
+.prov-tab.active{background:rgba(240,169,78,.15);border-color:var(--amber);color:var(--amber)}
+.prov-tab .prov-n{font-size:.64rem;padding:1px 7px;border-radius:10px;background:rgba(255,255,255,.07);color:inherit}
+.prov-tab.active .prov-n{background:rgba(240,169,78,.22)}
+.prov-group[hidden]{display:none}
+.psite-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.psite-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:12px;padding:15px 17px;transition:border-color .2s,transform .2s}
+.psite-card:hover{border-color:var(--border);transform:translateY(-2px)}
+.psite-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.psite-head h4{margin:0;font-size:1.02rem;line-height:1.25;color:var(--text)}
+.psite-date{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.03em;color:var(--muted);white-space:nowrap;text-align:right;flex:none}
+.psite-cult{margin:6px 0 6px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan)}
+.psite-sum{margin:0;font-size:.86rem;line-height:1.5;color:var(--muted)}
+.psite-sum b{color:var(--text-2);font-weight:600}
+@media(max-width:760px){.psite-grid{grid-template-columns:1fr}}
+/* directory province-first selector */
+.dsel-provs{display:flex;gap:8px;flex-wrap:wrap}
+.dsel-prov{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.04em;padding:8px 15px;border:1px solid var(--border-soft);border-radius:22px;background:var(--surface);color:var(--muted);cursor:pointer;transition:color .15s,background .15s,border-color .15s}
+.dsel-prov:hover{color:var(--text);border-color:var(--border)}
+.dsel-prov.active{background:rgba(240,169,78,.15);border-color:var(--amber);color:var(--amber)}
+.dsel-prov .dsel-n{font-size:.64rem;padding:1px 7px;border-radius:10px;background:rgba(255,255,255,.07);color:inherit}
+.dsel-prov.active .dsel-n{background:rgba(240,169,78,.22)}
+.dsel-sites{display:flex;flex-wrap:wrap;gap:8px;max-height:188px;overflow-y:auto;padding:2px 2px 4px}
+.dsel-site{display:inline-flex;align-items:center;gap:8px;font-family:"Space Grotesk";font-weight:500;font-size:.82rem;color:var(--text-2);background:var(--surface);border:1px solid var(--border-soft);border-radius:999px;padding:.45em .95em;cursor:pointer;transition:.15s}
+.dsel-site:hover{color:var(--text);border-color:var(--border)}
+.dsel-site.active{background:rgba(58,209,218,.14);border-color:var(--cyan);color:var(--cyan)}
+.dsel-site.basic{color:var(--muted)}
+.dsel-site.basic.active{background:rgba(176,140,224,.16);border-color:#b08ce0;color:#d3bcf0}
+.dsel-dot{width:9px;height:9px;border-radius:50%;flex:none;box-shadow:0 0 0 3px rgba(255,255,255,.04)}
+.dsel-dot.special{background:#f0a94e}
+.dsel-dot.national{background:#3ad1da}
+.dsel-dot.survey{background:#8fb56a}
+.dsel-dot.rec{background:transparent;border:1.5px solid #b08ce0}
+.dsel-mini{font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.05em;text-transform:uppercase;padding:1px 6px;border-radius:8px;background:rgba(255,255,255,.06);color:var(--muted)}
+.dsel-mini.ns{background:rgba(240,169,78,.18);color:var(--amber)}
 /* privacy consent */
 .consent{position:fixed;left:0;right:0;bottom:0;z-index:2000;padding:16px;display:flex;justify-content:center;pointer-events:none}
 .consent[hidden]{display:none}
@@ -1125,20 +1164,21 @@ function viewDirectory(){
   <!-- PROVINCE MAP -->
   <section class="section" style="padding-top:24px">
     <div class="container">
-      <div class="reveal" style="max-width:none"><p class="eyebrow">01 · PROVINCE MAP</p><h2>Where the sites are</h2><p>Every catalogued cave plotted on a real map. Switch between <b style="color:var(--text)">topographic terrain (DEM)</b>, satellite and dark base layers. Positions are approximate (commune-level) to protect the sites — open a marker for its coordinates.</p></div>
+      <div class="reveal" style="max-width:none"><p class="eyebrow">01 · PROVINCE &amp; SITE</p><h2>Start with a province, then a site</h2><p>Pick a province, then a site within it — your choice drives the map and every section below (spatial model, stratigraphy, 3-D scan and the attribute record). Switch the map between <b style="color:var(--text)">topographic terrain (DEM)</b>, satellite and dark base layers. Positions are approximate to protect the sites.</p></div>
     </div>
     <div class="container" style="margin-top:24px">
-      <div style="padding:18px 18px 16px;border:1px solid var(--border-soft);border-radius:12px;background:var(--bg-2);margin-bottom:18px">
-        <p class="eyebrow" style="margin-bottom:12px">◎ SELECT A SITE — DRIVES THE RECORD, STRATIGRAPHY &amp; 3D MODEL BELOW</p>
-        <div class="attr-toolbar" id="attrTabs"></div>
+      <div class="dir-selector-wrap" style="padding:20px 20px 18px;border:1px solid var(--border-soft);border-radius:12px;background:var(--bg-2);margin-bottom:18px">
+        ${dirSelectorHTML()}
       </div>
+      <p class="muted" style="margin:0 0 12px;font-size:.95rem">Now showing: <b id="dirNowLabel" style="color:var(--cyan)">—</b></p>
       <div class="dir-map-wrap"><div id="dirMap"></div></div>
       <div class="map-legend" style="margin-top:14px">
         <span><i class="lg special"></i>National Special</span>
         <span><i class="lg national"></i>National</span>
         <span><i class="lg survey"></i>Newly discovered</span>
-        <span><i class="lg cat"></i>Limited record</span>
+        <span><i class="lg cat"></i>Recorded site (approx.)</span>
       </div>
+      <p class="reveal" style="margin:20px 0 0;font-size:.92rem;color:var(--muted)">This register holds all <b style="color:var(--text-2)">${PSITES.length}</b> recorded prehistoric cave &amp; rock-shelter sites across northern Vietnam. The <b style="color:var(--text-2)">${CAVES.length}</b> Hòa Bình caves carry full excavation records; the others are shown with representative spatial, stratigraphic and 3-D models pending full digitisation.</p>
     </div>
   </section>
 
@@ -1566,6 +1606,128 @@ function newsCard(n,feat){
     </div>
   </article>`;
 }
+/* ===== Prehistoric sites of Northern Vietnam — browsable by province (default Hòa Bình) ===== */
+const PSITES=[{"n":"Thẩm Khuyên Cave","prov":"Lạng Sơn","area":"Bình Gia","cult":"Pleistocene · Homo erectus (~475 ka)","date":"Excavated 1960s–70s","sum":"A breccia cave that yielded Homo erectus teeth and an archaic fauna — a key SE-Asian early-human site."},{"n":"Thẩm Hai Cave","prov":"Lạng Sơn","area":"Bình Gia","cult":"Pleistocene (~300–200 ka)","date":"Excavated 1960s–70s","sum":"Beside Thẩm Khuyên; deposits record the transition from H. erectus toward H. sapiens."},{"n":"Kéo Lèng Cave","prov":"Lạng Sơn","area":"","cult":"Late Pleistocene · H. sapiens (~30–20 ka)","date":"Excavated 20th c.","sum":"Modern-human remains and fauna of the late Ice Age."},{"n":"Hang Hùm","prov":"Yên Bái","area":"Lục Yên","cult":"Late Pleistocene (~80–60 ka)","date":"Excavated 1960s","sum":"Late Homo sapiens teeth within a rich Pleistocene mammal fauna."},{"n":"Mái đá Ngườm (Ngườm Rock Shelter)","prov":"Thái Nguyên","area":"Võ Nhai","cult":"Ngườm / Sơn Vi (~125 ka–23 ka)","date":"Excavated 1980s; redated 2024","sum":"Type-site of the 'Ngườm' flake-tool technique; recent dating points to use ~124,000 yrs ago, with Vietnam's earliest known fire."},{"n":"Mả U'Oi Cave","prov":"Hòa Bình","area":"","cult":"Middle–Late Pleistocene","date":"Excavated 2001","sum":"A breccia cave excavated in 2001 by a Vietnamese–French team; hominin teeth and fossil fauna."},{"n":"Mái đá Điều","prov":"Thanh Hóa","area":"","cult":"Sơn Vi → Hoà Bình","date":"Excavated 20th c.","sum":"A rock shelter with Late-Pleistocene burials; key for understanding Hoabinhian burial customs."},{"n":"Con Moong Cave","prov":"Thanh Hóa","area":"Cúc Phương","cult":"Sơn Vi · Hoà Bình · Bắc Sơn","date":"Discovered 1974","sum":"9.5 m of deposits spanning three cultures (traces back 40–60 ka); a Special National site (2016) on the UNESCO tentative list."},{"n":"Hang Xóm Trại","prov":"Hòa Bình","area":"Lạc Sơn","cult":"Hoà Bình (Hoabinhian)","date":"Excavated 20th c.; relic 2024","sum":"A major residential & tool-making cave with a worn ancient pathway and vast snail middens. National Special relic."},{"n":"Mái đá Làng Vành","prov":"Hòa Bình","area":"Lạc Sơn","cult":"Hoà Bình","date":"Colani 1929","sum":"A major Hoabinhian rock shelter first studied by M. Colani (1929). National Special relic (2024)."},{"n":"Hang Khoài","prov":"Hòa Bình","area":"Mai Châu","cult":"Hoà Bình","date":"Recognised national relic","sum":"A national-level Hoabinhian cave in the Mai Châu valley."},{"n":"Hang Láng","prov":"Hòa Bình","area":"Mai Châu","cult":"Hoà Bình","date":"20th-century surveys","sum":"A national-level Hoabinhian habitation cave."},{"n":"Hang Muối","prov":"Hòa Bình","area":"Tân Lạc","cult":"Hoà Bình","date":"20th-century surveys","sum":"Habitation cave whose mouth faces south-east; a national-level relic."},{"n":"Hang Bưng","prov":"Hòa Bình","area":"Tân Lạc","cult":"Hoà Bình","date":"20th-century surveys","sum":"A national-level Hoabinhian cave with hearth traces."},{"n":"Hang Tằm","prov":"Hòa Bình","area":"Lương Sơn","cult":"Hoà Bình","date":"20th-century surveys","sum":"A national-level prehistoric stone-tool workshop cave."},{"n":"Hang Chổ","prov":"Hòa Bình","area":"Lương Sơn","cult":"Hoà Bình","date":"20th c.; modern study","sum":"A national-level Hoabinhian stone-tool site, re-investigated in modern studies."},{"n":"Động Tiên","prov":"Hòa Bình","area":"Lạc Thủy","cult":"Hoà Bình","date":"20th-century surveys","sum":"A national-level Hoabinhian cave site."},{"n":"Hang Làng Đồi (Hang Đồng Thớt)","prov":"Hòa Bình","area":"Lạc Thủy","cult":"Hoà Bình (~10,000–7,000 BP)","date":"Colani (1920s–30s)","sum":"A national-level cave first excavated by Colani."},{"n":"Hang Hiêm","prov":"Hòa Bình","area":"Lạc Sơn","cult":"Early-Holocene Hoà Bình (~8,500–8,200 BC)","date":"Modern study","sum":"A multidisciplinary study reconstructed the diet, tools and seasons of its occupants."},{"n":"Hang Chùa (Yên Trị)","prov":"Hòa Bình","area":"Yên Thủy","cult":"Hoà Bình","date":"20th-century surveys","sum":"A cave complex with a Hoabinhian shell-midden."},{"n":"Lạc Lương rock shelters","prov":"Hòa Bình","area":"Yên Thủy","cult":"Hoà Bình (unconfirmed)","date":"Newly surveyed","sum":"Valley-edge rock shelters under survey, with possible Hoabinhian traces — catalogued in the ArchaeoNova directory."},{"n":"Đồng Nội","prov":"Hòa Bình","area":"Lạc Thủy","cult":"Hoà Bình","date":"Documented 20th c.","sum":"A Hoabinhian site noted for engraved art — carved animal figures and a human face on the cave wall."},{"n":"Hang Hào","prov":"Hòa Bình","area":"Lạc Thủy","cult":"Hoà Bình","date":"20th-century surveys","sum":"A representative Hoabinhian cave site of Lạc Thủy district."},{"n":"Sào Đông","prov":"Hòa Bình","area":"Kim Bôi","cult":"Hoà Bình","date":"Excavated 1926 (Colani)","sum":"A cave excavated by Colani in 1926 that yielded over 1,000 stone tools."},{"n":"Đa Phúc","prov":"Hòa Bình","area":"","cult":"Hoà Bình","date":"Excavated 1920s (Colani)","sum":"A Hoabinhian site that produced ~1,230 stone tools — among the richest Colani recorded."},{"n":"Làng Neo","prov":"Hòa Bình","area":"","cult":"Hoà Bình","date":"Excavated 1920s (Colani)","sum":"A Colani Hoabinhian cave site (~600 stone tools)."},{"n":"Xóm Khám (X-Kham)","prov":"Hòa Bình","area":"","cult":"Hoà Bình","date":"Excavated 1920s (Colani)","sum":"A Colani Hoabinhian site (~700 stone tools)."},{"n":"Triềng Xến (Trieng-Xen)","prov":"Hòa Bình","area":"","cult":"Hoà Bình","date":"Excavated 1920s (Colani)","sum":"A Hoabinhian cave near Sào Đông (~170 stone tools)."},{"n":"M-Khang","prov":"Hòa Bình","area":"","cult":"Hoà Bình","date":"Excavated 1920s (Colani)","sum":"A Colani Hoabinhian site (~190 stone tools)."},{"n":"Xóm Trẽ","prov":"Hòa Bình","area":"Lạc Sơn","cult":"Hoà Bình","date":"Colani era (1920s)","sum":"A Hoabinhian cave in the same valley as Mái đá Làng Vành."},{"n":"Mái đá Bản Mòn","prov":"Sơn La","area":"Thuận Châu","cult":"Hoà Bình / Bắc Sơn","date":"Recognised national monument","sum":"A National Monument prehistoric rock shelter in the north-western highlands."},{"n":"Hang Đắng (Cúc Phương)","prov":"Ninh Bình","area":"","cult":"Hoà Bình","date":"Documented 20th c.","sum":"The 'Cave of Prehistoric Man' in Cúc Phương National Park, with ancient human burials."},{"n":"Mang Chiêng Cave","prov":"Ninh Bình","area":"","cult":"Hoà Bình","date":"Surveyed (modern)","sum":"A surveyed Hoabinhian cave site in the Ninh Bình karst."},{"n":"Hang Ốc","prov":"Hòa Bình","area":"Kim Bôi","cult":"Hoà Bình","date":"Colani era (1920s)","sum":"A Hoabinhian cave recorded among Colani's Kim Bôi discoveries."},{"n":"Hang Sào Báy","prov":"Hòa Bình","area":"Kim Bôi","cult":"Hoà Bình","date":"Colani era (1920s)","sum":"A Hoabinhian cave in Kim Bôi district recorded by Colani."},{"n":"Mái đá Phứng Quyền","prov":"Hòa Bình","area":"Mai Châu","cult":"Hoà Bình","date":"Surveyed from 1976","sum":"A rock shelter at Mai Hịch, surveyed by archaeologists from 1976."},{"n":"Other Hòa Bình cave sites (remainder of 72–80)","prov":"Hòa Bình","area":"","cult":"Hoà Bình","date":"Surveyed 1920s–present","sum":"Hòa Bình province has 72–80 recorded Hoà Bình-culture sites (Kim Bôi 21, Lương Sơn 14, Lạc Thủy 13…); those beyond the named ones are listed mainly in Vietnamese field records."},{"n":"Khau Phai","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Bó Nam","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Vô Muộn","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Nà Ché","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Phố Bình Gia","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A classic Bắc Sơn cave site in Bình Gia district."},{"n":"Khòn Khẻ (Còn Khẻ)","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Đồng Lầy","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Làng Vạn","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Khắc Kiệm","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"Yielded the edge-ground 'Bắc Sơn axes' that define the culture."},{"n":"Làng Cườm","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A large Bắc Sơn cave with numerous human burials."},{"n":"Bình Long","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Lèn Đất","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Làng Lục","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Ba Xã","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Lũng Yêm","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Bản Háu","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Dục Giáo","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Co Kho","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Làng Trang","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Vô Mường","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Bản Sơn","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Bản Tắc","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Đồng Thuộc","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn (~8,000–2,000 BC)","date":"Recorded 1920s onward","sum":"A cave / rock-shelter site of the Bắc Sơn Neolithic culture in the Lạng Sơn limestone massif."},{"n":"Hang Dơi (Bắc Sơn)","prov":"Lạng Sơn","area":"Bắc Sơn","cult":"Bắc Sơn / Mai Pha","date":"C14 ~11,000 BP","sum":"A key cave whose earliest Bắc Sơn radiocarbon date is ~11,000 BP; later reused in the Mai Pha culture."},{"n":"Mai Pha","prov":"Lạng Sơn","area":"TP. Lạng Sơn","cult":"Mai Pha (~5,000–3,500 BP)","date":"Recorded 20th c.","sum":"Type-site of the late-Neolithic Mai Pha culture of the north-eastern border highlands."},{"n":"Ngườm Sâu","prov":"Lạng Sơn","area":"Chi Lăng","cult":"Bắc Sơn elements","date":"Discovered (modern)","sum":"A site containing Bắc Sơn cultural elements, found by the Lạng Sơn Museum."},{"n":"Soi Nhụ Cave","prov":"Quảng Ninh","area":"Bái Tử Long","cult":"Soi Nhụ (~18,000–7,000 BP)","date":"Excavated 1967","sum":"Type-site of the earliest Hạ Long-area culture; a 1967 excavation found stone tools, ceramics and human/animal fossils."},{"n":"Mê Cung Cave","prov":"Quảng Ninh","area":"Hạ Long","cult":"Pre-Hạ Long / Soi Nhụ","date":"Surveyed","sum":"Relics of early coastal foragers (~7,000–10,000 yrs old)."},{"n":"Tiên Ông Cave","prov":"Quảng Ninh","area":"Hạ Long","cult":"Hạ Long culture","date":"Excavated; museum 2017","sum":"Habitation traces from 10,000–8,000 BC; an on-site cave museum since 2017."},{"n":"Trinh Nữ Cave","prov":"Quảng Ninh","area":"Hạ Long","cult":"Hạ Long culture","date":"Relics found 2000","sum":"Remains of Hạ Long-culture people (~4,000 yrs) were found here in 2000."},{"n":"Thiên Long Cave","prov":"Quảng Ninh","area":"Hạ Long","cult":"Hạ Long culture","date":"Surveyed","sum":"A cave preserving prehistoric Hạ Long-culture remains."},{"n":"Hòn Hai–Cô Tiên","prov":"Quảng Ninh","area":"","cult":"Hạ Long / Soi Nhụ","date":"Surveyed","sum":"A recorded prehistoric coastal cave/island site within the Hạ Long sequence."}];
+const PSITE_PROVS=["Hòa Bình","Lạng Sơn","Quảng Ninh","Thanh Hóa","Ninh Bình","Thái Nguyên","Yên Bái","Sơn La"];
+function psiteCard(s){
+  return `<div class="psite-card"><div class="psite-head"><h4>${s.n}</h4><span class="psite-date">${s.date}</span></div><p class="psite-cult">${s.cult}</p><p class="psite-sum">${s.area?'<b>'+s.area+'</b> · ':''}${s.sum}</p></div>`;
+}
+function provinceSitesHTML(){
+  const tabs=PSITE_PROVS.map((p,i)=>`<button class="prov-tab${i===0?' active':''}" type="button" data-prov="${p}">${p}<span class="prov-n">${PSITES.filter(s=>s.prov===p).length}</span></button>`).join('');
+  const groups=PSITE_PROVS.map((p,i)=>`<div class="prov-group" data-prov="${p}"${i===0?'':' hidden'}><div class="psite-grid">${PSITES.filter(s=>s.prov===p).map(psiteCard).join('')}</div></div>`).join('');
+  return `<div class="prov-browser"><div class="prov-tabs reveal">${tabs}</div><div class="prov-groups">${groups}</div></div>`;
+}
+function provinceSitesSection(){
+  return `<section class="section" style="border-top:1px solid var(--border-soft)"><div class="container">
+    <p class="eyebrow cyan reveal">PREHISTORIC SITES BY PROVINCE</p>
+    <h2 class="reveal" style="margin:.3em 0 .2em">Cave &amp; rock-shelter sites of Northern Vietnam</h2>
+    <p class="reveal" style="max-width:82ch">${PSITES.length} recorded and surveyed prehistoric sites — from <em>Homo erectus</em> to the Hoà Bình, Bắc Sơn, Mai Pha and Hạ Long cultures. Choose a province below; Hòa Bình is shown first.</p>
+    ${provinceSitesHTML()}
+  </div></section>`;
+}
+function initProvinceSites(){
+  document.querySelectorAll('.prov-browser').forEach(br=>{
+    if(br.__wired)return; br.__wired=true;
+    const tabs=br.querySelector('.prov-tabs');
+    if(tabs)tabs.addEventListener('click',e=>{ const b=e.target.closest('.prov-tab'); if(!b)return;
+      const p=b.dataset.prov;
+      br.querySelectorAll('.prov-tab').forEach(x=>x.classList.toggle('active',x===b));
+      br.querySelectorAll('.prov-group').forEach(g=>{ g.hidden=(g.dataset.prov!==p); });
+    });
+  });
+}
+
+/* ===================== PROVINCE-FIRST SITE ENGINE ===================== */
+/* Approximate province centres (used to focus the map + place an approximate
+   marker for recorded sites that are not yet precisely digitised). */
+const PROV_CENTER={"Hòa Bình":[20.65,105.34],"Lạng Sơn":[21.85,106.72],"Quảng Ninh":[20.95,107.18],"Thanh Hóa":[20.10,105.55],"Ninh Bình":[20.25,105.92],"Thái Nguyên":[21.62,105.99],"Yên Bái":[21.80,104.65],"Sơn La":[21.33,103.92]};
+const PROV_CODE={"Hòa Bình":"HB","Lạng Sơn":"LS","Quảng Ninh":"QN","Thanh Hóa":"TH","Ninh Bình":"NB","Thái Nguyên":"TN","Yên Bái":"YB","Sơn La":"SL"};
+function _stripV(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d');}
+function _slug(s){return _stripV(s).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+function _norm(s){return _stripV(s).replace(/[()]/g,' ').replace(/\s+/g,' ').trim();}
+/* The 13 caves with full records already live in CAVES; skip their PSITES twins
+   so each site appears once (detailed version wins). */
+const _detailNorm=CAVES.map(c=>_norm(c.name));
+function _isDetailed(name){const n=_norm(name);return _detailNorm.some(d=>n.indexOf(d)>=0);}
+const SYNTH=[];
+PSITES.forEach((s,i)=>{
+  if(_isDetailed(s.n))return;
+  const ctr=PROV_CENTER[s.prov]||[20.6,105.3];
+  let seed=0;for(let k=0;k<s.n.length;k++)seed=(seed*31+s.n.charCodeAt(k))>>>0;
+  const jx=((seed%997)/997-0.5)*0.42, jy=(((seed>>>9)%991)/991-0.5)*0.42;
+  SYNTH.push({
+    id:'ps-'+_slug(s.n)+'-'+i, name:s.n, code:(PROV_CODE[s.prov]||'VN')+'-'+String(i).padStart(2,'0'),
+    type:(s.cult||'Prehistoric')+' site', district:s.area||s.prov, commune:s.prov,
+    rank:'Recorded site', rankYear:s.date||'', lat:+(ctr[0]+jy).toFixed(4), lng:+(ctr[1]+jx).toFixed(4),
+    orientation:'—', datingText:s.cult||'Prehistoric', phase:s.cult||'Prehistoric',
+    hasBurials:false, hasStoneTools:true, hasFossils:false, hasHearths:false, conservation:'—',
+    summary:s.sum, finds:[], story:s.sum, excavations:(s.date?[{year:'',note:s.date}]:[]), strata:[], sources:[],
+    catalog:true, basic:true, prov:s.prov, cult:s.cult, approxLoc:true
+  });
+});
+/* every selectable site: detailed caves (all Hòa Bình) first, then recorded sites */
+const ALLSITES=CAVES.map(c=>Object.assign({prov:'Hòa Bình'},c)).concat(SYNTH);
+function sitesInProv(p){return ALLSITES.filter(x=>x.prov===p);}
+function findSite(id){return ALLSITES.find(x=>x.id===id);}
+
+let _curProv='Hòa Bình', _selMarker=null;
+
+function dirSelectorHTML(){
+  const provTabs=PSITE_PROVS.map((p,i)=>`<button class="dsel-prov${i===0?' active':''}" type="button" data-prov="${p}">${p}<span class="dsel-n">${sitesInProv(p).length}</span></button>`).join('');
+  return `<div class="dir-selector">
+    <p class="eyebrow" style="margin-bottom:10px">◎ STEP 1 · CHOOSE A PROVINCE</p>
+    <div class="dsel-provs">${provTabs}</div>
+    <p class="eyebrow cyan" style="margin:18px 0 10px">◎ STEP 2 · CHOOSE A SITE — DRIVES THE MAP, RECORD, STRATIGRAPHY &amp; 3D MODEL BELOW</p>
+    <div class="dsel-sites" id="dselSites"></div>
+  </div>`;
+}
+function siteBtnHTML(s){
+  const dot=s.basic?'<i class="dsel-dot rec"></i>':`<i class="dsel-dot ${rankClass(s.rank)}"></i>`;
+  const tag=s.basic?'<span class="dsel-mini">record</span>':(s.rank==='National Special'?'<span class="dsel-mini ns">★</span>':'');
+  return `<button class="dsel-site${s.basic?' basic':''}" type="button" data-id="${s.id}">${dot}<span>${s.name}</span>${tag}</button>`;
+}
+function renderProvSites(p){
+  const wrap=document.getElementById('dselSites'); if(!wrap)return;
+  wrap.innerHTML=sitesInProv(p).map(siteBtnHTML).join('');
+  wrap.querySelectorAll('.dsel-site').forEach(b=>b.addEventListener('click',()=>selectSite(b.dataset.id)));
+}
+function selectSite(id){
+  const s=findSite(id); if(!s)return;
+  document.querySelectorAll('.dsel-site').forEach(b=>b.classList.toggle('active',b.dataset.id===id));
+  const lbl=document.getElementById('dirNowLabel');
+  if(lbl)lbl.innerHTML=`${s.name} · ${s.prov}${s.basic?' <span class="muted" style="font-weight:400;font-size:.85em">— recorded site, representative data</span>':''}`;
+  try{ attrRender(id); }catch(e){}     // drives GIS (02), stratigraphy & 3D (03), attribute database (04)
+  dirMapFocus(s);                        // drives the map (01)
+}
+function dirMapFocus(s){
+  if(!_dirMap||typeof L==='undefined')return;
+  try{
+    if(_selMarker){_dirMap.removeLayer(_selMarker);_selMarker=null;}
+    const color=s.basic?'#b08ce0':(s.rank==='National Special'?'#f0a94e':s.rank==='National'?'#3ad1da':'#b08ce0');
+    _selMarker=L.circleMarker([s.lat,s.lng],{radius:12,color:color,weight:3,fillColor:color,fillOpacity:.28,className:'dsel-pulse'}).addTo(_dirMap)
+      .bindPopup(`<div class="cave-popup"><b>${s.name}</b><br><span style="font-size:.78rem;color:#9aa">${s.basic?'Approximate — province-level location':(s.commune+', '+s.district)}</span></div>`);
+    _dirMap.setView([s.lat,s.lng], s.basic?10:12, {animate:true});
+    _selMarker.openPopup();
+  }catch(e){}
+}
+function dirMapToProvince(p){
+  if(!_dirMap||typeof L==='undefined')return; const c=PROV_CENTER[p];
+  if(c){try{_dirMap.setView(c,9,{animate:true});}catch(e){}}
+}
+function initDirSelector(){
+  const root=document.querySelector('.dir-selector'); if(!root)return;
+  const provs=root.querySelector('.dsel-provs');
+  if(provs)provs.addEventListener('click',e=>{ const b=e.target.closest('.dsel-prov'); if(!b)return;
+    _curProv=b.dataset.prov;
+    root.querySelectorAll('.dsel-prov').forEach(x=>x.classList.toggle('active',x===b));
+    dirMapToProvince(_curProv);
+    renderProvSites(_curProv);
+    const first=sitesInProv(_curProv)[0]; if(first)selectSite(first.id);
+  });
+  renderProvSites(_curProv);
+  const first=sitesInProv(_curProv)[0]; if(first)selectSite(first.id);
+}
+
 function viewNews(){
   const tags=[...new Set(NEWSHUB.map(n=>n.tag))];
   const stat=(num,lbl,ico)=>`<div class="hstat"><span class="stat-ico">${ico||''}</span><span class="hstat-num">${num}</span><span class="hstat-lbl">${lbl}</span></div>`;
@@ -1606,6 +1768,8 @@ function viewNews(){
     <p class="reveal" style="max-width:80ch">Nine places of outstanding value to all humanity — six cultural, two natural and one mixed.</p>
     <div class="wh-grid reveal" style="margin-top:20px">${WHSITES.map(whCard).join('')}</div>
     <p class="kicker reveal" style="margin-top:14px;color:var(--muted)">SOURCE · UNESCO WORLD HERITAGE CENTRE</p>
+    <p class="reveal" style="margin:24px 0 0;font-size:.95rem">And the wider prehistoric register — all ${PSITES.length} recorded cave &amp; rock-shelter sites of northern Vietnam, from <em>Homo erectus</em> to the Hoà Bình, Bắc Sơn, Mai Pha and Hạ Long cultures — grouped by province, Hòa Bình first.</p>
+    ${provinceSitesHTML()}
   </div></section>
   <section class="section" style="border-top:1px solid var(--border-soft)"><div class="container">
     <p class="eyebrow reveal">FROM THE FINDS DRAWER</p>
@@ -2277,7 +2441,7 @@ function stratSection(cave){
   return `<svg viewBox="0 0 600 ${VB}" class="strat-svg" role="img" aria-label="Stratigraphic section of ${(cave&&cave.name)||'cave'}"><rect width="600" height="${VB}" fill="#0c0f13"/>${axis}${bands}${finds}<rect x="${X0}" y="${topPad}" width="${W}" height="${secH}" fill="none" stroke="#2b3640" stroke-width="1"/>${scalebar}${samples}${labels}${leg}</svg>`;
 }
 function attrRender(id){
-  const c=CAVES.find(x=>x.id===id)||CAVES[0];
+  const c=(typeof findSite==='function'&&findSite(id))||CAVES.find(x=>x.id===id)||CAVES[0];
   // drive Section 04 (stratigraphy + LiDAR) from the same selection
   const ss=document.getElementById('secStrata'); if(ss)ss.innerHTML=stratSection(c);
   const sc=document.getElementById('secCloud'); if(sc){ sc.dataset.cave=c.id; initViewers(); }
@@ -2674,11 +2838,11 @@ function router(){
   let html='', after=null, nav=view;
   switch(view){
     case 'home': html=viewHome(); after=()=>{initStarfield();initCounters();}; break;
-    case 'directory': html=viewDirectory(); after=()=>{initDirectory();initCounters();initDirMap();initAttrDB();}; break;
+    case 'directory': html=viewDirectory(); after=()=>{initDirectory();initCounters();initDirMap();initDirSelector();}; break;
     case 'cave': html=viewCave(param); nav='directory'; after=initCaveMap; break;
     case 'compare': html=viewCompare(); after=initCompare; break;
     case 'learn': html=viewLearn(); break;
-    case 'news': html=viewNews(); after=initNews; break;
+    case 'news': html=viewNews(); after=()=>{initNews();initProvinceSites();}; break;
     case 'contribute': html=viewContribute(); after=initContribute; break;
     case 'about': html=viewAbout(); after=()=>{initStarfield();initSearViewer();}; break;
     case 'team': html=viewTeam(); break;
