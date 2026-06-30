@@ -252,6 +252,13 @@ img{max-width:100%;height:auto}
 .hub-source:hover{border-color:var(--cyan);color:var(--cyan)}
 @media(max-width:900px){.hub-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.hub-grid{grid-template-columns:1fr}}
+.wh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.wh-card{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border:1px solid var(--border-soft);border-radius:12px;background:var(--bg-2)}
+.wh-meta{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber)}
+.wh-meta.cyan{color:var(--cyan)} .wh-meta.mix{color:#caa6e8}
+.wh-name{font-weight:600;font-size:.92rem;color:var(--text);line-height:1.28}
+@media(max-width:900px){.wh-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.wh-grid{grid-template-columns:1fr}}
 /* privacy consent */
 .consent{position:fixed;left:0;right:0;bottom:0;z-index:2000;padding:16px;display:flex;justify-content:center;pointer-events:none}
 .consent[hidden]{display:none}
@@ -481,7 +488,7 @@ img{max-width:100%;height:auto}
 .team-card .eyebrow{justify-content:center}
 /* footnote legibility */
 .kicker{font-size:.72rem}
-.footer-bottom{font-size:.5rem!important}
+.footer-bottom{font-size:.67rem!important}
 .figure .cap,.ph-label{font-size:.68rem!important}
 /* home QR share band */
 .qr-band{border-top:1px solid var(--border-soft);padding:34px 0}
@@ -671,11 +678,12 @@ img{max-width:100%;height:auto}
 /* footer */
 .site-footer{background:var(--bg-2);border-top:1px solid var(--border-soft);margin-top:0}
 .site-footer .container{padding-top:38px;padding-bottom:24px}
-.site-footer h4{color:#fff;font-size:.56rem;margin:0 0 7px;letter-spacing:.02em}
-.site-footer p{color:var(--text-2);font-size:.54rem;margin:3px 0;line-height:1.5}
-.site-footer a{font-size:.54rem}
+.site-footer h4{color:#fff;font-size:.73rem;margin:0 0 7px;letter-spacing:.02em}
+.site-footer p{color:var(--text-2);font-size:.71rem;margin:3px 0;line-height:1.5}
+.site-footer a{font-size:.71rem}
 .site-footer a{color:var(--amber);cursor:pointer}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:26px}
+.footer-grid{display:grid;grid-template-columns:auto auto auto;justify-content:start;column-gap:40px;row-gap:18px}
+.footer-grid>div:nth-child(2){margin-left:96px}
 .footer-bottom{border-top:1px solid var(--border-soft);margin-top:20px;padding-top:13px;font-family:"JetBrains Mono",monospace;font-size:.63rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;letter-spacing:.03em}
 .sources{font-size:.84rem;color:var(--muted);padding-left:1.1em}
 .sources a{word-break:break-word;color:var(--cyan)}
@@ -697,6 +705,7 @@ img{max-width:100%;height:auto}
   #map{height:58vh}
   .directory-sidebar{max-height:none;border-right:none;border-bottom:1px solid var(--border-soft)}
   .footer-grid{grid-template-columns:1.5fr 1fr 1fr;gap:20px;row-gap:18px}
+  .footer-grid>div:nth-child(2){margin-left:0}
 }
 @media(max-width:640px){
   .nav-links{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:rgba(8,9,11,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:8px;gap:0}
@@ -928,18 +937,6 @@ function viewHome(){
       <div class="track">
         <span>STATUS <b>NOMINAL</b></span><span>HOABINHIAN · <b>30,000–10,000 BP</b></span><span>SITES INDEXED <b>13</b></span><span>REGION <b>HÒA BÌNH, VN</b></span><span>MODE <b>PRESERVATION-FIRST</b></span><span>GPS <b>PROTECTED</b></span>
         <span>STATUS <b>NOMINAL</b></span><span>HOABINHIAN · <b>30,000–10,000 BP</b></span><span>SITES INDEXED <b>13</b></span><span>REGION <b>HÒA BÌNH, VN</b></span><span>MODE <b>PRESERVATION-FIRST</b></span><span>GPS <b>PROTECTED</b></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- MISSION STATS -->
-  <section class="section" style="padding:30px 0 6px">
-    <div class="container">
-      <div class="home-stats reveal">
-        <div class="hstat"><span class="hstat-num"><span data-count="13">0</span></span><span class="hstat-lbl">Caves indexed</span></div>
-        <div class="hstat"><span class="hstat-num"><span data-count="30000" data-format="comma" data-suffix="+">0</span></span><span class="hstat-lbl">Years of history</span></div>
-        <div class="hstat"><span class="hstat-num"><span data-count="3">0</span></span><span class="hstat-lbl">SEAR drones</span></div>
-        <div class="hstat"><span class="hstat-num"><span data-count="7">0</span></span><span class="hstat-lbl">Young explorers</span></div>
       </div>
     </div>
   </section>
@@ -1392,7 +1389,7 @@ function viewLearn(){
 const NEWSHUB = [
   {feat:true, tag:"Caves & Prehistory", source:"Ancient Origins", date:"Feature",
    title:"Southeast Asia’s earliest evidence of violence found in a Vietnamese cave",
-   summary:"Re-analysis of a prehistoric skeleton from a cave in northern Vietnam points to what may be the region’s oldest known case of inter-personal violence — a vivid window into early cave-dwelling life.",
+   summary:"Re-analysis of a 12,000-year-old skeleton from Thung Binh 1 cave in the Tràng An World Heritage landscape reveals what may be the region’s oldest known case of inter-personal violence — and a community that cared for the wounded man for months.",
    url:"https://www.ancient-origins.net/news-history-archaeology/prehistoric-violence-vietnam-0022389"},
   {tag:"Caves & Prehistory", source:"MNHN · Palevol", date:"Study",
    title:"Inside Hang Hiêm: the daily life of Hoabinhian hunter-gatherers",
@@ -1402,41 +1399,83 @@ const NEWSHUB = [
    title:"Discover Ninh Bình’s prehistoric past at Người Xưa Cave",
    summary:"Another Hoabinhian-era cave open to visitors — a reminder of how northern Vietnam’s limestone caves preserve tens of thousands of years of human history.",
    url:"https://www.southeastasianarchaeology.com/tag/hoabinhian/"},
-  {tag:"Archaeology", source:"Arkeonews", date:"2026",
+  {tag:"Discoveries", source:"Arkeonews", date:"2026",
    title:"Iron-Age artifacts emerge from Hà Tĩnh rice fields",
    summary:"Bronze bells, stone chisels, ceramic bowls and iron blades unearthed in central Vietnam are helping researchers trace thousands of years of continuous settlement.",
    url:"https://arkeonews.net/many-ancient-artifacts-discovered-in-vietnams-rice-fields/"},
-  {tag:"Research", source:"Archaeology Magazine", date:"Feb 2026",
+  {tag:"Discoveries", source:"UNESCO", date:"Tentative list",
+   title:"Óc Eo–Ba Thê: the Funan-era port city seeking World Heritage status",
+   summary:"Major excavations in the Mekong Delta have revealed the brilliant Óc Eo culture (1st–8th century CE) of the ancient Funan kingdom, now on Vietnam’s UNESCO tentative list.",
+   url:"https://whc.unesco.org/en/tentativelists/6572/"},
+  {tag:"Discoveries", source:"Vietnam News", date:"Feature",
+   title:"New archaeological findings announced in Huế",
+   summary:"Excavations around the former imperial capital continue to surface structures and artifacts that deepen the story of Vietnam’s royal heritage.",
+   url:"https://vietnamnews.vn/life-style/466861/new-vietnamese-archeological-findings-announced-in-hue.html"},
+  {tag:"Discoveries", source:"Archaeology Magazine", date:"Feb 2026",
    title:"Cosmetic tooth-blackening dates back 2,000 years in Vietnam",
    summary:"Chemical analysis of ancient tooth enamel shows Iron-Age communities deliberately blackened their teeth using iron salts and plant tannins.",
    url:"https://archaeology.org/news/2026/02/13/cosmetic-tooth-blackening-dates-back-2000-years-in-vietnam/"},
-  {tag:"Research", source:"Archaeology Magazine", date:"Mar 2026",
+  {tag:"Discoveries", source:"Archaeology Magazine", date:"Mar 2026",
    title:"Study examines a syphilis-like disease in ancient Vietnam",
    summary:"New research reads ancient skeletal remains to trace how a treponemal (syphilis-like) disease spread among early Vietnamese populations.",
    url:"https://archaeology.org/news/2026/03/26/study-examines-transmission-of-syphilis-like-disease-in-ancient-vietnam/"},
-  {tag:"Heritage", source:"Vietnam+", date:"Dec 2025",
-   title:"Vietnam now has 17 UNESCO-recognised intangible heritage elements",
-   summary:"Đông Hồ folk painting became the country’s 17th element, joining traditions like the Central Highlands’ Space of Gong Culture.",
-   url:"https://en.vietnamplus.vn/17-intangible-cultural-heritage-elements-recognised-by-unesco-post334383.vnp"},
-  {tag:"Conservation", source:"BERNAMA", date:"Jan 2026",
-   title:"UNESCO grants US$740,000 to protect Vietnam’s heritage after storms",
-   summary:"Emergency funding supports repairs and safeguards at World Heritage Sites in Huế and Hội An damaged by the severe November 2025 storms.",
-   url:"https://bernama.com/en/world/news.php?id=2516525"},
-  {tag:"Heritage", source:"UNESCO", date:"Reference",
+  {tag:"World Heritage", source:"UNESCO", date:"Reference",
    title:"Vietnam’s nine UNESCO World Heritage Sites",
    summary:"From Hạ Long Bay to the Complex of Huế Monuments — the official list of Vietnam’s World Heritage Sites and what makes each one outstanding.",
    url:"https://whc.unesco.org/en/statesparties/vn"},
+  {tag:"World Heritage", source:"BERNAMA", date:"Jan 2026",
+   title:"UNESCO grants US$740,000 to protect Vietnam’s heritage after storms",
+   summary:"Emergency funding supports repairs and safeguards at World Heritage Sites in Huế and Hội An damaged by the severe November 2025 storms.",
+   url:"https://bernama.com/en/world/news.php?id=2516525"},
+  {tag:"World Heritage", source:"Vietnam Tourism", date:"Feature",
+   title:"Hội An sets an example in cultural conservation",
+   summary:"The 15th–19th-century trading port shows how a living World Heritage town balances tourism with careful protection of its historic streets and houses.",
+   url:"https://vietnamtourism.gov.vn/en/post/21379"},
+  {tag:"Living Culture", source:"Vietnam+", date:"Dec 2025",
+   title:"Vietnam now has 17 UNESCO-recognised intangible heritage elements",
+   summary:"Đông Hồ folk painting became the country’s 17th element, joining living traditions like the Central Highlands’ Space of Gong Culture.",
+   url:"https://en.vietnamplus.vn/17-intangible-cultural-heritage-elements-recognised-by-unesco-post334383.vnp"},
+  {tag:"Living Culture", source:"Vietnam.vn", date:"Explainer",
+   title:"Quan Họ and Ca Trù: Vietnam’s UNESCO-listed folk singing",
+   summary:"From the call-and-response love songs of Quan Họ to the centuries-old ceremonial poetry of Ca Trù, a tour of the music traditions UNESCO has recognised.",
+   url:"https://www.vietnam.vn/en/16-di-san-van-hoa-phi-vat-the-cua-viet-nam-duoc-unesco-ghi-danh/"},
+  {tag:"Preservation & Tech", source:"Vietnam News", date:"Feature",
+   title:"3D technology raises the bar on cultural preservation",
+   summary:"Museums and heritage sites across Vietnam are turning to 3D scanning, VR and AI to record fragile monuments and bring them to visitors — exactly the approach behind our SEAR drones.",
+   url:"https://vietnamnews.vn/life-style/1692721/3d-technology-raises-bar-on-cultural-preservation.html"},
+  {tag:"Preservation & Tech", source:"RMIT University", date:"Research",
+   title:"Revitalising Vietnam’s heritage through advanced 3D technology",
+   summary:"Researchers show how high-resolution 3D capture can preserve and reanimate cultural heritage — part of Vietnam’s 2021–2030 programme to digitalise its national treasures.",
+   url:"https://www.rmit.edu.vn/news/all-news/2024/sep/revitalising-cultural-heritage-through-advanced-3d-technology"},
 ];
 const HUBSRC = [
   ["Archaeology Magazine","https://archaeology.org/"],
   ["Vietnam+ (English)","https://en.vietnamplus.vn/"],
+  ["Vietnam News","https://vietnamnews.vn/"],
   ["UNESCO · Viet Nam","https://whc.unesco.org/en/statesparties/vn"],
   ["SE Asian Archaeology","https://www.southeastasianarchaeology.com/vietnam-archaeology/"],
+  ["Nat’l Museum of History","https://baotanglichsu.vn/en"],
   ["Arkeonews","https://arkeonews.net/"],
   ["Ancient Origins","https://www.ancient-origins.net/"],
 ];
+/* Vietnam's UNESCO World Heritage Sites — quick professional reference. */
+const WHSITES = [
+  {n:"Complex of Huế Monuments", t:"Cultural", y:"1993"},
+  {n:"Hạ Long Bay – Cát Bà Archipelago", t:"Natural", y:"1994 / 2023"},
+  {n:"Hội An Ancient Town", t:"Cultural", y:"1999"},
+  {n:"Mỹ Sơn Sanctuary", t:"Cultural", y:"1999"},
+  {n:"Phong Nha–Kẻ Bàng National Park", t:"Natural", y:"2003"},
+  {n:"Imperial Citadel of Thăng Long, Hà Nội", t:"Cultural", y:"2010"},
+  {n:"Citadel of the Hồ Dynasty", t:"Cultural", y:"2011"},
+  {n:"Tràng An Landscape Complex", t:"Mixed", y:"2014"},
+  {n:"Yên Tử–Vĩnh Nghiêm–Côn Sơn, Kiếp Bạc", t:"Cultural", y:"2025"},
+];
+function whCard(s){
+  const cls=s.t==='Natural'?'cyan':(s.t==='Mixed'?'mix':'amber');
+  return `<div class="wh-card"><span class="wh-meta ${cls}">${s.t} · ${s.y}</span><span class="wh-name">${s.n}</span></div>`;
+}
 function hubCard(n){
-  const amber=['Heritage','Conservation','Caves & Prehistory'].includes(n.tag)?' amber':'';
+  const amber=['World Heritage','Living Culture','Caves & Prehistory'].includes(n.tag)?' amber':'';
   return `<a class="hubcard${n.feat?' feat':''} reveal" href="${n.url}" target="_blank" rel="noopener" data-tag="${n.tag}">
     <div class="hub-top"><span class="ntag${amber}">${n.tag}</span><span class="hub-src">${n.source} · ${n.date}</span></div>
     <h3>${n.title}</h3>
@@ -1479,6 +1518,7 @@ function viewNews(){
     </div>
   </div></section>
   <section class="section" style="padding-top:34px"><div class="container">
+    <p class="muted reveal" style="margin:0 0 14px;font-size:.94rem">Browse by topic below, or open any story at its original source. The featured item leads; new picks are added regularly.</p>
     <div class="news-filter reveal">
       <button class="nfilter active" data-tag="all" type="button">All stories</button>
       ${tags.map(t=>`<button class="nfilter" data-tag="${t}" type="button">${t}</button>`).join('')}
@@ -1490,6 +1530,13 @@ function viewNews(){
     <div class="hub-sources reveal" style="margin-top:12px">
       ${HUBSRC.map(([n,u])=>`<a class="hub-source" href="${u}" target="_blank" rel="noopener">${n} ↗</a>`).join('')}
     </div>
+  </div></section>
+  <section class="section" style="border-top:1px solid var(--border-soft)"><div class="container">
+    <p class="eyebrow cyan reveal">QUICK REFERENCE</p>
+    <h2 class="reveal" style="margin:.3em 0 .2em">Vietnam’s UNESCO World Heritage Sites</h2>
+    <p class="reveal" style="max-width:80ch">Nine places of outstanding value to all humanity — six cultural, two natural and one mixed.</p>
+    <div class="wh-grid reveal" style="margin-top:20px">${WHSITES.map(whCard).join('')}</div>
+    <p class="kicker reveal" style="margin-top:14px;color:var(--muted)">SOURCE · UNESCO WORLD HERITAGE CENTRE</p>
   </div></section>
   <section class="section" style="border-top:1px solid var(--border-soft)"><div class="container">
     <p class="eyebrow reveal">FROM THE FINDS DRAWER</p>
