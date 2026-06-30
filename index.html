@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ArchaeoNova — Digital Cave Directory · Prehistoric Caves of Vietnam</title>
-<meta name="description" content="A research and public-education platform for the prehistoric Hoabinhian cave culture of Hòa Bình, Vietnam. Companion to the SEAR-X cave-survey robot. By Team ArchaeoNova.">
+<meta name="description" content="A research and public-education platform for the prehistoric Hoabinhian cave culture of Hòa Bình, Vietnam. Companion to the SEAR drones cave-survey system. By Team ArchaeoNova.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -70,7 +70,14 @@ img{max-width:100%}
 strong{color:#fff;font-weight:600}
 em{color:var(--amber-2);font-style:normal}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-.section{padding:52px 0;position:relative}
+/* professional polish: accessibility, selection, motion */
+html{scroll-behavior:smooth}
+::selection{background:rgba(240,169,78,.32);color:#fff}
+a,button,summary,.vp-tab,.attr-btn,.cat-item{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:5px}
+img{max-width:100%;height:auto}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+.section{padding:34px 0;position:relative}
 .muted{color:var(--muted)}
 .center{text-align:center}
 ::selection{background:rgba(240,169,78,.3);color:#fff}
@@ -120,7 +127,7 @@ em{color:var(--amber-2);font-style:normal}
 .nav-toggle:hover{background:var(--surface-2)}
 
 /* hero */
-.hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;overflow:hidden;padding:44px 0}
+.hero{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;overflow:hidden;padding:32px 0}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.85}
 .hero .veil{position:absolute;inset:0;z-index:1;background:radial-gradient(60% 60% at 50% 40%,transparent,rgba(7,8,9,.4) 80%, var(--bg));pointer-events:none}
 .hero .container{position:relative;z-index:2;width:100%}
@@ -207,7 +214,7 @@ em{color:var(--amber-2);font-style:normal}
 .leaflet-bar a:hover{background:#191d26}
 
 /* detail */
-.detail-hero{position:relative;padding:44px 0 30px;border-bottom:1px solid var(--border-soft);overflow:hidden}
+.detail-hero{position:relative;padding:32px 0 22px;border-bottom:1px solid var(--border-soft);overflow:hidden}
 .detail-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(700px 300px at 15% 0%,rgba(240,169,78,.12),transparent 60%)}
 .detail-hero .breadcrumb{font-family:"JetBrains Mono",monospace;font-size:.74rem;color:var(--muted);letter-spacing:.08em}
 .detail-hero .breadcrumb a{color:var(--cyan)}
@@ -597,7 +604,7 @@ em{color:var(--amber-2);font-style:normal}
   .nav-toggle{display:block}
   .grid.cols-2,.grid.cols-3,.grid.cols-4,.steps{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
-  .section{padding:38px 0}
+  .section{padding:26px 0}
   .hero{min-height:auto;padding:70px 0 90px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -633,7 +640,7 @@ em{color:var(--amber-2);font-style:normal}
     <div class="footer-grid">
       <div>
         <h4>ArchaeoNova — Digital Cave Directory</h4>
-        <p style="max-width:46ch">A research and public-education platform for the prehistoric caves in Northern Vietnam — and the companion to the SEAR-X cave-survey robot system.</p>
+        <p style="max-width:46ch">A research and public-education platform for the prehistoric caves in Northern Vietnam — and the companion to the SEAR integrated drones cave-survey system.</p>
       </div>
       <div>
         <h4>Navigate</h4>
@@ -745,7 +752,7 @@ const CAVES = [
 const NEWS = [
   {tag:"Heritage",date:"JUL 2024",title:"Two Hòa Bình caves become National Special relics",body:"Hang Xóm Trại and Mái đá Làng Vành were elevated to National Special relic status — Vietnam's highest heritage rank — recognising their outstanding value for understanding the Hoabinhian culture."},
   {tag:"Geology",date:"BRIEF",title:"How limestone caves form",body:"Over millions of years, slightly acidic rainwater slowly dissolves limestone, carving out the caves and rock shelters that prehistoric people later called home. The same process grows stalactites — a few centimetres every thousand years."},
-  {tag:"Technology",date:"LOG",title:"Why we built a six-legged cave robot",body:"Wheels and tracks get stuck on rubble and slopes. A six-legged 'hexapod' can step over obstacles and keep its sensors steady — perfect for mapping a cave floor without disturbing fragile deposits. Meet SEAR-HEX on our SEAR-X page."},
+  {tag:"Technology",date:"LOG",title:"Why we built a six-legged cave drone",body:"Wheels and tracks get stuck on rubble and slopes. A six-legged 'hexapod' can step over obstacles and keep its sensors steady — perfect for mapping a cave floor without disturbing fragile deposits. Meet SEAR-HEX on our SEAR Drones page."},
   {tag:"Method",date:"BRIEF",title:"What is a 'digital twin' of a cave?",body:"By combining laser scanning (LiDAR) and overlapping photographs, researchers can build an exact 3D copy of a cave on a computer. They can then study the site again and again — without ever stepping back inside the real, fragile one."},
   {tag:"Conservation",date:"BRIEF",title:"The hidden cost of looting",body:"When an artifact is taken from its layer, scientists lose the information around it — its age, its neighbours, its story. A looted object becomes just a pretty stone. Digital records and community vigilance are our best defence."},
   {tag:"History",date:"ARCHIVE",title:"Madeleine Colani and the naming of the Hoabinhian",body:"In the 1920s, French archaeologist Madeleine Colani excavated dozens of caves in Hòa Bình. Her work led to the term 'Hoabinhian' being adopted in 1932 — a name now used by archaeologists across Southeast Asia."}
@@ -754,13 +761,13 @@ const NEWS = [
 /* TEAM — edit names, roles, bios and photos here. For a photo, set photo to an image
    file you upload next to index.html, e.g. photo:"team/an.jpg". Leave "" for a placeholder. */
 const TEAM = [
-  {name:"Nguyễn Quang Thiệu Phong", role:"Team Leader", bio:"Leads ArchaeoNova and coordinates the team across the Innovation Project and Robot Game.", photo:"tm-1.jpg"},
-  {name:"Nguyễn Thanh Phong", role:"Robot Designer & Coder", bio:"Designs and programs the competition robot.", photo:"tm-2.jpg"},
-  {name:"Nguyễn Lê Hoàng Quân", role:"Robot Designer & Idea Prototyper", bio:"Designs the robot and prototypes new mechanisms and ideas.", photo:"tm-3.jpg"},
-  {name:"Trương Anh Đức", role:"Poster Designer & Innovation Project", bio:"Works on the team poster and the Innovation Project.", photo:"tm-4.jpg"},
-  {name:"Phạm Gia Bình", role:"Poster Designer & Innovation Project", bio:"Works on the team poster and the Innovation Project.", photo:""},
-  {name:"Nguyễn Hữu Bách", role:"Brochure Maker & Coder", bio:"Creates the team brochure and helps code the robot.", photo:"tm-6.jpg"},
-  {name:"Nguyễn Xuân Anh Thái", role:"Robot Design Leader & Coder", bio:"Leads robot design and coding.", photo:"tm-7.jpg"}
+  {name:"Nguyễn Quang Thiệu Phong", role:"Team Leader", bio:"Leads ArchaeoNova and coordinates the team across the Innovation Project and Robot Game.", photo:"tm-thieu-phong.jpg"},
+  {name:"Nguyễn Xuân Anh Thái", role:"Robot Design Leader & Coder", bio:"Leads robot design and coding.", photo:"tm-xuan-thai.jpg"},
+  {name:"Nguyễn Lê Hoàng Quân", role:"Robot Designer & Idea Prototyper", bio:"Designs the robot and prototypes new mechanisms and ideas.", photo:"tm-hoang-quan.jpg"},
+  {name:"Nguyễn Thanh Phong", role:"Robot Designer & Coder", bio:"Designs and programs the competition robot.", photo:"tm-thanh-phong.jpg"},
+  {name:"Trương Anh Đức", role:"Poster Designer & Innovation Project", bio:"Works on the team poster and the Innovation Project.", photo:""},
+  {name:"Phạm Gia Bình", role:"Poster Designer & Innovation Project", bio:"Works on the team poster and the Innovation Project.", photo:"tm-gia-binh.jpg"},
+  {name:"Nguyễn Hữu Bách", role:"Brochure Maker & Coder", bio:"Creates the team brochure and helps code the robot.", photo:"tm-huu-bach.jpg"}
 ];
 const TEAM_MENTORS = [
   {name:"Team Coach", role:"Coach · Wellspring International School", bio:"Guides and mentors Team ArchaeoNova through the season.", photo:"tm-coach.jpg"}
@@ -780,16 +787,16 @@ const ynCompare = v => v ? '<span class="yes">● Yes</span>' : '<span class="no
 /* ===================== VIEWS ===================== */
 function viewHome(){
   return `
-  <section class="hero" style="min-height:auto;padding:50px 0 46px">
+  <section class="hero" style="min-height:auto;padding:36px 0 32px">
     <canvas id="heroCanvas"></canvas>
     <div class="veil"></div>
     <div class="container">
       <p class="eyebrow nodash reveal">SURVEY · EXPLORATION · ARCHAEOLOGICAL RECONNAISSANCE · CULTURAL PRESERVATION</p>
       <h1 class="reveal d1">A <span class="hl">Digital Directory</span> for the<br>prehistoric caves of Vietnam</h1>
-      <p class="lead reveal d2">From robot reconnaissance to permanent digital record. ArchaeoNova maps, documents, and protects the 30,000-year-old caves of prehistoric northern Vietnam — the homeland of its earliest peoples — and opens this heritage to the world.</p>
+      <p class="lead reveal d2">From drone reconnaissance to permanent digital record. ArchaeoNova maps, documents, and protects the 30,000-year-old caves of prehistoric northern Vietnam — the homeland of its earliest peoples — and opens this heritage to the world.</p>
       <div class="hero-cta reveal d3">
         <a class="btn" href="#directory">Launch the Directory <span class="arw">→</span></a>
-        <a class="btn ghost" href="#about">Meet SEAR Drones</a>
+        <a class="btn ghost" href="#about">Meet our SEAR Drones</a>
         <a class="btn ghost" href="#team">Meet the Team</a>
       </div>
     </div>
@@ -927,7 +934,7 @@ function viewDirectory(){
   </section>
 
   <!-- PROVINCE MAP -->
-  <section class="section" style="padding-top:36px">
+  <section class="section" style="padding-top:24px">
     <div class="container">
       <div class="reveal" style="max-width:none"><p class="eyebrow">01 · PROVINCE MAP</p><h2>Where the sites are</h2><p>Every catalogued cave plotted on a real map. Switch between <b style="color:var(--text)">topographic terrain (DEM)</b>, satellite and dark base layers. Positions are approximate (commune-level) to protect the sites — open a marker for its coordinates.</p></div>
     </div>
@@ -1041,7 +1048,7 @@ function viewCave(id){
       ${c.photo?`<figure class="cave-photo reveal d1"><img src="${c.photo}" alt="${c.name}" loading="lazy"><figcaption>${c.name} · ${c.commune}, ${c.district} — site photograph</figcaption></figure>`:''}
     </div>
   </section>
-  <section class="section" style="padding-top:54px">
+  <section class="section" style="padding-top:34px">
     <div class="container detail-grid">
       <div class="reveal">
         ${catalogBanner}
@@ -1096,7 +1103,7 @@ function viewCompare(){
       <p style="max-width:62ch;font-size:1.1rem">Pick two or three caves to line up their dating, finds and features — the kind of comparison archaeologists use to spot patterns across sites.</p>
     </div>
   </section>
-  <section class="section" style="padding-top:48px">
+  <section class="section" style="padding-top:32px">
     <div class="container reveal">
       <div class="chooser" id="chooser"></div>
       <p class="kicker" style="margin:0 0 18px">SELECT UP TO THREE CAVES</p>
@@ -1128,14 +1135,14 @@ function caveCard(c){
 }
 function viewLearn(){
   return `
-  <section class="detail-hero" style="padding:56px 0 38px">
+  <section class="detail-hero" style="padding:36px 0 24px">
     <div class="container reveal">
       <p class="eyebrow cyan">COMMUNITY EDUCATION</p>
       <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">Learn about prehistoric Hòa Bình</h1>
       <p style="max-width:none;font-size:1rem">No academic papers needed. Here's the story of the people who lived in these caves 30,000 years ago — and how we can help protect what they left behind.</p>
     </div>
   </section>
-  <section class="section" style="padding-top:44px;padding-bottom:0">
+  <section class="section" style="padding-top:30px;padding-bottom:0">
     <div class="container">
       <div class="grid cols-4">
         <div class="card hover reveal" onclick="scrollToId('life')"><div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19h18L14 7l-3.5 5.5L8.5 9z"/><circle cx="17.5" cy="6" r="1.4"/></svg></div><strong>Prehistoric life</strong><p class="muted" style="font-size:.84rem;margin:.2em 0 0">Who they were &amp; how they lived</p></div>
@@ -1221,34 +1228,34 @@ function viewLearn(){
 function viewNews(){
   const cards = NEWS.map((n,i)=>`<article class="card hover reveal ${i%2?'d1':''}"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="tag tech">${n.tag}</span><span class="kicker">${n.date}</span></div><h3 style="margin:.6em 0 .3em;font-size:1.25rem">${n.title}</h3><p class="muted">${n.body}</p></article>`).join("");
   return `
-  <section class="detail-hero" style="padding:56px 0 38px">
+  <section class="detail-hero" style="padding:36px 0 24px">
     <div class="container reveal">
       <p class="eyebrow cyan">SIGNALS · SCIENCE FEED</p>
       <h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">From the field &amp; the lab</h1>
       <p style="max-width:62ch;font-size:1.1rem">Short, friendly updates on Hoabinhian archaeology, heritage protection, and the technology that surveys the caves. This keeps the Directory alive — not just a static archive.</p>
     </div>
   </section>
-  <section class="section" style="padding-top:48px"><div class="container grid cols-2">${cards}</div></section>
+  <section class="section" style="padding-top:32px"><div class="container grid cols-2">${cards}</div></section>
   <section class="section center" style="padding-top:0"><div class="container reveal"><div class="note-banner" style="display:inline-block;text-align:left;max-width:640px"><strong>Note for judges &amp; visitors:</strong> these posts are sample content for our prototype. In a live version, news would be written and updated by the team, archaeologists, geologists and robotics experts — keeping research and the public connected.</div></div></section>`;
 }
 
 function viewContribute(){
   return `
-  <section class="detail-hero" style="padding:56px 0 38px">
+  <section class="detail-hero" style="padding:36px 0 24px">
     <div class="container reveal">
       <p class="eyebrow cyan">CITIZEN SCIENCE</p>
       <h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Contribute a find</h1>
       <p style="max-width:none;font-size:1rem">Spotted a cave, a strange stone, or a possible artifact? Local people are often the first to discover heritage. Tell us what you found — and let the experts (and SEAR-X) take it from there.</p>
     </div>
   </section>
-  <section class="section" style="padding-top:48px">
+  <section class="section" style="padding-top:32px">
     <div class="container grid cols-2" style="gap:46px;align-items:start">
       <div class="reveal">
         <p class="eyebrow">WORKFLOW</p>
         <h2 style="font-size:1.9rem">How it works</h2>
         <div style="margin-top:8px">
           <div class="roadmap-item done"><div class="dot"></div><div><b>1 · You report it</b><br><span class="muted">Send a location, a photo and a short description using the form.</span></div></div>
-          <div class="roadmap-item done"><div class="dot"></div><div><b>2 · SEAR-X surveys safely</b><br><span class="muted">For hard-to-reach sites, the robot can scan the cave without disturbing it.</span></div></div>
+          <div class="roadmap-item done"><div class="dot"></div><div><b>2 · SEAR-X surveys safely</b><br><span class="muted">For hard-to-reach sites, the drone can scan the cave without disturbing it.</span></div></div>
           <div class="roadmap-item done"><div class="dot"></div><div><b>3 · Researchers verify</b><br><span class="muted">Archaeologists assess the find and decide on next steps.</span></div></div>
           <div class="roadmap-item done"><div class="dot"></div><div><b>4 · It's protected &amp; shared</b><br><span class="muted">Confirmed sites are recorded in the Directory — with locations kept safe.</span></div></div>
         </div>
@@ -1428,14 +1435,14 @@ function teamCard(m){
 }
 function viewTeam(){
   return `
-  <section class="detail-hero" style="padding:48px 0 30px">
+  <section class="detail-hero" style="padding:32px 0 22px">
     <div class="container reveal">
       <p class="eyebrow cyan">THE TEAM</p>
       <h1 style="font-size:clamp(2rem,4.5vw,3.2rem)">Team ArchaeoNova</h1>
       <p style="max-width:none;font-size:.98rem">A seven-member team (ages 11–14) from <strong><a href="https://wellspring.edu.vn/" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:underline">Wellspring Bilingual International School, Hanoi</a></strong>, competing at the FIRST LEGO League Championship in Sydney — 2026 season theme <strong>UNEARTHED</strong>.</p>
     </div>
   </section>
-  <section class="section" style="padding-top:42px">
+  <section class="section" style="padding-top:28px">
     <div class="container">
       <p class="eyebrow reveal">TEAM &amp; COACH</p>
       <div class="grid cols-3 reveal" style="margin-top:16px">${[...TEAM_MENTORS, ...TEAM].map(teamCard).join('')}</div>
@@ -1447,13 +1454,13 @@ function viewTeam(){
 }
 function viewAbout(){
   return `
-  <section class="hero" style="min-height:auto;padding:54px 0 40px">
+  <section class="hero" style="min-height:auto;padding:36px 0 26px">
     <canvas id="heroCanvas"></canvas>
     <div class="veil"></div>
     <div class="container reveal">
       <p class="eyebrow cyan">FIELD ROBOTICS · HERITAGE PRESERVATION</p>
       <h1 style="font-size:clamp(2.6rem,8vw,5rem);letter-spacing:-.03em">SEAR Drones</h1>
-      <p class="lead">Survey, Exploration &amp; Archaeological Reconnaissance System — an integrated three-robot platform that surveys, maps and digitally preserves prehistoric caves humans can't safely enter, <strong>before</strong> a single trowel touches the ground.</p>
+      <p class="lead">Survey, Exploration &amp; Archaeological Reconnaissance System — an integrated three-drone platform that surveys, maps and digitally preserves prehistoric caves humans can't safely enter, <strong>before</strong> a single trowel touches the ground.</p>
     </div>
   </section>
 
@@ -1580,7 +1587,7 @@ function viewAbout(){
       <p class="eyebrow" style="justify-content:center">THE TEAM</p>
       <h2>Team ArchaeoNova</h2>
       <p style="max-width:none;margin:0 auto">A <a href="#team" style="color:var(--cyan);text-decoration:underline">seven-member team</a> (ages 11–14) from <strong><a href="https://wellspring.edu.vn/" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:underline">Wellspring Bilingual International School, Hanoi</a></strong>.</p>
-      <p style="max-width:64ch;margin:18px auto 0" class="muted">Our Innovation Project asks a simple question: how can technology help discover and protect fragile heritage <em>without</em> harming it? Our answer is SEAR-X and this Digital Cave Directory — a robot to explore, and a record to remember.</p>
+      <p style="max-width:64ch;margin:18px auto 0" class="muted">Our Innovation Project asks a simple question: how can technology help discover and protect fragile heritage <em>without</em> harming it? Our answer is SEAR-X and this Digital Cave Directory — a drone to explore, and a record to remember.</p>
       <div class="hero-cta" style="justify-content:center;margin-top:28px">
         <a class="btn" href="#directory">Open the Directory <span class="arw">→</span></a>
         <a class="btn ghost" href="#home">Back to home</a>
@@ -1954,7 +1961,7 @@ function initContribute(){
 const SXIMG={hero:"r-hex-specs.jpg",front:"r-hex.jpg",side:"r-relay.jpg",top:"r-air.jpg",spec:"r-air-specs.jpg"};
 const SUBS={
   hex:{id:"SEAR-HEX",name:"The cave hexapod",mode:"ENGINEERING RENDER · FRONT",foot:"CHASSIS 0.55 × 0.45 m · 6 TELESCOPING LIMBS",coord:"MODE: WALKING · PASSAGE ≥ 0.8 m",svg:()=>'<img class="lab-render" alt="SEAR-HEX render" src="'+SXIMG.front+'">',
-    desc:"A six-legged walking robot that steps over rubble and braces against walls where wheels and tracks fail. Telescoping limbs cross a chamber or squeeze through a 0.8 m passage, while force-sensing feet protect the cave floor.",
+    desc:"A six-legged walking drone that steps over rubble and braces against walls where wheels and tracks fail. Telescoping limbs cross a chamber or squeeze through a 0.8 m passage, while force-sensing feet protect the cave floor.",
     bars:[["Mobility",95],["Mapping precision",92],["Endurance",70],["Payload",60]],
     tlm:[{k:"O₂",v:"20.9",u:"%",j:1},{k:"LiDAR",v:"12",u:" Hz",j:1},{k:"RANGE",v:"0.87",u:" km",j:1},{k:"BATT",v:"87",u:"%",j:1}],
     specs:[["Total mass","25.5","kg"],["Operational runtime","3.9–4.4","hours"],["Exploration range","~0.9","km (2 km via relay)"],["LiDAR accuracy","±3","cm @ 100–200 m"],["Photogrammetry","&lt;5","mm/px @ 0.5 m"],["Limb reach","0.8 → 5","m (telescoping)"]]},
@@ -1983,7 +1990,7 @@ function initSearViewer(){
     $('vpId').textContent=s.id; $('vpMode').textContent=s.mode; $('vpFoot').textContent=s.foot; $('vpCoord').textContent=s.coord;
     $('subTag').textContent=s.id; $('subName').textContent=s.name; $('subDesc').textContent=s.desc;
     $('subBars').innerHTML=barsHtml(s.bars); $('subTlm').innerHTML=tlmHtml(s.tlm);
-    const HS={hex:['r-hex-specs.jpg','SEAR-HEX · SPEC SHEET'],air:['r-air-specs.jpg','SEAR-AIR · SPEC SHEET'],relay:['r-relay.jpg','SEAR-RELAY · FIELD RENDER']}[sub];
+    const HS={hex:['r-hex-specs.jpg','SEAR-HEX · SPEC SHEET'],air:['r-air-specs.jpg','SEAR-AIR · SPEC SHEET'],relay:['r-relay-specs.jpg','SEAR-RELAY · SPEC SHEET']}[sub];
     if(HS){const hr=document.getElementById('heroRender');if(hr)hr.src=HS[0];const hl=document.getElementById('heroRenderLabel');if(hl)hl.textContent=HS[1];}
     requestAnimationFrame(()=>setTimeout(()=>document.querySelectorAll('#subBars .bar i').forEach(i=>i.style.width=i.dataset.w+'%'),50));
   }
