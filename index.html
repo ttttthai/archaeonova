@@ -842,7 +842,7 @@ img{max-width:100%;height:auto}
       </div>
     </div>
     <div class="footer-stats">
-      <span><b id="footStatCaves">13</b> Caves in our directory</span>
+      <span><b id="footStatCaves">69</b> Recorded prehistoric sites</span>
       <span><b>9</b> UNESCO World Heritage Sites</span>
       <span><b>17</b> Intangible heritage elements</span>
     </div>
@@ -1466,19 +1466,27 @@ function viewLearn(){
 /* Curated news hub — real third-party stories on Vietnam archaeology, heritage & culture.
    Lead with our prehistoric-cave topic, then broaden Vietnam-wide. Each links to its source. */
 const NEWSHUB = [
-  {feat:true, tag:"Caves & Prehistory", source:"Ancient Origins", date:"Feature",
+  {feat:true, tag:"Caves & Prehistory", source:"Ancient Origins", date:"Feature", img:"c-xom-trai.jpg",
    title:"Southeast Asia’s earliest evidence of violence found in a Vietnamese cave",
    summary:"Re-analysis of a 12,000-year-old skeleton from Thung Binh 1 cave in the Tràng An World Heritage landscape reveals what may be the region’s oldest known case of inter-personal violence — and a community that cared for the wounded man for months.",
    url:"https://www.ancient-origins.net/news-history-archaeology/prehistoric-violence-vietnam-0022389"},
-  {tag:"Caves & Prehistory", source:"MNHN · Palevol", date:"Study",
+  {tag:"Caves & Prehistory", source:"MNHN · Palevol", date:"Study", img:"c-hang-hiem.jpg",
    title:"Inside Hang Hiêm: the daily life of Hoabinhian hunter-gatherers",
    summary:"A multidisciplinary study of Hang Hiêm in Hòa Bình reconstructs the diet, tools and seasons of people who lived there around 8,500–8,200 BC — one of the very caves in our directory.",
    url:"https://sciencepress.mnhn.fr/en/periodiques/comptes-rendus-palevol/22/5"},
-  {tag:"Caves & Prehistory", source:"SE Asian Archaeology", date:"Explainer",
+  {tag:"Caves & Prehistory", source:"SE Asian Archaeology", date:"Explainer", img:"c-hang-cho.jpg",
    title:"Discover Ninh Bình’s prehistoric past at Người Xưa Cave",
    summary:"Another Hoabinhian-era cave open to visitors — a reminder of how northern Vietnam’s limestone caves preserve tens of thousands of years of human history.",
    url:"https://www.southeastasianarchaeology.com/tag/hoabinhian/"},
-  {tag:"Discoveries", source:"Arkeonews", date:"2026",
+  {tag:"Discoveries", source:"Vietnam+", date:"2024–25", img:"n-bone-jaw.jpg",
+   title:"Vườn Chuối: a 3,000-year-old Bronze-Age village beneath Hà Nội",
+   summary:"Excavations on Hà Nội’s outskirts uncovered more than 70 pre-Đông Sơn and 40 Đông Sơn burials — some wearing bracelets on both arms — plus hearths and furnaces, tracing an organised society from the Phùng Nguyên to the Đông Sơn cultures.",
+   url:"https://en.vietnamplus.vn/vuon-chuoi-reveals-vietnams-bronze-age-treasures-post304708.vnp"},
+  {tag:"Discoveries", source:"HeritageDaily", date:"Feb 2026",
+   title:"Gold-enamelled dragon artefacts reveal the Hồ Dynasty Citadel’s lost palace",
+   summary:"Dozens of gold-glazed terracotta Bodhi-leaf ornaments with dragon motifs, found behind a pair of headless stone dragons, have pinpointed the main hall of the 600-year-old Tây Đô citadel — a UNESCO World Heritage Site.",
+   url:"https://www.heritagedaily.com/2026/02/gold-enamelled-artifacts-uncovered-at-ho-dynasty-citadel/157075"},
+  {tag:"Discoveries", source:"Arkeonews", date:"2026", img:"n-stone-tools.jpg",
    title:"Iron-Age artifacts emerge from Hà Tĩnh rice fields",
    summary:"Bronze bells, stone chisels, ceramic bowls and iron blades unearthed in central Vietnam are helping researchers trace thousands of years of continuous settlement.",
    url:"https://arkeonews.net/many-ancient-artifacts-discovered-in-vietnams-rice-fields/"},
@@ -1486,11 +1494,7 @@ const NEWSHUB = [
    title:"Óc Eo–Ba Thê: the Funan-era port city seeking World Heritage status",
    summary:"Major excavations in the Mekong Delta have revealed the brilliant Óc Eo culture (1st–8th century CE) of the ancient Funan kingdom, now on Vietnam’s UNESCO tentative list.",
    url:"https://whc.unesco.org/en/tentativelists/6572/"},
-  {tag:"Discoveries", source:"Vietnam News", date:"Feature",
-   title:"New archaeological findings announced in Huế",
-   summary:"Excavations around the former imperial capital continue to surface structures and artifacts that deepen the story of Vietnam’s royal heritage.",
-   url:"https://vietnamnews.vn/life-style/466861/new-vietnamese-archeological-findings-announced-in-hue.html"},
-  {tag:"Discoveries", source:"Archaeology Magazine", date:"Feb 2026",
+  {tag:"Discoveries", source:"Archaeology Magazine", date:"Feb 2026", img:"n-bone-teeth.jpg",
    title:"Cosmetic tooth-blackening dates back 2,000 years in Vietnam",
    summary:"Chemical analysis of ancient tooth enamel shows Iron-Age communities deliberately blackened their teeth using iron salts and plant tannins.",
    url:"https://archaeology.org/news/2026/02/13/cosmetic-tooth-blackening-dates-back-2000-years-in-vietnam/"},
@@ -1498,6 +1502,10 @@ const NEWSHUB = [
    title:"Study examines a syphilis-like disease in ancient Vietnam",
    summary:"New research reads ancient skeletal remains to trace how a treponemal (syphilis-like) disease spread among early Vietnamese populations.",
    url:"https://archaeology.org/news/2026/03/26/study-examines-transmission-of-syphilis-like-disease-in-ancient-vietnam/"},
+  {tag:"World Heritage", source:"UNESCO", date:"Dec 2025",
+   title:"Yên Tử–Vĩnh Nghiêm–Côn Sơn, Kiếp Bạc becomes Vietnam’s 9th World Heritage Site",
+   summary:"Inscribed in July 2025 and certified that December, this 12-site serial property across Quảng Ninh, Bắc Ninh and Hải Phòng is the cradle of Trúc Lâm Zen Buddhism — Vietnam’s first serial-nomination World Heritage Site.",
+   url:"https://whc.unesco.org/en/list/1732/"},
   {tag:"World Heritage", source:"UNESCO", date:"Reference",
    title:"Vietnam’s nine UNESCO World Heritage Sites",
    summary:"From Hạ Long Bay to the Complex of Huế Monuments — the official list of Vietnam’s World Heritage Sites and what makes each one outstanding.",
@@ -1510,6 +1518,14 @@ const NEWSHUB = [
    title:"Hội An sets an example in cultural conservation",
    summary:"The 15th–19th-century trading port shows how a living World Heritage town balances tourism with careful protection of its historic streets and houses.",
    url:"https://vietnamtourism.gov.vn/en/post/21379"},
+  {tag:"Museums & Return", source:"ARTnews", date:"2025",
+   title:"Denver Art Museum returns a Đông Sơn bronze dagger to Vietnam",
+   summary:"A bronze dagger dated 300 BCE–200 CE, made in the Đông Sơn region of northern Vietnam, is being repatriated — part of a wider reckoning over how museum collections were assembled.",
+   url:"https://www.artnews.com/art-news/news/denver-art-museum-vietnamese-artifact-repatriation-1234700149/"},
+  {tag:"Museums & Return", source:"Vietnam News", date:"Feature",
+   title:"Wartime artifacts returned to Việt Nam from the US",
+   summary:"The Vietnam National Museum of History received cultural objects handed back by the United States — the latest in Vietnam’s campaign to recover relics taken during the colonial and wartime periods.",
+   url:"https://vietnamnews.vn/politics-laws/1721632/wartime-artifacts-returned-to-viet-nam-from-us.html"},
   {tag:"Living Culture", source:"Vietnam+", date:"Dec 2025",
    title:"Vietnam now has 17 UNESCO-recognised intangible heritage elements",
    summary:"Đông Hồ folk painting became the country’s 17th element, joining living traditions like the Central Highlands’ Space of Gong Culture.",
@@ -1518,17 +1534,15 @@ const NEWSHUB = [
    title:"Quan Họ and Ca Trù: Vietnam’s UNESCO-listed folk singing",
    summary:"From the call-and-response love songs of Quan Họ to the centuries-old ceremonial poetry of Ca Trù, a tour of the music traditions UNESCO has recognised.",
    url:"https://www.vietnam.vn/en/16-di-san-van-hoa-phi-vat-the-cua-viet-nam-duoc-unesco-ghi-danh/"},
-  {tag:"Preservation & Tech", source:"Vietnam News", date:"Feature",
+  {tag:"Preservation & Tech", source:"Vietnam News", date:"Feature", img:"r-hex.jpg",
    title:"3D technology raises the bar on cultural preservation",
    summary:"Museums and heritage sites across Vietnam are turning to 3D scanning, VR and AI to record fragile monuments and bring them to visitors — exactly the approach behind our SEAR drones.",
    url:"https://vietnamnews.vn/life-style/1692721/3d-technology-raises-bar-on-cultural-preservation.html"},
-  {tag:"Preservation & Tech", source:"RMIT University", date:"Research",
+  {tag:"Preservation & Tech", source:"RMIT University", date:"Research", img:"r-air.jpg",
    title:"Revitalising Vietnam’s heritage through advanced 3D technology",
    summary:"Researchers show how high-resolution 3D capture can preserve and reanimate cultural heritage — part of Vietnam’s 2021–2030 programme to digitalise its national treasures.",
    url:"https://www.rmit.edu.vn/news/all-news/2024/sep/revitalising-cultural-heritage-through-advanced-3d-technology"},
 ];
-/* Card imagery — from Team ArchaeoNova's own archive (real Vietnamese caves, artifacts, drone renders). */
-["c-xom-trai.jpg","c-hang-hiem.jpg","c-hang-cho.jpg","n-stone-tools.jpg","c-lac-luong.jpg","c-dong-thot.jpg","n-bone-teeth.jpg","n-bone-jaw.jpg","c-lang-vanh.jpg","c-hang-muoi.jpg","c-yen-tri.jpg","n-hoabinhian-map.jpg","c-hang-lang.jpg","r-hex.jpg","r-air.jpg"].forEach((im,i)=>{if(NEWSHUB[i])NEWSHUB[i].img=im;});
 const HUBSRC = [
   ["Archaeology Magazine","https://archaeology.org/"],
   ["Vietnam+ (English)","https://en.vietnamplus.vn/"],
@@ -1538,6 +1552,7 @@ const HUBSRC = [
   ["Nat’l Museum of History","https://baotanglichsu.vn/en"],
   ["Arkeonews","https://arkeonews.net/"],
   ["Ancient Origins","https://www.ancient-origins.net/"],
+  ["HeritageDaily","https://www.heritagedaily.com/"],
 ];
 /* Vietnam's UNESCO World Heritage Sites — quick professional reference. */
 const WHSITES = [
@@ -1559,8 +1574,9 @@ const HUBICO={
   'World Heritage':SVGO+'<path d="M12 3 4 8h16z"/><path d="M5.5 8v9M9.5 8v9M14.5 8v9M18.5 8v9M3 21h18"/></svg>',
   'Living Culture':SVGO+'<path d="M9 17V5l11-2v12"/><circle cx="6" cy="17" r="3"/><circle cx="17" cy="15" r="3"/></svg>',
   'Preservation & Tech':SVGO+'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12 4 7.5"/></svg>',
+  'Museums & Return':SVGO+'<path d="M4 9h16M5 9l7-5 7 5M6 9v8M10 9v8M14 9v8M18 9v8M4 21h16"/><path d="M15 6l3-2"/></svg>',
 };
-const HUBCOL={'Caves & Prehistory':'amber','Discoveries':'cyan','World Heritage':'amber','Living Culture':'amber','Preservation & Tech':'cyan'};
+const HUBCOL={'Caves & Prehistory':'amber','Discoveries':'cyan','World Heritage':'amber','Living Culture':'amber','Preservation & Tech':'cyan','Museums & Return':'cyan'};
 const WHICO={
   Cultural:SVGO+'<path d="M12 3 4 8h16z"/><path d="M6 8v9M10 8v9M14 8v9M18 8v9M3 21h18"/></svg>',
   Natural:SVGO+'<path d="M3 19h18"/><path d="M5 19l5-9 3 5 2-3 4 7"/></svg>',
@@ -2880,7 +2896,7 @@ function router(){
   mount.innerHTML=html;
   setActiveNav(nav);
   const fSchool=document.getElementById('footerSchool');
-  if(fSchool){ fSchool.innerHTML = (nav==='home')
+  if(fSchool){ fSchool.innerHTML = (nav==='home'||nav==='news')
     ? '<a href="https://wellspring.edu.vn/" target="_blank" rel="noopener" style="color:var(--amber)">Wellspring Bilingual<br>International School, Hanoi</a>'
     : 'Wellspring Bilingual<br>International School, Hanoi'; }
   window.scrollTo(0,0);
@@ -2914,7 +2930,7 @@ function initConsent(){
   const more=document.getElementById('consentMore');
   if(more&&!more.__wired){ more.__wired=true; more.addEventListener('click',e=>{ e.preventDefault(); const d=document.getElementById('consentDetails'); if(d)d.hidden=!d.hidden; }); }
 }
-window.addEventListener('DOMContentLoaded',()=>{router();onScroll();updateExpertUI();initConsent();const fc=document.getElementById('footStatCaves');if(fc)fc.textContent=CAVES.length;});
+window.addEventListener('DOMContentLoaded',()=>{router();onScroll();updateExpertUI();initConsent();const fc=document.getElementById('footStatCaves');if(fc)fc.textContent=PSITES.length;});
 </script>
 </body>
 </html>
