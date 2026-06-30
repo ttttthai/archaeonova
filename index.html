@@ -236,27 +236,57 @@ img{max-width:100%;height:auto}
 @media(max-width:600px){.news-grid,.finds-grid{grid-template-columns:1fr}}
 /* news hub */
 .hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.hubcard{display:flex;flex-direction:column;gap:9px;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:18px 18px 16px;text-decoration:none;transition:transform .2s,border-color .2s}
+.hubcard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);overflow:hidden;text-decoration:none;transition:transform .2s,border-color .2s}
 .hubcard:hover{transform:translateY(-4px);border-color:var(--border)}
+.hub-img{position:relative;height:152px;overflow:hidden;background:var(--bg-2)}
+.hub-img img,.hub-img svg{width:100%;height:100%;object-fit:cover;display:block}
+.hub-img img{transition:transform .45s}
+.hubcard:hover .hub-img img{transform:scale(1.06)}
+.hub-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(11,14,18,.55))}
+.hub-img .hub-ico{position:absolute;left:12px;top:12px;z-index:2;background:rgba(11,14,18,.66);backdrop-filter:blur(4px)}
+.hub-body{padding:16px 18px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.hub-metarow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .hub-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .hub-src{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:right;white-space:nowrap}
 .hubcard h3{margin:0;font-size:1.04rem;line-height:1.32;color:var(--text)}
 .hubcard p{margin:0;font-size:.87rem;line-height:1.5;color:var(--muted);flex:1}
 .hub-link{font-family:'JetBrains Mono',monospace;font-size:.71rem;letter-spacing:.03em;color:var(--cyan);margin-top:3px}
 .hubcard:hover .hub-link{text-decoration:underline}
-.hubcard.feat{grid-column:1/-1;padding:26px 30px;background:linear-gradient(120deg,rgba(240,169,78,.07),var(--surface) 58%)}
-.hubcard.feat h3{font-size:1.55rem;line-height:1.25;margin:2px 0}
-.hubcard.feat p{font-size:1.0rem;max-width:82ch}
+.hub-head{display:flex;align-items:center;gap:11px}
+.hub-ico{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:none;border:1px solid}
+.hub-ico svg{width:20px;height:20px}
+.hub-ico.amber{background:linear-gradient(160deg,rgba(240,169,78,.17),rgba(240,169,78,.03));border-color:rgba(240,169,78,.28);color:var(--amber)}
+.hub-ico.cyan{background:linear-gradient(160deg,rgba(58,209,218,.17),rgba(58,209,218,.03));border-color:rgba(58,209,218,.28);color:var(--cyan)}
+.hub-meta{display:flex;flex-direction:column;gap:4px;min-width:0;align-items:flex-start}
+.hub-meta .hub-src{text-align:left}
+.hubcard.feat{grid-column:1/-1;padding:0;flex-direction:row;align-items:stretch;gap:0;overflow:hidden;background:linear-gradient(120deg,rgba(240,169,78,.06),var(--surface) 60%)}
+.feat-art{flex:0 0 38%;position:relative;min-height:230px;border-right:1px solid var(--border-soft);overflow:hidden}
+.feat-art svg,.feat-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.feat-art .hub-ico{position:absolute;left:16px;top:16px;z-index:2;background:rgba(11,14,18,.66);backdrop-filter:blur(4px)}
+.feat-body{flex:1;padding:24px 30px;display:flex;flex-direction:column;gap:9px;justify-content:center}
+.hubcard.feat h3{font-size:1.5rem;line-height:1.25;margin:2px 0}
+.hubcard.feat p{font-size:1rem;max-width:74ch;flex:none}
+@media(max-width:700px){.hubcard.feat{flex-direction:column}.feat-art{flex-basis:auto;min-height:150px;border-right:none;border-bottom:1px solid var(--border-soft)}.feat-body{padding:20px 22px}}
+.nfilter{display:inline-flex;align-items:center}
+.nfilter .chip-ico{display:inline-flex;margin-right:6px}
+.nfilter .chip-ico svg{width:14px;height:14px}
+.stat-ico{display:grid;place-items:center;width:36px;height:36px;margin:0 auto 9px;border-radius:10px;color:var(--amber);background:linear-gradient(160deg,rgba(240,169,78,.16),transparent);border:1px solid rgba(240,169,78,.2)}
+.stat-ico svg{width:19px;height:19px}
 .hub-sources{display:flex;flex-wrap:wrap;gap:10px}
 .hub-source{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.03em;color:var(--text-2);border:1px solid var(--border-soft);border-radius:20px;padding:7px 14px;background:var(--bg-2);text-decoration:none;transition:border-color .15s,color .15s}
 .hub-source:hover{border-color:var(--cyan);color:var(--cyan)}
 @media(max-width:900px){.hub-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.hub-grid{grid-template-columns:1fr}}
 .wh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.wh-card{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border:1px solid var(--border-soft);border-radius:12px;background:var(--bg-2)}
+.wh-card{display:flex;flex-direction:row;align-items:center;gap:12px;padding:13px 15px;border:1px solid var(--border-soft);border-radius:12px;background:var(--bg-2)}
+.wh-card>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.wh-ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;flex:none;color:var(--amber);background:rgba(240,169,78,.1);border:1px solid rgba(240,169,78,.2)}
+.wh-ico svg{width:19px;height:19px}
+.wh-ico.cyan{color:var(--cyan);background:rgba(58,209,218,.1);border-color:rgba(58,209,218,.2)}
+.wh-ico.mix{color:#caa6e8;background:rgba(202,166,232,.1);border-color:rgba(202,166,232,.22)}
 .wh-meta{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber)}
 .wh-meta.cyan{color:var(--cyan)} .wh-meta.mix{color:#caa6e8}
-.wh-name{font-weight:600;font-size:.92rem;color:var(--text);line-height:1.28}
+.wh-name{font-weight:600;font-size:.9rem;color:var(--text);line-height:1.25}
 @media(max-width:900px){.wh-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.wh-grid{grid-template-columns:1fr}}
 /* privacy consent */
@@ -1448,6 +1478,8 @@ const NEWSHUB = [
    summary:"Researchers show how high-resolution 3D capture can preserve and reanimate cultural heritage — part of Vietnam’s 2021–2030 programme to digitalise its national treasures.",
    url:"https://www.rmit.edu.vn/news/all-news/2024/sep/revitalising-cultural-heritage-through-advanced-3d-technology"},
 ];
+/* Card imagery — from Team ArchaeoNova's own archive (real Vietnamese caves, artifacts, drone renders). */
+["c-xom-trai.jpg","c-hang-hiem.jpg","c-hang-cho.jpg","n-stone-tools.jpg","c-lac-luong.jpg","c-dong-thot.jpg","n-bone-teeth.jpg","n-bone-jaw.jpg","c-lang-vanh.jpg","c-hang-muoi.jpg","c-yen-tri.jpg","n-hoabinhian-map.jpg","c-hang-lang.jpg","r-hex.jpg","r-air.jpg"].forEach((im,i)=>{if(NEWSHUB[i])NEWSHUB[i].img=im;});
 const HUBSRC = [
   ["Archaeology Magazine","https://archaeology.org/"],
   ["Vietnam+ (English)","https://en.vietnamplus.vn/"],
@@ -1470,18 +1502,55 @@ const WHSITES = [
   {n:"Tràng An Landscape Complex", t:"Mixed", y:"2014"},
   {n:"Yên Tử–Vĩnh Nghiêm–Côn Sơn, Kiếp Bạc", t:"Cultural", y:"2025"},
 ];
+/* inline category iconography (self-contained SVG, matches the site's graphic style) */
+const SVGO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">';
+const HUBICO={
+  'Caves & Prehistory':SVGO+'<path d="M3 20h18"/><path d="M4 20l6-11 3 5 2-3 5 9"/><path d="M9.5 20a2.5 2.5 0 0 1 5 0"/></svg>',
+  'Discoveries':SVGO+'<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.3-4.3"/><path d="M11 8.5v5M8.5 11h5"/></svg>',
+  'World Heritage':SVGO+'<path d="M12 3 4 8h16z"/><path d="M5.5 8v9M9.5 8v9M14.5 8v9M18.5 8v9M3 21h18"/></svg>',
+  'Living Culture':SVGO+'<path d="M9 17V5l11-2v12"/><circle cx="6" cy="17" r="3"/><circle cx="17" cy="15" r="3"/></svg>',
+  'Preservation & Tech':SVGO+'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12 4 7.5"/></svg>',
+};
+const HUBCOL={'Caves & Prehistory':'amber','Discoveries':'cyan','World Heritage':'amber','Living Culture':'amber','Preservation & Tech':'cyan'};
+const WHICO={
+  Cultural:SVGO+'<path d="M12 3 4 8h16z"/><path d="M6 8v9M10 8v9M14 8v9M18 8v9M3 21h18"/></svg>',
+  Natural:SVGO+'<path d="M3 19h18"/><path d="M5 19l5-9 3 5 2-3 4 7"/></svg>',
+  Mixed:SVGO+'<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4a13 13 0 0 1 0 16M12 4a13 13 0 0 0 0 16"/></svg>',
+};
+const STAT_ICO={
+  caves:HUBICO['Caves & Prehistory'], heritage:HUBICO['World Heritage'], culture:HUBICO['Living Culture'],
+  years:SVGO+'<path d="M6 3h12M6 21h12M8 3c0 4 8 5 8 9s-8 5-8 9M16 3c0 4-8 5-8 9s8 5 8 9"/></svg>',
+};
+function karstArt(){return '<svg viewBox="0 0 380 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
+  '<defs>'+
+  '<linearGradient id="kSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a2734"/><stop offset=".55" stop-color="#101822"/><stop offset="1" stop-color="#0a0f15"/></linearGradient>'+
+  '<linearGradient id="kFar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#27333f"/><stop offset="1" stop-color="#1a2530"/></linearGradient>'+
+  '<linearGradient id="kMid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2832"/><stop offset="1" stop-color="#121a22"/></linearGradient>'+
+  '<linearGradient id="kNear" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11181f"/><stop offset="1" stop-color="#0a0e13"/></linearGradient>'+
+  '<radialGradient id="kGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f0a94e" stop-opacity=".55"/><stop offset="1" stop-color="#f0a94e" stop-opacity="0"/></radialGradient>'+
+  '<linearGradient id="kWat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16202b"/><stop offset="1" stop-color="#0b131b"/></linearGradient></defs>'+
+  '<rect width="380" height="280" fill="url(#kSky)"/>'+
+  '<circle cx="288" cy="76" r="62" fill="url(#kGlow)"/><circle cx="288" cy="76" r="22" fill="#f6c987"/>'+
+  '<g fill="#cdd6e0" opacity=".7"><circle cx="60" cy="40" r="1.2"/><circle cx="122" cy="62" r="1"/><circle cx="196" cy="34" r="1.3"/><circle cx="338" cy="128" r="1"/><circle cx="44" cy="96" r="1"/><circle cx="160" cy="86" r="1"/></g>'+
+  '<path d="M0 150 q30 -58 70 -44 q20 8 35 -10 q35 -42 70 -20 q25 15 55 -8 q42 -32 80 -4 q25 18 20 58 V160 H0Z" fill="url(#kFar)" opacity=".85"/>'+
+  '<path d="M0 188 q42 -72 88 -48 q30 16 55 -18 q35 -46 82 -16 q30 22 70 -10 q36 -28 95 6 V205 H0Z" fill="url(#kMid)"/>'+
+  '<path d="M30 210 q38 -88 84 -56 q25 18 36 -6 q30 -60 80 -22 q22 20 54 0 q42 -24 70 24 V215 H30Z" fill="url(#kNear)"/>'+
+  '<path d="M118 210 q15 -34 32 -2 q-3 2 -8 2 h-16 q-5 0 -8 -2z" fill="#05080c"/>'+
+  '<rect y="202" width="380" height="80" fill="url(#kWat)"/>'+
+  '<g stroke="#3ad1da" stroke-opacity=".22" stroke-width="1"><line x1="20" y1="218" x2="120" y2="218"/><line x1="205" y1="230" x2="325" y2="230"/><line x1="60" y1="246" x2="184" y2="246"/></g>'+
+  '<line x1="278" y1="120" x2="278" y2="170" stroke="#f0a94e" stroke-opacity=".18" stroke-width="6"/></svg>';}
 function whCard(s){
   const cls=s.t==='Natural'?'cyan':(s.t==='Mixed'?'mix':'amber');
-  return `<div class="wh-card"><span class="wh-meta ${cls}">${s.t} · ${s.y}</span><span class="wh-name">${s.n}</span></div>`;
+  return `<div class="wh-card"><span class="wh-ico ${cls}">${WHICO[s.t]||''}</span><div><span class="wh-meta ${cls}">${s.t} · ${s.y}</span><span class="wh-name">${s.n}</span></div></div>`;
 }
 function hubCard(n){
-  const amber=['World Heritage','Living Culture','Caves & Prehistory'].includes(n.tag)?' amber':'';
-  return `<a class="hubcard${n.feat?' feat':''} reveal" href="${n.url}" target="_blank" rel="noopener" data-tag="${n.tag}">
-    <div class="hub-top"><span class="ntag${amber}">${n.tag}</span><span class="hub-src">${n.source} · ${n.date}</span></div>
-    <h3>${n.title}</h3>
-    <p>${n.summary}</p>
-    <span class="hub-link">Read at ${n.source} →</span>
-  </a>`;
+  const col=HUBCOL[n.tag]||'cyan', amber=col==='amber'?' amber':'';
+  const ico=`<span class="hub-ico ${col}">${HUBICO[n.tag]||''}</span>`;
+  const photo=n.img?`<img src="${n.img}" alt="" loading="lazy">`:karstArt();
+  const meta=`<div class="hub-metarow"><span class="ntag${amber}">${n.tag}</span><span class="hub-src">${n.source} · ${n.date}</span></div>`;
+  const text=`${meta}<h3>${n.title}</h3><p>${n.summary}</p><span class="hub-link">Read at ${n.source} →</span>`;
+  if(n.feat) return `<a class="hubcard feat reveal" href="${n.url}" target="_blank" rel="noopener" data-tag="${n.tag}"><div class="feat-art">${photo}${ico}</div><div class="feat-body">${text}</div></a>`;
+  return `<a class="hubcard reveal" href="${n.url}" target="_blank" rel="noopener" data-tag="${n.tag}"><div class="hub-img">${photo}${ico}</div><div class="hub-body">${text}</div></a>`;
 }
 function newsCard(n,feat){
   const amber=['Heritage','History','Conservation'].includes(n.tag)?' amber':'';
@@ -1499,7 +1568,7 @@ function newsCard(n,feat){
 }
 function viewNews(){
   const tags=[...new Set(NEWSHUB.map(n=>n.tag))];
-  const stat=(num,lbl)=>`<div class="hstat"><span class="hstat-num">${num}</span><span class="hstat-lbl">${lbl}</span></div>`;
+  const stat=(num,lbl,ico)=>`<div class="hstat"><span class="stat-ico">${ico||''}</span><span class="hstat-num">${num}</span><span class="hstat-lbl">${lbl}</span></div>`;
   const find=(src,cap)=>`<figure class="find"><img src="${src}" alt="${cap}" loading="lazy"><figcaption>${cap}</figcaption></figure>`;
   return `
   <section class="detail-hero" style="padding:36px 0 24px">
@@ -1511,17 +1580,17 @@ function viewNews(){
   </section>
   <section class="section" style="padding-top:28px;padding-bottom:0"><div class="container">
     <div class="home-stats reveal">
-      ${stat(CAVES.length,'Caves in our directory')}
-      ${stat('9','UNESCO World Heritage Sites')}
-      ${stat('17','Intangible heritage elements')}
-      ${stat('30,000+','Years of history')}
+      ${stat(CAVES.length,'Caves in our directory',STAT_ICO.caves)}
+      ${stat('9','UNESCO World Heritage Sites',STAT_ICO.heritage)}
+      ${stat('17','Intangible heritage elements',STAT_ICO.culture)}
+      ${stat('30,000+','Years of history',STAT_ICO.years)}
     </div>
   </div></section>
   <section class="section" style="padding-top:34px"><div class="container">
     <p class="muted reveal" style="margin:0 0 14px;font-size:.94rem">Browse by topic below, or open any story at its original source. The featured item leads; new picks are added regularly.</p>
     <div class="news-filter reveal">
-      <button class="nfilter active" data-tag="all" type="button">All stories</button>
-      ${tags.map(t=>`<button class="nfilter" data-tag="${t}" type="button">${t}</button>`).join('')}
+      <button class="nfilter active" data-tag="all" type="button"><span class="chip-ico">${SVGO}<path d="M4 6h16M4 12h16M4 18h16"/></svg></span>All stories</button>
+      ${tags.map(t=>`<button class="nfilter" data-tag="${t}" type="button"><span class="chip-ico">${HUBICO[t]||''}</span>${t}</button>`).join('')}
     </div>
     <div class="hub-grid">
       ${NEWSHUB.map(hubCard).join('')}
@@ -1550,7 +1619,7 @@ function viewNews(){
       ${find('n-hoabinhian-map.jpg','Hoabinhian range across mainland SE Asia')}
     </div>
   </div></section>
-  <section class="section center" style="padding-top:8px"><div class="container reveal"><div class="note-banner" style="display:inline-block;text-align:left;max-width:680px"><strong>About this hub:</strong> stories are curated by Team ArchaeoNova from reputable third-party news and research outlets, and each links to its original source — we don’t host their content. Links open in a new tab. The artifact photos below are of real Hoabinhian material.</div></div></section>`;
+  <section class="section center" style="padding-top:8px"><div class="container reveal"><div class="note-banner" style="display:inline-block;text-align:left;max-width:680px"><strong>About this hub:</strong> stories are curated by Team ArchaeoNova from reputable third-party news and research outlets, and each links to its original source — we don’t host their content. Card images are from our own field archive of Vietnamese caves, artifacts and drone renders, used to illustrate each topic. Links open in a new tab.</div></div></section>`;
 }
 function initNews(){
   const wrap=document.querySelector('.news-filter'); if(!wrap)return;
