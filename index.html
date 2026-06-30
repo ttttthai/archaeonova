@@ -2291,6 +2291,9 @@ function initDirMap(){
   const terrain=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'© Esri — Topographic'});
   const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
   L.control.layers({'Dark · clean':dark,'Light · clean':light,'Terrain':terrain,'Satellite':sat},{},{collapsed:false,position:'topright'}).addTo(_dirMap);
+  // match the map backdrop to the active base layer so no hairline seam shows between tiles
+  const lightBg=name=>/Light|Terrain/.test(name||'')?'#f4f4f2':'#11151b';
+  _dirMap.on('baselayerchange',e=>{ el.style.background=lightBg(e.name); });
   const colorOf=c=>c.rank==="National Special"?"#f0a94e":c.rank==="National"?"#3ad1da":"#b08ce0";
   const grp=L.featureGroup();
   const sites=(typeof ALLSITES!=='undefined')?ALLSITES:CAVES;
@@ -2337,6 +2340,7 @@ function initCaveMap(){
   const terrain=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'© Esri — Topographic'});
   const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
   L.control.layers({'Dark · clean':dark,'Light · clean':light,'Terrain':terrain,'Satellite':sat},{},{collapsed:false,position:'topright'}).addTo(_caveMap);
+  _caveMap.on('baselayerchange',e=>{ el.style.background=/Light|Terrain/.test(e.name||'')?'#f4f4f2':'#11151b'; });
   const color="#f0a94e";
   L.circle([lat,lng],{radius:2600,color:color,weight:1,opacity:.45,fillColor:color,fillOpacity:.05}).addTo(_caveMap);
   L.circleMarker([lat,lng],{radius:9,color:color,weight:2,fillColor:color,fillOpacity:.4}).addTo(_caveMap)
