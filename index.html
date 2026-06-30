@@ -754,6 +754,10 @@ img{max-width:100%;height:auto}
 .footer-grid{display:grid;grid-template-columns:auto auto auto;justify-content:start;column-gap:40px;row-gap:18px}
 .footer-grid>div:nth-child(2){margin-left:96px}
 .footer-bottom{border-top:1px solid var(--border-soft);margin-top:20px;padding-top:13px;font-family:"JetBrains Mono",monospace;font-size:.63rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;letter-spacing:.03em}
+.footer-stats{border-top:1px solid var(--border-soft);margin-top:22px;padding-top:16px;display:flex;flex-wrap:wrap;gap:14px 34px}
+.footer-stats span{font-family:"JetBrains Mono",monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.footer-stats b{color:var(--amber);font-size:1.05rem;margin-right:6px;letter-spacing:0}
+@media(max-width:560px){.footer-stats{gap:10px 22px}.footer-stats span{font-size:.6rem}}
 .sources{font-size:.84rem;color:var(--muted);padding-left:1.1em}
 .sources a{word-break:break-word;color:var(--cyan)}
 
@@ -836,6 +840,11 @@ img{max-width:100%;height:auto}
         <p id="footerSchool">Wellspring Bilingual<br>International School, Hanoi</p>
         <p><a href="#about">About SEAR Drones →</a></p>
       </div>
+    </div>
+    <div class="footer-stats">
+      <span><b id="footStatCaves">13</b> Caves in our directory</span>
+      <span><b>9</b> UNESCO World Heritage Sites</span>
+      <span><b>17</b> Intangible heritage elements</span>
     </div>
     <div class="footer-bottom">
       <span>© 2026 TEAM ARCHAEONOVA · BUILT FOR EDUCATION &amp; HERITAGE PRESERVATION</span>
@@ -1670,7 +1679,7 @@ const ALLSITES=CAVES.map(c=>Object.assign({prov:'Hòa Bình'},c)).concat(SYNTH);
 function sitesInProv(p){return ALLSITES.filter(x=>x.prov===p);}
 function findSite(id){return ALLSITES.find(x=>x.id===id);}
 
-let _curProv='Hòa Bình', _selMarker=null;
+let _curProv='Hòa Bình', _selMarker=null, _dirUserView=false;
 
 function dirSelectorHTML(){
   const provTabs=PSITE_PROVS.map((p,i)=>`<button class="dsel-prov${i===0?' active':''}" type="button" data-prov="${p}">${p}<span class="dsel-n">${sitesInProv(p).length}</span></button>`).join('');
@@ -1691,6 +1700,16 @@ function renderProvSites(p){
   wrap.innerHTML=sitesInProv(p).map(siteBtnHTML).join('');
   wrap.querySelectorAll('.dsel-site').forEach(b=>b.addEventListener('click',()=>selectSite(b.dataset.id)));
 }
+function gotoSite(id){
+  const s=findSite(id); if(!s)return;
+  if(s.prov!==_curProv){
+    _curProv=s.prov;
+    document.querySelectorAll('.dsel-prov').forEach(x=>x.classList.toggle('active',x.dataset.prov===s.prov));
+    renderProvSites(s.prov);
+  }
+  selectSite(id);
+  const sec=document.querySelector('.dir-map-wrap'); if(sec&&sec.scrollIntoView)try{sec.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}
+}
 function selectSite(id){
   const s=findSite(id); if(!s)return;
   document.querySelectorAll('.dsel-site').forEach(b=>b.classList.toggle('active',b.dataset.id===id));
@@ -1701,6 +1720,7 @@ function selectSite(id){
 }
 function dirMapFocus(s){
   if(!_dirMap||typeof L==='undefined')return;
+  _dirUserView=true;
   try{
     if(_selMarker){_dirMap.removeLayer(_selMarker);_selMarker=null;}
     const color=s.basic?'#b08ce0':(s.rank==='National Special'?'#f0a94e':s.rank==='National'?'#3ad1da':'#b08ce0');
@@ -1711,7 +1731,7 @@ function dirMapFocus(s){
   }catch(e){}
 }
 function dirMapToProvince(p){
-  if(!_dirMap||typeof L==='undefined')return; const c=PROV_CENTER[p];
+  if(!_dirMap||typeof L==='undefined')return; _dirUserView=true; const c=PROV_CENTER[p];
   if(c){try{_dirMap.setView(c,9,{animate:true});}catch(e){}}
 }
 function initDirSelector(){
@@ -2255,14 +2275,23 @@ function initDirMap(){
   L.control.layers({'Dark · clean':dark,'Light · clean':light,'Terrain':terrain,'Satellite':sat},{},{collapsed:false,position:'topright'}).addTo(_dirMap);
   const colorOf=c=>c.rank==="National Special"?"#f0a94e":c.rank==="National"?"#3ad1da":"#b08ce0";
   const grp=L.featureGroup();
-  CAVES.forEach(c=>{
-    const color=c.catalog?"#b08ce0":colorOf(c); const sz=c.catalog?11:15;
-    const icon=L.divIcon({className:'',html:`<div style="width:${sz}px;height:${sz}px;border-radius:50%;background:${c.catalog?'transparent':color};border:2px solid ${color};box-shadow:0 0 0 3px ${color}26,0 0 12px ${color}"></div>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],popupAnchor:[0,-sz/2]});
-    const m=L.marker([c.lat,c.lng],{icon}).bindPopup(`<div class="cave-popup"><span class="tag ${rankClass(c.rank)}">${c.rank}</span> ${c.catalog?'<span class="tag illustrative">limited record</span>':''}<h4>${c.name}</h4><div class="meta">${c.commune}, ${c.district}<br>${c.lat.toFixed(4)}°N, ${c.lng.toFixed(4)}°E · approx</div><p style="font-size:.85rem;margin:.3em 0">${c.summary}</p><a class="btn sm" href="#cave/${c.id}">Open record →</a></div>`);
+  const sites=(typeof ALLSITES!=='undefined')?ALLSITES:CAVES;
+  sites.forEach(c=>{
+    const color=c.basic?"#b08ce0":colorOf(c);
+    const sz=c.basic?9:15;
+    const fill=c.basic?'transparent':color;
+    const icon=L.divIcon({className:'',html:`<div style="width:${sz}px;height:${sz}px;border-radius:50%;background:${fill};border:2px solid ${color};box-shadow:0 0 0 3px ${color}26,0 0 12px ${color}${c.basic?'66':''}"></div>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],popupAnchor:[0,-sz/2]});
+    const action=c.basic
+      ? `<a class="btn sm" href="#" onclick="gotoSite('${c.id}');return false;">Show data ↓</a>`
+      : `<a class="btn sm" href="#cave/${c.id}">Open record →</a>`;
+    const locLine=c.basic?`${c.prov}${c.district&&c.district!==c.prov?' · '+c.district:''} · approx (province-level)`:`${c.commune}, ${c.district}<br>${c.lat.toFixed(4)}°N, ${c.lng.toFixed(4)}°E · approx`;
+    const tag=c.basic?'<span class="tag illustrative">recorded site</span>':`<span class="tag ${rankClass(c.rank)}">${c.rank}</span>${c.catalog?' <span class="tag illustrative">limited record</span>':''}`;
+    const m=L.marker([c.lat,c.lng],{icon}).bindPopup(`<div class="cave-popup">${tag}<h4>${c.name}</h4><div class="meta">${locLine}</div><p style="font-size:.85rem;margin:.3em 0">${c.summary}</p>${action}</div>`);
+    m.on('click',()=>{try{gotoSite(c.id);}catch(e){}});
     grp.addLayer(m);
   });
   grp.addTo(_dirMap);
-  mapFix(_dirMap, el, ()=>{ try{ _dirMap.fitBounds(grp.getBounds().pad(0.15)); }catch(e){} });
+  mapFix(_dirMap, el, ()=>{ if(_dirUserView)return; try{ _dirMap.fitBounds(grp.getBounds().pad(0.12)); }catch(e){} });
 }
 
 /* Robustly fix Leaflet sizing: maps often init before their container is laid out,
@@ -2885,7 +2914,7 @@ function initConsent(){
   const more=document.getElementById('consentMore');
   if(more&&!more.__wired){ more.__wired=true; more.addEventListener('click',e=>{ e.preventDefault(); const d=document.getElementById('consentDetails'); if(d)d.hidden=!d.hidden; }); }
 }
-window.addEventListener('DOMContentLoaded',()=>{router();onScroll();updateExpertUI();initConsent();});
+window.addEventListener('DOMContentLoaded',()=>{router();onScroll();updateExpertUI();initConsent();const fc=document.getElementById('footStatCaves');if(fc)fc.textContent=CAVES.length;});
 </script>
 </body>
 </html>
