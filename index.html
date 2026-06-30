@@ -234,6 +234,24 @@ img{max-width:100%;height:auto}
 .find figcaption{padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.03em;color:var(--muted);line-height:1.45}
 @media(max-width:900px){.news-grid{grid-template-columns:repeat(2,1fr)}.ncard-feat{flex-direction:column}.ncard-feat .ncard-img{width:100%;min-height:210px}.finds-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:600px){.news-grid,.finds-grid{grid-template-columns:1fr}}
+/* news hub */
+.hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.hubcard{display:flex;flex-direction:column;gap:9px;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:18px 18px 16px;text-decoration:none;transition:transform .2s,border-color .2s}
+.hubcard:hover{transform:translateY(-4px);border-color:var(--border)}
+.hub-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.hub-src{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:right;white-space:nowrap}
+.hubcard h3{margin:0;font-size:1.04rem;line-height:1.32;color:var(--text)}
+.hubcard p{margin:0;font-size:.87rem;line-height:1.5;color:var(--muted);flex:1}
+.hub-link{font-family:'JetBrains Mono',monospace;font-size:.71rem;letter-spacing:.03em;color:var(--cyan);margin-top:3px}
+.hubcard:hover .hub-link{text-decoration:underline}
+.hubcard.feat{grid-column:1/-1;padding:26px 30px;background:linear-gradient(120deg,rgba(240,169,78,.07),var(--surface) 58%)}
+.hubcard.feat h3{font-size:1.55rem;line-height:1.25;margin:2px 0}
+.hubcard.feat p{font-size:1.0rem;max-width:82ch}
+.hub-sources{display:flex;flex-wrap:wrap;gap:10px}
+.hub-source{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.03em;color:var(--text-2);border:1px solid var(--border-soft);border-radius:20px;padding:7px 14px;background:var(--bg-2);text-decoration:none;transition:border-color .15s,color .15s}
+.hub-source:hover{border-color:var(--cyan);color:var(--cyan)}
+@media(max-width:900px){.hub-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.hub-grid{grid-template-columns:1fr}}
 /* privacy consent */
 .consent{position:fixed;left:0;right:0;bottom:0;z-index:2000;padding:16px;display:flex;justify-content:center;pointer-events:none}
 .consent[hidden]{display:none}
@@ -1369,6 +1387,63 @@ function viewLearn(){
   </section>`;
 }
 
+/* Curated news hub — real third-party stories on Vietnam archaeology, heritage & culture.
+   Lead with our prehistoric-cave topic, then broaden Vietnam-wide. Each links to its source. */
+const NEWSHUB = [
+  {feat:true, tag:"Caves & Prehistory", source:"Ancient Origins", date:"Feature",
+   title:"Southeast Asia’s earliest evidence of violence found in a Vietnamese cave",
+   summary:"Re-analysis of a prehistoric skeleton from a cave in northern Vietnam points to what may be the region’s oldest known case of inter-personal violence — a vivid window into early cave-dwelling life.",
+   url:"https://www.ancient-origins.net/news-history-archaeology/prehistoric-violence-vietnam-0022389"},
+  {tag:"Caves & Prehistory", source:"MNHN · Palevol", date:"Study",
+   title:"Inside Hang Hiêm: the daily life of Hoabinhian hunter-gatherers",
+   summary:"A multidisciplinary study of Hang Hiêm in Hòa Bình reconstructs the diet, tools and seasons of people who lived there around 8,500–8,200 BC — one of the very caves in our directory.",
+   url:"https://sciencepress.mnhn.fr/en/periodiques/comptes-rendus-palevol/22/5"},
+  {tag:"Caves & Prehistory", source:"SE Asian Archaeology", date:"Explainer",
+   title:"Discover Ninh Bình’s prehistoric past at Người Xưa Cave",
+   summary:"Another Hoabinhian-era cave open to visitors — a reminder of how northern Vietnam’s limestone caves preserve tens of thousands of years of human history.",
+   url:"https://www.southeastasianarchaeology.com/tag/hoabinhian/"},
+  {tag:"Archaeology", source:"Arkeonews", date:"2026",
+   title:"Iron-Age artifacts emerge from Hà Tĩnh rice fields",
+   summary:"Bronze bells, stone chisels, ceramic bowls and iron blades unearthed in central Vietnam are helping researchers trace thousands of years of continuous settlement.",
+   url:"https://arkeonews.net/many-ancient-artifacts-discovered-in-vietnams-rice-fields/"},
+  {tag:"Research", source:"Archaeology Magazine", date:"Feb 2026",
+   title:"Cosmetic tooth-blackening dates back 2,000 years in Vietnam",
+   summary:"Chemical analysis of ancient tooth enamel shows Iron-Age communities deliberately blackened their teeth using iron salts and plant tannins.",
+   url:"https://archaeology.org/news/2026/02/13/cosmetic-tooth-blackening-dates-back-2000-years-in-vietnam/"},
+  {tag:"Research", source:"Archaeology Magazine", date:"Mar 2026",
+   title:"Study examines a syphilis-like disease in ancient Vietnam",
+   summary:"New research reads ancient skeletal remains to trace how a treponemal (syphilis-like) disease spread among early Vietnamese populations.",
+   url:"https://archaeology.org/news/2026/03/26/study-examines-transmission-of-syphilis-like-disease-in-ancient-vietnam/"},
+  {tag:"Heritage", source:"Vietnam+", date:"Dec 2025",
+   title:"Vietnam now has 17 UNESCO-recognised intangible heritage elements",
+   summary:"Đông Hồ folk painting became the country’s 17th element, joining traditions like the Central Highlands’ Space of Gong Culture.",
+   url:"https://en.vietnamplus.vn/17-intangible-cultural-heritage-elements-recognised-by-unesco-post334383.vnp"},
+  {tag:"Conservation", source:"BERNAMA", date:"Jan 2026",
+   title:"UNESCO grants US$740,000 to protect Vietnam’s heritage after storms",
+   summary:"Emergency funding supports repairs and safeguards at World Heritage Sites in Huế and Hội An damaged by the severe November 2025 storms.",
+   url:"https://bernama.com/en/world/news.php?id=2516525"},
+  {tag:"Heritage", source:"UNESCO", date:"Reference",
+   title:"Vietnam’s nine UNESCO World Heritage Sites",
+   summary:"From Hạ Long Bay to the Complex of Huế Monuments — the official list of Vietnam’s World Heritage Sites and what makes each one outstanding.",
+   url:"https://whc.unesco.org/en/statesparties/vn"},
+];
+const HUBSRC = [
+  ["Archaeology Magazine","https://archaeology.org/"],
+  ["Vietnam+ (English)","https://en.vietnamplus.vn/"],
+  ["UNESCO · Viet Nam","https://whc.unesco.org/en/statesparties/vn"],
+  ["SE Asian Archaeology","https://www.southeastasianarchaeology.com/vietnam-archaeology/"],
+  ["Arkeonews","https://arkeonews.net/"],
+  ["Ancient Origins","https://www.ancient-origins.net/"],
+];
+function hubCard(n){
+  const amber=['Heritage','Conservation','Caves & Prehistory'].includes(n.tag)?' amber':'';
+  return `<a class="hubcard${n.feat?' feat':''} reveal" href="${n.url}" target="_blank" rel="noopener" data-tag="${n.tag}">
+    <div class="hub-top"><span class="ntag${amber}">${n.tag}</span><span class="hub-src">${n.source} · ${n.date}</span></div>
+    <h3>${n.title}</h3>
+    <p>${n.summary}</p>
+    <span class="hub-link">Read at ${n.source} →</span>
+  </a>`;
+}
 function newsCard(n,feat){
   const amber=['Heritage','History','Conservation'].includes(n.tag)?' amber':'';
   const img=n.img?`<div class="ncard-img"><img src="${n.img}" alt="${n.title}" loading="lazy"></div>`:'';
@@ -1384,34 +1459,36 @@ function newsCard(n,feat){
   </article>`;
 }
 function viewNews(){
-  const tags=[...new Set(NEWS.map(n=>n.tag))];
-  const feat=NEWS[0], rest=NEWS.slice(1);
+  const tags=[...new Set(NEWSHUB.map(n=>n.tag))];
   const stat=(num,lbl)=>`<div class="hstat"><span class="hstat-num">${num}</span><span class="hstat-lbl">${lbl}</span></div>`;
   const find=(src,cap)=>`<figure class="find"><img src="${src}" alt="${cap}" loading="lazy"><figcaption>${cap}</figcaption></figure>`;
   return `
   <section class="detail-hero" style="padding:36px 0 24px">
     <div class="container reveal">
-      <p class="eyebrow cyan">SIGNALS · SCIENCE FEED</p>
-      <h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">From the field &amp; the lab</h1>
-      <p style="max-width:64ch;font-size:1.1rem">Short, friendly updates on Hoabinhian archaeology, heritage protection, and the technology that surveys the caves — with real photos of the sites and the finds. This keeps the Directory alive, not just a static archive.</p>
+      <p class="eyebrow cyan">NEWS HUB · ARCHAEOLOGY &amp; HERITAGE</p>
+      <h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Vietnam heritage newsroom</h1>
+      <p style="max-width:70ch;font-size:1.1rem">A curated hub of news and research on Vietnam’s archaeology, historical heritage and culture — starting with the prehistoric caves at the heart of our project and broadening across the country. Every story links to its original source.</p>
     </div>
   </section>
   <section class="section" style="padding-top:28px;padding-bottom:0"><div class="container">
     <div class="home-stats reveal">
-      ${stat(CAVES.length,'Caves indexed')}
-      ${stat('2','Nat’l Special relics')}
-      ${stat('1927','Colani’s first dig')}
-      ${stat('30,000+','Years of record')}
+      ${stat(CAVES.length,'Caves in our directory')}
+      ${stat('9','UNESCO World Heritage Sites')}
+      ${stat('17','Intangible heritage elements')}
+      ${stat('30,000+','Years of history')}
     </div>
   </div></section>
   <section class="section" style="padding-top:34px"><div class="container">
     <div class="news-filter reveal">
-      <button class="nfilter active" data-tag="all" type="button">All signals</button>
+      <button class="nfilter active" data-tag="all" type="button">All stories</button>
       ${tags.map(t=>`<button class="nfilter" data-tag="${t}" type="button">${t}</button>`).join('')}
     </div>
-    <div class="news-grid">
-      ${newsCard(feat,true)}
-      ${rest.map(n=>newsCard(n,false)).join('')}
+    <div class="hub-grid">
+      ${NEWSHUB.map(hubCard).join('')}
+    </div>
+    <p class="eyebrow reveal" style="margin:32px 0 0">TRUSTED SOURCES</p>
+    <div class="hub-sources reveal" style="margin-top:12px">
+      ${HUBSRC.map(([n,u])=>`<a class="hub-source" href="${u}" target="_blank" rel="noopener">${n} ↗</a>`).join('')}
     </div>
   </div></section>
   <section class="section" style="border-top:1px solid var(--border-soft)"><div class="container">
@@ -1426,14 +1503,14 @@ function viewNews(){
       ${find('n-hoabinhian-map.jpg','Hoabinhian range across mainland SE Asia')}
     </div>
   </div></section>
-  <section class="section center" style="padding-top:8px"><div class="container reveal"><div class="note-banner" style="display:inline-block;text-align:left;max-width:660px"><strong>Note for judges &amp; visitors:</strong> these posts are sample content for our prototype. In a live version, Signals would be written and updated by the team, archaeologists, geologists and robotics experts — keeping research and the public connected. Artifact photos are of real Hoabinhian material.</div></div></section>`;
+  <section class="section center" style="padding-top:8px"><div class="container reveal"><div class="note-banner" style="display:inline-block;text-align:left;max-width:680px"><strong>About this hub:</strong> stories are curated by Team ArchaeoNova from reputable third-party news and research outlets, and each links to its original source — we don’t host their content. Links open in a new tab. The artifact photos below are of real Hoabinhian material.</div></div></section>`;
 }
 function initNews(){
   const wrap=document.querySelector('.news-filter'); if(!wrap)return;
   wrap.addEventListener('click',e=>{ const b=e.target.closest('.nfilter'); if(!b)return;
     wrap.querySelectorAll('.nfilter').forEach(x=>x.classList.toggle('active',x===b));
     const t=b.dataset.tag;
-    document.querySelectorAll('.news-grid .ncard').forEach(c=>{ c.style.display=(t==='all'||c.dataset.tag===t)?'':'none'; });
+    document.querySelectorAll('.hub-grid .hubcard').forEach(c=>{ c.style.display=(t==='all'||c.dataset.tag===t)?'':'none'; });
   });
 }
 
