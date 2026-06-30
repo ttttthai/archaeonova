@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ArchaeoNova — Digital Cave Directory · Prehistoric Caves of Vietnam</title>
 <meta name="description" content="A research and public-education platform for the prehistoric Hoabinhian cave culture of Hòa Bình, Vietnam. Companion to the SEAR drones cave-survey system. By Team ArchaeoNova.">
+<meta name="theme-color" content="#0b0e12">
+<link rel="canonical" href="https://archaeonova.onrender.com/">
+<!-- Social link previews (Open Graph + Twitter) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ArchaeoNova — Digital Cave Directory">
+<meta property="og:title" content="ArchaeoNova — Digital Cave Directory · Prehistoric Caves of Vietnam">
+<meta property="og:description" content="Explore, share and help protect the 30,000-year-old Hoabinhian caves of Northern Vietnam. A public-heritage archive by Team ArchaeoNova, surveyed by the SEAR drones.">
+<meta property="og:url" content="https://archaeonova.onrender.com/">
+<meta property="og:image" content="https://archaeonova.onrender.com/c-xom-trai.jpg">
+<meta property="og:image:alt" content="Limestone cliff entrance of Hang Xóm Trại, a prehistoric Hoabinhian cave in Hòa Bình, Vietnam.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ArchaeoNova — Digital Cave Directory · Prehistoric Caves of Vietnam">
+<meta name="twitter:description" content="Explore, share and help protect the 30,000-year-old Hoabinhian caves of Northern Vietnam. A public-heritage archive by Team ArchaeoNova.">
+<meta name="twitter:image" content="https://archaeonova.onrender.com/c-xom-trai.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -155,6 +171,15 @@ img{max-width:100%;height:auto}
 .grid.cols-2{grid-template-columns:repeat(2,1fr)}
 .grid.cols-3{grid-template-columns:repeat(3,1fr)}
 .grid.cols-4{grid-template-columns:repeat(4,1fr)}
+.home-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.hstat{position:relative;padding:24px 20px;border:1px solid var(--border-soft);border-radius:14px;background:linear-gradient(160deg,rgba(240,169,78,.05),rgba(12,14,17,.4));text-align:center;overflow:hidden}
+.hstat::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);opacity:.5}
+.hstat-num{display:block;font-family:'JetBrains Mono',monospace;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:700;color:var(--amber);line-height:1;letter-spacing:-.01em}
+.hstat-lbl{display:block;margin-top:9px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.home-band-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.home-band-head .link-more{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.06em;color:var(--cyan);text-decoration:none;white-space:nowrap}
+.home-band-head .link-more:hover{text-decoration:underline}
+@media(max-width:680px){.home-stats{grid-template-columns:repeat(2,1fr)}}
 .card{
   background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:26px;position:relative;
   transition:transform .2s cubic-bezier(.2,.7,.3,1),border-color .2s,background .2s,box-shadow .2s;overflow:hidden;
@@ -168,6 +193,17 @@ img{max-width:100%;height:auto}
 .icon-badge{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;font-size:1.45rem;margin-bottom:14px;
   background:linear-gradient(160deg,rgba(240,169,78,.18),rgba(240,169,78,.04));border:1px solid rgba(240,169,78,.2)}
 .icon-badge.cyan{background:linear-gradient(160deg,rgba(58,209,218,.18),rgba(58,209,218,.04));border-color:rgba(58,209,218,.2);color:var(--cyan)}
+.home-explore{align-items:start}
+.home-explore .card{display:block;padding:18px 20px}
+.home-explore .icon-badge{width:40px;height:40px;border-radius:11px;margin-bottom:10px}
+.home-explore .icon-badge svg{width:20px;height:20px}
+.home-explore .card strong{font-size:1.04rem;line-height:1.2}
+.home-explore .card p{margin-top:.4em!important;line-height:1.45}
+.lbl-en{display:block;font-weight:400;font-size:.74rem;color:var(--muted);letter-spacing:.01em;margin-top:1px}
+.contrib-map{height:230px;border-radius:11px;border:1px solid var(--border-soft);overflow:hidden;background:var(--bg-2)}
+.contrib-map .leaflet-container{height:100%;width:100%;background:#0c1014}
+.coord-readout{margin:8px 0 0;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.03em;color:var(--muted)}
+.coord-readout.set{color:var(--cyan)}
 .icon-badge{color:var(--amber)}
 .icon-badge svg{width:24px;height:24px}
 .card ul{color:var(--text-2);padding-left:1.1em}.card li{margin:.3em 0}
@@ -595,7 +631,7 @@ img{max-width:100%;height:auto}
   .directory-wrap{grid-template-columns:1fr}
   #map{height:58vh}
   .directory-sidebar{max-height:none;border-right:none;border-bottom:1px solid var(--border-soft)}
-  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1.5fr 1fr 1fr;gap:20px;row-gap:18px}
 }
 @media(max-width:640px){
   .nav-links{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:rgba(8,9,11,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px;gap:2px}
@@ -603,7 +639,7 @@ img{max-width:100%;height:auto}
   .nav-links a{padding:.9em}
   .nav-toggle{display:block}
   .grid.cols-2,.grid.cols-3,.grid.cols-4,.steps{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;row-gap:16px}
   .section{padding:26px 0}
   .hero{min-height:auto;padding:70px 0 90px}
 }
@@ -773,10 +809,10 @@ const TEAM_MENTORS = [
   {name:"Team Coach", role:"Coach · Wellspring International School", bio:"Guides and mentors Team ArchaeoNova through the season.", photo:"tm-coach.jpg"}
 ];
 const TEAM_EXPERTS = [
-  {name:"PhD. Lê Hải Đăng", role:"Archaeology advisor", bio:"Researcher at the Institute of Archaeology, Vietnam Academy of Social Sciences; specialises in prehistoric records and the Hoabinhian culture.", photo:""},
-  {name:"PhD. Nguyễn Hồ Quốc Phương", role:"Robotics advisor", bio:"PhD in Intelligent Robotics; ex co-founder of 1X Technologies; Founder / CEO / CTO of Physical Robotics AS.", photo:""},
-  {name:"Mr. Nguyễn Xuân Thắng", role:"Palaeontology advisor", bio:"Director of the Hanoi Fossil Museum.", photo:""},
-  {name:"Mr. Nguyễn Đỗ Đạt", role:"Heritage advisor", bio:"Specialist at the Hoà Bình Museum, researching historical and scenic sites in the former Hoà Bình province.", photo:""}
+  {name:"PhD. Lê Hải Đăng", role:"Archaeology advisor", bio:"Researcher at the Institute of Archaeology, Vietnam Academy of Social Sciences; specialises in prehistoric records and the Hoabinhian culture.", photo:"tm-exp-dang.jpg"},
+  {name:"PhD. Nguyễn Hồ Quốc Phương", role:"Robotics advisor", bio:"PhD in Intelligent Robotics; ex co-founder of 1X Technologies; Founder / CEO / CTO of Physical Robotics AS.", photo:"tm-exp-phuong.jpg"},
+  {name:"Mr. Nguyễn Xuân Thắng", role:"Palaeontology advisor", bio:"Director of the Hanoi Fossil Museum.", photo:"tm-exp-thang.jpg"},
+  {name:"Mr. Nguyễn Đỗ Đạt", role:"Heritage advisor", bio:"Specialist at the Hoà Bình Museum, researching historical and scenic sites in the former Hoà Bình province.", photo:"tm-exp-dat.jpg"}
 ];
 
 /* ===================== HELPERS ===================== */
@@ -802,8 +838,46 @@ function viewHome(){
     </div>
     <div class="telemetry">
       <div class="track">
-        <span>STATUS <b>NOMINAL</b></span><span>HOABINHIAN · <b>30,000–10,000 BP</b></span><span>SITES INDEXED <b>06</b></span><span>REGION <b>HÒA BÌNH, VN</b></span><span>MODE <b>PRESERVATION-FIRST</b></span><span>GPS <b>PROTECTED</b></span>
-        <span>STATUS <b>NOMINAL</b></span><span>HOABINHIAN · <b>30,000–10,000 BP</b></span><span>SITES INDEXED <b>06</b></span><span>REGION <b>HÒA BÌNH, VN</b></span><span>MODE <b>PRESERVATION-FIRST</b></span><span>GPS <b>PROTECTED</b></span>
+        <span>STATUS <b>NOMINAL</b></span><span>HOABINHIAN · <b>30,000–10,000 BP</b></span><span>SITES INDEXED <b>13</b></span><span>REGION <b>HÒA BÌNH, VN</b></span><span>MODE <b>PRESERVATION-FIRST</b></span><span>GPS <b>PROTECTED</b></span>
+        <span>STATUS <b>NOMINAL</b></span><span>HOABINHIAN · <b>30,000–10,000 BP</b></span><span>SITES INDEXED <b>13</b></span><span>REGION <b>HÒA BÌNH, VN</b></span><span>MODE <b>PRESERVATION-FIRST</b></span><span>GPS <b>PROTECTED</b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION STATS -->
+  <section class="section" style="padding:30px 0 6px">
+    <div class="container">
+      <div class="home-stats reveal">
+        <div class="hstat"><span class="hstat-num"><span data-count="13">0</span></span><span class="hstat-lbl">Caves indexed</span></div>
+        <div class="hstat"><span class="hstat-num"><span data-count="30000" data-format="comma" data-suffix="+">0</span></span><span class="hstat-lbl">Years of history</span></div>
+        <div class="hstat"><span class="hstat-num"><span data-count="3">0</span></span><span class="hstat-lbl">SEAR drones</span></div>
+        <div class="hstat"><span class="hstat-num"><span data-count="7">0</span></span><span class="hstat-lbl">Young explorers</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED CAVES -->
+  <section class="section" style="padding-top:32px;padding-bottom:6px">
+    <div class="container">
+      <div class="home-band-head reveal">
+        <div><p class="eyebrow" style="margin:0">FROM THE DIRECTORY</p><h2 style="margin:.3em 0 0">Featured cave sites</h2></div>
+        <a class="link-more" href="#directory">View all ${CAVES.length} sites →</a>
+      </div>
+      <div class="grid cols-3">
+        ${CAVES.filter(c=>c.rank==='National Special').slice(0,3).map(caveCard).join('')}
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPLORE -->
+  <section class="section" style="padding-top:34px">
+    <div class="container">
+      <p class="eyebrow cyan reveal">EXPLORE THE PROJECT</p>
+      <h2 class="reveal" style="margin:.3em 0 18px">Three ways in</h2>
+      <div class="grid cols-3 home-explore">
+        <a class="card hover reveal" href="#directory"><div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg></div><strong>The Cave Directory</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">Interactive map, site records, stratigraphy and artifacts for all ${CAVES.length} caves.</p></a>
+        <a class="card hover reveal d1" href="#about"><div class="icon-badge cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4z"/><circle cx="12" cy="11" r="2.5"/></svg></div><strong>The SEAR Drones</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">A three-drone system that surveys caves humans can't safely enter.</p></a>
+        <a class="card hover reveal d2" href="#learn"><div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H12v16H5.5A2.5 2.5 0 0 0 3 21.5z"/><path d="M21 5.5A2.5 2.5 0 0 0 18.5 3H12v16h6.5A2.5 2.5 0 0 1 21 21.5z"/></svg></div><strong>Learn the story</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">Who the Hoabinhian people were, in plain language — no academic papers needed.</p></a>
       </div>
     </div>
   </section>
@@ -1262,14 +1336,23 @@ function viewContribute(){
         <div class="note-banner" style="margin-top:24px"><strong>Found something? First rules:</strong> don't dig, don't move it, and don't take it. Note where it is, take a photo from a safe distance, and report it. Leaving a find in place keeps its scientific story intact.</div>
       </div>
       <div class="card reveal d1">
-        <p class="eyebrow cyan">REPORT FORM</p>
-        <form id="findForm" style="margin-top:10px">
-          <div class="form-field"><label>Your name</label><input id="cfName" type="text" placeholder="e.g. Nguyễn An"></div>
-          <div class="form-field"><label>Where did you find it?</label><input id="cfWhere" type="text" required placeholder="Village / commune / district, or a landmark"></div>
-          <div class="form-field"><label>What did you find?</label><select id="cfWhat"><option>A cave or rock shelter</option><option>A stone that might be a tool</option><option>Bones or shells</option><option>Cave wall markings</option><option>Something else</option></select></div>
-          <div class="form-field"><label>Description</label><textarea id="cfDesc" required placeholder="What does it look like? How big? Anything unusual?"></textarea></div>
-          <button class="btn" type="submit">Transmit report <span class="arw">→</span></button>
-          <p class="kicker" style="margin-top:12px">SUBMISSIONS ARE STORED LIVE IN THE QUEUE BELOW (ON THIS DEVICE)</p>
+        <p class="eyebrow cyan">MẪU BÁO CÁO · REPORT FORM</p>
+        <form id="findForm" style="margin-top:10px" enctype="multipart/form-data">
+          <div class="form-field"><label>Tên của bạn <span class="lbl-en">Your name</span></label><input id="cfName" name="name" type="text" placeholder="ví dụ / e.g. Nguyễn An"></div>
+          <div class="form-field"><label>Email hoặc số điện thoại <span class="lbl-en">Email or phone — để chúng tôi liên hệ / so we can follow up</span></label><input id="cfContact" name="contact" type="text" placeholder="không bắt buộc / optional"></div>
+          <div class="form-field"><label>Khu vực / địa danh <span class="lbl-en">Area or landmark</span></label><input id="cfWhere" name="location" type="text" required placeholder="Thôn / xã / huyện, hoặc địa danh gần đó"></div>
+          <div class="form-field"><label>Ghim vị trí trên bản đồ <span class="lbl-en">Pin the location on the map — chạm vào bản đồ để thả ghim / tap the map to drop a pin</span></label>
+            <div id="contribMap" class="contrib-map"></div>
+            <input id="cfMapLink" name="maps_link" type="text" placeholder="Hoặc dán liên kết Google Maps / toạ độ — or paste a Maps link / 20.123, 105.456" style="margin-top:8px">
+            <p class="coord-readout" id="cfCoordOut">Chưa chọn vị trí · No location selected yet</p>
+            <input type="hidden" id="cfLat" name="latitude"><input type="hidden" id="cfLng" name="longitude">
+          </div>
+          <div class="form-field"><label>Bạn tìm thấy gì? <span class="lbl-en">What did you find?</span></label><select id="cfWhat" name="find_type"><option>Hang hoặc mái đá · A cave or rock shelter</option><option>Hòn đá giống công cụ · A stone that might be a tool</option><option>Xương hoặc vỏ ốc · Bones or shells</option><option>Dấu vẽ trên vách hang · Cave wall markings</option><option>Thứ khác · Something else</option></select></div>
+          <div class="form-field"><label>Mô tả <span class="lbl-en">Description</span></label><textarea id="cfDesc" name="description" required placeholder="Trông như thế nào? Kích thước? Điều gì đặc biệt? / What does it look like? How big? Anything unusual?"></textarea></div>
+          <div class="form-field"><label>Ảnh <span class="lbl-en">Photo — không bắt buộc, chụp từ khoảng cách an toàn / optional, from a safe distance</span></label><input id="cfPhoto" name="photo" type="file" accept="image/*"></div>
+          <input type="hidden" name="_subject" value="ArchaeoNova — new heritage find report">
+          <button class="btn" type="submit" id="cfSubmit">Gửi báo cáo · Send report <span class="arw">→</span></button>
+          <p class="kicker" style="margin-top:12px">BÁO CÁO GỬI TỚI TEAM ARCHAEONOVA · VỊ TRÍ ĐƯỢC GIỮ KÍN / LOCATIONS KEPT PRIVATE</p>
         </form>
         <div id="formMsg" style="display:none;margin-top:16px" class="note-banner"></div>
       </div>
@@ -1729,6 +1812,41 @@ function initCaveMap(){
   mapFix(_caveMap, el, ()=>{ try{ _caveMap.setView([lat,lng],12); }catch(e){} });
 }
 
+/* ===================== CONTRIBUTE — LOCATION PICKER ===================== */
+let _contribMap=null,_contribMarker=null;
+function stopContribMap(){ if(_contribMap){ try{_contribMap.remove();}catch(e){} } _contribMap=null; _contribMarker=null; }
+function parseLatLng(str){
+  if(!str)return null; const s=str.trim();
+  let m=s.match(/@(-?\d{1,2}\.\d+),\s*(-?\d{1,3}\.\d+)/);                 // maps URL @lat,lng
+  if(!m)m=s.match(/!3d(-?\d{1,2}\.\d+)!4d(-?\d{1,3}\.\d+)/);              // place URL !3d!4d
+  if(!m)m=s.match(/[?&](?:q|query|ll|destination|center)=(-?\d{1,2}\.\d+),\s*(-?\d{1,3}\.\d+)/); // q=lat,lng
+  if(!m)m=s.match(/^\s*(-?\d{1,2}(?:\.\d+)?)\s*,\s*(-?\d{1,3}(?:\.\d+)?)\s*$/); // plain "lat, lng"
+  if(!m)return null;
+  const lat=parseFloat(m[1]),lng=parseFloat(m[2]);
+  if(isNaN(lat)||isNaN(lng)||Math.abs(lat)>90||Math.abs(lng)>180)return null;
+  return [lat,lng];
+}
+function contribSetCoords(lat,lng,recenter){
+  const la=document.getElementById('cfLat'),ln=document.getElementById('cfLng'),out=document.getElementById('cfCoordOut');
+  if(la)la.value=lat.toFixed(6); if(ln)ln.value=lng.toFixed(6);
+  if(out){ out.textContent='Đã chọn vị trí · Location set: '+lat.toFixed(5)+', '+lng.toFixed(5); out.classList.add('set'); }
+  if(_contribMap){
+    if(_contribMarker)_contribMarker.setLatLng([lat,lng]);
+    else _contribMarker=L.circleMarker([lat,lng],{radius:9,color:'#f0a94e',weight:2,fillColor:'#f0a94e',fillOpacity:.5}).addTo(_contribMap);
+    if(recenter){ try{_contribMap.setView([lat,lng],Math.max(_contribMap.getZoom(),13));}catch(e){} }
+  }
+}
+function initContribMap(){
+  const el=document.getElementById('contribMap'); if(!el)return;
+  if(typeof L==="undefined"){ el.innerHTML='<div style="padding:24px;color:var(--muted);font-family:JetBrains Mono,monospace;font-size:.8rem">⚠ Cần kết nối Internet để tải bản đồ · Map needs an internet connection.</div>'; return; }
+  stopContribMap();
+  _contribMap=L.map('contribMap',{scrollWheelZoom:false,zoomControl:true}).setView([20.62,105.35],9);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:20,detectRetina:true,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'}).addTo(_contribMap);
+  _contribMap.on('click',e=>{ contribSetCoords(e.latlng.lat,e.latlng.lng,false); const f=document.getElementById('cfMapLink'); if(f)f.value=e.latlng.lat.toFixed(6)+', '+e.latlng.lng.toFixed(6); });
+  const link=document.getElementById('cfMapLink');
+  if(link)link.addEventListener('input',()=>{ const p=parseLatLng(link.value); if(p)contribSetCoords(p[0],p[1],true); });
+  mapFix(_contribMap, el, ()=>{ try{_contribMap.setView([20.62,105.35],9);}catch(e){} });
+}
 /* ===================== ATTRIBUTE DATABASE (graphical, site-driven) ===================== */
 function attrSeed(id){let s=0;for(let i=0;i<id.length;i++)s=(s*31+id.charCodeAt(i))>>>0;return ()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296;};}
 function attrParseBP(t){const m=(t||'').replace(/,/g,'').match(/\d{4,6}/g);if(!m)return null;const n=m.map(Number);return {min:Math.min(...n),max:Math.max(...n)};}
@@ -2166,22 +2284,58 @@ function subsAct(id,act){
   s.status= act==='verify'?'verified': act==='reject'?'rejected': act==='dispatch'?'dispatched': act==='surveyed'?'surveyed': s.status;
   subsSave(a); subsRender();
 }
+/* ---------- Contribute form delivery ----------
+   To receive reports by email: create a free form at https://formspree.io,
+   then paste your endpoint below (e.g. 'https://formspree.io/f/abcdwxyz').
+   Until then, the form falls back to opening the visitor's email app
+   addressed to CONTACT_EMAIL. */
+const FORMSPREE_ENDPOINT='https://formspree.io/f/YOUR_FORM_ID';
+const CONTACT_EMAIL='tttthai@gmail.com';
+function contribMailto(d){
+  const coords=(d.lat&&d.lng)?`${d.lat}, ${d.lng} (https://www.google.com/maps?q=${d.lat},${d.lng})`:'(not pinned)';
+  const body=`New heritage find report — ArchaeoNova\n\n`+
+    `Name: ${d.name}\nContact: ${d.contact||'(not given)'}\nArea/landmark: ${d.where}\nMap coordinates: ${coords}\n`+
+    `What: ${d.what}\n\nDescription:\n${d.desc}\n\n(Photo, if any, could not be attached automatically — please attach it to this email.)`;
+  return `mailto:${CONTACT_EMAIL}?subject=`+encodeURIComponent('ArchaeoNova — new heritage find report')+'&body='+encodeURIComponent(body);
+}
 function initContribute(){
   const form=document.getElementById('findForm');
   subsRender();
+  initContribMap();
   const q=document.getElementById('subQueue');
   if(q)q.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return;
     if(b.id==='subClear'){ try{localStorage.removeItem(SUB_KEY);}catch(e){} subsSeed(); subsRender(); return; }
     if(b.dataset.act)subsAct(b.dataset.id,b.dataset.act); });
   if(!form)return;
-  form.addEventListener('submit',e=>{
+  form.addEventListener('submit',async e=>{
     e.preventDefault();
     const v=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
-    const rec={id:Date.now(),name:v('cfName')||'Anonymous',where:v('cfWhere'),what:v('cfWhat'),desc:v('cfDesc'),status:'pending',ts:Date.now()};
-    const a=subsGet()||[]; a.push(rec); subsSave(a);
-    const msg=document.getElementById('formMsg'); msg.style.display='block';
-    msg.innerHTML='<strong>Submission logged ✓</strong> Your report was added to the live queue below as <b>Pending review</b>. Track it through verification and SEAR-X dispatch.';
-    form.reset(); subsRender();
+    const d={name:v('cfName')||'Anonymous',contact:v('cfContact'),where:v('cfWhere'),what:v('cfWhat'),desc:v('cfDesc'),lat:v('cfLat'),lng:v('cfLng')};
+    const msg=document.getElementById('formMsg'); const btn=document.getElementById('cfSubmit');
+    // 1) add to the local pipeline visual
+    const rec={id:Date.now(),name:d.name,where:d.where,what:d.what,desc:d.desc,status:'pending',ts:Date.now()};
+    const a=subsGet()||[]; a.push(rec); subsSave(a); subsRender();
+    // 2) actually deliver the report
+    const configured=FORMSPREE_ENDPOINT && FORMSPREE_ENDPOINT.indexOf('YOUR_FORM_ID')===-1;
+    const showOK=(extra)=>{ msg.style.display='block'; msg.className='note-banner';
+      msg.innerHTML='<strong>Thank you — report sent ✓</strong> '+(extra||'Team ArchaeoNova will review it and, where useful, dispatch a SEAR survey. It also appears in the pipeline below.'); };
+    if(configured){
+      try{
+        if(btn){btn.disabled=true;btn.textContent='Sending…';}
+        const fd=new FormData(form);
+        const res=await fetch(FORMSPREE_ENDPOINT,{method:'POST',body:fd,headers:{'Accept':'application/json'}});
+        if(!res.ok)throw new Error('bad status');
+        showOK(); form.reset();
+      }catch(err){
+        msg.style.display='block'; msg.className='note-banner';
+        msg.innerHTML='<strong>Couldn’t send automatically.</strong> <a href="'+contribMailto(d)+'">Click here to email your report instead →</a>';
+      }finally{ if(btn){btn.disabled=false;btn.innerHTML='Send report <span class="arw">→</span>';} }
+    } else {
+      // no endpoint configured yet → email fallback
+      window.location.href=contribMailto(d);
+      showOK('Your email app should open with the report ready to send. (Tip: add a Formspree endpoint in the code to collect reports automatically.)');
+      form.reset();
+    }
     const sq=document.getElementById('subQueue'); if(sq&&sq.scrollIntoView)sq.scrollIntoView({behavior:'smooth',block:'start'});
   });
 }
@@ -2191,7 +2345,7 @@ function scrollToId(id){ const el=document.getElementById(id); if(el&&el.scrollI
 function setActiveNav(view){ document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===view)); }
 
 function router(){
-  stopStarfield(); stopSearViewer(); stopViewers(); stopCaveMap(); stopDirMap();
+  stopStarfield(); stopSearViewer(); stopViewers(); stopCaveMap(); stopDirMap(); stopContribMap();
   const raw=(location.hash||'#home').replace(/^#/,'');
   const [view,param]=raw.split('/');
   const mount=document.getElementById('view');
