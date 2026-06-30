@@ -737,7 +737,7 @@ img{max-width:100%;height:auto}
       <div>
         <h4>Team</h4>
         <p><a href="#team">Team ArchaeoNova</a></p>
-        <p>Wellspring Bilingual<br>International School, Hanoi</p>
+        <p id="footerSchool">Wellspring Bilingual<br>International School, Hanoi</p>
         <p><a href="#about">About SEAR Drones →</a></p>
       </div>
     </div>
@@ -876,7 +876,7 @@ const TEAM = [
   {name:"Nguyễn Hữu Bách", role:"Brochure Maker & Coder", bio:"Creates the team brochure and helps code the robot.", photo:"tm-huu-bach.jpg"}
 ];
 const TEAM_MENTORS = [
-  {name:"Team Coach", role:"Coach · Wellspring International School", bio:"Guides and mentors Team ArchaeoNova through the season.", photo:"tm-coach.jpg"}
+  {name:"Nguyễn Ngọc Thiên Trinh", role:"Coach · Wellspring International School", bio:"Guides and mentors Team ArchaeoNova through the season.", photo:"tm-coach.jpg"}
 ];
 const TEAM_EXPERTS = [
   {name:"PhD. Lê Hải Đăng", role:"Archaeology advisor", bio:"Researcher at the Institute of Archaeology, Vietnam Academy of Social Sciences; specialises in prehistoric records and the Hoabinhian culture.", photo:"tm-exp-dang.jpg"},
@@ -2493,6 +2493,10 @@ function router(){
   }
   mount.innerHTML=html;
   setActiveNav(nav);
+  const fSchool=document.getElementById('footerSchool');
+  if(fSchool){ fSchool.innerHTML = (nav==='home')
+    ? '<a href="https://wellspring.edu.vn/" target="_blank" rel="noopener" style="color:var(--amber)">Wellspring Bilingual<br>International School, Hanoi</a>'
+    : 'Wellspring Bilingual<br>International School, Hanoi'; }
   window.scrollTo(0,0);
   initReveal(); initCardGlow();
   if(after)after();
