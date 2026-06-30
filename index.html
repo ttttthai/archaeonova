@@ -134,9 +134,9 @@ img{max-width:100%;height:auto}
 .brand .logo{width:38px;height:38px;flex:none;filter:drop-shadow(0 0 10px rgba(240,169,78,.35))}
 .brand small{display:block;font-family:"JetBrains Mono",monospace;font-weight:400;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-top:2px}
 /* nav is always a hamburger dropdown */
-.nav-links{display:none;position:absolute;top:72px;right:24px;flex-direction:column;background:rgba(8,9,11,.97);backdrop-filter:blur(16px) saturate(140%);border:1px solid var(--border);border-radius:12px;padding:10px;gap:2px;min-width:210px;box-shadow:0 18px 44px rgba(0,0,0,.55);z-index:1100}
+.nav-links{display:none;position:absolute;top:72px;right:24px;flex-direction:column;background:rgba(8,9,11,.97);backdrop-filter:blur(16px) saturate(140%);border:1px solid var(--border);border-radius:12px;padding:6px;gap:0;min-width:190px;box-shadow:0 18px 44px rgba(0,0,0,.55);z-index:1100}
 .nav-links.open{display:flex}
-.nav-links a{font-family:"Space Grotesk",sans-serif;color:var(--text-2);font-weight:500;font-size:.95rem;padding:.7em .9em;border-radius:8px;transition:color .15s,background .15s}
+.nav-links a{font-family:"Space Grotesk",sans-serif;color:var(--text-2);font-weight:500;font-size:.82rem;padding:.42em .8em;border-radius:7px;transition:color .15s,background .15s}
 .nav-links a:hover{color:#fff;background:var(--surface)}
 .nav-links a.active{color:var(--amber);background:var(--surface)}
 .nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;background:var(--surface);border:1px solid var(--border-soft);border-radius:10px;font-size:1.2rem;cursor:pointer;color:#fff}
@@ -204,6 +204,50 @@ img{max-width:100%;height:auto}
 .contrib-map .leaflet-container{height:100%;width:100%;background:#0c1014}
 .coord-readout{margin:8px 0 0;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.03em;color:var(--muted)}
 .coord-readout.set{color:var(--cyan)}
+/* Signals / news */
+.news-filter{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 26px}
+.nfilter{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--border-soft);border-radius:20px;background:var(--bg-2);color:var(--muted);cursor:pointer;transition:color .15s,background .15s,border-color .15s}
+.nfilter:hover{color:var(--text);border-color:var(--border)}
+.nfilter.active{background:rgba(240,169,78,.14);border-color:var(--amber);color:var(--amber)}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.ncard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);overflow:hidden;transition:transform .2s,border-color .2s}
+.ncard:hover{transform:translateY(-4px);border-color:var(--border)}
+.ncard-img{height:172px;overflow:hidden;background:var(--bg-2)}
+.ncard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s}
+.ncard:hover .ncard-img img{transform:scale(1.05)}
+.ncard-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ncard-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.ncard h3{margin:0;font-size:1.1rem;line-height:1.28}
+.ncard p{margin:0;font-size:.9rem;flex:1}
+.ncard-link{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.04em;color:var(--cyan);margin-top:2px}
+.ncard-link:hover{text-decoration:underline}
+.ntag{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:5px;background:rgba(58,209,218,.14);color:var(--cyan)}
+.ntag.amber{background:rgba(240,169,78,.15);color:var(--amber)}
+.ncard-feat{grid-column:1/-1;flex-direction:row}
+.ncard-feat .ncard-img{height:auto;width:46%;min-height:300px}
+.ncard-feat .ncard-body{padding:30px 32px;justify-content:center;gap:12px}
+.ncard-feat h3{font-size:1.75rem}
+.ncard-feat p{font-size:1.02rem;flex:none}
+.finds-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.find{border:1px solid var(--border-soft);border-radius:12px;overflow:hidden;background:var(--bg-2);margin:0}
+.find img{width:100%;height:132px;object-fit:cover;display:block}
+.find figcaption{padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.03em;color:var(--muted);line-height:1.45}
+@media(max-width:900px){.news-grid{grid-template-columns:repeat(2,1fr)}.ncard-feat{flex-direction:column}.ncard-feat .ncard-img{width:100%;min-height:210px}.finds-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.news-grid,.finds-grid{grid-template-columns:1fr}}
+/* privacy consent */
+.consent{position:fixed;left:0;right:0;bottom:0;z-index:2000;padding:16px;display:flex;justify-content:center;pointer-events:none}
+.consent[hidden]{display:none}
+.consent-inner{pointer-events:auto;max-width:760px;width:100%;display:flex;gap:20px;align-items:center;background:rgba(12,14,17,.97);backdrop-filter:blur(16px) saturate(140%);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:0 20px 60px rgba(0,0,0,.6);animation:consentUp .4s cubic-bezier(.2,.7,.3,1)}
+@keyframes consentUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.consent-text{flex:1;min-width:0}
+.consent-text strong{display:block;font-size:.96rem;margin-bottom:5px;color:#fff}
+.consent-text p{margin:0;font-size:.82rem;line-height:1.55;color:var(--text-2)}
+.consent-link{color:var(--cyan);font-size:.8rem;margin-left:4px;white-space:nowrap}
+.consent-details{display:flex;flex-direction:column;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border-soft);font-size:.76rem;color:var(--muted);line-height:1.5}
+.consent-details[hidden]{display:none}
+.consent-actions{display:flex;flex-direction:column;gap:9px;flex:none}
+.consent-actions .btn{white-space:nowrap;font-size:.8rem;padding:.7em 1.1em;justify-content:center}
+@media(max-width:700px){.consent-inner{flex-direction:column;align-items:stretch;gap:14px}.consent-actions{flex-direction:row}.consent-actions .btn{flex:1}}
 .icon-badge{color:var(--amber)}
 .icon-badge svg{width:24px;height:24px}
 .card ul{color:var(--text-2);padding-left:1.1em}.card li{margin:.3em 0}
@@ -410,7 +454,10 @@ img{max-width:100%;height:auto}
 .photo-gallery .photo-slot{margin-top:0;min-height:150px}
 /* team page */
 .team-card{text-align:center}
-.tm-photo{position:relative;width:118px;height:118px;margin:0 auto;border-radius:50%;overflow:hidden;border:1px solid var(--border);background:var(--bg-2)}
+.tm-photo{position:relative;width:150px;height:150px;margin:0 auto;border-radius:50%;overflow:hidden;border:1px solid var(--border);background:var(--bg-2)}
+.team-group{margin:40px 0 0}
+.team-group img{width:100%;max-height:520px;object-fit:cover;border-radius:16px;border:1px solid var(--border-soft);display:block}
+.team-group figcaption{font-family:"JetBrains Mono",monospace;font-size:.66rem;color:var(--muted);margin-top:9px;letter-spacing:.03em;text-align:center}
 .tm-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 .tm-ph{position:absolute;inset:0;display:grid;place-items:center;gap:4px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.012) 0 10px,transparent 10px 20px)}
 .team-card .eyebrow{justify-content:center}
@@ -634,9 +681,9 @@ img{max-width:100%;height:auto}
   .footer-grid{grid-template-columns:1.5fr 1fr 1fr;gap:20px;row-gap:18px}
 }
 @media(max-width:640px){
-  .nav-links{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:rgba(8,9,11,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px;gap:2px}
+  .nav-links{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:rgba(8,9,11,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:8px;gap:0}
   .nav-links.open{display:flex}
-  .nav-links a{padding:.9em}
+  .nav-links a{padding:.5em .8em;font-size:.82rem}
   .nav-toggle{display:block}
   .grid.cols-2,.grid.cols-3,.grid.cols-4,.steps{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr;row-gap:16px}
@@ -662,9 +709,11 @@ img{max-width:100%;height:auto}
     <nav class="nav-links" id="navLinks">
       <a href="#home" data-nav="home">Home</a>
       <a href="#directory" data-nav="directory">Cave Directory</a>
-      <a href="#news" data-nav="news">Signals</a>
       <a href="#about" data-nav="about">SEAR Drones</a>
       <a href="#team" data-nav="team">Team</a>
+      <a href="#learn" data-nav="learn">Learn</a>
+      <a href="#news" data-nav="news">Signals</a>
+      <a href="#contribute" data-nav="contribute">Contribute a Find</a>
     </nav>
   </div>
 </header>
@@ -688,16 +737,37 @@ img{max-width:100%;height:auto}
       <div>
         <h4>Team</h4>
         <p><a href="#team">Team ArchaeoNova</a></p>
-        <p><a href="https://wellspring.edu.vn/" target="_blank" rel="noopener">Wellspring Bilingual<br>International School, Hanoi</a></p>
+        <p>Wellspring Bilingual<br>International School, Hanoi</p>
         <p><a href="#about">About SEAR Drones →</a></p>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 TEAM ARCHAEONOVA · BUILT FOR EDUCATION &amp; HERITAGE PRESERVATION</span>
-      <span>PUBLIC ARCHAEOLOGICAL SOURCES · SOME FIELDS ILLUSTRATIVE</span>
+      <span>PUBLIC ARCHAEOLOGICAL SOURCES · SOME FIELDS ILLUSTRATIVE · <a href="#" onclick="openConsent();return false;" style="color:var(--amber)">PRIVACY &amp; COOKIES</a></span>
     </div>
   </div>
 </footer>
+
+<!-- Privacy / cookie consent -->
+<div id="consent" class="consent" role="dialog" aria-modal="false" aria-label="Privacy choices" hidden>
+  <div class="consent-inner">
+    <div class="consent-text">
+      <strong>Quyền riêng tư của bạn · Your privacy</strong>
+      <p>ArchaeoNova chỉ dùng dữ liệu tối thiểu để trang hoạt động. Bạn có thể chọn mức chia sẻ.<br>
+      ArchaeoNova uses only minimal data to run this site. <b>Essential</b> keeps it working (your preferences and consent choice). <b>Accept all</b> also allows optional, anonymous usage analytics to help us improve. We never sell your data.
+      <a href="#" id="consentMore" class="consent-link">Details / Chi tiết</a></p>
+      <div id="consentDetails" class="consent-details" hidden>
+        <span><b>Essential / Thiết yếu:</b> remembers your language, expert-mode and this consent choice. Stored only on your device.</span>
+        <span><b>Analytics (optional):</b> anonymous, aggregated page views to understand what's useful. No personal profiles, no third-party ad tracking.</span>
+        <span>Find reports you submit are sent only to Team ArchaeoNova; pinned locations are kept private.</span>
+      </div>
+    </div>
+    <div class="consent-actions">
+      <button class="btn ghost" type="button" onclick="setConsent('essential')">Chỉ thiết yếu · Essential only</button>
+      <button class="btn" type="button" onclick="setConsent('all')">Đồng ý tất cả · Accept all</button>
+    </div>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous"></script>
 <script>/* fallback CDNs if the primary fails to load Leaflet */
@@ -786,12 +856,12 @@ const CAVES = [
 ];
 
 const NEWS = [
-  {tag:"Heritage",date:"JUL 2024",title:"Two Hòa Bình caves become National Special relics",body:"Hang Xóm Trại and Mái đá Làng Vành were elevated to National Special relic status — Vietnam's highest heritage rank — recognising their outstanding value for understanding the Hoabinhian culture."},
-  {tag:"Geology",date:"BRIEF",title:"How limestone caves form",body:"Over millions of years, slightly acidic rainwater slowly dissolves limestone, carving out the caves and rock shelters that prehistoric people later called home. The same process grows stalactites — a few centimetres every thousand years."},
-  {tag:"Technology",date:"LOG",title:"Why we built a six-legged cave drone",body:"Wheels and tracks get stuck on rubble and slopes. A six-legged 'hexapod' can step over obstacles and keep its sensors steady — perfect for mapping a cave floor without disturbing fragile deposits. Meet SEAR-HEX on our SEAR Drones page."},
-  {tag:"Method",date:"BRIEF",title:"What is a 'digital twin' of a cave?",body:"By combining laser scanning (LiDAR) and overlapping photographs, researchers can build an exact 3D copy of a cave on a computer. They can then study the site again and again — without ever stepping back inside the real, fragile one."},
-  {tag:"Conservation",date:"BRIEF",title:"The hidden cost of looting",body:"When an artifact is taken from its layer, scientists lose the information around it — its age, its neighbours, its story. A looted object becomes just a pretty stone. Digital records and community vigilance are our best defence."},
-  {tag:"History",date:"ARCHIVE",title:"Madeleine Colani and the naming of the Hoabinhian",body:"In the 1920s, French archaeologist Madeleine Colani excavated dozens of caves in Hòa Bình. Her work led to the term 'Hoabinhian' being adopted in 1932 — a name now used by archaeologists across Southeast Asia."}
+  {tag:"Heritage",date:"JUL 2024",img:"c-lang-vanh.jpg",read:"3 min",title:"Two Hòa Bình caves become National Special relics",body:"Hang Xóm Trại and Mái đá Làng Vành were elevated to National Special relic status — Vietnam's highest heritage rank — recognising their outstanding value for understanding the Hoabinhian culture.",link:"#cave/lang-vanh",linkLabel:"Open Mái đá Làng Vành"},
+  {tag:"Geology",date:"BRIEF",img:"c-hang-muoi.jpg",read:"2 min",title:"How limestone caves form",body:"Over millions of years, slightly acidic rainwater slowly dissolves limestone, carving out the caves and rock shelters that prehistoric people later called home. The same process grows stalactites — a few centimetres every thousand years.",link:"#learn",linkLabel:"Learn the science"},
+  {tag:"Technology",date:"LOG",img:"r-hex.jpg",read:"2 min",title:"Why we built a six-legged cave drone",body:"Wheels and tracks get stuck on rubble and slopes. A six-legged 'hexapod' can step over obstacles and keep its sensors steady — perfect for mapping a cave floor without disturbing fragile deposits.",link:"#about",linkLabel:"Meet SEAR-HEX"},
+  {tag:"Method",date:"BRIEF",img:"r-hex-specs.jpg",read:"3 min",title:"What is a 'digital twin' of a cave?",body:"By combining laser scanning (LiDAR) and overlapping photographs, researchers can build an exact 3D copy of a cave on a computer. They can then study the site again and again — without ever stepping back inside the real, fragile one.",link:"#about",linkLabel:"See the SEAR system"},
+  {tag:"Conservation",date:"BRIEF",img:"n-stone-tools.jpg",read:"2 min",title:"The hidden cost of looting",body:"When an artifact is taken from its layer, scientists lose the information around it — its age, its neighbours, its story. A looted object becomes just a pretty stone. Digital records and community vigilance are our best defence.",link:"#contribute",linkLabel:"Report a find safely"},
+  {tag:"History",date:"ARCHIVE",img:"c-dong-thot.jpg",read:"3 min",title:"Madeleine Colani and the naming of the Hoabinhian",body:"In the 1920s, French archaeologist Madeleine Colani excavated dozens of caves in Hòa Bình — including Hang Đồng Thớt. Her work led to the term 'Hoabinhian' being adopted in 1932, a name now used by archaeologists across Southeast Asia.",link:"#cave/dong-thot",linkLabel:"Visit a Colani site"}
 ];
 
 /* TEAM — edit names, roles, bios and photos here. For a photo, set photo to an image
@@ -801,7 +871,7 @@ const TEAM = [
   {name:"Nguyễn Xuân Anh Thái", role:"Robot Design Leader & Coder", bio:"Leads robot design and coding.", photo:"tm-xuan-thai.jpg"},
   {name:"Nguyễn Lê Hoàng Quân", role:"Robot Designer & Idea Prototyper", bio:"Designs the robot and prototypes new mechanisms and ideas.", photo:"tm-hoang-quan.jpg"},
   {name:"Nguyễn Thanh Phong", role:"Robot Designer & Coder", bio:"Designs and programs the competition robot.", photo:"tm-thanh-phong.jpg"},
-  {name:"Trương Anh Đức", role:"Poster Designer & Innovation Project", bio:"Works on the team poster and the Innovation Project.", photo:""},
+  {name:"Trương Anh Đức", role:"Poster Designer & Innovation Project", bio:"Works on the team poster and the Innovation Project.", photo:"tm-anh-duc.jpg"},
   {name:"Phạm Gia Bình", role:"Poster Designer & Innovation Project", bio:"Works on the team poster and the Innovation Project.", photo:"tm-gia-binh.jpg"},
   {name:"Nguyễn Hữu Bách", role:"Brochure Maker & Coder", bio:"Creates the team brochure and helps code the robot.", photo:"tm-huu-bach.jpg"}
 ];
@@ -1093,7 +1163,7 @@ function viewDirectory(){
 function viewCave(id){
   const c = CAVES.find(x=>x.id===id);
   if(!c) return `<section class="section container" style="min-height:60vh"><p class="eyebrow">ERROR 404</p><h1>Cave not found</h1><p>We couldn't find that cave. <a href="#directory">Return to the Directory →</a></p></section>`;
-  const srcHtml = c.sources.map(s=>`<li><a href="${s.url}" target="_blank" rel="noopener">${s.label} ↗</a></li>`).join("");
+  const srcHtml = c.sources.map(s=>`<li>${s.label}</li>`).join("");
   const totalT = (c.strata.reduce((a,s)=>a+s.thickness,0))||1;
   const findsSec = c.finds.length ? `<h3 style="margin-top:34px;font-size:1.4rem">Key finds</h3><ul class="finds-list">${c.finds.map(f=>`<li>${f}</li>`).join("")}</ul>` : "";
   const strataSec = `<h3 style="margin-top:34px;font-size:1.4rem">Stratigraphy — reading the layers</h3><p class="muted" style="font-size:.92rem">A vector section of the deposits${c.strata.length?'':' (representative — this site has a limited public record)'}. Deeper layers are older; boundaries are drawn wavy with composition textures and a depth scale. Depths are illustrative.</p><div class="strat-wrap">${stratSection(c)}</div>`;
@@ -1299,18 +1369,72 @@ function viewLearn(){
   </section>`;
 }
 
+function newsCard(n,feat){
+  const amber=['Heritage','History','Conservation'].includes(n.tag)?' amber':'';
+  const img=n.img?`<div class="ncard-img"><img src="${n.img}" alt="${n.title}" loading="lazy"></div>`:'';
+  const link=n.link?`<a class="ncard-link" href="${n.link}">${n.linkLabel||'Read more'} →</a>`:'';
+  return `<article class="ncard${feat?' ncard-feat':''} reveal" data-tag="${n.tag}">
+    ${img}
+    <div class="ncard-body">
+      <div class="ncard-top"><span class="ntag${amber}">${n.tag}</span><span class="kicker">${n.date}${n.read?' · '+n.read+' read':''}</span></div>
+      <h3>${n.title}</h3>
+      <p class="muted">${n.body}</p>
+      ${link}
+    </div>
+  </article>`;
+}
 function viewNews(){
-  const cards = NEWS.map((n,i)=>`<article class="card hover reveal ${i%2?'d1':''}"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="tag tech">${n.tag}</span><span class="kicker">${n.date}</span></div><h3 style="margin:.6em 0 .3em;font-size:1.25rem">${n.title}</h3><p class="muted">${n.body}</p></article>`).join("");
+  const tags=[...new Set(NEWS.map(n=>n.tag))];
+  const feat=NEWS[0], rest=NEWS.slice(1);
+  const stat=(num,lbl)=>`<div class="hstat"><span class="hstat-num">${num}</span><span class="hstat-lbl">${lbl}</span></div>`;
+  const find=(src,cap)=>`<figure class="find"><img src="${src}" alt="${cap}" loading="lazy"><figcaption>${cap}</figcaption></figure>`;
   return `
   <section class="detail-hero" style="padding:36px 0 24px">
     <div class="container reveal">
       <p class="eyebrow cyan">SIGNALS · SCIENCE FEED</p>
       <h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">From the field &amp; the lab</h1>
-      <p style="max-width:62ch;font-size:1.1rem">Short, friendly updates on Hoabinhian archaeology, heritage protection, and the technology that surveys the caves. This keeps the Directory alive — not just a static archive.</p>
+      <p style="max-width:64ch;font-size:1.1rem">Short, friendly updates on Hoabinhian archaeology, heritage protection, and the technology that surveys the caves — with real photos of the sites and the finds. This keeps the Directory alive, not just a static archive.</p>
     </div>
   </section>
-  <section class="section" style="padding-top:32px"><div class="container grid cols-2">${cards}</div></section>
-  <section class="section center" style="padding-top:0"><div class="container reveal"><div class="note-banner" style="display:inline-block;text-align:left;max-width:640px"><strong>Note for judges &amp; visitors:</strong> these posts are sample content for our prototype. In a live version, news would be written and updated by the team, archaeologists, geologists and robotics experts — keeping research and the public connected.</div></div></section>`;
+  <section class="section" style="padding-top:28px;padding-bottom:0"><div class="container">
+    <div class="home-stats reveal">
+      ${stat(CAVES.length,'Caves indexed')}
+      ${stat('2','Nat’l Special relics')}
+      ${stat('1927','Colani’s first dig')}
+      ${stat('30,000+','Years of record')}
+    </div>
+  </div></section>
+  <section class="section" style="padding-top:34px"><div class="container">
+    <div class="news-filter reveal">
+      <button class="nfilter active" data-tag="all" type="button">All signals</button>
+      ${tags.map(t=>`<button class="nfilter" data-tag="${t}" type="button">${t}</button>`).join('')}
+    </div>
+    <div class="news-grid">
+      ${newsCard(feat,true)}
+      ${rest.map(n=>newsCard(n,false)).join('')}
+    </div>
+  </div></section>
+  <section class="section" style="border-top:1px solid var(--border-soft)"><div class="container">
+    <p class="eyebrow reveal">FROM THE FINDS DRAWER</p>
+    <h2 class="reveal" style="margin:.3em 0 .2em">Real artifacts from Hòa Bình caves</h2>
+    <p class="reveal" style="max-width:74ch">A few of the objects that make these caves extraordinary — stone tools shaped from river cobbles, and animal bones that record what people ate 10,000–20,000 years ago. Each is photographed with a scale bar, exactly as researchers record them.</p>
+    <div class="finds-grid reveal" style="margin-top:22px">
+      ${find('n-stone-tools.jpg','Hoabinhian stone tools — short axes &amp; disc tools')}
+      ${find('n-stone-tool.jpg','A single flaked river-cobble tool')}
+      ${find('n-bone-jaw.jpg','Animal jaw bone with excavation scale')}
+      ${find('n-bone-teeth.jpg','Bone &amp; tooth fragments from a cave floor')}
+      ${find('n-hoabinhian-map.jpg','Hoabinhian range across mainland SE Asia')}
+    </div>
+  </div></section>
+  <section class="section center" style="padding-top:8px"><div class="container reveal"><div class="note-banner" style="display:inline-block;text-align:left;max-width:660px"><strong>Note for judges &amp; visitors:</strong> these posts are sample content for our prototype. In a live version, Signals would be written and updated by the team, archaeologists, geologists and robotics experts — keeping research and the public connected. Artifact photos are of real Hoabinhian material.</div></div></section>`;
+}
+function initNews(){
+  const wrap=document.querySelector('.news-filter'); if(!wrap)return;
+  wrap.addEventListener('click',e=>{ const b=e.target.closest('.nfilter'); if(!b)return;
+    wrap.querySelectorAll('.nfilter').forEach(x=>x.classList.toggle('active',x===b));
+    const t=b.dataset.tag;
+    document.querySelectorAll('.news-grid .ncard').forEach(c=>{ c.style.display=(t==='all'||c.dataset.tag===t)?'':'none'; });
+  });
 }
 
 function viewContribute(){
@@ -1522,13 +1646,17 @@ function viewTeam(){
     <div class="container reveal">
       <p class="eyebrow cyan">THE TEAM</p>
       <h1 style="font-size:clamp(2rem,4.5vw,3.2rem)">Team ArchaeoNova</h1>
-      <p style="max-width:none;font-size:.98rem">A seven-member team (ages 11–14) from <strong><a href="https://wellspring.edu.vn/" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:underline">Wellspring Bilingual International School, Hanoi</a></strong>, competing at the FIRST LEGO League Championship in Sydney — 2026 season theme <strong>UNEARTHED</strong>.</p>
+      <p style="max-width:none;font-size:.98rem">A seven-member team (ages 11–14) from <strong>Wellspring Bilingual International School, Hanoi</strong>, competing at the FIRST LEGO League Championship in Sydney — 2026 season theme <strong>UNEARTHED</strong>.</p>
     </div>
   </section>
   <section class="section" style="padding-top:28px">
     <div class="container">
       <p class="eyebrow reveal">TEAM &amp; COACH</p>
       <div class="grid cols-3 reveal" style="margin-top:16px">${[...TEAM_MENTORS, ...TEAM].map(teamCard).join('')}</div>
+      <figure class="team-group reveal">
+        <img src="tm-group.jpg" alt="Team ArchaeoNova together at the FIRST LEGO League competition table" loading="lazy">
+        <figcaption>Team ArchaeoNova with the UNEARTHED Robot Game table — Wellspring Bilingual International School, Hanoi.</figcaption>
+      </figure>
       <p class="eyebrow reveal" style="margin-top:38px">EXPERT ADVISORS</p>
       <p class="muted reveal" style="font-size:.9rem;max-width:70ch">Specialists in archaeology, robotics, palaeontology and heritage who guided the team from the very beginning — sharing knowledge, refining our ideas, and organising field visits.</p>
       <div class="grid cols-2 reveal" style="margin-top:16px">${TEAM_EXPERTS.map(teamCard).join('')}</div>
@@ -1669,7 +1797,7 @@ function viewAbout(){
     <div class="container reveal">
       <p class="eyebrow" style="justify-content:center">THE TEAM</p>
       <h2>Team ArchaeoNova</h2>
-      <p style="max-width:none;margin:0 auto">A <a href="#team" style="color:var(--cyan);text-decoration:underline">seven-member team</a> (ages 11–14) from <strong><a href="https://wellspring.edu.vn/" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:underline">Wellspring Bilingual International School, Hanoi</a></strong>.</p>
+      <p style="max-width:none;margin:0 auto">A <a href="#team" style="color:var(--cyan);text-decoration:underline">seven-member team</a> (ages 11–14) from <strong>Wellspring Bilingual International School, Hanoi</strong>.</p>
       <p style="max-width:64ch;margin:18px auto 0" class="muted">Our Innovation Project asks a simple question: how can technology help discover and protect fragile heritage <em>without</em> harming it? Our answer is SEAR-X and this Digital Cave Directory — a drone to explore, and a record to remember.</p>
       <div class="hero-cta" style="justify-content:center;margin-top:28px">
         <a class="btn" href="#directory">Open the Directory <span class="arw">→</span></a>
@@ -2357,7 +2485,7 @@ function router(){
     case 'cave': html=viewCave(param); nav='directory'; after=initCaveMap; break;
     case 'compare': html=viewCompare(); after=initCompare; break;
     case 'learn': html=viewLearn(); break;
-    case 'news': html=viewNews(); break;
+    case 'news': html=viewNews(); after=initNews; break;
     case 'contribute': html=viewContribute(); after=initContribute; break;
     case 'about': html=viewAbout(); after=()=>{initStarfield();initSearViewer();}; break;
     case 'team': html=viewTeam(); break;
@@ -2380,7 +2508,23 @@ function onScroll(){
 }
 window.addEventListener('scroll',onScroll,{passive:true});
 window.addEventListener('hashchange',router);
-window.addEventListener('DOMContentLoaded',()=>{router();onScroll();updateExpertUI();});
+/* ===================== PRIVACY CONSENT ===================== */
+const CONSENT_KEY='archaeo_consent';
+function consentGet(){ try{return localStorage.getItem(CONSENT_KEY);}catch(e){return null;} }
+function setConsent(v){
+  try{ localStorage.setItem(CONSENT_KEY,v); localStorage.setItem(CONSENT_KEY+'_at',new Date().toISOString()); }catch(e){}
+  window.__analyticsAllowed=(v==='all');
+  const el=document.getElementById('consent'); if(el)el.hidden=true;
+}
+function openConsent(){ const el=document.getElementById('consent'); if(el){ const d=document.getElementById('consentDetails'); if(d)d.hidden=true; el.hidden=false; } }
+function initConsent(){
+  const choice=consentGet();
+  window.__analyticsAllowed=(choice==='all');
+  if(!choice) openConsent();
+  const more=document.getElementById('consentMore');
+  if(more&&!more.__wired){ more.__wired=true; more.addEventListener('click',e=>{ e.preventDefault(); const d=document.getElementById('consentDetails'); if(d)d.hidden=!d.hidden; }); }
+}
+window.addEventListener('DOMContentLoaded',()=>{router();onScroll();updateExpertUI();initConsent();});
 </script>
 </body>
 </html>
