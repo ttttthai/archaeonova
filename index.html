@@ -2286,8 +2286,8 @@ function initDirMap(){
   if(typeof L==="undefined"){ el.innerHTML='<div style="padding:34px;color:var(--muted);font-family:JetBrains Mono,monospace">⚠ MAP NEEDS AN INTERNET CONNECTION TO LOAD TILES.</div>'; return; }
   stopDirMap();
   _dirMap=L.map('dirMap',{scrollWheelZoom:false,zoomControl:true}).setView([20.62,105.35],9);
-  const dark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'}).addTo(_dirMap);
-  const light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'});
+  const dark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'}).addTo(_dirMap);
+  const light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'});
   const terrain=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'© Esri — Topographic'});
   const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
   L.control.layers({'Dark · clean':dark,'Light · clean':light,'Terrain':terrain,'Satellite':sat},{},{collapsed:false,position:'topright'}).addTo(_dirMap);
@@ -2332,8 +2332,8 @@ function initCaveMap(){
   if(typeof L==="undefined"){ el.innerHTML='<div style="padding:30px;color:var(--muted);font-family:JetBrains Mono,monospace">⚠ MAP NEEDS AN INTERNET CONNECTION TO LOAD TILES.</div>'; return; }
   stopCaveMap();
   _caveMap=L.map('caveMap',{scrollWheelZoom:false,zoomControl:true}).setView([lat,lng],12);
-  const dark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'}).addTo(_caveMap);
-  const light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'});
+  const dark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'}).addTo(_caveMap);
+  const light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'});
   const terrain=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'© Esri — Topographic'});
   const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
   L.control.layers({'Dark · clean':dark,'Light · clean':light,'Terrain':terrain,'Satellite':sat},{},{collapsed:false,position:'topright'}).addTo(_caveMap);
@@ -2373,7 +2373,7 @@ function initContribMap(){
   if(typeof L==="undefined"){ el.innerHTML='<div style="padding:24px;color:var(--muted);font-family:JetBrains Mono,monospace;font-size:.8rem">⚠ Cần kết nối Internet để tải bản đồ · Map needs an internet connection.</div>'; return; }
   stopContribMap();
   _contribMap=L.map('contribMap',{scrollWheelZoom:false,zoomControl:true}).setView([20.62,105.35],9);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'}).addTo(_contribMap);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'}).addTo(_contribMap);
   _contribMap.on('click',e=>{ contribSetCoords(e.latlng.lat,e.latlng.lng,false); const f=document.getElementById('cfMapLink'); if(f)f.value=e.latlng.lat.toFixed(6)+', '+e.latlng.lng.toFixed(6); });
   const link=document.getElementById('cfMapLink');
   if(link)link.addEventListener('input',()=>{ const p=parseLatLng(link.value); if(p)contribSetCoords(p[0],p[1],true); });
