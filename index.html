@@ -950,15 +950,15 @@ const CAVES = [
    sources:[{label:"Báo Hòa Bình — Khám phá di tích hang Đồng Thớt",url:"http://baohoabinh.com.vn/16/167462/Kham-pha-di-tich-hang-Dong-Thot.htm"}],illustrative:false},
   {id:"hang-hiem",photo:"c-hang-hiem.jpg",name:"Hang Hiêm",code:"HB-HH",type:"Newly recorded habitation cave",district:"Lạc Sơn",commune:"Bình Hẻm",rank:"Newly discovered",rankYear:"Under survey",lat:20.55,lng:105.40,orientation:"—",datingText:"Hoabinhian (unconfirmed)",phase:"Hoabinhian",hasBurials:false,hasStoneTools:true,hasFossils:false,hasHearths:false,conservation:"At risk",catalog:true,group:"survey",
    summary:"A high-ceilinged, wide-chambered cave where an assemblage of unifacial cobble tools was recorded — a recent (post-2020) survey discovery.",
-   finds:[],story:"A newer survey discovery with a high ceiling and wide chamber, where an original assemblage of unifacially-flaked cobble tools was recorded. Held in internal survey archives rather than published.",excavations:[],strata:[],
+   finds:[],story:"A newer survey discovery with a high ceiling and wide chamber, where an original assemblage of unifacially-flaked cobble tools was recorded. Held in internal survey archives rather than published.",excavations:[{year:"Post-2020",note:"Recorded as a new survey discovery — unifacial cobble-tool assemblage"},{year:"Ongoing",note:"Under study; findings held in internal survey archives"}],strata:[],
    sources:[{label:"Team ArchaeoNova survey catalogue (project brief)",url:"#directory"}],illustrative:true},
   {id:"lac-luong",photo:"c-lac-luong.jpg",name:"Lạc Lương rock shelters",code:"HB-LL",type:"Valley-edge rock shelters (survey)",district:"Yên Thủy",commune:"Lạc Lương",rank:"Newly discovered",rankYear:"Under survey",lat:20.46,lng:105.60,orientation:"—",datingText:"Hoabinhian (unconfirmed)",phase:"Hoabinhian",hasBurials:false,hasStoneTools:false,hasFossils:false,hasHearths:false,conservation:"—",catalog:true,group:"survey",
    summary:"A system of rock shelters along the valley edge, on the supplementary survey list.",
-   finds:[],story:"A group of valley-edge rock shelters recorded on the supplementary survey list for Yên Thủy district. Not yet publicly documented in detail.",excavations:[],strata:[],
+   finds:[],story:"A group of valley-edge rock shelters recorded on the supplementary survey list for Yên Thủy district. Not yet publicly documented in detail.",excavations:[{year:"Survey",note:"Recorded on the supplementary survey list for Yên Thủy district"},{year:"Pending",note:"Awaiting test excavation to confirm Hoabinhian attribution"}],strata:[],
    sources:[{label:"Team ArchaeoNova survey catalogue (project brief)",url:"#directory"}],illustrative:true},
   {id:"yen-tri",photo:"c-yen-tri.jpg",name:"Hang Chùa (Yên Trị)",code:"HB-YT",type:"Cave complex with Hoabinhian shell-midden",district:"Yên Thủy",commune:"Yên Trị",rank:"National",rankYear:"1994",lat:20.40,lng:105.68,orientation:"—",datingText:"Hoabinhian (traces)",phase:"Hoabinhian",hasBurials:false,hasStoneTools:true,hasFossils:true,hasHearths:false,conservation:"Protected",catalog:true,group:"national",
    summary:"The Hang Chùa (Chùa Hang / Thanh Lam Tự) complex at Á Đồng, Yên Trị — a national historical-cultural site whose caves preserve Hòa Bình Culture shell-midden traces.",
-   finds:["Fossilised food-midden layers of freshwater snail and mussel shell in caves 2 and 3","Hoabinhian stone-tool fragments","A multi-layered 'shell hill' deposit"],story:"Hang Chùa (also Chùa Hang, Thanh Lam Tự) in Á Đồng hamlet, Yên Trị, was ranked a national historical-cultural site in 1994. Within its caves, archaeologists have recorded Hòa Bình Culture traces — fossilised shell-midden layers and stone-tool fragments — though detailed dating and artifact counts have not been published.",excavations:[],strata:[],
+   finds:["Fossilised food-midden layers of freshwater snail and mussel shell in caves 2 and 3","Hoabinhian stone-tool fragments","A multi-layered 'shell hill' deposit"],story:"Hang Chùa (also Chùa Hang, Thanh Lam Tự) in Á Đồng hamlet, Yên Trị, was ranked a national historical-cultural site in 1994. Within its caves, archaeologists have recorded Hòa Bình Culture traces — fossilised shell-midden layers and stone-tool fragments — though detailed dating and artifact counts have not been published.",excavations:[{year:"20th c.",note:"Hòa Bình Culture shell-midden traces recorded in the cave complex"},{year:"1994",note:"Ranked a national historical-cultural site"}],strata:[],
    sources:[{label:"Vietnamese Wikipedia — Hang Chùa (Yên Thủy)",url:"https://vi.wikipedia.org/wiki/Hang_Ch%C3%B9a_(Y%C3%AAn_Th%E1%BB%A7y)"},{label:"Báo Hòa Bình — Chùa Hang - hang Chùa",url:"https://www.baohoabinh.com.vn/16/127252/"}],illustrative:false}
 ];
 
@@ -1676,6 +1676,25 @@ function _norm(s){return _stripV(s).replace(/[()]/g,' ').replace(/\s+/g,' ').tri
    so each site appears once (detailed version wins). */
 const _detailNorm=CAVES.map(c=>_norm(c.name));
 function _isDetailed(name){const n=_norm(name);return _detailNorm.some(d=>n.indexOf(d)>=0);}
+/* Turn a recorded site's terse date string into a clean, fully-displayed excavation/
+   research history (year in bold + descriptive note), one entry per event. */
+function psiteHistory(date){
+  if(!date) return [{year:'·', note:'Documented in Vietnam’s prehistoric-site registers'}];
+  return date.split(/;\s*/).map(part=>{
+    part=part.trim();
+    const m=part.match(/\d{4}s?(?:[–-]\d{2,4}s?)?|1920s|20th c\.?|modern/i);
+    const year=m?m[0].replace(/\bc\b/,'c.').replace(/\.\./,'.'):'·';
+    let note=(m?part.replace(m[0],''):part).replace(/[()]/g,'').replace(/\s{2,}/g,' ').replace(/\bonward\b/i,'onwards').replace(/^[\s,–—-]+|[\s,–—-]+$/g,'').trim();
+    if(/colani/i.test(part)) note='Excavated by Madeleine Colani';
+    else if(/redat/i.test(part)) note='Re-dated with new radiocarbon results';
+    else if(/museum/i.test(part)) note='On-site cave museum opened';
+    else if(/monument|relic|recognis/i.test(part)) note='Recognised as a protected heritage site';
+    else if(/c-?14|\bbp\b/i.test(part)) note='Radiocarbon-dated ('+part.replace(/.*?(c-?14|~)/i,'$1').trim()+')';
+    else if(!note){ if(/excavat/i.test(part))note='Excavated'; else if(/discover/i.test(part))note='Discovered'; else if(/record|survey/i.test(part))note='Recorded in field surveys'; else note=part; }
+    note=note.charAt(0).toUpperCase()+note.slice(1);
+    return {year, note};
+  });
+}
 const SYNTH=[];
 PSITES.forEach((s,i)=>{
   if(_isDetailed(s.n))return;
@@ -1688,7 +1707,7 @@ PSITES.forEach((s,i)=>{
     rank:'Recorded site', rankYear:s.date||'', lat:+(ctr[0]+jy).toFixed(4), lng:+(ctr[1]+jx).toFixed(4),
     orientation:'—', datingText:s.cult||'Prehistoric', phase:s.cult||'Prehistoric',
     hasBurials:false, hasStoneTools:true, hasFossils:false, hasHearths:false, conservation:'—',
-    summary:s.sum, finds:[], story:s.sum, excavations:(s.date?[{year:'',note:s.date}]:[]), strata:[], sources:[],
+    summary:s.sum, finds:[], story:s.sum, excavations:psiteHistory(s.date), strata:[], sources:[],
     catalog:true, basic:true, prov:s.prov, cult:s.cult, approxLoc:true
   });
 });
@@ -1728,15 +1747,15 @@ function gotoSite(id){
   selectSite(id);
   const sec=document.querySelector('.dir-map-wrap'); if(sec&&sec.scrollIntoView)try{sec.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}
 }
-function selectSite(id){
+function selectSite(id,zoom){
   const s=findSite(id); if(!s)return;
   document.querySelectorAll('.dsel-site').forEach(b=>b.classList.toggle('active',b.dataset.id===id));
   const lbl=document.getElementById('dirNowLabel');
   if(lbl)lbl.innerHTML=`${s.name} · ${s.prov}${s.basic?' <span class="muted" style="font-weight:400;font-size:.85em">— recorded site, representative data</span>':''}`;
   try{ attrRender(id); }catch(e){}     // drives GIS (02), stratigraphy & 3D (03), attribute database (04)
-  dirMapFocus(s);                        // drives the map (01)
+  dirMapFocus(s,zoom);                   // drives the map (01)
 }
-function dirMapFocus(s){
+function dirMapFocus(s,zoom){
   if(!_dirMap||typeof L==='undefined')return;
   _dirUserView=true;
   try{
@@ -1744,7 +1763,8 @@ function dirMapFocus(s){
     const color=s.basic?'#b08ce0':(s.rank==='National Special'?'#f0a94e':s.rank==='National'?'#3ad1da':'#b08ce0');
     _selMarker=L.circleMarker([s.lat,s.lng],{radius:12,color:color,weight:3,fillColor:color,fillOpacity:.28,className:'dsel-pulse'}).addTo(_dirMap)
       .bindPopup(`<div class="cave-popup"><b>${s.name}</b><br><span style="font-size:.78rem;color:#9aa">${s.basic?'Approximate — province-level location':(s.commune+', '+s.district)}</span></div>`);
-    _dirMap.setView([s.lat,s.lng], s.basic?10:12, {animate:true});
+    const z=(zoom!=null)?zoom:(s.basic?10:12);
+    _dirMap.setView([s.lat,s.lng], z, {animate:true});
     _selMarker.openPopup();
   }catch(e){}
 }
@@ -1763,7 +1783,9 @@ function initDirSelector(){
     const first=sitesInProv(_curProv)[0]; if(first)selectSite(first.id);
   });
   renderProvSites(_curProv);
-  const first=sitesInProv(_curProv)[0]; if(first)selectSite(first.id);
+  // default view on a fresh visit: open on Mái đá Làng Vành, zoomed out 2 levels (12 → 10)
+  const def=findSite('lang-vanh')||sitesInProv(_curProv)[0];
+  if(def)selectSite(def.id, def.basic?8:10);
 }
 
 function viewNews(){
@@ -2286,14 +2308,15 @@ function initDirMap(){
   if(typeof L==="undefined"){ el.innerHTML='<div style="padding:34px;color:var(--muted);font-family:JetBrains Mono,monospace">⚠ MAP NEEDS AN INTERNET CONNECTION TO LOAD TILES.</div>'; return; }
   stopDirMap();
   _dirMap=L.map('dirMap',{scrollWheelZoom:false,zoomControl:true}).setView([20.62,105.35],9);
-  const dark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'}).addTo(_dirMap);
-  const light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'});
+  const dark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'});
+  const light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{maxZoom:20,subdomains:'abcd',attribution:'© OpenStreetMap · © CARTO'}).addTo(_dirMap);
   const terrain=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'© Esri — Topographic'});
   const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
   L.control.layers({'Dark · clean':dark,'Light · clean':light,'Terrain':terrain,'Satellite':sat},{},{collapsed:false,position:'topright'}).addTo(_dirMap);
   // match the map backdrop to the active base layer so no hairline seam shows between tiles
   const lightBg=name=>/Light|Terrain/.test(name||'')?'#f4f4f2':'#11151b';
   _dirMap.on('baselayerchange',e=>{ el.style.background=lightBg(e.name); });
+  el.style.background='#f4f4f2';   // default base layer is Light · clean
   const colorOf=c=>c.rank==="National Special"?"#f0a94e":c.rank==="National"?"#3ad1da":"#b08ce0";
   const grp=L.featureGroup();
   const sites=(typeof ALLSITES!=='undefined')?ALLSITES:CAVES;
