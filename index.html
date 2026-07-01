@@ -784,6 +784,11 @@ img{max-width:100%;height:auto}
 .fs-tip{position:absolute;left:0;bottom:calc(100% + 10px);z-index:1300;display:none;width:max-content;max-width:320px;background:#0c0f13;border:1px solid var(--border);border-radius:10px;padding:12px 14px;box-shadow:0 18px 44px rgba(0,0,0,.6);font-family:Inter,sans-serif;font-size:.72rem;line-height:1.7;color:var(--text-2);text-transform:none;letter-spacing:0;white-space:normal}
 .fs-tip b{display:block;color:var(--amber);margin-bottom:6px;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase}
 .fs-hover:hover .fs-tip{display:block}
+.hb-fact .fs-link{display:block}
+.hb-fact .fs-tip{top:calc(100% + 10px);bottom:auto;left:50%;right:auto;transform:translateX(-50%);text-align:left}
+.hstat.fs-hover{overflow:visible}
+.hstat .fs-link{text-decoration:none}
+.hstat .fs-tip{top:calc(100% + 12px);bottom:auto;left:50%;right:auto;transform:translateX(-50%);text-align:left}
 @media(max-width:560px){.fs-tip{max-width:260px}}
 /* About the Hoabinhian (home education section) */
 .hb-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -855,7 +860,7 @@ img{max-width:100%;height:auto}
     <nav class="nav-links" id="navLinks">
       <a href="#home" data-nav="home">Home</a>
       <a href="#hoabinhian" data-nav="hoabinhian">The Hoabinhian</a>
-      <a href="#directory" data-nav="directory">Cave Sites Directory</a>
+      <a href="#directory" data-nav="directory">Hoabinhian Cave Sites Directory</a>
       <a href="#about" data-nav="about">SEAR Drones</a>
       <a href="#team" data-nav="team">Team</a>
       <a href="#learn" data-nav="learn">Learn</a>
@@ -876,7 +881,7 @@ img{max-width:100%;height:auto}
       </div>
       <div>
         <h4>Navigate</h4>
-        <p><a href="#directory">Cave Sites Directory</a></p>
+        <p><a href="#directory">Hoabinhian Cave Sites Directory</a></p>
         <p><a href="#compare">Compare Caves</a></p>
         <p><a href="#learn">Learn</a></p>
         <p><a href="#contribute">Contribute a Find</a></p>
@@ -887,11 +892,6 @@ img{max-width:100%;height:auto}
         <p id="footerSchool">Wellspring Bilingual<br>International School, Hanoi</p>
         <p><a href="#about">About SEAR Drones →</a></p>
       </div>
-    </div>
-    <div class="footer-stats">
-      <span><b id="footStatCaves">126</b> Recorded Hoabinhian prehistoric sites</span>
-      <span class="fs-hover"><a class="fs-link" href="https://whc.unesco.org/en/statesparties/vn" target="_blank" rel="noopener"><b>9</b> UNESCO World Heritage Sites</a><span class="fs-tip"><b>Vietnam’s 9 World Heritage Sites</b>1. Complex of Huế Monuments<br>2. Hạ Long Bay – Cát Bà Archipelago<br>3. Hội An Ancient Town<br>4. Mỹ Sơn Sanctuary<br>5. Phong Nha–Kẻ Bàng National Park<br>6. Imperial Citadel of Thăng Long (Hà Nội)<br>7. Citadel of the Hồ Dynasty<br>8. Tràng An Landscape Complex<br>9. Yên Tử–Vĩnh Nghiêm–Côn Sơn, Kiếp Bạc</span></span>
-      <span class="fs-hover"><a class="fs-link" href="https://ich.unesco.org/en/state/viet-nam-VN" target="_blank" rel="noopener"><b>17</b> Intangible heritage elements</a><span class="fs-tip"><b>Vietnam’s 17 UNESCO intangible elements</b>1. Nhã nhạc – Huế Royal Court Music<br>2. Space of Gong Culture (Central Highlands)<br>3. Quan họ Bắc Ninh folk songs<br>4. Ca trù singing<br>5. Gióng Festival of Phù Đổng & Sóc temples<br>6. Xoan singing of Phú Thọ<br>7. Worship of the Hùng Kings<br>8. Đờn ca tài tử music<br>9. Ví & Giặm folk songs of Nghệ Tĩnh<br>10. Tugging rituals and games<br>11. Mother-Goddess worship (Đạo Mẫu)<br>12. Art of Bài Chòi<br>13. Then practice of Tày–Nùng–Thái<br>14. Xòe dance of the Thái<br>15. Pottery-making of the Chăm<br>16. Festival of Lady of the Realm (Bà Chúa Xứ)<br>17. Đông Hồ folk painting</span></span>
     </div>
     <div class="footer-bottom">
       <span>© 2026 TEAM ARCHAEONOVA · BUILT FOR EDUCATION &amp; HERITAGE PRESERVATION</span>
@@ -1085,7 +1085,7 @@ function viewHome(){
       <p class="eyebrow cyan reveal">EXPLORE THE PROJECT</p>
       <h2 class="reveal" style="margin:.3em 0 18px">Three ways in</h2>
       <div class="grid cols-3 home-explore">
-        <a class="card hover reveal" href="#directory"><div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg></div><strong>The Cave Directory</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">Interactive map, site records, stratigraphy and artifacts for all ${CAVES.length} caves.</p></a>
+        <a class="card hover reveal" href="#directory"><div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg></div><strong>The Hoabinhian Cave Sites Directory</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">Interactive map, site records, stratigraphy and artifacts for all ${CAVES.length} caves.</p></a>
         <a class="card hover reveal d1" href="#about"><div class="icon-badge cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4z"/><circle cx="12" cy="11" r="2.5"/></svg></div><strong>The SEAR Drones</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">A three-drone system that surveys caves humans can't safely enter.</p></a>
         <a class="card hover reveal d2" href="#learn"><div class="icon-badge orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H12v16H5.5A2.5 2.5 0 0 0 3 21.5z"/><path d="M21 5.5A2.5 2.5 0 0 0 18.5 3H12v16h6.5A2.5 2.5 0 0 1 21 21.5z"/></svg></div><strong>Learn the story</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">Who the Hoabinhian people were, in plain language — no academic papers needed.</p></a>
       </div>
@@ -1212,7 +1212,7 @@ function viewDirectory(){
   return `
   <section class="detail-hero">
     <div class="container reveal">
-      <h1 class="title-grad" style="font-size:clamp(2.4rem,5.5vw,4rem);margin-top:12px">The Cave Directory</h1>
+      <h1 class="title-grad" style="font-size:clamp(2.4rem,5.5vw,4rem);margin-top:12px">The Hoabinhian Cave Sites Directory</h1>
       <p style="max-width:none;font-size:1rem">A spatial research platform and public record for the Hoabinhian (Hòa Bình culture) cave &amp; rock-shelter sites of Vietnam — combining an interactive map, a structured site &amp; artifact database, stratigraphy, and protected expert data.</p>
     </div>
   </section>
@@ -1436,6 +1436,9 @@ function viewHoabinhian(){
         <div class="hb-fact"><span class="hb-num">1926</span><span class="hb-lbl">Discovered by M. Colani</span></div>
         <div class="hb-fact"><span class="hb-num">150+</span><span class="hb-lbl">Sites across Vietnam</span><span class="hb-sub">(${PSITES.length} listed in this <a href="#directory" class="hb-dir">directory</a>)</span></div>
         <div class="hb-fact"><span class="hb-num">80+</span><span class="hb-lbl">In Hòa Bình province alone</span><span class="hb-sub">(${PSITES.filter(x=>x.prov==='Hòa Bình').length} listed in this <a href="#directory" class="hb-dir">directory</a>)</span></div>
+        <div class="hb-fact"><span class="hb-num">${PSITES.length}</span><span class="hb-lbl">Recorded Hoabinhian prehistoric sites</span></div>
+        <div class="hb-fact fs-hover"><span class="hb-num">9</span><a class="hb-lbl fs-link" href="https://whc.unesco.org/en/statesparties/vn" target="_blank" rel="noopener">UNESCO World Heritage Sites</a><span class="fs-tip"><b>Vietnam’s 9 World Heritage Sites</b>1. Complex of Huế Monuments<br>2. Hạ Long Bay – Cát Bà Archipelago<br>3. Hội An Ancient Town<br>4. Mỹ Sơn Sanctuary<br>5. Phong Nha–Kẻ Bàng National Park<br>6. Imperial Citadel of Thăng Long (Hà Nội)<br>7. Citadel of the Hồ Dynasty<br>8. Tràng An Landscape Complex<br>9. Yên Tử–Vĩnh Nghiêm–Côn Sơn, Kiếp Bạc</span></div>
+        <div class="hb-fact fs-hover"><span class="hb-num">17</span><a class="hb-lbl fs-link" href="https://ich.unesco.org/en/state/viet-nam-VN" target="_blank" rel="noopener">Intangible heritage elements</a><span class="fs-tip"><b>Vietnam’s 17 UNESCO intangible elements</b>1. Nhã nhạc – Huế Royal Court Music<br>2. Space of Gong Culture (Central Highlands)<br>3. Quan họ Bắc Ninh folk songs<br>4. Ca trù singing<br>5. Gióng Festival of Phù Đổng & Sóc temples<br>6. Xoan singing of Phú Thọ<br>7. Worship of the Hùng Kings<br>8. Đờn ca tài tử music<br>9. Ví & Giặm folk songs of Nghệ Tĩnh<br>10. Tugging rituals and games<br>11. Mother-Goddess worship (Đạo Mẫu)<br>12. Art of Bài Chòi<br>13. Then practice of Tày–Nùng–Thái<br>14. Xòe dance of the Thái<br>15. Pottery-making of the Chăm<br>16. Festival of Lady of the Realm (Bà Chúa Xứ)<br>17. Đông Hồ folk painting</span></div>
       </div>
     </div>
   </section>
@@ -1708,6 +1711,7 @@ const WHSITES = [
   {n:"Tràng An Landscape Complex", t:"Mixed", y:"2014"},
   {n:"Yên Tử–Vĩnh Nghiêm–Côn Sơn, Kiếp Bạc", t:"Cultural", y:"2025"},
 ];
+const ICH17=["Nhã nhạc – Huế Royal Court Music","Space of Gong Culture (Central Highlands)","Quan họ Bắc Ninh folk songs","Ca trù singing","Gióng Festival of Phù Đổng & Sóc temples","Xoan singing of Phú Thọ","Worship of the Hùng Kings","Đờn ca tài tử music","Ví & Giặm folk songs of Nghệ Tĩnh","Tugging rituals and games","Mother-Goddess worship (Đạo Mẫu)","Art of Bài Chòi","Then practice of Tày–Nùng–Thái","Xòe dance of the Thái","Pottery-making of the Chăm","Festival of Lady of the Realm (Bà Chúa Xứ)","Đông Hồ folk painting"];
 /* inline category iconography (self-contained SVG, matches the site's graphic style) */
 const SVGO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">';
 const HUBICO={
@@ -1931,6 +1935,7 @@ function initDirSelector(){
 function viewNews(){
   const tags=[...new Set(NEWSHUB.map(n=>n.tag))];
   const stat=(num,lbl,ico)=>`<div class="hstat"><span class="stat-ico">${ico||''}</span><span class="hstat-num">${num}</span><span class="hstat-lbl">${lbl}</span></div>`;
+  const statL=(num,lbl,ico,href,tt,arr)=>`<div class="hstat fs-hover"><span class="stat-ico">${ico||''}</span><span class="hstat-num">${num}</span><a class="hstat-lbl fs-link" href="${href}" target="_blank" rel="noopener">${lbl}</a><span class="fs-tip"><b>${tt}</b>${arr.map((n,i)=>`${i+1}. ${n}`).join('<br>')}</span></div>`;
   const find=(src,cap)=>`<figure class="find"><img src="${src}" alt="${cap}" loading="lazy"><figcaption>${cap}</figcaption></figure>`;
   return `
   <section class="detail-hero" style="padding:36px 0 24px">
@@ -1940,14 +1945,6 @@ function viewNews(){
       <p style="max-width:70ch;font-size:1.1rem">A curated hub of news and research on Vietnam’s archaeology, historical heritage and culture — starting with the prehistoric caves at the heart of our project and broadening across the country. Every story links to its original source.</p>
     </div>
   </section>
-  <section class="section" style="padding-top:28px;padding-bottom:0"><div class="container">
-    <div class="home-stats reveal">
-      ${stat(PSITES.length,'Recorded Hoabinhian prehistoric sites',STAT_ICO.caves)}
-      ${stat('9','UNESCO World Heritage Sites',STAT_ICO.heritage)}
-      ${stat('17','Intangible heritage elements',STAT_ICO.culture)}
-      ${stat('30,000+','Years of history',STAT_ICO.years)}
-    </div>
-  </div></section>
   <section class="section" style="padding-top:34px"><div class="container">
     <p class="muted reveal" style="margin:0 0 14px;font-size:.94rem">Browse by topic below, or open any story at its original source. The featured item leads; new picks are added regularly.</p>
     <div class="news-filter reveal">
@@ -2267,7 +2264,7 @@ function viewAbout(){
 
   <section class="section">
     <div class="container">
-      <div class="reveal" style="max-width:none"><p class="eyebrow">OPERATIONS · DATA FLOW</p><h2>From sky to cave to record</h2><p>One survey mission, four linked stages. Each subsystem hands its data to the next — turning an unexplored, unsafe cave into a permanent digital record published to the Cave Directory.</p></div>
+      <div class="reveal" style="max-width:none"><p class="eyebrow">OPERATIONS · DATA FLOW</p><h2>From sky to cave to record</h2><p>One survey mission, four linked stages. Each subsystem hands its data to the next — turning an unexplored, unsafe cave into a permanent digital record published to the Hoabinhian Cave Sites Directory.</p></div>
       <div class="flow" style="margin-top:30px">
         <div class="flow-stage amber reveal">
           <div class="flow-top"><span class="flow-sub">SEAR-AIR</span><span class="flow-num">01</span></div>
@@ -2298,7 +2295,7 @@ function viewAbout(){
           <div class="icon-badge sx cyan">${SX_ICN.cube}</div>
           <strong>Digital record</strong>
           <p>Point clouds and photographs fuse into a survey-grade 3D model and stratigraphy — published here for anyone to study, without disturbing the cave.</p>
-          <div class="flow-out"><span>OUTPUT →</span>3D twin in the Cave Directory</div>
+          <div class="flow-out"><span>OUTPUT →</span>3D twin in the Hoabinhian Cave Sites Directory</div>
         </div>
       </div>
     </div>
@@ -2329,7 +2326,7 @@ function viewAbout(){
     <div class="container reveal">
       <p class="eyebrow">PROJECT ROADMAP</p>
       <h2>What this prototype shows — and what comes next</h2>
-      <p style="max-width:none">For the FLL Championship we built a focused, working prototype of the Cave Directory. The full vision is a larger, multi-year platform. Here's our honest map of where we are and where we're heading.</p>
+      <p style="max-width:none">For the FLL Championship we built a focused, working prototype of the Hoabinhian Cave Sites Directory. The full vision is a larger, multi-year platform. Here's our honest map of where we are and where we're heading.</p>
       <div class="grid cols-2" style="margin-top:24px;gap:40px;align-items:start">
         <div>
           <p class="eyebrow cyan">BUILT &amp; LIVE IN THIS PROTOTYPE</p>
