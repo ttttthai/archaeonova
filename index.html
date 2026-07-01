@@ -149,6 +149,8 @@ img{max-width:100%;height:auto}
 .hero .container{position:relative;z-index:2;width:100%}
 .hero h1{max-width:34ch;font-size:clamp(1.9rem,4vw,3.2rem);line-height:1.07}
 .hero h1 .hl{background:linear-gradient(120deg,var(--amber),var(--amber-2) 60%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+/* same gradient wordmark effect applied to every page's hero title */
+.title-grad{background:linear-gradient(120deg,var(--amber),var(--amber-2) 60%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.06em}
 .hero .lead{font-size:clamp(.82rem,1.05vw,.92rem);max-width:80ch;line-height:1.6;color:var(--text-2);margin-top:1.1em}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
 .hero-stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:54px}
@@ -1167,7 +1169,7 @@ function viewDirectory(){
   return `
   <section class="detail-hero">
     <div class="container reveal">
-      <h1 style="font-size:clamp(2.4rem,5.5vw,4rem);margin-top:12px">The Cave Directory</h1>
+      <h1 class="title-grad" style="font-size:clamp(2.4rem,5.5vw,4rem);margin-top:12px">The Cave Directory</h1>
       <p style="max-width:none;font-size:1rem">A spatial research platform and public record for the prehistoric caves in Northern Vietnam's Stone-Age cave culture — combining an interactive map, a structured site &amp; artifact database, stratigraphy, and protected expert data.</p>
     </div>
   </section>
@@ -1283,7 +1285,7 @@ function viewCave(id){
         ${c.catalog?'<span class="tag illustrative">limited record</span>':c.illustrative?'<span class="tag illustrative">some data illustrative</span>':''}
         <span class="tag tech">${c.phase}</span>
       </div>
-      <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">${c.name}</h1>
+      <h1 class="title-grad" style="font-size:clamp(2.2rem,5vw,3.6rem)">${c.name}</h1>
       <p style="max-width:62ch;font-size:1.1rem">${c.summary}</p>
       ${c.photo?`<figure class="cave-photo reveal d1"><img src="${c.photo}" alt="${c.name}" loading="lazy"><figcaption>${c.name} · ${c.commune}, ${c.district} — site photograph</figcaption></figure>`:''}
     </div>
@@ -1339,7 +1341,7 @@ function viewCompare(){
   <section class="detail-hero" style="padding:54px 0 36px">
     <div class="container reveal">
       <p class="eyebrow cyan">RESEARCH TOOL</p>
-      <h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Compare caves side by side</h1>
+      <h1 class="title-grad" style="font-size:clamp(2.2rem,5vw,3.4rem)">Compare caves side by side</h1>
       <p style="max-width:62ch;font-size:1.1rem">Pick two or three caves to line up their dating, finds and features — the kind of comparison archaeologists use to spot patterns across sites.</p>
     </div>
   </section>
@@ -1378,7 +1380,7 @@ function viewLearn(){
   <section class="detail-hero" style="padding:36px 0 24px">
     <div class="container reveal">
       <p class="eyebrow cyan">COMMUNITY EDUCATION</p>
-      <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">Learn about prehistoric Hòa Bình</h1>
+      <h1 class="title-grad" style="font-size:clamp(2.2rem,5vw,3.6rem)">Learn about prehistoric Hòa Bình</h1>
       <p style="max-width:none;font-size:1rem">No academic papers needed. Here's the story of the people who lived in these caves 30,000 years ago — and how we can help protect what they left behind.</p>
     </div>
   </section>
@@ -1796,7 +1798,7 @@ function viewNews(){
   <section class="detail-hero" style="padding:36px 0 24px">
     <div class="container reveal">
       <p class="eyebrow cyan">NEWS HUB · ARCHAEOLOGY &amp; HERITAGE</p>
-      <h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Vietnam heritage newsroom</h1>
+      <h1 class="title-grad" style="font-size:clamp(2.2rem,5vw,3.4rem)">Vietnam heritage newsroom</h1>
       <p style="max-width:70ch;font-size:1.1rem">A curated hub of news and research on Vietnam’s archaeology, historical heritage and culture — starting with the prehistoric caves at the heart of our project and broadening across the country. Every story links to its original source.</p>
     </div>
   </section>
@@ -1859,7 +1861,7 @@ function viewContribute(){
   <section class="detail-hero" style="padding:36px 0 24px">
     <div class="container reveal">
       <p class="eyebrow cyan">CITIZEN SCIENCE</p>
-      <h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Contribute a find</h1>
+      <h1 class="title-grad" style="font-size:clamp(2.2rem,5vw,3.4rem)">Contribute a find</h1>
       <p style="max-width:none;font-size:1rem">Spotted a cave, a strange stone, or a possible artifact? Local people are often the first to discover heritage. Tell us what you found — and let the experts (and SEAR-X) take it from there.</p>
     </div>
   </section>
@@ -2062,7 +2064,7 @@ function viewTeam(){
   <section class="detail-hero" style="padding:32px 0 22px">
     <div class="container reveal">
       <p class="eyebrow cyan">THE TEAM</p>
-      <h1 style="font-size:clamp(2rem,4.5vw,3.2rem)">Team ArchaeoNova</h1>
+      <h1 class="title-grad" style="font-size:clamp(2rem,4.5vw,3.2rem)">Team ArchaeoNova</h1>
       <p style="max-width:none;font-size:.98rem">A seven-member team (ages 11–14) from <strong>Wellspring Bilingual International School, Hanoi</strong>, competing at the FIRST LEGO League Championship in Sydney — 2026 season theme <strong>UNEARTHED</strong>.</p>
     </div>
   </section>
@@ -2087,7 +2089,7 @@ function viewAbout(){
     <div class="veil"></div>
     <div class="container reveal">
       <p class="eyebrow cyan">FIELD ROBOTICS · HERITAGE PRESERVATION</p>
-      <h1 style="font-size:clamp(2.6rem,8vw,5rem);letter-spacing:-.03em">SEAR Drones</h1>
+      <h1 class="title-grad" style="font-size:clamp(2.6rem,8vw,5rem);letter-spacing:-.03em">SEAR Drones</h1>
       <p class="lead">Survey, Exploration &amp; Archaeological Reconnaissance System — an integrated three-drone platform that surveys, maps and digitally preserves prehistoric caves humans can't safely enter, <strong>before</strong> a single trowel touches the ground.</p>
     </div>
   </section>
