@@ -860,7 +860,7 @@ img{max-width:100%;height:auto}
     <nav class="nav-links" id="navLinks">
       <a href="#home" data-nav="home">Home</a>
       <a href="#hoabinhian" data-nav="hoabinhian">The Hoabinhian</a>
-      <a href="#directory" data-nav="directory">Hoabinhian Cave Sites Directory</a>
+      <a href="#directory" data-nav="directory">Cave Sites Directory</a>
       <a href="#about" data-nav="about">SEAR Drones</a>
       <a href="#team" data-nav="team">Team</a>
       <a href="#learn" data-nav="learn">Learn</a>
@@ -1051,7 +1051,7 @@ function viewHome(){
     <div class="container">
       <p class="eyebrow nodash reveal">SURVEY · EXPLORATION · ARCHAEOLOGICAL RECONNAISSANCE · CULTURAL PRESERVATION</p>
       <h1 class="reveal d1">A <span class="hl">Digital Directory</span> of Hòa Bình cultural &amp; historical sites in Vietnam</h1>
-      <p class="lead reveal d2">From drone reconnaissance to permanent digital record. ArchaeoNova maps, documents, and protects the 30,000-year-old caves of prehistoric northern Vietnam — the homeland of its earliest peoples — and opens this heritage to the world.</p>
+      <p class="lead reveal d2">From drone reconnaissance to a permanent digital record — ArchaeoNova maps, documents and protects the Hoabinhian cave sites of Vietnam, an 18,000-year-old Stone-Age culture cradled in Hòa Bình, and opens this heritage to the world.</p>
       <div class="hero-cta reveal d3">
         <a class="btn ghost" href="#hoabinhian">About the Hoabinhian</a>
         <a class="btn" href="#directory">Launch the Directory <span class="arw">→</span></a>
@@ -1436,9 +1436,6 @@ function viewHoabinhian(){
         <div class="hb-fact"><span class="hb-num">1926</span><span class="hb-lbl">Discovered by M. Colani</span></div>
         <div class="hb-fact"><span class="hb-num">150+</span><span class="hb-lbl">Sites across Vietnam</span><span class="hb-sub">(${PSITES.length} listed in this <a href="#directory" class="hb-dir">directory</a>)</span></div>
         <div class="hb-fact"><span class="hb-num">80+</span><span class="hb-lbl">In Hòa Bình province alone</span><span class="hb-sub">(${PSITES.filter(x=>x.prov==='Hòa Bình').length} listed in this <a href="#directory" class="hb-dir">directory</a>)</span></div>
-        <div class="hb-fact"><span class="hb-num">${PSITES.length}</span><span class="hb-lbl">Recorded Hoabinhian prehistoric sites</span></div>
-        <div class="hb-fact fs-hover"><span class="hb-num">9</span><a class="hb-lbl fs-link" href="https://whc.unesco.org/en/statesparties/vn" target="_blank" rel="noopener">UNESCO World Heritage Sites</a><span class="fs-tip"><b>Vietnam’s 9 World Heritage Sites</b>1. Complex of Huế Monuments<br>2. Hạ Long Bay – Cát Bà Archipelago<br>3. Hội An Ancient Town<br>4. Mỹ Sơn Sanctuary<br>5. Phong Nha–Kẻ Bàng National Park<br>6. Imperial Citadel of Thăng Long (Hà Nội)<br>7. Citadel of the Hồ Dynasty<br>8. Tràng An Landscape Complex<br>9. Yên Tử–Vĩnh Nghiêm–Côn Sơn, Kiếp Bạc</span></div>
-        <div class="hb-fact fs-hover"><span class="hb-num">17</span><a class="hb-lbl fs-link" href="https://ich.unesco.org/en/state/viet-nam-VN" target="_blank" rel="noopener">Intangible heritage elements</a><span class="fs-tip"><b>Vietnam’s 17 UNESCO intangible elements</b>1. Nhã nhạc – Huế Royal Court Music<br>2. Space of Gong Culture (Central Highlands)<br>3. Quan họ Bắc Ninh folk songs<br>4. Ca trù singing<br>5. Gióng Festival of Phù Đổng & Sóc temples<br>6. Xoan singing of Phú Thọ<br>7. Worship of the Hùng Kings<br>8. Đờn ca tài tử music<br>9. Ví & Giặm folk songs of Nghệ Tĩnh<br>10. Tugging rituals and games<br>11. Mother-Goddess worship (Đạo Mẫu)<br>12. Art of Bài Chòi<br>13. Then practice of Tày–Nùng–Thái<br>14. Xòe dance of the Thái<br>15. Pottery-making of the Chăm<br>16. Festival of Lady of the Realm (Bà Chúa Xứ)<br>17. Đông Hồ folk painting</span></div>
       </div>
     </div>
   </section>
@@ -1945,6 +1942,13 @@ function viewNews(){
       <p style="max-width:70ch;font-size:1.1rem">A curated hub of news and research on Vietnam’s archaeology, historical heritage and culture — starting with the prehistoric caves at the heart of our project and broadening across the country. Every story links to its original source.</p>
     </div>
   </section>
+  <section class="section" style="padding-top:28px;padding-bottom:0"><div class="container">
+    <p class="eyebrow reveal" style="margin-bottom:14px">VIETNAM · WIDER HERITAGE CONTEXT</p>
+    <div class="home-stats reveal" style="grid-template-columns:repeat(2,minmax(0,340px));justify-content:center">
+      ${statL('9','UNESCO World Heritage Sites',STAT_ICO.heritage,'https://whc.unesco.org/en/statesparties/vn','Vietnam’s 9 World Heritage Sites',WHSITES.map(w=>w.n))}
+      ${statL('17','Intangible heritage elements',STAT_ICO.culture,'https://ich.unesco.org/en/state/viet-nam-VN','Vietnam’s 17 UNESCO intangible elements',ICH17)}
+    </div>
+  </div></section>
   <section class="section" style="padding-top:34px"><div class="container">
     <p class="muted reveal" style="margin:0 0 14px;font-size:.94rem">Browse by topic below, or open any story at its original source. The featured item leads; new picks are added regularly.</p>
     <div class="news-filter reveal">
