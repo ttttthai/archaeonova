@@ -40,17 +40,17 @@
   --text:#eceef1;
   --text-2:#b9bfc7;
   --muted:#7c828c;
-  --amber:#f0a94e;        /* heritage / "unearthed" warmth */
-  --amber-2:#f6c178;
-  --cyan:#3ad1da;         /* telemetry / scan */
-  --cyan-dim:#1e8e96;
-  --moss:#8fb56a;
-  --danger:#e8825a;
+  --amber:#e5ae32;        /* heritage / "unearthed" warmth */
+  --amber-2:#f2c463;
+  --cyan:#92dbac;         /* telemetry / scan */
+  --cyan-dim:#4f9e78;
+  --moss:#598290;
+  --danger:#ea572e;
   --radius:16px;
   --radius-sm:10px;
   --maxw:1200px;
-  --glow-amber:0 0 0 1px rgba(240,169,78,.25), 0 12px 40px -12px rgba(240,169,78,.45);
-  --glow-cyan:0 0 0 1px rgba(58,209,218,.25), 0 12px 40px -12px rgba(58,209,218,.40);
+  --glow-amber:0 0 0 1px rgba(229,174,50,.25), 0 12px 40px -12px rgba(229,174,50,.45);
+  --glow-cyan:0 0 0 1px rgba(146,219,172,.25), 0 12px 40px -12px rgba(146,219,172,.40);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -63,9 +63,9 @@ body{
 body::before{
   content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   background:
-    radial-gradient(900px 600px at 12% -5%, rgba(240,169,78,.10), transparent 60%),
-    radial-gradient(1000px 700px at 100% 8%, rgba(58,209,218,.09), transparent 55%),
-    radial-gradient(800px 800px at 50% 120%, rgba(58,209,218,.06), transparent 60%),
+    radial-gradient(900px 600px at 12% -5%, rgba(229,174,50,.10), transparent 60%),
+    radial-gradient(1000px 700px at 100% 8%, rgba(146,219,172,.09), transparent 55%),
+    radial-gradient(800px 800px at 50% 120%, rgba(146,219,172,.06), transparent 60%),
     var(--bg);
 }
 body::after{
@@ -88,7 +88,7 @@ em{color:var(--amber-2);font-style:normal}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 /* professional polish: accessibility, selection, motion */
 html{scroll-behavior:smooth}
-::selection{background:rgba(240,169,78,.32);color:#fff}
+::selection{background:rgba(229,174,50,.32);color:#fff}
 a,button,summary,.vp-tab,.attr-btn,.cat-item{-webkit-tap-highlight-color:transparent}
 a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:5px}
 img{max-width:100%;height:auto}
@@ -96,7 +96,7 @@ img{max-width:100%;height:auto}
 .section{padding:34px 0;position:relative}
 .muted{color:var(--muted)}
 .center{text-align:center}
-::selection{background:rgba(240,169,78,.3);color:#fff}
+::selection{background:rgba(229,174,50,.3);color:#fff}
 
 /* mono eyebrow / telemetry labels */
 .eyebrow{
@@ -110,7 +110,7 @@ img{max-width:100%;height:auto}
 
 /* scroll progress */
 #progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:2000;
-  background:linear-gradient(90deg,var(--amber),var(--cyan));box-shadow:0 0 12px rgba(240,169,78,.6)}
+  background:linear-gradient(90deg,var(--amber),var(--cyan));box-shadow:0 0 12px rgba(229,174,50,.6)}
 
 /* buttons */
 .btn{
@@ -131,7 +131,7 @@ img{max-width:100%;height:auto}
 .site-header.scrolled{background:rgba(8,9,11,.72);backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid var(--border-soft)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
 .brand{display:flex;align-items:center;gap:.7em;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:1.34rem;color:#fff;cursor:pointer;letter-spacing:-.01em}
-.brand .logo{width:54px;height:54px;flex:none;filter:drop-shadow(0 0 10px rgba(240,169,78,.35))}
+.brand .logo{width:54px;height:54px;flex:none;filter:drop-shadow(0 0 10px rgba(229,174,50,.35))}
 .brand small{display:block;font-family:"JetBrains Mono",monospace;font-weight:400;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-top:2px}
 /* nav is always a hamburger dropdown */
 .nav-links{display:none;position:absolute;top:72px;right:24px;flex-direction:column;background:rgba(8,9,11,.97);backdrop-filter:blur(16px) saturate(140%);border:1px solid var(--border);border-radius:12px;padding:6px;gap:0;min-width:190px;box-shadow:0 18px 44px rgba(0,0,0,.55);z-index:1100}
@@ -174,7 +174,7 @@ img{max-width:100%;height:auto}
 .grid.cols-3{grid-template-columns:repeat(3,1fr)}
 .grid.cols-4{grid-template-columns:repeat(4,1fr)}
 .home-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.hstat{position:relative;padding:24px 20px;border:1px solid var(--border-soft);border-radius:14px;background:linear-gradient(160deg,rgba(240,169,78,.05),rgba(12,14,17,.4));text-align:center;overflow:hidden}
+.hstat{position:relative;padding:24px 20px;border:1px solid var(--border-soft);border-radius:14px;background:linear-gradient(160deg,rgba(229,174,50,.05),rgba(12,14,17,.4));text-align:center;overflow:hidden}
 .hstat::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);opacity:.5}
 .hstat-num{display:block;font-family:'JetBrains Mono',monospace;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:700;color:var(--amber);line-height:1;letter-spacing:-.01em}
 .hstat-lbl{display:block;margin-top:9px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
@@ -187,14 +187,14 @@ img{max-width:100%;height:auto}
   transition:transform .2s cubic-bezier(.2,.7,.3,1),border-color .2s,background .2s,box-shadow .2s;overflow:hidden;
 }
 .card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:radial-gradient(420px 200px at var(--mx,50%) var(--my,0%),rgba(240,169,78,.10),transparent 70%);opacity:0;transition:opacity .25s}
+  background:radial-gradient(420px 200px at var(--mx,50%) var(--my,0%),rgba(229,174,50,.10),transparent 70%);opacity:0;transition:opacity .25s}
 .card.hover{cursor:pointer}
 .card.hover:hover{transform:translateY(-5px);border-color:var(--border);background:var(--surface-2)}
 .card.hover:hover::after{opacity:1}
 .card h3{margin-top:0}
 .icon-badge{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;font-size:1.45rem;margin-bottom:14px;
-  background:linear-gradient(160deg,rgba(240,169,78,.18),rgba(240,169,78,.04));border:1px solid rgba(240,169,78,.2)}
-.icon-badge.cyan{background:linear-gradient(160deg,rgba(58,209,218,.18),rgba(58,209,218,.04));border-color:rgba(58,209,218,.2);color:var(--cyan)}
+  background:linear-gradient(160deg,rgba(229,174,50,.18),rgba(229,174,50,.04));border:1px solid rgba(229,174,50,.2)}
+.icon-badge.cyan{background:linear-gradient(160deg,rgba(146,219,172,.18),rgba(146,219,172,.04));border-color:rgba(146,219,172,.2);color:var(--cyan)}
 .home-explore{align-items:start}
 .home-explore .card{display:block;padding:18px 20px}
 .home-explore .icon-badge{width:40px;height:40px;border-radius:11px;margin-bottom:10px}
@@ -210,7 +210,7 @@ img{max-width:100%;height:auto}
 .news-filter{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 26px}
 .nfilter{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--border-soft);border-radius:20px;background:var(--bg-2);color:var(--muted);cursor:pointer;transition:color .15s,background .15s,border-color .15s}
 .nfilter:hover{color:var(--text);border-color:var(--border)}
-.nfilter.active{background:rgba(240,169,78,.14);border-color:var(--amber);color:var(--amber)}
+.nfilter.active{background:rgba(229,174,50,.14);border-color:var(--amber);color:var(--amber)}
 .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .ncard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);overflow:hidden;transition:transform .2s,border-color .2s}
 .ncard:hover{transform:translateY(-4px);border-color:var(--border)}
@@ -223,8 +223,8 @@ img{max-width:100%;height:auto}
 .ncard p{margin:0;font-size:.9rem;flex:1}
 .ncard-link{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.04em;color:var(--cyan);margin-top:2px}
 .ncard-link:hover{text-decoration:underline}
-.ntag{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:5px;background:rgba(58,209,218,.14);color:var(--cyan)}
-.ntag.amber{background:rgba(240,169,78,.15);color:var(--amber)}
+.ntag{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:5px;background:rgba(146,219,172,.14);color:var(--cyan)}
+.ntag.amber{background:rgba(229,174,50,.15);color:var(--amber)}
 .ncard-feat{grid-column:1/-1;flex-direction:row}
 .ncard-feat .ncard-img{height:auto;width:46%;min-height:300px}
 .ncard-feat .ncard-body{padding:30px 32px;justify-content:center;gap:12px}
@@ -257,11 +257,11 @@ img{max-width:100%;height:auto}
 .hub-head{display:flex;align-items:center;gap:11px}
 .hub-ico{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:none;border:1px solid}
 .hub-ico svg{width:20px;height:20px}
-.hub-ico.amber{background:linear-gradient(160deg,rgba(240,169,78,.17),rgba(240,169,78,.03));border-color:rgba(240,169,78,.28);color:var(--amber)}
-.hub-ico.cyan{background:linear-gradient(160deg,rgba(58,209,218,.17),rgba(58,209,218,.03));border-color:rgba(58,209,218,.28);color:var(--cyan)}
+.hub-ico.amber{background:linear-gradient(160deg,rgba(229,174,50,.17),rgba(229,174,50,.03));border-color:rgba(229,174,50,.28);color:var(--amber)}
+.hub-ico.cyan{background:linear-gradient(160deg,rgba(146,219,172,.17),rgba(146,219,172,.03));border-color:rgba(146,219,172,.28);color:var(--cyan)}
 .hub-meta{display:flex;flex-direction:column;gap:4px;min-width:0;align-items:flex-start}
 .hub-meta .hub-src{text-align:left}
-.hubcard.feat{grid-column:1/-1;padding:0;flex-direction:row;align-items:stretch;gap:0;overflow:hidden;background:linear-gradient(120deg,rgba(240,169,78,.06),var(--surface) 60%)}
+.hubcard.feat{grid-column:1/-1;padding:0;flex-direction:row;align-items:stretch;gap:0;overflow:hidden;background:linear-gradient(120deg,rgba(229,174,50,.06),var(--surface) 60%)}
 .feat-art{flex:0 0 38%;position:relative;min-height:230px;border-right:1px solid var(--border-soft);overflow:hidden}
 .feat-art svg,.feat-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .feat-art .hub-ico{position:absolute;left:16px;top:16px;z-index:2;background:rgba(11,14,18,.66);backdrop-filter:blur(4px)}
@@ -272,7 +272,7 @@ img{max-width:100%;height:auto}
 .nfilter{display:inline-flex;align-items:center}
 .nfilter .chip-ico{display:inline-flex;margin-right:6px}
 .nfilter .chip-ico svg{width:14px;height:14px}
-.stat-ico{display:grid;place-items:center;width:36px;height:36px;margin:0 auto 9px;border-radius:10px;color:var(--amber);background:linear-gradient(160deg,rgba(240,169,78,.16),transparent);border:1px solid rgba(240,169,78,.2)}
+.stat-ico{display:grid;place-items:center;width:36px;height:36px;margin:0 auto 9px;border-radius:10px;color:var(--amber);background:linear-gradient(160deg,rgba(229,174,50,.16),transparent);border:1px solid rgba(229,174,50,.2)}
 .stat-ico svg{width:19px;height:19px}
 .hub-sources{display:flex;flex-wrap:wrap;gap:10px}
 .hub-source{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.03em;color:var(--text-2);border:1px solid var(--border-soft);border-radius:20px;padding:7px 14px;background:var(--bg-2);text-decoration:none;transition:border-color .15s,color .15s}
@@ -282,9 +282,9 @@ img{max-width:100%;height:auto}
 .wh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .wh-card{display:flex;flex-direction:row;align-items:center;gap:12px;padding:13px 15px;border:1px solid var(--border-soft);border-radius:12px;background:var(--bg-2)}
 .wh-card>div{display:flex;flex-direction:column;gap:4px;min-width:0}
-.wh-ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;flex:none;color:var(--amber);background:rgba(240,169,78,.1);border:1px solid rgba(240,169,78,.2)}
+.wh-ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;flex:none;color:var(--amber);background:rgba(229,174,50,.1);border:1px solid rgba(229,174,50,.2)}
 .wh-ico svg{width:19px;height:19px}
-.wh-ico.cyan{color:var(--cyan);background:rgba(58,209,218,.1);border-color:rgba(58,209,218,.2)}
+.wh-ico.cyan{color:var(--cyan);background:rgba(146,219,172,.1);border-color:rgba(146,219,172,.2)}
 .wh-ico.mix{color:#caa6e8;background:rgba(202,166,232,.1);border-color:rgba(202,166,232,.22)}
 .wh-meta{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber)}
 .wh-meta.cyan{color:var(--cyan)} .wh-meta.mix{color:#caa6e8}
@@ -296,9 +296,9 @@ img{max-width:100%;height:auto}
 .prov-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .prov-tab{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.04em;padding:8px 15px;border:1px solid var(--border-soft);border-radius:22px;background:var(--bg-2);color:var(--muted);cursor:pointer;transition:color .15s,background .15s,border-color .15s}
 .prov-tab:hover{color:var(--text);border-color:var(--border)}
-.prov-tab.active{background:rgba(240,169,78,.15);border-color:var(--amber);color:var(--amber)}
+.prov-tab.active{background:rgba(229,174,50,.15);border-color:var(--amber);color:var(--amber)}
 .prov-tab .prov-n{font-size:.64rem;padding:1px 7px;border-radius:10px;background:rgba(255,255,255,.07);color:inherit}
-.prov-tab.active .prov-n{background:rgba(240,169,78,.22)}
+.prov-tab.active .prov-n{background:rgba(229,174,50,.22)}
 .prov-group[hidden]{display:none}
 .psite-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .psite-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:12px;padding:15px 17px;transition:border-color .2s,transform .2s}
@@ -314,22 +314,22 @@ img{max-width:100%;height:auto}
 .dsel-provs{display:flex;gap:8px;flex-wrap:wrap}
 .dsel-prov{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.03em;padding:6px 12px;border:1px solid var(--border-soft);border-radius:20px;background:var(--surface);color:var(--muted);cursor:pointer;transition:color .15s,background .15s,border-color .15s}
 .dsel-prov:hover{color:var(--text);border-color:var(--border)}
-.dsel-prov.active{background:rgba(240,169,78,.15);border-color:var(--amber);color:var(--amber)}
+.dsel-prov.active{background:rgba(229,174,50,.15);border-color:var(--amber);color:var(--amber)}
 .dsel-prov .dsel-n{font-size:.64rem;padding:1px 7px;border-radius:10px;background:rgba(255,255,255,.07);color:inherit}
-.dsel-prov.active .dsel-n{background:rgba(240,169,78,.22)}
+.dsel-prov.active .dsel-n{background:rgba(229,174,50,.22)}
 .dsel-sites{display:flex;flex-wrap:wrap;gap:5px;max-height:178px;overflow-y:auto;padding:2px 2px 4px}
 .dsel-site{display:inline-flex;align-items:center;gap:6px;font-family:"Space Grotesk";font-weight:500;font-size:.72rem;color:var(--text-2);background:var(--surface);border:1px solid var(--border-soft);border-radius:999px;padding:.26em .68em;cursor:pointer;transition:.15s}
 .dsel-site:hover{color:var(--text);border-color:var(--border)}
-.dsel-site.active{background:rgba(58,209,218,.14);border-color:var(--cyan);color:var(--cyan)}
+.dsel-site.active{background:rgba(146,219,172,.14);border-color:var(--cyan);color:var(--cyan)}
 .dsel-site.basic{color:var(--muted)}
-.dsel-site.basic.active{background:rgba(176,140,224,.16);border-color:#b08ce0;color:#d3bcf0}
+.dsel-site.basic.active{background:rgba(234,87,46,.16);border-color:#ea572e;color:#d3bcf0}
 .dsel-dot{width:7px;height:7px;border-radius:50%;flex:none;box-shadow:0 0 0 2px rgba(255,255,255,.04)}
-.dsel-dot.special{background:#f0a94e}
-.dsel-dot.national{background:#3ad1da}
-.dsel-dot.survey{background:#8fb56a}
-.dsel-dot.rec{background:transparent;border:1.5px solid #b08ce0}
+.dsel-dot.special{background:#e5ae32}
+.dsel-dot.national{background:#92dbac}
+.dsel-dot.survey{background:#598290}
+.dsel-dot.rec{background:transparent;border:1.5px solid #ea572e}
 .dsel-mini{font-family:'JetBrains Mono',monospace;font-size:.5rem;letter-spacing:.04em;text-transform:uppercase;padding:1px 5px;border-radius:7px;background:rgba(255,255,255,.06);color:var(--muted)}
-.dsel-mini.ns{background:rgba(240,169,78,.18);color:var(--amber)}
+.dsel-mini.ns{background:rgba(229,174,50,.18);color:var(--amber)}
 /* privacy consent */
 .consent{position:fixed;left:0;right:0;bottom:0;z-index:2000;padding:16px;display:flex;justify-content:center;pointer-events:none}
 .consent[hidden]{display:none}
@@ -351,10 +351,10 @@ img{max-width:100%;height:auto}
 /* tags */
 .tag{display:inline-flex;align-items:center;font-family:"JetBrains Mono",monospace;font-size:.66rem;font-weight:500;letter-spacing:.08em;
   padding:.32em .7em;border-radius:6px;text-transform:uppercase;background:var(--surface-2);color:var(--text-2);border:1px solid var(--border-soft)}
-.tag.special{background:rgba(240,169,78,.12);color:var(--amber-2);border-color:rgba(240,169,78,.28)}
-.tag.national{background:rgba(143,181,106,.12);color:var(--moss);border-color:rgba(143,181,106,.28)}
-.tag.tech{background:rgba(58,209,218,.12);color:var(--cyan);border-color:rgba(58,209,218,.28)}
-.tag.illustrative{background:rgba(176,140,224,.12);color:#c4a7ec;border-color:rgba(176,140,224,.28)}
+.tag.special{background:rgba(229,174,50,.12);color:var(--amber-2);border-color:rgba(229,174,50,.28)}
+.tag.national{background:rgba(89,130,144,.12);color:var(--moss);border-color:rgba(89,130,144,.28)}
+.tag.tech{background:rgba(146,219,172,.12);color:var(--cyan);border-color:rgba(146,219,172,.28)}
+.tag.illustrative{background:rgba(234,87,46,.12);color:#f2795a;border-color:rgba(234,87,46,.28)}
 
 /* section heading helper */
 .sec-head{max-width:62ch}
@@ -374,7 +374,7 @@ img{max-width:100%;height:auto}
 .check input:checked{background:var(--amber);border-color:var(--amber)}
 .check input:checked::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;font-size:.72rem;color:#11130f;font-weight:700}
 .cave-list-item{display:block;padding:15px;border:1px solid var(--border-soft);border-radius:12px;margin-bottom:10px;background:var(--surface);cursor:pointer;transition:.18s}
-.cave-list-item:hover{border-color:rgba(240,169,78,.4);background:var(--surface-2);transform:translateX(3px)}
+.cave-list-item:hover{border-color:rgba(229,174,50,.4);background:var(--surface-2);transform:translateX(3px)}
 .cave-list-item h4{margin:0 0 6px;font-size:1.02rem;color:#fff}
 .cave-list-item .meta{font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--muted);letter-spacing:.04em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 
@@ -391,7 +391,7 @@ img{max-width:100%;height:auto}
 
 /* detail */
 .detail-hero{position:relative;padding:32px 0 22px;border-bottom:1px solid var(--border-soft);overflow:hidden}
-.detail-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(700px 300px at 15% 0%,rgba(240,169,78,.12),transparent 60%)}
+.detail-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(700px 300px at 15% 0%,rgba(229,174,50,.12),transparent 60%)}
 .detail-hero .breadcrumb{font-family:"JetBrains Mono",monospace;font-size:.74rem;color:var(--muted);letter-spacing:.08em}
 .detail-hero .breadcrumb a{color:var(--cyan)}
 .detail-grid{display:grid;grid-template-columns:1fr;gap:32px;margin-top:36px}
@@ -442,15 +442,15 @@ img{max-width:100%;height:auto}
 .form-field{margin-bottom:18px}
 .form-field label{display:block;font-family:"JetBrains Mono",monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
 .form-field input,.form-field textarea,.form-field select{width:100%;padding:.8em .9em;border:1px solid var(--border);border-radius:10px;font-size:1rem;font-family:inherit;background:var(--bg-2);color:var(--text)}
-.form-field input:focus,.form-field textarea:focus,.form-field select:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(240,169,78,.12)}
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(229,174,50,.12)}
 .form-field textarea{min-height:120px;resize:vertical}
-.note-banner{background:rgba(58,209,218,.07);border:1px solid rgba(58,209,218,.22);border-radius:12px;padding:16px 18px;color:var(--text-2);font-size:.92rem}
+.note-banner{background:rgba(146,219,172,.07);border:1px solid rgba(146,219,172,.22);border-radius:12px;padding:16px 18px;color:var(--text-2);font-size:.92rem}
 .note-banner strong{color:var(--cyan)}
 
 /* roadmap */
 .roadmap-item{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border-soft)}
 .roadmap-item .dot{width:13px;height:13px;border-radius:50%;border:2px solid var(--cyan);margin-top:6px;flex:none}
-.roadmap-item.done .dot{background:var(--moss);border-color:var(--moss);box-shadow:0 0 10px rgba(143,181,106,.5)}
+.roadmap-item.done .dot{background:var(--moss);border-color:var(--moss);box-shadow:0 0 10px rgba(89,130,144,.5)}
 .roadmap-item div b{color:#fff}
 
 /* process steps connector */
@@ -464,7 +464,7 @@ img{max-width:100%;height:auto}
 /* operations data-flow pipeline */
 .flow{display:flex;align-items:stretch;gap:0;flex-wrap:nowrap}
 .flow-stage{flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--border-soft);border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;gap:7px;position:relative;transition:border-color .18s,transform .18s}
-.flow-stage:hover{border-color:rgba(240,169,78,.4);transform:translateY(-3px)}
+.flow-stage:hover{border-color:rgba(229,174,50,.4);transform:translateY(-3px)}
 .flow-top{display:flex;align-items:center;justify-content:space-between}
 .flow-top .icon-badge{margin-bottom:0}
 .flow-num{font-family:"JetBrains Mono",monospace;font-size:1.7rem;font-weight:700;line-height:1;color:rgba(255,255,255,.12)}
@@ -488,12 +488,12 @@ img{max-width:100%;height:auto}
 .specsheet{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
 .specsheet.alt .figure{order:2}
 .figure{background:var(--bg-2);border:1px solid var(--border-soft);border-radius:16px;padding:18px}
-.bp-wrap{background:radial-gradient(circle at 50% 38%,rgba(58,209,218,.06),transparent 72%);border:1px solid var(--border-soft);border-radius:12px;overflow:hidden}
+.bp-wrap{background:radial-gradient(circle at 50% 38%,rgba(146,219,172,.06),transparent 72%);border:1px solid var(--border-soft);border-radius:12px;overflow:hidden}
 .bp{display:block;width:100%;height:auto}
 .figure .cap{font-family:"JetBrains Mono",monospace;font-size:.66rem;color:var(--muted);letter-spacing:.1em;margin:12px 2px 0}
 .photo-slot{position:relative;margin-top:14px;border:1px dashed rgba(255,255,255,.16);border-radius:12px;min-height:120px;display:grid;place-items:center;
   background:repeating-linear-gradient(45deg,rgba(255,255,255,.012) 0 10px,transparent 10px 20px)}
-.ph-corner{position:absolute;width:14px;height:14px;border:1.5px solid rgba(58,209,218,.5)}
+.ph-corner{position:absolute;width:14px;height:14px;border:1.5px solid rgba(146,219,172,.5)}
 .ph-corner.tl{top:8px;left:8px;border-right:none;border-bottom:none}
 .ph-corner.tr{top:8px;right:8px;border-left:none;border-bottom:none}
 .ph-corner.bl{bottom:8px;left:8px;border-right:none;border-top:none}
@@ -506,8 +506,8 @@ img{max-width:100%;height:auto}
 .hero-svg{display:block;width:100%;height:auto}
 .rec-dot{width:8px;height:8px;border-radius:50%;background:#ff5b5b;box-shadow:0 0 8px #ff5b5b;display:inline-block;animation:blink 1.3s ease-in-out infinite}
 .scanline{position:absolute;left:0;right:0;top:0;height:80px;pointer-events:none;
-  background:linear-gradient(180deg,transparent,rgba(58,209,218,.10) 70%,rgba(58,209,218,.5));
-  border-bottom:1px solid rgba(58,209,218,.6);animation:scan 4.5s cubic-bezier(.6,0,.4,1) infinite;mix-blend-mode:screen}
+  background:linear-gradient(180deg,transparent,rgba(146,219,172,.10) 70%,rgba(146,219,172,.5));
+  border-bottom:1px solid rgba(146,219,172,.6);animation:scan 4.5s cubic-bezier(.6,0,.4,1) infinite;mix-blend-mode:screen}
 @keyframes scan{0%{top:-80px;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:100%;opacity:0}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 /* design lab */
@@ -516,8 +516,8 @@ img{max-width:100%;height:auto}
   background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid var(--border-soft);border-radius:11px;padding:.72em 1.15em;cursor:pointer;transition:transform .16s,border-color .16s,color .16s,box-shadow .16s;display:inline-flex;align-items:center;gap:.55em}
 .vp-tab .vp-ico{color:var(--cyan);font-size:.95em;line-height:1}
 .vp-tab:hover{color:#fff;border-color:var(--cyan);transform:translateY(-1px)}
-.vp-tab:hover .vp-ico{filter:drop-shadow(0 0 6px rgba(58,209,218,.6))}
-.vp-tab.active{color:#04181a;background:linear-gradient(180deg,#63e4ec,var(--cyan));border-color:var(--cyan);box-shadow:0 5px 18px rgba(58,209,218,.4);font-weight:700}
+.vp-tab:hover .vp-ico{filter:drop-shadow(0 0 6px rgba(146,219,172,.6))}
+.vp-tab.active{color:#04181a;background:linear-gradient(180deg,#63e4ec,var(--cyan));border-color:var(--cyan);box-shadow:0 5px 18px rgba(146,219,172,.4);font-weight:700}
 .vp-tab.active .vp-ico{color:#04181a}
 .lab-grid{display:grid;grid-template-columns:1fr;gap:22px;align-items:start}
 .viewport{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#0a0d11,#080a0c);position:relative}
@@ -528,7 +528,7 @@ img{max-width:100%;height:auto}
 .vp-stage .bp{width:100%;height:auto;display:block}
 .vp-foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:11px 16px;border-top:1px solid var(--border-soft);font-family:"JetBrains Mono",monospace;font-size:.64rem;letter-spacing:.08em;color:var(--muted)}
 .vp-coord{color:var(--amber)}
-.hud-corner{position:absolute;width:18px;height:18px;border:1.5px solid rgba(58,209,218,.55);pointer-events:none}
+.hud-corner{position:absolute;width:18px;height:18px;border:1.5px solid rgba(146,219,172,.55);pointer-events:none}
 .hud-corner.tl{top:10px;left:10px;border-right:none;border-bottom:none}
 .hud-corner.tr{top:10px;right:10px;border-left:none;border-bottom:none}
 .hud-corner.bl{bottom:10px;left:10px;border-right:none;border-top:none}
@@ -596,7 +596,7 @@ img{max-width:100%;height:auto}
 .render-fig figcaption{font-family:"JetBrains Mono",monospace;font-size:.66rem;letter-spacing:.04em;color:var(--muted);padding:9px 12px;border-top:1px solid var(--border-soft)}
 .render-fig.wide figcaption{text-align:center}
 /* ---- Directory page ---- */
-.tag.survey{background:rgba(176,140,224,.12);color:#c4a7ec;border-color:rgba(176,140,224,.28)}
+.tag.survey{background:rgba(234,87,46,.12);color:#f2795a;border-color:rgba(234,87,46,.28)}
 .dir-mapwrap{display:grid;grid-template-columns:340px 1fr;border:1px solid var(--border-soft);border-radius:16px;overflow:hidden;background:var(--bg-2)}
 .dir-sidebar{padding:22px;border-right:1px solid var(--border-soft);max-height:600px;overflow-y:auto}
 .dir-sidebar::-webkit-scrollbar{width:8px}.dir-sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:8px}
@@ -604,7 +604,7 @@ img{max-width:100%;height:auto}
 .map-legend{display:flex;gap:20px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--muted);letter-spacing:.06em}
 .map-legend span{display:flex;align-items:center;gap:7px}
 .map-legend .lg{width:11px;height:11px;border-radius:50%}
-.lg.special{background:#f0a94e}.lg.national{background:#3ad1da}.lg.survey{background:#b08ce0}.lg.cat{background:transparent;border:2px solid #b08ce0}
+.lg.special{background:#e5ae32}.lg.national{background:#92dbac}.lg.survey{background:#ea572e}.lg.cat{background:transparent;border:2px solid #ea572e}
 .gis-fig{border:1px solid var(--border-soft);border-radius:10px;overflow:hidden;margin-bottom:14px}
 .gis-fig svg{display:block;width:100%;height:auto}
 .schema ul{padding-left:1.05em;margin:6px 0 0}.schema li{margin:.35em 0;font-size:.9rem;color:var(--text-2)}.schema li b{color:#fff}
@@ -613,17 +613,17 @@ img{max-width:100%;height:auto}
 .tier-public ul,.tier-expert ul{padding-left:1.05em}.tier-public li,.tier-expert li{margin:.35em 0;color:var(--text-2)}
 .lock-form{margin-top:14px;display:flex;flex-direction:column;gap:8px;opacity:.6}
 .lock-form input{padding:.6em .7em;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--muted);font-family:inherit}
-.tier-expert::after{content:"";position:absolute;inset:0;border-radius:16px;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(176,140,224,.18)}
+.tier-expert::after{content:"";position:absolute;inset:0;border-radius:16px;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(234,87,46,.18)}
 .catalogue{display:grid;gap:22px}
 .cat-block{border:1px solid var(--border-soft);border-radius:14px;padding:22px;background:var(--surface)}
 .cat-h{display:flex;align-items:center;gap:10px;font-size:1.15rem;margin:0 0 16px}
 .cat-dot{width:11px;height:11px;border-radius:50%;flex:none}
-.cat-dot.special{background:#f0a94e}.cat-dot.national{background:#3ad1da}.cat-dot.survey{background:#b08ce0}
+.cat-dot.special{background:#e5ae32}.cat-dot.national{background:#92dbac}.cat-dot.survey{background:#ea572e}
 .cat-items{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .cat-districts{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .cat-district h4{font-family:"JetBrains Mono",monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
 .cat-item{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1px solid var(--border-soft);border-radius:10px;background:var(--bg-2);transition:.15s;margin-bottom:8px}
-.cat-item:hover{border-color:rgba(240,169,78,.4);text-decoration:none;transform:translateX(3px)}
+.cat-item:hover{border-color:rgba(229,174,50,.4);text-decoration:none;transform:translateX(3px)}
 .cat-item .cat-name{color:#fff;font-weight:500;font-size:.92rem;flex:1}
 .cat-item .cat-meta{font-family:"JetBrains Mono",monospace;font-size:.64rem;color:var(--muted);text-align:right}
 .cat-lim{font-size:.52rem!important;vertical-align:middle;padding:.2em .45em!important}
@@ -668,7 +668,7 @@ img{max-width:100%;height:auto}
 /* chronology */
 .chrono{margin-top:6px}
 .chrono-track{position:relative;height:30px;border-radius:7px;background:linear-gradient(90deg,#1a232a,#12181d);border:1px solid var(--border-soft);overflow:hidden}
-.chrono-band{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,var(--amber),var(--cyan));opacity:.8;border-radius:4px;box-shadow:0 0 14px rgba(240,169,78,.5)}
+.chrono-band{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,var(--amber),var(--cyan));opacity:.8;border-radius:4px;box-shadow:0 0 14px rgba(229,174,50,.5)}
 .chrono-ticks{position:relative;height:18px;margin-top:4px}
 .chrono-tick{position:absolute;transform:translateX(-50%);font-family:"JetBrains Mono",monospace;font-size:.62rem;color:var(--muted)}
 .chrono-axislabel{display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:.58rem;color:var(--muted);letter-spacing:.06em;margin-top:6px}
@@ -717,9 +717,9 @@ img{max-width:100%;height:auto}
 .viewer-hud{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.1em;color:var(--muted);pointer-events:none}
 .viewer-hud span{display:flex;align-items:center;gap:7px}
 /* expert tier */
-.exp-badge{margin-left:auto;margin-right:10px;font-family:"JetBrains Mono",monospace;font-size:.64rem;letter-spacing:.1em;color:#c4a7ec;background:rgba(176,140,224,.12);border:1px solid rgba(176,140,224,.38);border-radius:999px;padding:.42em .8em;cursor:pointer;align-items:center;display:inline-flex}
-.exp-badge:hover{background:rgba(176,140,224,.22)}
-.expert-card{border-color:rgba(176,140,224,.32)!important;background:rgba(176,140,224,.05)!important}
+.exp-badge{margin-left:auto;margin-right:10px;font-family:"JetBrains Mono",monospace;font-size:.64rem;letter-spacing:.1em;color:#f2795a;background:rgba(234,87,46,.12);border:1px solid rgba(234,87,46,.38);border-radius:999px;padding:.42em .8em;cursor:pointer;align-items:center;display:inline-flex}
+.exp-badge:hover{background:rgba(234,87,46,.22)}
+.expert-card{border-color:rgba(234,87,46,.32)!important;background:rgba(234,87,46,.05)!important}
 .pit-svg{width:100%;height:auto;border:1px solid var(--border-soft);border-radius:8px;display:block}
 .lock-form button:not([disabled]){cursor:pointer}
 /* submissions */
@@ -731,10 +731,10 @@ img{max-width:100%;height:auto}
 .sub-main b{color:#fff}
 .sub-actions{display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:160px}
 .sub-status{font-family:"JetBrains Mono",monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.32em .6em;border-radius:6px;border:1px solid var(--border-soft)}
-.s-pending{color:var(--amber);background:rgba(240,169,78,.1);border-color:rgba(240,169,78,.3)}
-.s-verified{color:var(--cyan);background:rgba(58,209,218,.1);border-color:rgba(58,209,218,.3)}
-.s-dispatched{color:#c4a7ec;background:rgba(176,140,224,.12);border-color:rgba(176,140,224,.32)}
-.s-surveyed{color:var(--moss);background:rgba(143,181,106,.12);border-color:rgba(143,181,106,.32)}
+.s-pending{color:var(--amber);background:rgba(229,174,50,.1);border-color:rgba(229,174,50,.3)}
+.s-verified{color:var(--cyan);background:rgba(146,219,172,.1);border-color:rgba(146,219,172,.3)}
+.s-dispatched{color:#f2795a;background:rgba(234,87,46,.12);border-color:rgba(234,87,46,.32)}
+.s-surveyed{color:var(--moss);background:rgba(89,130,144,.12);border-color:rgba(89,130,144,.32)}
 .s-rejected{color:var(--muted);background:rgba(255,255,255,.04)}
 /* dark leaflet controls */
 .leaflet-control-layers{background:#10131a!important;color:var(--text)!important;border:1px solid var(--border)!important;border-radius:10px!important;box-shadow:0 8px 30px rgba(0,0,0,.5)!important;font-family:Inter,sans-serif!important;font-size:.82rem!important}
@@ -1095,15 +1095,15 @@ function gisMacro(cave){
   });
   let ry=104+rnd()*46,river=`M0 ${ry.toFixed(0)}`;for(let x=40;x<=280;x+=40){ry+=(rnd()-0.5)*44;ry=Math.max(58,Math.min(160,ry));river+=` Q${x-20} ${(ry+(rnd()-0.5)*20).toFixed(0)} ${x} ${ry.toFixed(0)}`;}
   const trib=`M${(70+rnd()*120).toFixed(0)} ${(52+rnd()*26).toFixed(0)} Q${(96+rnd()*60).toFixed(0)} ${(96+rnd()*22).toFixed(0)} ${(118+rnd()*60).toFixed(0)} ${(120+rnd()*18).toFixed(0)}`;
-  let springs='';for(let i=0;i<2;i++)springs+=`<circle cx="${(46+rnd()*186).toFixed(0)}" cy="${(64+rnd()*80).toFixed(0)}" r="2.6" fill="#7fdfff" stroke="#0b2a33" stroke-width="1"/>`;
-  let cobble='';for(let i=0;i<3;i++)cobble+=`<rect x="${(40+rnd()*200).toFixed(0)}" y="${(60+rnd()*86).toFixed(0)}" width="4" height="4" rx="1" fill="#f0a94e" stroke="#1a1208" stroke-width=".6" transform="rotate(45 ${(42+rnd()*0).toFixed(0)} ${(62).toFixed(0)})"/>`;
+  let springs='';for(let i=0;i<2;i++)springs+=`<circle cx="${(46+rnd()*186).toFixed(0)}" cy="${(64+rnd()*80).toFixed(0)}" r="2.6" fill="#92dbac" stroke="#0b2a33" stroke-width="1"/>`;
+  let cobble='';for(let i=0;i<3;i++)cobble+=`<rect x="${(40+rnd()*200).toFixed(0)}" y="${(60+rnd()*86).toFixed(0)}" width="4" height="4" rx="1" fill="#e5ae32" stroke="#1a1208" stroke-width=".6" transform="rotate(45 ${(42+rnd()*0).toFixed(0)} ${(62).toFixed(0)})"/>`;
   const mx=+(70+rnd()*146).toFixed(0),my=+(78+rnd()*54).toFixed(0);
-  const pin=`<g transform="translate(${mx},${my})"><path d="M0 0 C-5 -7 -5 -13 0 -13 C5 -13 5 -7 0 0 Z" fill="#f0a94e" stroke="#1a1208" stroke-width="1"/><circle cy="-8.4" r="2" fill="#1a1208"/></g>`;
-  const map=`<rect width="280" height="170" fill="url(#demRamp)"/>${relief}${cont}<path d="${river}" fill="none" stroke="#0b2730" stroke-width="3" opacity=".45" stroke-linecap="round"/><path d="${river}" fill="none" stroke="#5cc6e6" stroke-width="1.5" stroke-linecap="round"/><path d="${trib}" fill="none" stroke="#5cc6e6" stroke-width="1" opacity=".8"/>${springs}${cobble}${pin}`;
+  const pin=`<g transform="translate(${mx},${my})"><path d="M0 0 C-5 -7 -5 -13 0 -13 C5 -13 5 -7 0 0 Z" fill="#e5ae32" stroke="#1a1208" stroke-width="1"/><circle cy="-8.4" r="2" fill="#1a1208"/></g>`;
+  const map=`<rect width="280" height="170" fill="url(#demRamp)"/>${relief}${cont}<path d="${river}" fill="none" stroke="#0b2730" stroke-width="3" opacity=".45" stroke-linecap="round"/><path d="${river}" fill="none" stroke="#598290" stroke-width="1.5" stroke-linecap="round"/><path d="${trib}" fill="none" stroke="#598290" stroke-width="1" opacity=".8"/>${springs}${cobble}${pin}`;
   const defs=`<linearGradient id="demRamp" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#33482b"/><stop offset=".45" stop-color="#6e6a3c"/><stop offset=".8" stop-color="#896c47"/><stop offset="1" stop-color="#9a8358"/></linearGradient><radialGradient id="demHi" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" stop-opacity=".34"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><radialGradient id="demSh" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000" stop-opacity=".36"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>`;
   return gisApp({id:'ma',title:'DEM · HILLSHADE',code:(cave&&cave.code)||'',lat:cave&&cave.lat,lng:cave&&cave.lng,defs,map,bg:'#33482b',aria:'GIS digital elevation model layer',scale:'1:25 000',barLabel:'5 km',
-    layers:[['DEM hillshade'],['Contours 5 m'],['Hydrology','true','#5cc6e6'],['Raw-material src',true,'#f0a94e'],['Site marker',true,'#f0a94e'],['Graticule']],
-    legend:[['ramp',null,'Elevation L→H'],['line','#5cc6e6','Rivers / streams'],['dot','#7fdfff','Springs'],['box','#f0a94e','Cobble source'],['pin','#f0a94e','Cave site']]});
+    layers:[['DEM hillshade'],['Contours 5 m'],['Hydrology','true','#598290'],['Raw-material src',true,'#e5ae32'],['Site marker',true,'#e5ae32'],['Graticule']],
+    legend:[['ramp',null,'Elevation L→H'],['line','#598290','Rivers / streams'],['dot','#92dbac','Springs'],['box','#e5ae32','Cobble source'],['pin','#e5ae32','Cave site']]});
 }
 function gisMicro(cave){
   const rnd=attrSeed(((cave&&cave.id)||'x')+'-micro');
@@ -1119,18 +1119,18 @@ function gisMicro(cave){
   const drip=`<path d="M${a1[0].toFixed(1)} ${a1[1].toFixed(1)} Q${(mxp+dx*11).toFixed(1)} ${(myp+dy*11).toFixed(1)} ${a2[0].toFixed(1)} ${a2[1].toFixed(1)}" fill="none" stroke="#6b7682" stroke-width="1" stroke-dasharray="3 2"/>`;
   const ex=cx+dx*98,ey=cy+dy*64,sx=cx+dx*58,sy=cy+dy*40;
   const bx=-dx*7+dy*4.5,by=-dy*7-dx*4.5,bx2=-dx*7-dy*4.5,by2=-dy*7+dx*4.5;
-  const arrow=`<g stroke="#f0a94e" stroke-width="1.8" fill="none"><path d="M${sx.toFixed(1)} ${sy.toFixed(1)} L${ex.toFixed(1)} ${ey.toFixed(1)}"/><path d="M${(ex+bx).toFixed(1)} ${(ey+by).toFixed(1)} L${ex.toFixed(1)} ${ey.toFixed(1)} L${(ex+bx2).toFixed(1)} ${(ey+by2).toFixed(1)}"/></g><text x="${(ex+dx*6).toFixed(1)}" y="${(ey+dy*9+2).toFixed(1)}" font-family="JetBrains Mono,monospace" font-size="6.4" fill="#f0a94e" text-anchor="middle">${ORI_ABBR[o]}</text>`;
+  const arrow=`<g stroke="#e5ae32" stroke-width="1.8" fill="none"><path d="M${sx.toFixed(1)} ${sy.toFixed(1)} L${ex.toFixed(1)} ${ey.toFixed(1)}"/><path d="M${(ex+bx).toFixed(1)} ${(ey+by).toFixed(1)} L${ex.toFixed(1)} ${ey.toFixed(1)} L${(ex+bx2).toFixed(1)} ${(ey+by2).toFixed(1)}"/></g><text x="${(ex+dx*6).toFixed(1)}" y="${(ey+dy*9+2).toFixed(1)}" font-family="JetBrains Mono,monospace" font-size="6.4" fill="#e5ae32" text-anchor="middle">${ORI_ABBR[o]}</text>`;
   const plx=+(82+rnd()*40).toFixed(0),ply=+(84+rnd()*20).toFixed(0);
-  let pool=`<ellipse cx="${plx}" cy="${ply}" rx="16" ry="8.5" fill="#103038" stroke="#3ad1da" stroke-width=".9" opacity=".92"/>`;for(let i=-1;i<=1;i++)pool+=`<line x1="${plx-10}" y1="${ply+i*3}" x2="${plx+10}" y2="${ply+i*3}" stroke="#3ad1da" stroke-width=".5" opacity=".45"/>`;
+  let pool=`<ellipse cx="${plx}" cy="${ply}" rx="16" ry="8.5" fill="#103038" stroke="#92dbac" stroke-width=".9" opacity=".92"/>`;for(let i=-1;i<=1;i++)pool+=`<line x1="${plx-10}" y1="${ply+i*3}" x2="${plx+10}" y2="${ply+i*3}" stroke="#92dbac" stroke-width=".5" opacity=".45"/>`;
   let rocks='';for(let i=0;i<5;i++){const rx=+(86+rnd()*78).toFixed(0),rry=+(70+rnd()*42).toFixed(0),s=3+rnd()*2.5;rocks+=`<path d="M${rx} ${rry} l${s.toFixed(1)} ${(s*0.4).toFixed(1)} l${(-s*0.3).toFixed(1)} ${s.toFixed(1)} l${(-s).toFixed(1)} ${(-s*0.3).toFixed(1)} z" fill="#1e262e" stroke="#3a4654" stroke-width=".7"/>`;}
   const tx=+(116+rnd()*40).toFixed(0),ty=+(62+rnd()*26).toFixed(0);
-  const trench=`<rect x="${tx}" y="${ty}" width="26" height="26" fill="#f0a94e" opacity=".12" stroke="#f0a94e" stroke-width="1.1" stroke-dasharray="3 2"/><line x1="${tx+13}" y1="${ty}" x2="${tx+13}" y2="${ty+26}" stroke="#f0a94e" stroke-width=".6" opacity=".5"/><line x1="${tx}" y1="${ty+13}" x2="${tx+26}" y2="${ty+13}" stroke="#f0a94e" stroke-width=".6" opacity=".5"/><text x="${tx+13}" y="${ty-2.5}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="5.6" fill="#f0a94e">TR.1</text>`;
+  const trench=`<rect x="${tx}" y="${ty}" width="26" height="26" fill="#e5ae32" opacity=".12" stroke="#e5ae32" stroke-width="1.1" stroke-dasharray="3 2"/><line x1="${tx+13}" y1="${ty}" x2="${tx+13}" y2="${ty+26}" stroke="#e5ae32" stroke-width=".6" opacity=".5"/><line x1="${tx}" y1="${ty+13}" x2="${tx+26}" y2="${ty+13}" stroke="#e5ae32" stroke-width=".6" opacity=".5"/><text x="${tx+13}" y="${ty-2.5}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="5.6" fill="#e5ae32">TR.1</text>`;
   const secY=+(cy+(rnd()*18-9)).toFixed(0);
   const sec=`<line x1="40" y1="${secY}" x2="210" y2="${secY}" stroke="#cdd3da" stroke-width=".7" stroke-dasharray="5 3" opacity=".55"/><text x="36" y="${secY+2}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">A</text><text x="214" y="${secY+2}" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">A'</text>`;
   const map=`<rect width="280" height="170" fill="#0c1014"/><path d="${outline}" fill="#161d24" stroke="#6b7682" stroke-width="2"/><path d="${outline}" fill="none" stroke="#9aa6b2" stroke-width=".6" opacity=".5"/>${hatch}${fc}${sec}${pool}${rocks}${trench}${drip}${arrow}`;
   return gisApp({id:'mi',title:'CAVE PLAN',code:(cave&&cave.code)||'',lat:cave&&cave.lat,lng:cave&&cave.lng,map,bg:'#0c1014',aria:'GIS cave plan layer',scale:'1:200',barLabel:'10 m',
-    layers:[['Cave outline'],['Wall hatch'],['Floor contours'],['Excav. trench',true,'#f0a94e'],['Entrance vec.',true,'#f0a94e'],['Section A–A′']],
-    legend:[['line','#9aa6b2','Cave wall'],['line','#27313b','Floor contour'],['box','#103038','Pool / water'],['box','#f0a94e','Excavation TR'],['dash','#6b7682','Drip line']]});
+    layers:[['Cave outline'],['Wall hatch'],['Floor contours'],['Excav. trench',true,'#e5ae32'],['Entrance vec.',true,'#e5ae32'],['Section A–A′']],
+    legend:[['line','#9aa6b2','Cave wall'],['line','#27313b','Floor contour'],['box','#103038','Pool / water'],['box','#e5ae32','Excavation TR'],['dash','#6b7682','Drip line']]});
 }
 function gisGrid(cave){
   const rnd=attrSeed(((cave&&cave.id)||'x')+'-grid');
@@ -1140,20 +1140,20 @@ function gisGrid(cave){
   const ex=[];const nu=3+Math.floor(rnd()*3);for(let i=0;i<nu;i++)ex.push([Math.floor(rnd()*n),Math.floor(rnd()*m)]);
   let cells=ex.map(([gx,gy])=>`<rect x="${ox+gx*cw}" y="${oy+gy*cw}" width="${cw}" height="${cw}" fill="#caa94e" opacity=".13"/>`).join('');
   const xs=ex.map(e=>e[0]),ys=ex.map(e=>e[1]),tx0=ox+Math.min(...xs)*cw,ty0=oy+Math.min(...ys)*cw,tx1=ox+(Math.max(...xs)+1)*cw,ty1=oy+(Math.max(...ys)+1)*cw;
-  const trench=`<rect x="${tx0}" y="${ty0}" width="${tx1-tx0}" height="${ty1-ty0}" fill="none" stroke="#f0a94e" stroke-width="1.4"/><text x="${tx0+2}" y="${ty0-3}" font-family="JetBrains Mono,monospace" font-size="6" fill="#f0a94e">TRENCH 1</text>`;
+  const trench=`<rect x="${tx0}" y="${ty0}" width="${tx1-tx0}" height="${ty1-ty0}" fill="none" stroke="#e5ae32" stroke-width="1.4"/><text x="${tx0+2}" y="${ty0-3}" font-family="JetBrains Mono,monospace" font-size="6" fill="#e5ae32">TRENCH 1</text>`;
   let finds='';const jit=()=>5+rnd()*(cw-10);
   ex.forEach(([gx,gy])=>{
-    if(cave&&cave.hasStoneTools&&rnd()<0.95)finds+=`<circle cx="${(ox+gx*cw+jit()).toFixed(0)}" cy="${(oy+gy*cw+jit()).toFixed(0)}" r="2.6" fill="#f0a94e"/>`;
-    if(cave&&cave.hasFossils&&rnd()<0.75){const x=ox+gx*cw+jit(),y=oy+gy*cw+jit();finds+=`<path d="M${x.toFixed(0)} ${(y-2.6).toFixed(0)} l3 5.2 h-6 z" fill="#3ad1da"/>`;}
-    if(rnd()<0.5)finds+=`<rect x="${(ox+gx*cw+jit()).toFixed(0)}" y="${(oy+gy*cw+jit()).toFixed(0)}" width="5" height="5" fill="#c4a7ec"/>`;});
-  if(cave&&cave.hasBurials){const gx=ex[0]?ex[0][0]:1,gy=ex[0]?ex[0][1]:1;finds+=`<rect x="${ox+gx*cw+5}" y="${oy+gy*cw+5}" width="${cw-10}" height="${cw-10}" fill="none" stroke="#e8825a" stroke-width="1.2"/><text x="${ox+gx*cw+cw/2}" y="${oy+gy*cw+cw/2+3}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#e8825a">B</text>`;}
-  const datum=`<g transform="translate(${ox},${oy})"><path d="M0 -16 L4 -9 L-4 -9 Z" fill="#3ad1da"/><circle r="2.2" fill="#0c1014" stroke="#3ad1da" stroke-width="1.2"/><text x="6" y="-10" font-family="JetBrains Mono,monospace" font-size="6" fill="#3ad1da">BM 0,0</text></g>`;
-  const syl=oy+gh+10,sec=`<line x1="${ox}" y1="${syl}" x2="${ox+gw}" y2="${syl}" stroke="#cdd3da" stroke-width=".7" stroke-dasharray="5 3" opacity=".55"/><text x="${ox-4}" y="${syl+2}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">B</text><text x="${ox+gw+4}" y="${syl+2}" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">B'</text><text x="${ox+gw+7}" y="${oy+gh}" font-family="JetBrains Mono,monospace" font-size="6" fill="#3ad1da">Z↓</text>`;
+    if(cave&&cave.hasStoneTools&&rnd()<0.95)finds+=`<circle cx="${(ox+gx*cw+jit()).toFixed(0)}" cy="${(oy+gy*cw+jit()).toFixed(0)}" r="2.6" fill="#e5ae32"/>`;
+    if(cave&&cave.hasFossils&&rnd()<0.75){const x=ox+gx*cw+jit(),y=oy+gy*cw+jit();finds+=`<path d="M${x.toFixed(0)} ${(y-2.6).toFixed(0)} l3 5.2 h-6 z" fill="#92dbac"/>`;}
+    if(rnd()<0.5)finds+=`<rect x="${(ox+gx*cw+jit()).toFixed(0)}" y="${(oy+gy*cw+jit()).toFixed(0)}" width="5" height="5" fill="#f2795a"/>`;});
+  if(cave&&cave.hasBurials){const gx=ex[0]?ex[0][0]:1,gy=ex[0]?ex[0][1]:1;finds+=`<rect x="${ox+gx*cw+5}" y="${oy+gy*cw+5}" width="${cw-10}" height="${cw-10}" fill="none" stroke="#ea572e" stroke-width="1.2"/><text x="${ox+gx*cw+cw/2}" y="${oy+gy*cw+cw/2+3}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#ea572e">B</text>`;}
+  const datum=`<g transform="translate(${ox},${oy})"><path d="M0 -16 L4 -9 L-4 -9 Z" fill="#92dbac"/><circle r="2.2" fill="#0c1014" stroke="#92dbac" stroke-width="1.2"/><text x="6" y="-10" font-family="JetBrains Mono,monospace" font-size="6" fill="#92dbac">BM 0,0</text></g>`;
+  const syl=oy+gh+10,sec=`<line x1="${ox}" y1="${syl}" x2="${ox+gw}" y2="${syl}" stroke="#cdd3da" stroke-width=".7" stroke-dasharray="5 3" opacity=".55"/><text x="${ox-4}" y="${syl+2}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">B</text><text x="${ox+gw+4}" y="${syl+2}" font-family="JetBrains Mono,monospace" font-size="6" fill="#cdd3da">B'</text><text x="${ox+gw+7}" y="${oy+gh}" font-family="JetBrains Mono,monospace" font-size="6" fill="#92dbac">Z↓</text>`;
   const map=`<rect width="280" height="170" fill="#0c1014"/>${cells}${grid}${labels}${trench}${finds}${datum}${sec}`;
-  const lg=[['box','#f0a94e','Lithics'],['tri','#3ad1da','Bone'],['box','#c4a7ec','Pottery']];
-  if(cave&&cave.hasBurials)lg.push(['ring','#e8825a','Burial']);
+  const lg=[['box','#e5ae32','Lithics'],['tri','#92dbac','Bone'],['box','#f2795a','Pottery']];
+  if(cave&&cave.hasBurials)lg.push(['ring','#ea572e','Burial']);
   return gisApp({id:'gr',title:'EXCAVATION GRID',code:(cave&&cave.code)||'',lat:cave&&cave.lat,lng:cave&&cave.lng,map,bg:'#0c1014',aria:'GIS excavation grid layer',scale:'1:50',barLabel:'1 m',
-    layers:[['1 m grid'],['Excavated units',true,'#f0a94e'],['Finds'],['Datum / BM','true','#3ad1da'],['Section B–B′'],['Spoil heap',false]],
+    layers:[['1 m grid'],['Excavated units',true,'#e5ae32'],['Finds'],['Datum / BM','true','#92dbac'],['Section B–B′'],['Spoil heap',false]],
     legend:lg});
 }
 function viewDirectory(){
@@ -1266,15 +1266,15 @@ function viewCave(id){
   const findsSec = c.finds.length ? `<h3 style="margin-top:34px;font-size:1.4rem">Key finds</h3><ul class="finds-list">${c.finds.map(f=>`<li>${f}</li>`).join("")}</ul>` : "";
   const strataSec = `<h3 style="margin-top:34px;font-size:1.4rem">Stratigraphy — reading the layers</h3><p class="muted" style="font-size:.92rem">A vector section of the deposits${c.strata.length?'':' (representative — this site has a limited public record)'}. Deeper layers are older; boundaries are drawn wavy with composition textures and a depth scale. Depths are illustrative.</p><div class="strat-wrap">${stratSection(c)}</div>`;
   const exSec = c.excavations.length ? `<h3 style="margin-top:34px;font-size:1.4rem">Excavation history</h3><ul class="timeline">${c.excavations.map(e=>`<li><b>${e.year}</b> ${e.note}</li>`).join("")}</ul>` : "";
-  const catalogBanner = c.catalog ? `<div class="note-banner" style="margin-bottom:24px;background:rgba(176,140,224,.07);border-color:rgba(176,140,224,.28)"><strong style="color:#c4a7ec">Limited public record.</strong> This entry is compiled from the team's survey catalogue. Detailed finds, stratigraphy and precise coordinates are held in restricted internal archives — see the two-tier access model on the Directory page.</div>` : "";
+  const catalogBanner = c.catalog ? `<div class="note-banner" style="margin-bottom:24px;background:rgba(234,87,46,.07);border-color:rgba(234,87,46,.28)"><strong style="color:#f2795a">Limited public record.</strong> This entry is compiled from the team's survey catalogue. Detailed finds, stratigraphy and precise coordinates are held in restricted internal archives — see the two-tier access model on the Directory page.</div>` : "";
   const mapSec = `<h3 style="margin-top:34px;font-size:1.4rem">Layer 1 — macro landscape</h3><p class="muted" style="font-size:.92rem">The real terrain, rivers and relief around the site (approximate, commune-level location). Switch between <b style="color:var(--text)">Terrain (DEM)</b> and <b style="color:var(--text)">Satellite</b> using the control on the map.</p><div class="cave-map-wrap"><div id="caveMap" data-lat="${c.lat}" data-lng="${c.lng}" data-name="${(c.name||'').replace(/"/g,'&quot;')}"></div></div>`;
   const viewerSec = `<h3 style="margin-top:34px;font-size:1.4rem">Digital twin — interactive LiDAR point cloud</h3><p class="muted" style="font-size:.92rem">A 3-D point-cloud reconstruction of the chamber${c.catalog?' (representative model — this site has a limited record)':''}, the kind SEAR-X generates from a scan. <b style="color:var(--text)">Drag to orbit · scroll to zoom.</b></p><div class="viewer"><canvas class="cave-cloud" data-cave="${c.id}"></canvas><div class="viewer-hud"><span><i class="rec-dot"></i> LiDAR · ${c.code}</span><span class="vp-coord">${c.catalog?'REPRESENTATIVE':'DIGITAL TWIN'}</span></div><span class="hud-corner tl"></span><span class="hud-corner tr"></span><span class="hud-corner bl"></span><span class="hud-corner br"></span></div>`;
   const preciseGps = `${c.lat.toFixed(5)}°N, ${c.lng.toFixed(5)}°E`;
   const expertPanel = isExpert()
-    ? `<div class="card expert-card" style="margin-top:18px"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="tag survey">EXPERT LAYER</span><span class="kicker" style="color:#c4a7ec">🔓 UNLOCKED</span></div>
+    ? `<div class="card expert-card" style="margin-top:18px"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="tag survey">EXPERT LAYER</span><span class="kicker" style="color:#f2795a">🔓 UNLOCKED</span></div>
         <table class="fact-table" style="margin-top:10px"><tr><th>Precise GPS</th><td>${preciseGps}</td></tr><tr><th>Datum / grid</th><td>WGS-84 · 1×1 m</td></tr><tr><th>Burials mapped</th><td>${c.hasBurials?'Yes — see plot':'None recorded'}</td></tr></table>
         <p class="eyebrow" style="margin:12px 0 6px;font-size:.6rem">EXCAVATION PIT · FIND DISTRIBUTION</p>${pitDrawing(c)}
-        <p class="kicker" style="margin-top:8px;color:#c4a7ec;line-height:1.6">● FINDS · ▭B BURIAL — REPRESENTATIVE DEMONSTRATION DATA; TRUE SURVEY RECORDS ARE HELD BY HERITAGE AUTHORITIES.</p></div>`
+        <p class="kicker" style="margin-top:8px;color:#f2795a;line-height:1.6">● FINDS · ▭B BURIAL — REPRESENTATIVE DEMONSTRATION DATA; TRUE SURVEY RECORDS ARE HELD BY HERITAGE AUTHORITIES.</p></div>`
     : `<div class="note-banner" style="margin-top:18px"><strong>Location protected.</strong> The public view shows only an approximate, commune-level position. Precise GPS, excavation-pit drawings and burial maps live in the expert tier. <a href="#directory">Unlock expert access →</a></div>`;
   return `
   <section class="detail-hero">
@@ -1596,7 +1596,7 @@ function karstArt(){return '<svg viewBox="0 0 380 280" preserveAspectRatio="xMid
   '<linearGradient id="kFar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#27333f"/><stop offset="1" stop-color="#1a2530"/></linearGradient>'+
   '<linearGradient id="kMid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2832"/><stop offset="1" stop-color="#121a22"/></linearGradient>'+
   '<linearGradient id="kNear" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11181f"/><stop offset="1" stop-color="#0a0e13"/></linearGradient>'+
-  '<radialGradient id="kGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f0a94e" stop-opacity=".55"/><stop offset="1" stop-color="#f0a94e" stop-opacity="0"/></radialGradient>'+
+  '<radialGradient id="kGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#e5ae32" stop-opacity=".55"/><stop offset="1" stop-color="#e5ae32" stop-opacity="0"/></radialGradient>'+
   '<linearGradient id="kWat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16202b"/><stop offset="1" stop-color="#0b131b"/></linearGradient></defs>'+
   '<rect width="380" height="280" fill="url(#kSky)"/>'+
   '<circle cx="288" cy="76" r="62" fill="url(#kGlow)"/><circle cx="288" cy="76" r="22" fill="#f6c987"/>'+
@@ -1606,8 +1606,8 @@ function karstArt(){return '<svg viewBox="0 0 380 280" preserveAspectRatio="xMid
   '<path d="M30 210 q38 -88 84 -56 q25 18 36 -6 q30 -60 80 -22 q22 20 54 0 q42 -24 70 24 V215 H30Z" fill="url(#kNear)"/>'+
   '<path d="M118 210 q15 -34 32 -2 q-3 2 -8 2 h-16 q-5 0 -8 -2z" fill="#05080c"/>'+
   '<rect y="202" width="380" height="80" fill="url(#kWat)"/>'+
-  '<g stroke="#3ad1da" stroke-opacity=".22" stroke-width="1"><line x1="20" y1="218" x2="120" y2="218"/><line x1="205" y1="230" x2="325" y2="230"/><line x1="60" y1="246" x2="184" y2="246"/></g>'+
-  '<line x1="278" y1="120" x2="278" y2="170" stroke="#f0a94e" stroke-opacity=".18" stroke-width="6"/></svg>';}
+  '<g stroke="#92dbac" stroke-opacity=".22" stroke-width="1"><line x1="20" y1="218" x2="120" y2="218"/><line x1="205" y1="230" x2="325" y2="230"/><line x1="60" y1="246" x2="184" y2="246"/></g>'+
+  '<line x1="278" y1="120" x2="278" y2="170" stroke="#e5ae32" stroke-opacity=".18" stroke-width="6"/></svg>';}
 function whCard(s){
   const cls=s.t==='Natural'?'cyan':(s.t==='Mixed'?'mix':'amber');
   return `<div class="wh-card"><span class="wh-ico ${cls}">${WHICO[s.t]||''}</span><div><span class="wh-meta ${cls}">${s.t} · ${s.y}</span><span class="wh-name">${s.n}</span></div></div>`;
@@ -1762,7 +1762,7 @@ function dirMapFocus(s,zoom){
   _dirUserView=true;
   try{
     if(_selMarker){_dirMap.removeLayer(_selMarker);_selMarker=null;}
-    const color=s.basic?'#b08ce0':(s.rank==='National Special'?'#f0a94e':s.rank==='National'?'#3ad1da':'#b08ce0');
+    const color=s.basic?'#ea572e':(s.rank==='National Special'?'#e5ae32':s.rank==='National'?'#92dbac':'#ea572e');
     _selMarker=L.circleMarker([s.lat,s.lng],{radius:12,color:color,weight:3,fillColor:color,fillOpacity:.28,className:'dsel-pulse'}).addTo(_dirMap)
       .bindPopup(`<div class="cave-popup"><b>${s.name}</b><br><span style="font-size:.78rem;color:#9aa">${s.basic?'Approximate — province-level location':(s.commune+', '+s.district)}</span></div>`);
     const z=(zoom!=null)?zoom:(s.basic?10:12);
@@ -1932,7 +1932,7 @@ function bpHex(){
     <linearGradient id="hxleg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6a8893"/><stop offset="1" stop-color="#1f2c33"/></linearGradient>
     <radialGradient id="hxjoint" cx="36%" cy="32%" r="72%"><stop offset="0" stop-color="#bfe0ea"/><stop offset="1" stop-color="#1d2a31"/></radialGradient>
     <radialGradient id="hxfoot" cx="38%" cy="32%" r="72%"><stop offset="0" stop-color="#ffd9a0"/><stop offset="1" stop-color="#a8691b"/></radialGradient>
-    <radialGradient id="hxglass" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="#e3f9fd"/><stop offset=".4" stop-color="#3ad1da"/><stop offset="1" stop-color="#0a2e31"/></radialGradient>
+    <radialGradient id="hxglass" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="#e3f9fd"/><stop offset=".4" stop-color="#92dbac"/><stop offset="1" stop-color="#0a2e31"/></radialGradient>
   </defs>
   <rect width="440" height="300" fill="url(#hxbg)"/>
   <ellipse cx="220" cy="250" rx="155" ry="30" fill="url(#hxsh)"/>
@@ -1944,20 +1944,20 @@ function bpHex(){
   <polygon points="150,140 176,150 166,156 142,146" fill="#ffffff" opacity=".07"/>
   <g stroke="#070f13" stroke-width="1" opacity=".55"><line x1="172" y1="160" x2="172" y2="206"/><line x1="268" y1="160" x2="268" y2="206"/></g>
   <ellipse cx="220" cy="123" rx="22" ry="11" fill="#0b1418" stroke="#3a525d" stroke-width="1.1"/>
-  <ellipse cx="220" cy="117" rx="20" ry="13" fill="url(#hxglass)" stroke="#3ad1da" stroke-width="1"/>
+  <ellipse cx="220" cy="117" rx="20" ry="13" fill="url(#hxglass)" stroke="#92dbac" stroke-width="1"/>
   <ellipse cx="213" cy="111" rx="6" ry="3" fill="#ffffff" opacity=".65"/><circle cx="220" cy="107" r="2.4" fill="#eafcff"/>
-  <ellipse cx="220" cy="117" rx="32" ry="15" fill="none" stroke="#3ad1da" stroke-width="1" stroke-dasharray="2 4" opacity=".4"/>
+  <ellipse cx="220" cy="117" rx="32" ry="15" fill="none" stroke="#92dbac" stroke-width="1" stroke-dasharray="2 4" opacity=".4"/>
   <circle cx="236" cy="168" r="5.6" fill="url(#hxfoot)" stroke="#6e4416" stroke-width="1.2"/><circle cx="234" cy="166" r="1.6" fill="#fff" opacity=".85"/>
   <g stroke="#5b6470" stroke-width="1" fill="none" opacity=".7"><path d="M220 99 L252 80 L300 80"/><path d="M236 168 L300 152"/></g>
   <g font-family="JetBrains Mono,monospace" font-size="9" fill="#8b929c" letter-spacing=".05em">
     <text x="302" y="83">ROTATING LiDAR · ±3 cm</text>
-    <text x="304" y="155" fill="#f0a94e">RGB / LED CAMERA</text>
+    <text x="304" y="155" fill="#e5ae32">RGB / LED CAMERA</text>
     <text x="118" y="288">SEAR-HEX · HEXAPOD · 0.55 × 0.45 m</text>
   </g>
 </svg>`;}
 function bpAir(){
   const rotors=[[118,116],[322,116],[118,188],[322,188]];
-  const rotSvg=rotors.map(([x,y])=>`<ellipse cx="${x}" cy="${y+6}" rx="28" ry="6" fill="url(#arsh)"/><circle cx="${x}" cy="${y}" r="28" fill="url(#rot)"/><ellipse cx="${x}" cy="${y}" rx="28" ry="9" fill="none" stroke="#3ad1da" stroke-width="1.2" opacity=".7"/><ellipse cx="${x}" cy="${y}" rx="9" ry="28" fill="none" stroke="#3ad1da" stroke-width="1" opacity=".35"/><circle cx="${x}" cy="${y}" r="5.5" fill="url(#arhub)" stroke="#0a1216" stroke-width="1"/><circle cx="${x-1.5}" cy="${y-1.5}" r="1.6" fill="#fff" opacity=".7"/>`).join('');
+  const rotSvg=rotors.map(([x,y])=>`<ellipse cx="${x}" cy="${y+6}" rx="28" ry="6" fill="url(#arsh)"/><circle cx="${x}" cy="${y}" r="28" fill="url(#rot)"/><ellipse cx="${x}" cy="${y}" rx="28" ry="9" fill="none" stroke="#92dbac" stroke-width="1.2" opacity=".7"/><ellipse cx="${x}" cy="${y}" rx="9" ry="28" fill="none" stroke="#92dbac" stroke-width="1" opacity=".35"/><circle cx="${x}" cy="${y}" r="5.5" fill="url(#arhub)" stroke="#0a1216" stroke-width="1"/><circle cx="${x-1.5}" cy="${y-1.5}" r="1.6" fill="#fff" opacity=".7"/>`).join('');
   return `<svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" class="bp" role="img" aria-label="SEAR-AIR 3D render">
   <defs>
     <radialGradient id="arbg" cx="50%" cy="40%" r="72%"><stop offset="0" stop-color="#16242b"/><stop offset="1" stop-color="#080b0e"/></radialGradient>
@@ -1966,8 +1966,8 @@ function bpAir(){
     <linearGradient id="arWing" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#33505a"/><stop offset="1" stop-color="#11202700"/></linearGradient>
     <linearGradient id="arBoom" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a7884"/><stop offset="1" stop-color="#1c2930"/></linearGradient>
     <radialGradient id="arhub" cx="36%" cy="32%" r="72%"><stop offset="0" stop-color="#bfe0ea"/><stop offset="1" stop-color="#1d2a31"/></radialGradient>
-    <radialGradient id="rot" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#3ad1da" stop-opacity=".30"/><stop offset="70%" stop-color="#3ad1da" stop-opacity=".05"/><stop offset="100%" stop-color="#3ad1da" stop-opacity="0"/></radialGradient>
-    <radialGradient id="arlens" cx="40%" cy="32%" r="75%"><stop offset="0" stop-color="#e3f9fd"/><stop offset=".4" stop-color="#3ad1da"/><stop offset="1" stop-color="#0a2e31"/></radialGradient>
+    <radialGradient id="rot" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#92dbac" stop-opacity=".30"/><stop offset="70%" stop-color="#92dbac" stop-opacity=".05"/><stop offset="100%" stop-color="#92dbac" stop-opacity="0"/></radialGradient>
+    <radialGradient id="arlens" cx="40%" cy="32%" r="75%"><stop offset="0" stop-color="#e3f9fd"/><stop offset=".4" stop-color="#92dbac"/><stop offset="1" stop-color="#0a2e31"/></radialGradient>
   </defs>
   <rect width="440" height="300" fill="url(#arbg)"/>
   <ellipse cx="220" cy="276" rx="150" ry="16" fill="url(#arsh)"/>
@@ -1976,15 +1976,15 @@ function bpAir(){
   <polygon points="206,124 234,124 240,150 200,150" fill="url(#arBody)" stroke="#5a808c" stroke-width="1.2"/>
   <polygon points="200,150 240,150 233,200 207,200" fill="url(#arBody)" stroke="#2b3a44" stroke-width="1.1"/>
   <polygon points="206,124 234,124 230,138 210,138" fill="#ffffff" opacity=".06"/>
-  <circle cx="220" cy="131" r="6" fill="url(#arlens)" stroke="#3ad1da" stroke-width="1.1"/><circle cx="218" cy="129" r="1.6" fill="#fff" opacity=".85"/>
+  <circle cx="220" cy="131" r="6" fill="url(#arlens)" stroke="#92dbac" stroke-width="1.1"/><circle cx="218" cy="129" r="1.6" fill="#fff" opacity=".85"/>
   ${rotSvg}
-  <path d="M210 200 L210 214 M230 200 L230 214" stroke="#f0a94e" stroke-width="1.8"/>
-  <rect x="207" y="212" width="26" height="14" rx="3" fill="#0c2a2c" stroke="#f0a94e" stroke-width="1.4"/>
-  <circle cx="220" cy="219" r="2" fill="#f0a94e"/>
+  <path d="M210 200 L210 214 M230 200 L230 214" stroke="#e5ae32" stroke-width="1.8"/>
+  <rect x="207" y="212" width="26" height="14" rx="3" fill="#0c2a2c" stroke="#e5ae32" stroke-width="1.4"/>
+  <circle cx="220" cy="219" r="2" fill="#e5ae32"/>
   <g font-family="JetBrains Mono,monospace" font-size="9" fill="#8b929c" letter-spacing=".05em">
     <text x="46" y="98">VTOL ROTOR ×4</text>
-    <text x="248" y="128" fill="#3ad1da">LiDAR + CAMERA</text>
-    <text x="240" y="228" fill="#f0a94e">HEX CRADLE</text>
+    <text x="248" y="128" fill="#92dbac">LiDAR + CAMERA</text>
+    <text x="240" y="228" fill="#e5ae32">HEX CRADLE</text>
     <text x="138" y="290">SEAR-AIR · VTOL · SPAN 2.4–2.8 m</text>
   </g>
 </svg>`;}
@@ -1993,8 +1993,8 @@ function bpRelay(){
   let tube='';for(let i=0;i<rings.length-1;i++){const a=rings[i],b=rings[i+1];tube+=`<line x1="${a[0]-a[2]}" y1="${a[1]}" x2="${b[0]-b[2]}" y2="${b[1]}" stroke="#1c2730" stroke-width="1"/><line x1="${a[0]+a[2]}" y1="${a[1]}" x2="${b[0]+b[2]}" y2="${b[1]}" stroke="#1c2730" stroke-width="1"/><line x1="${a[0]}" y1="${a[1]+a[3]}" x2="${b[0]}" y2="${b[1]+b[3]}" stroke="#1c2730" stroke-width="1"/>`;}
   const ringSvg=rings.map((r,i)=>`<ellipse cx="${r[0]}" cy="${r[1]}" rx="${r[2]}" ry="${r[3]}" fill="${i===0?'#0a1014':'none'}" stroke="#33454f" stroke-width="${(1.6-i*0.2).toFixed(2)}" opacity="${(1-i*0.12).toFixed(2)}"/>`).join('');
   const nodes=[[112,242,1],[202,196,0.82],[264,172,0.64],[308,154,0.48]];
-  const nodeSvg=nodes.map(([x,y,s])=>`<g transform="translate(${x},${y})"><ellipse cx="0" cy="4" rx="${12*s}" ry="3.4" fill="#000" opacity=".4"/><rect x="${-9*s}" y="${-18*s}" width="${18*s}" height="${18*s}" rx="2.5" fill="url(#rnode)" stroke="#3a525d" stroke-width="1.1"/><rect x="${-9*s}" y="${-18*s}" width="${18*s}" height="${5*s}" rx="2.5" fill="#ffffff" opacity=".08"/><circle cx="0" cy="${-9*s}" r="${2*s}" fill="#3ad1da"/><line x1="0" y1="${-18*s}" x2="0" y2="${-30*s}" stroke="#8aa3ad" stroke-width="${1.4*s}"/><circle cx="0" cy="${-31*s}" r="${2.2*s}" fill="#3ad1da"/><path d="M${-8*s} ${-33*s} a${11*s} ${9*s} 0 0 1 ${16*s} 0" fill="none" stroke="#3ad1da" stroke-width="1" opacity=".5"/><path d="M${-12*s} ${-36*s} a${15*s} ${12*s} 0 0 1 ${24*s} 0" fill="none" stroke="#3ad1da" stroke-width="1" opacity=".28"/></g>`).join('');
-  const links=`<polyline points="${nodes.map(n=>n[0]+','+(n[1]-9*n[2])).join(' ')}" fill="none" stroke="#3ad1da" stroke-width="1.4" stroke-dasharray="3 4" opacity=".85"/>`;
+  const nodeSvg=nodes.map(([x,y,s])=>`<g transform="translate(${x},${y})"><ellipse cx="0" cy="4" rx="${12*s}" ry="3.4" fill="#000" opacity=".4"/><rect x="${-9*s}" y="${-18*s}" width="${18*s}" height="${18*s}" rx="2.5" fill="url(#rnode)" stroke="#3a525d" stroke-width="1.1"/><rect x="${-9*s}" y="${-18*s}" width="${18*s}" height="${5*s}" rx="2.5" fill="#ffffff" opacity=".08"/><circle cx="0" cy="${-9*s}" r="${2*s}" fill="#92dbac"/><line x1="0" y1="${-18*s}" x2="0" y2="${-30*s}" stroke="#8aa3ad" stroke-width="${1.4*s}"/><circle cx="0" cy="${-31*s}" r="${2.2*s}" fill="#92dbac"/><path d="M${-8*s} ${-33*s} a${11*s} ${9*s} 0 0 1 ${16*s} 0" fill="none" stroke="#92dbac" stroke-width="1" opacity=".5"/><path d="M${-12*s} ${-36*s} a${15*s} ${12*s} 0 0 1 ${24*s} 0" fill="none" stroke="#92dbac" stroke-width="1" opacity=".28"/></g>`).join('');
+  const links=`<polyline points="${nodes.map(n=>n[0]+','+(n[1]-9*n[2])).join(' ')}" fill="none" stroke="#92dbac" stroke-width="1.4" stroke-dasharray="3 4" opacity=".85"/>`;
   return `<svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" class="bp" role="img" aria-label="SEAR-RELAY 3D render">
   <defs>
     <radialGradient id="tun" cx="78%" cy="44%" r="62%"><stop offset="0" stop-color="#13202a"/><stop offset="1" stop-color="#070b0e"/></radialGradient>
@@ -2002,11 +2002,11 @@ function bpRelay(){
   </defs>
   <rect width="440" height="300" fill="url(#tun)"/>
   ${tube}${ringSvg}${links}${nodeSvg}
-  <g transform="translate(338,140)"><polygon points="-9,-3 0,2 9,-3 0,-8" fill="#13202a" stroke="#f0a94e" stroke-width="1.2"/><circle cx="0" cy="-3" r="1.4" fill="#f0a94e"/></g>
+  <g transform="translate(338,140)"><polygon points="-9,-3 0,2 9,-3 0,-8" fill="#13202a" stroke="#e5ae32" stroke-width="1.2"/><circle cx="0" cy="-3" r="1.4" fill="#e5ae32"/></g>
   <g font-family="JetBrains Mono,monospace" font-size="9" fill="#8b929c" letter-spacing=".05em">
-    <text x="356" y="142" fill="#f0a94e">SEAR-HEX</text>
+    <text x="356" y="142" fill="#e5ae32">SEAR-HEX</text>
     <text x="30" y="288">SELF-HEALING MESH · 50–100 m SPACING</text>
-    <text x="30" y="34" fill="#3ad1da">IEEE 802.11s · 2.4 / 5 GHz · IP65</text>
+    <text x="30" y="34" fill="#92dbac">IEEE 802.11s · 2.4 / 5 GHz · IP65</text>
   </g>
 </svg>`;}
 
@@ -2015,17 +2015,17 @@ function photoSlot(label){return `<div class="photo-slot"><span class="ph-corner
   <div class="ph-label">${label}</div></div></div>`;}
 
 function rotor(cx,cy,dur){return `<g>
-  <circle cx="${cx}" cy="${cy}" r="40" fill="none" stroke="#3ad1da" stroke-opacity=".25" stroke-width="1"/>
-  <circle cx="${cx}" cy="${cy}" r="40" fill="none" stroke="#3ad1da" stroke-opacity=".5" stroke-width="1.4" stroke-dasharray="6 10"><animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="${dur*4}s" repeatCount="indefinite"/></circle>
+  <circle cx="${cx}" cy="${cy}" r="40" fill="none" stroke="#92dbac" stroke-opacity=".25" stroke-width="1"/>
+  <circle cx="${cx}" cy="${cy}" r="40" fill="none" stroke="#92dbac" stroke-opacity=".5" stroke-width="1.4" stroke-dasharray="6 10"><animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="${dur*4}s" repeatCount="indefinite"/></circle>
   <g><animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="${dur}s" repeatCount="indefinite"/>
-    <ellipse cx="${cx}" cy="${cy}" rx="38" ry="5" fill="#3ad1da" opacity=".55"/>
-    <ellipse cx="${cx}" cy="${cy}" rx="5" ry="38" fill="#3ad1da" opacity=".55"/>
+    <ellipse cx="${cx}" cy="${cy}" rx="38" ry="5" fill="#92dbac" opacity=".55"/>
+    <ellipse cx="${cx}" cy="${cy}" rx="5" ry="38" fill="#92dbac" opacity=".55"/>
   </g>
-  <circle cx="${cx}" cy="${cy}" r="6" fill="#0c1116" stroke="#3ad1da" stroke-width="1.4"/>
+  <circle cx="${cx}" cy="${cy}" r="6" fill="#0c1116" stroke="#92dbac" stroke-width="1.4"/>
 </g>`;}
 function heroDrone(){return `<svg viewBox="0 0 1000 250" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="hero-svg" role="img" aria-label="SEAR-AIR drone schematic">
   <defs>
-    <radialGradient id="sweepG" cx="0%" cy="100%" r="100%"><stop offset="0%" stop-color="#3ad1da" stop-opacity=".5"/><stop offset="100%" stop-color="#3ad1da" stop-opacity="0"/></radialGradient>
+    <radialGradient id="sweepG" cx="0%" cy="100%" r="100%"><stop offset="0%" stop-color="#92dbac" stop-opacity=".5"/><stop offset="100%" stop-color="#92dbac" stop-opacity="0"/></radialGradient>
     <pattern id="hg" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#ffffff" stroke-opacity=".03"/></pattern>
   </defs>
   <rect width="1000" height="250" fill="url(#hg)"/>
@@ -2039,18 +2039,18 @@ function heroDrone(){return `<svg viewBox="0 0 1000 250" preserveAspectRatio="xM
     <line x1="420" y1="80" x2="580" y2="170" stroke="#39414c"/><line x1="580" y1="80" x2="420" y2="170" stroke="#39414c"/>
     <rect x="470" y="95" width="60" height="60" rx="16"/>
   </g>
-  <rect x="486" y="111" width="28" height="28" rx="8" fill="#06222420" stroke="#3ad1da" stroke-width="1.4"/>
-  <circle cx="500" cy="125" r="5" fill="#3ad1da"><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></circle>
+  <rect x="486" y="111" width="28" height="28" rx="8" fill="#06222420" stroke="#92dbac" stroke-width="1.4"/>
+  <circle cx="500" cy="125" r="5" fill="#92dbac"><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></circle>
   ${rotor(420,80,1.1)}${rotor(580,80,1.3)}${rotor(420,170,1.25)}${rotor(580,170,1.05)}
   <!-- HUD ticks + labels -->
-  <g stroke="#3ad1da" stroke-width="1.2" opacity=".7">
+  <g stroke="#92dbac" stroke-width="1.2" opacity=".7">
     <path d="M250 40 H230 V60 M250 210 H230 V190 M750 40 H770 V60 M750 210 H770 V190"/>
   </g>
   <g font-family="JetBrains Mono, monospace" font-size="11" fill="#7c828c" letter-spacing=".1em">
     <text x="250" y="34">SEAR-AIR // VTOL SURVEY AIRCRAFT</text>
-    <text x="620" y="92" fill="#3ad1da">▸ ROTOR ×4 · NOMINAL</text>
-    <text x="620" y="120" fill="#3ad1da">▸ LiDAR POD · ACTIVE</text>
-    <text x="620" y="148" fill="#f0a94e">▸ HEX CRADLE · LOADED</text>
+    <text x="620" y="92" fill="#92dbac">▸ ROTOR ×4 · NOMINAL</text>
+    <text x="620" y="120" fill="#92dbac">▸ LiDAR POD · ACTIVE</text>
+    <text x="620" y="148" fill="#e5ae32">▸ HEX CRADLE · LOADED</text>
     <text x="250" y="226">WINGSPAN 2.4–2.8 m · MTOM 46 kg</text>
     <text x="690" y="226" fill="#8b929c">SCAN ████░ 78%</text>
   </g>
@@ -2251,7 +2251,7 @@ function initStarfield(){
       for(let j=i+1;j<pts.length;j++){
         const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=dx*dx+dy*dy;
         if(d<9000){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
-          ctx.strokeStyle=`rgba(58,209,218,${.10*(1-d/9000)})`; ctx.lineWidth=.6; ctx.stroke(); }
+          ctx.strokeStyle=`rgba(146,219,172,${.10*(1-d/9000)})`; ctx.lineWidth=.6; ctx.stroke(); }
       }
     }
     _raf=requestAnimationFrame(tick);
@@ -2319,11 +2319,11 @@ function initDirMap(){
   const lightBg=name=>/Light|Terrain/.test(name||'')?'#f4f4f2':'#11151b';
   _dirMap.on('baselayerchange',e=>{ el.style.background=lightBg(e.name); });
   el.style.background='#f4f4f2';   // default base layer is Light · clean
-  const colorOf=c=>c.rank==="National Special"?"#f0a94e":c.rank==="National"?"#3ad1da":"#b08ce0";
+  const colorOf=c=>c.rank==="National Special"?"#e5ae32":c.rank==="National"?"#92dbac":"#ea572e";
   const grp=L.featureGroup();
   const sites=(typeof ALLSITES!=='undefined')?ALLSITES:CAVES;
   sites.forEach(c=>{
-    const color=c.basic?"#b08ce0":colorOf(c);
+    const color=c.basic?"#ea572e":colorOf(c);
     const sz=c.basic?9:15;
     const fill=c.basic?'transparent':color;
     const icon=L.divIcon({className:'',html:`<div style="width:${sz}px;height:${sz}px;border-radius:50%;background:${fill};border:2px solid ${color};box-shadow:0 0 0 3px ${color}26,0 0 12px ${color}${c.basic?'66':''}"></div>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],popupAnchor:[0,-sz/2]});
@@ -2366,7 +2366,7 @@ function initCaveMap(){
   const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'});
   L.control.layers({'Dark · clean':dark,'Light · clean':light,'Terrain':terrain,'Satellite':sat},{},{collapsed:false,position:'topright'}).addTo(_caveMap);
   _caveMap.on('baselayerchange',e=>{ el.style.background=/Light|Terrain/.test(e.name||'')?'#f4f4f2':'#11151b'; });
-  const color="#f0a94e";
+  const color="#e5ae32";
   L.circle([lat,lng],{radius:2600,color:color,weight:1,opacity:.45,fillColor:color,fillOpacity:.05}).addTo(_caveMap);
   L.circleMarker([lat,lng],{radius:9,color:color,weight:2,fillColor:color,fillOpacity:.4}).addTo(_caveMap)
     .bindPopup('<div class="cave-popup"><b>'+(el.dataset.name||'')+'</b><br><span style="font-size:.78rem;color:#9aa">Approximate location · commune-level</span></div>');
@@ -2393,7 +2393,7 @@ function contribSetCoords(lat,lng,recenter){
   if(out){ out.textContent='Đã chọn vị trí · Location set: '+lat.toFixed(5)+', '+lng.toFixed(5); out.classList.add('set'); }
   if(_contribMap){
     if(_contribMarker)_contribMarker.setLatLng([lat,lng]);
-    else _contribMarker=L.circleMarker([lat,lng],{radius:9,color:'#f0a94e',weight:2,fillColor:'#f0a94e',fillOpacity:.5}).addTo(_contribMap);
+    else _contribMarker=L.circleMarker([lat,lng],{radius:9,color:'#e5ae32',weight:2,fillColor:'#e5ae32',fillOpacity:.5}).addTo(_contribMap);
     if(recenter){ try{_contribMap.setView([lat,lng],Math.max(_contribMap.getZoom(),13));}catch(e){} }
   }
 }
@@ -2419,7 +2419,7 @@ function attrDonut(data){
 }
 function attrChrono(bp,c){
   const A=32000,B=7000,x=v=>((A-Math.max(B,Math.min(A,v)))/(A-B))*100;
-  const zones=[['EARLY',30000,18000,'rgba(232,130,90,.15)'],['MIDDLE',18000,11000,'rgba(240,169,78,.15)'],['LATE',11000,7500,'rgba(58,209,218,.13)']];
+  const zones=[['EARLY',30000,18000,'rgba(234,87,46,.15)'],['MIDDLE',18000,11000,'rgba(229,174,50,.15)'],['LATE',11000,7500,'rgba(146,219,172,.13)']];
   const zhtml=zones.map(([lab,hi,lo,col])=>{const l=x(hi),w=x(lo)-x(hi);return `<div class="chrono-zone" style="left:${l}%;width:${w}%;background:${col}">${lab}</div>`;}).join('');
   let band='';if(bp){const x1=x(bp.max),x2=x(bp.min);band=`<div class="chrono-band" style="left:${x1}%;width:${Math.max(2.5,x2-x1)}%"></div>`;}
   const ticks=[30000,25000,20000,15000,10000].map(t=>`<span class="chrono-tick" style="left:${x(t)}%">${t/1000}k</span>`).join('');
@@ -2438,7 +2438,7 @@ const ART={
 };
 function attrCompass(dir){const map={N:0,NE:45,E:90,SE:135,S:180,SW:225,W:270,NW:315};const deg=map[dir]!=null?map[dir]:90;const a=deg*Math.PI/180;const ex=35+Math.sin(a)*21,ey=35-Math.cos(a)*21,bx=35-Math.sin(a)*8,by=35+Math.cos(a)*8;
   let ticks='';for(let i=0;i<12;i++){const t=i/12*2*Math.PI,r1=26,r2=i%3===0?19:23;ticks+=`<line x1="${(35+Math.sin(t)*r1).toFixed(1)}" y1="${(35-Math.cos(t)*r1).toFixed(1)}" x2="${(35+Math.sin(t)*r2).toFixed(1)}" y2="${(35-Math.cos(t)*r2).toFixed(1)}" stroke="#3a4654" stroke-width="${i%3===0?1.4:0.7}"/>`;}
-  return `<svg viewBox="0 0 70 70" class="compass"><circle cx="35" cy="35" r="28" fill="#0c1014" stroke="#3a4654" stroke-width="1.4"/>${ticks}<text x="35" y="12.5" text-anchor="middle" font-size="8" fill="#9aa2ac" font-family="JetBrains Mono">N</text><text x="35" y="66" text-anchor="middle" font-size="6.5" fill="#5b6470" font-family="JetBrains Mono">S</text><text x="62" y="38" text-anchor="middle" font-size="6.5" fill="#5b6470" font-family="JetBrains Mono">E</text><text x="8" y="38" text-anchor="middle" font-size="6.5" fill="#5b6470" font-family="JetBrains Mono">W</text><line x1="${bx.toFixed(1)}" y1="${by.toFixed(1)}" x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}" stroke="#f0a94e" stroke-width="2.6" stroke-linecap="round"/><circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="2.4" fill="#f0a94e"/><circle cx="35" cy="35" r="3" fill="#0c1014" stroke="#f0a94e" stroke-width="1.4"/></svg>`;}
+  return `<svg viewBox="0 0 70 70" class="compass"><circle cx="35" cy="35" r="28" fill="#0c1014" stroke="#3a4654" stroke-width="1.4"/>${ticks}<text x="35" y="12.5" text-anchor="middle" font-size="8" fill="#9aa2ac" font-family="JetBrains Mono">N</text><text x="35" y="66" text-anchor="middle" font-size="6.5" fill="#5b6470" font-family="JetBrains Mono">S</text><text x="62" y="38" text-anchor="middle" font-size="6.5" fill="#5b6470" font-family="JetBrains Mono">E</text><text x="8" y="38" text-anchor="middle" font-size="6.5" fill="#5b6470" font-family="JetBrains Mono">W</text><line x1="${bx.toFixed(1)}" y1="${by.toFixed(1)}" x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}" stroke="#e5ae32" stroke-width="2.6" stroke-linecap="round"/><circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="2.4" fill="#e5ae32"/><circle cx="35" cy="35" r="3" fill="#0c1014" stroke="#e5ae32" stroke-width="1.4"/></svg>`;}
 function attrBurial(posture){
   const grave='<rect x="3" y="6" width="144" height="72" rx="6" fill="#140d07" stroke="#3a2f22" stroke-width="1.4"/><rect x="5.5" y="8.5" width="139" height="67" rx="5" fill="none" stroke="#241a0f" stroke-width="2" opacity=".6"/>';
   let g='<g stroke="#2c2114" stroke-width=".7" opacity=".55">';for(let x=33;x<147;x+=30)g+=`<line x1="${x}" y1="6" x2="${x}" y2="78"/>`;for(let y=29;y<78;y+=24)g+=`<line x1="3" y1="${y}" x2="147" y2="${y}"/>`;g+='</g>';
@@ -2483,7 +2483,7 @@ function stratSection(cave){
     bands+=`<path d="${d}" fill="${s.color}" stroke="rgba(0,0,0,.45)" stroke-width="1"/>`+tex(s,tA,tB);});
   // excavated finds within cultural layers
   const findSym=(x,y,t)=>{x=+x;y=+y;
-    if(t==='tool')return `<path d="M${x} ${(y-2.8).toFixed(1)} l3 5.4 h-6 z" fill="#f0a94e" stroke="#2a1d0c" stroke-width=".5"/>`;
+    if(t==='tool')return `<path d="M${x} ${(y-2.8).toFixed(1)} l3 5.4 h-6 z" fill="#e5ae32" stroke="#2a1d0c" stroke-width=".5"/>`;
     if(t==='bone')return `<g stroke="#e7eef4" stroke-width="1.5" stroke-linecap="round"><line x1="${(x-2.8).toFixed(1)}" y1="${(y-2.2).toFixed(1)}" x2="${(x+2.8).toFixed(1)}" y2="${(y+2.2).toFixed(1)}"/></g>`;
     if(t==='shell')return `<path d="M${(x-2.6).toFixed(1)} ${y} q2.6 -3.2 5.2 0" fill="none" stroke="#1f160d" stroke-width="1.1"/>`;
     return `<circle cx="${x}" cy="${y}" r="1.4" fill="#15110b"/>`;};
@@ -2499,7 +2499,7 @@ function stratSection(cave){
   const seen={};
   sIdx.forEach(bi=>{if(bi<1||bi>=ys.length-1||seen[bi])return;seen[bi]=1;const y=ys[bi];
     const val=bpr?((bpr.min+(bpr.max-bpr.min)*(0.25+0.5*rnd()))/1000):(7+rnd()*16);const err=Math.round(60+rnd()*150);
-    samples+=`<g><circle cx="${X0+13}" cy="${y.toFixed(1)}" r="3.2" fill="#0c0f13" stroke="#3ad1da" stroke-width="1.6"/><circle cx="${X0+13}" cy="${y.toFixed(1)}" r="1" fill="#3ad1da"/><line x1="${X0+16}" y1="${y.toFixed(1)}" x2="${X0+40}" y2="${y.toFixed(1)}" stroke="#3ad1da" stroke-width=".7" stroke-dasharray="2 2"/><rect x="${X0+40}" y="${(y-7.5).toFixed(1)}" width="92" height="15" rx="2.5" fill="#06222a" stroke="#1f5560" stroke-width=".8"/><text x="${X0+45}" y="${(y+3).toFixed(1)}" font-family="JetBrains Mono,monospace" font-size="8" fill="#7fe3ef">C-14 ${val.toFixed(1)}k±${err}</text></g>`;});
+    samples+=`<g><circle cx="${X0+13}" cy="${y.toFixed(1)}" r="3.2" fill="#0c0f13" stroke="#92dbac" stroke-width="1.6"/><circle cx="${X0+13}" cy="${y.toFixed(1)}" r="1" fill="#92dbac"/><line x1="${X0+16}" y1="${y.toFixed(1)}" x2="${X0+40}" y2="${y.toFixed(1)}" stroke="#92dbac" stroke-width=".7" stroke-dasharray="2 2"/><rect x="${X0+40}" y="${(y-7.5).toFixed(1)}" width="92" height="15" rx="2.5" fill="#06222a" stroke="#1f5560" stroke-width=".8"/><text x="${X0+45}" y="${(y+3).toFixed(1)}" font-family="JetBrains Mono,monospace" font-size="8" fill="#92dbac">C-14 ${val.toFixed(1)}k±${err}</text></g>`;});
   // depth axis
   let axis=`<line x1="${X0-10}" y1="${topPad}" x2="${X0-10}" y2="${topPad+secH}" stroke="#3a4654" stroke-width="1.4"/>`;
   ys.forEach((y,i)=>{const cm=Math.round(i/strata.length*depthCm);axis+=`<line x1="${X0-14}" y1="${y.toFixed(1)}" x2="${X0-10}" y2="${y.toFixed(1)}" stroke="#3a4654" stroke-width="1.2"/><text x="${X0-18}" y="${(y+3).toFixed(1)}" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="8" fill="#7c828c">${cm}</text>`;});
@@ -2513,7 +2513,7 @@ function stratSection(cave){
     labels+=`<g><rect x="384" y="${(cy-6.5).toFixed(1)}" width="13" height="13" rx="3" fill="${s.color}" stroke="rgba(255,255,255,.35)" stroke-width=".8"/><rect x="384" y="${(cy-6.5).toFixed(1)}" width="13" height="5" rx="2.5" fill="#fff" opacity=".12"/><line x1="${X1}" y1="${cy.toFixed(1)}" x2="382" y2="${cy.toFixed(1)}" stroke="#3a4654" stroke-width="1" stroke-dasharray="2 2"/><text x="403" y="${(cy-1).toFixed(1)}" font-family="Space Grotesk" font-size="11" fill="#fff">${s.label}</text><text x="403" y="${(cy+11).toFixed(1)}" font-family="Inter" font-size="9" fill="#8b929c">${s.note} · ~${cm} cm</text></g>`;});
   // finds legend (bottom)
   const ly=topPad+secH+20;
-  const leg=`<g font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9aa2ac"><text x="${X0-10}" y="${ly}" fill="#6c727c">FINDS</text><path d="M${X0+34} ${ly-2.8} l3 5.4 h-6 z" fill="#f0a94e"/><text x="${X0+42}" y="${ly}">lithics</text><line x1="${X0+86}" y1="${ly-2}" x2="${X0+92}" y2="${ly+2}" stroke="#e7eef4" stroke-width="1.5"/><text x="${X0+98}" y="${ly}">bone</text><path d="M${X0+134} ${ly} q2.6 -3 5.2 0" fill="none" stroke="#cdd3da" stroke-width="1.1"/><text x="${X0+144}" y="${ly}">shell</text><circle cx="${X0+182}" cy="${ly-1.5}" r="1.6" fill="#cdd3da"/><text x="${X0+188}" y="${ly}">charcoal</text><circle cx="${X0+238}" cy="${ly-1.5}" r="3" fill="#0c0f13" stroke="#3ad1da" stroke-width="1.4"/><text x="${X0+245}" y="${ly}" fill="#7fe3ef">C-14 sample</text></g>`;
+  const leg=`<g font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9aa2ac"><text x="${X0-10}" y="${ly}" fill="#6c727c">FINDS</text><path d="M${X0+34} ${ly-2.8} l3 5.4 h-6 z" fill="#e5ae32"/><text x="${X0+42}" y="${ly}">lithics</text><line x1="${X0+86}" y1="${ly-2}" x2="${X0+92}" y2="${ly+2}" stroke="#e7eef4" stroke-width="1.5"/><text x="${X0+98}" y="${ly}">bone</text><path d="M${X0+134} ${ly} q2.6 -3 5.2 0" fill="none" stroke="#cdd3da" stroke-width="1.1"/><text x="${X0+144}" y="${ly}">shell</text><circle cx="${X0+182}" cy="${ly-1.5}" r="1.6" fill="#cdd3da"/><text x="${X0+188}" y="${ly}">charcoal</text><circle cx="${X0+238}" cy="${ly-1.5}" r="3" fill="#0c0f13" stroke="#92dbac" stroke-width="1.4"/><text x="${X0+245}" y="${ly}" fill="#92dbac">C-14 sample</text></g>`;
   return `<svg viewBox="0 0 600 ${VB}" class="strat-svg" role="img" aria-label="Stratigraphic section of ${(cave&&cave.name)||'cave'}"><rect width="600" height="${VB}" fill="#0c0f13"/>${axis}${bands}${finds}<rect x="${X0}" y="${topPad}" width="${W}" height="${secH}" fill="none" stroke="#2b3640" stroke-width="1"/>${scalebar}${samples}${labels}${leg}</svg>`;
 }
 function attrRender(id){
@@ -2534,7 +2534,7 @@ function attrRender(id){
   // chronology
   const bp=attrParseBP(c.datingText);
   // tools donut
-  const toolData=[['Short axes','#f0a94e'],['Disc tools','#3ad1da'],['Almond','#8fb56a'],['Choppers','#c4a7ec'],['Scrapers','#e8825a']].map(([label,color])=>({label,color,val:8+Math.floor(rnd()*42)}));
+  const toolData=[['Short axes','#e5ae32'],['Disc tools','#92dbac'],['Almond','#598290'],['Choppers','#f2795a'],['Scrapers','#ea572e']].map(([label,color])=>({label,color,val:8+Math.floor(rnd()*42)}));
   const techniques=['Unifacial','Bifacial','Edge-ground'].filter(()=>rnd()<.75); if(!techniques.length)techniques.push('Unifacial');
   const toolArt=[ART.axe,ART.disc].map(s=>`<div class="art-img">${s}</div>`).join('');
   // organic
@@ -2547,7 +2547,7 @@ function attrRender(id){
    ? `<div class="burial-grid">${attrBurial(posture)}<div class="burial-facts"><div><span class="kicker">POSTURE</span><b>${posture}</b></div><div><span class="kicker">HEAD ORIENTATION</span>${attrCompass(od)}<b>${od}</b></div><div><span class="kicker">RED OCHRE</span><b>${ochre?'<span class="ochre-sw"></span> Present':'Not noted'}</b></div></div></div>`
    : `<div class="empty-note"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#5b6470" stroke-width="1.4"><path d="M4 20h16M7 20V9l5-4 5 4v11"/></svg><p class="muted" style="margin:.4em 0 0;font-size:.9rem">No burials recorded at this site.</p></div>`;
   // conservation + media
-  const consMap={'Protected':{lvl:3,c:'#8fb56a'},'Tourism pressure':{lvl:2,c:'#f0a94e'},'At risk':{lvl:1,c:'#e8825a'}};
+  const consMap={'Protected':{lvl:3,c:'#598290'},'Tourism pressure':{lvl:2,c:'#e5ae32'},'At risk':{lvl:1,c:'#ea572e'}};
   const cons=consMap[c.conservation]||{lvl:0,c:'#7c828c'};
   const gauge=[1,2,3].map(i=>`<span class="gseg" style="background:${i<=cons.lvl?cons.c:'rgba(255,255,255,.08)'}"></span>`).join('');
   const media=[['PDF',1+Math.floor(rnd()*4)],['Photos',4+Math.floor(rnd()*14)],['Video',Math.floor(rnd()*3)],['Articles',1+Math.floor(rnd()*5)]];
@@ -2760,7 +2760,7 @@ function makeCloud(canvas){
       let c=P(xmn,ymin,zmn+(zmx-zmn)*i/gN),d=P(xmx,ymin,zmn+(zmx-zmn)*i/gN);ctx.beginPath();ctx.moveTo(c[0],c[1]);ctx.lineTo(d[0],d[1]);ctx.stroke();}
     // bounding box wireframe
     const cor=[[xmn,ymin,zmn],[xmx,ymin,zmn],[xmx,ymin,zmx],[xmn,ymin,zmx],[xmn,ymax,zmn],[xmx,ymax,zmn],[xmx,ymax,zmx],[xmn,ymax,zmx]].map(c=>P(c[0],c[1],c[2]));
-    ctx.strokeStyle='rgba(58,209,218,0.26)';ctx.lineWidth=Math.max(1,DPR*0.7);
+    ctx.strokeStyle='rgba(146,219,172,0.26)';ctx.lineWidth=Math.max(1,DPR*0.7);
     [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]].forEach(([a,b])=>{ctx.beginPath();ctx.moveTo(cor[a][0],cor[a][1]);ctx.lineTo(cor[b][0],cor[b][1]);ctx.stroke();});
     // point cloud
     const proj=pts.map(p=>{const x=p.x*cY-p.z*sY,z=p.x*sY+p.z*cY,y2=p.y*cP-z*sP,z2=p.y*sP+z*cP;
@@ -2778,7 +2778,7 @@ function makeCloud(canvas){
     const dir=(x,y,z)=>{const a=P(0,0,0),b=P(x,y,z);const dx=b[0]-a[0],dy=b[1]-a[1],l=Math.hypot(dx,dy)||1;return [dx/l*L,dy/l*L];};
     ctx.lineWidth=Math.max(1.4,DPR*1.1); ctx.font='600 '+(f*0.8).toFixed(0)+'px JetBrains Mono, monospace'; ctx.textBaseline='middle'; ctx.textAlign='center';
     const ga=(d,col,lab)=>{ctx.strokeStyle=col;ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(gx,gy);ctx.lineTo(gx+d[0],gy+d[1]);ctx.stroke();ctx.fillText(lab,gx+d[0]*1.22,gy+d[1]*1.22);};
-    ga(dir(1,0,0),'#e8825a','X'); ga(dir(0,0,1),'#5cc6e6','Z'); ga(dir(0,1,0),'#8fd14f','Y');
+    ga(dir(1,0,0),'#ea572e','X'); ga(dir(0,0,1),'#598290','Z'); ga(dir(0,1,0),'#8fd14f','Y');
     // elevation colorbar (right)
     const cbW=8*DPR,cbX=W-20*DPR-cbW,cbY=26*DPR,cbH=H-94*DPR;
     for(let i=0;i<cbH;i++){ctx.fillStyle=jet(1-i/cbH);ctx.fillRect(cbX,cbY+i,cbW,1);}
@@ -2814,8 +2814,8 @@ function pitDrawing(c){
   let g=''; for(let i=0;i<=cols;i++)g+=`<line x1="${ox+i*cw}" y1="${oy}" x2="${ox+i*cw}" y2="${oy+rows*ch}"/>`;
   for(let j=0;j<=rows;j++)g+=`<line x1="${ox}" y1="${oy+j*ch}" x2="${ox+cols*cw}" y2="${oy+j*ch}"/>`;
   let finds=''; const nf=4+Math.floor(rn()*4);
-  for(let i=0;i<nf;i++){const gx=Math.floor(rn()*cols),gy=Math.floor(rn()*rows); finds+=`<circle cx="${ox+gx*cw+cw/2}" cy="${oy+gy*ch+ch/2}" r="3" fill="#f0a94e"/>`;}
-  let bur=''; if(c.hasBurials){const gx=Math.floor(rn()*cols),gy=Math.floor(rn()*rows); bur=`<rect x="${ox+gx*cw+6}" y="${oy+gy*ch+5}" width="${cw-12}" height="${ch-10}" fill="none" stroke="#c4a7ec" stroke-width="1.6"/><text x="${ox+gx*cw+cw/2}" y="${oy+gy*ch+ch/2+3}" font-size="7" fill="#c4a7ec" text-anchor="middle" font-family="JetBrains Mono,monospace">B</text>`;}
+  for(let i=0;i<nf;i++){const gx=Math.floor(rn()*cols),gy=Math.floor(rn()*rows); finds+=`<circle cx="${ox+gx*cw+cw/2}" cy="${oy+gy*ch+ch/2}" r="3" fill="#e5ae32"/>`;}
+  let bur=''; if(c.hasBurials){const gx=Math.floor(rn()*cols),gy=Math.floor(rn()*rows); bur=`<rect x="${ox+gx*cw+6}" y="${oy+gy*ch+5}" width="${cw-12}" height="${ch-10}" fill="none" stroke="#f2795a" stroke-width="1.6"/><text x="${ox+gx*cw+cw/2}" y="${oy+gy*ch+ch/2+3}" font-size="7" fill="#f2795a" text-anchor="middle" font-family="JetBrains Mono,monospace">B</text>`;}
   return `<svg viewBox="0 0 ${ox*2+cols*cw} ${oy*2+rows*ch}" class="pit-svg" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#0c1014"/><g stroke="#2b3640" stroke-width="1">${g}</g>${finds}${bur}<g font-family="JetBrains Mono,monospace" font-size="8" fill="#6c727c"><text x="${ox}" y="12">X→</text><text x="6" y="${oy+rows*ch}">Y↓</text></g></svg>`;
 }
 
