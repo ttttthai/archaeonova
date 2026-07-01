@@ -193,10 +193,19 @@ img{max-width:100%;height:auto}
 .card.hover:hover::after{opacity:1}
 .card h3{margin-top:0}
 /* 5-colour palette tints for cards/boxes; page background stays black */
-.card{background:linear-gradient(165deg,rgba(229,174,50,.09),rgba(255,255,255,.012));border-color:rgba(229,174,50,.16)}
-.grid .card:nth-child(4n+2){background:linear-gradient(165deg,rgba(146,219,172,.09),rgba(255,255,255,.012));border-color:rgba(146,219,172,.17)}
-.grid .card:nth-child(4n+3){background:linear-gradient(165deg,rgba(234,87,46,.09),rgba(255,255,255,.012));border-color:rgba(234,87,46,.17)}
-.grid .card:nth-child(4n+4){background:linear-gradient(165deg,rgba(89,130,144,.13),rgba(255,255,255,.012));border-color:rgba(89,130,144,.20)}
+.card{background:linear-gradient(160deg,rgba(229,174,50,.17),rgba(229,174,50,.06));border-color:rgba(229,174,50,.26)}
+.grid .card:nth-child(4n+2){background:linear-gradient(160deg,rgba(146,219,172,.17),rgba(146,219,172,.06));border-color:rgba(146,219,172,.28)}
+.grid .card:nth-child(4n+3){background:linear-gradient(160deg,rgba(234,87,46,.16),rgba(234,87,46,.06));border-color:rgba(234,87,46,.28)}
+.grid .card:nth-child(4n+4){background:linear-gradient(160deg,rgba(89,130,144,.20),rgba(89,130,144,.07));border-color:rgba(89,130,144,.30)}
+/* palette tints on stat/fact boxes too (page bg stays black) */
+.hb-facts .hb-fact:nth-child(4n+1){background:linear-gradient(160deg,rgba(229,174,50,.16),rgba(229,174,50,.05));border-color:rgba(229,174,50,.26)}
+.hb-facts .hb-fact:nth-child(4n+2){background:linear-gradient(160deg,rgba(146,219,172,.16),rgba(146,219,172,.05));border-color:rgba(146,219,172,.28)}
+.hb-facts .hb-fact:nth-child(4n+3){background:linear-gradient(160deg,rgba(234,87,46,.15),rgba(234,87,46,.05));border-color:rgba(234,87,46,.28)}
+.hb-facts .hb-fact:nth-child(4n+4){background:linear-gradient(160deg,rgba(89,130,144,.19),rgba(89,130,144,.06));border-color:rgba(89,130,144,.30)}
+.home-stats .hstat:nth-child(4n+1){background:linear-gradient(160deg,rgba(229,174,50,.15),rgba(12,14,17,.4))}
+.home-stats .hstat:nth-child(4n+2){background:linear-gradient(160deg,rgba(146,219,172,.15),rgba(12,14,17,.4))}
+.home-stats .hstat:nth-child(4n+3){background:linear-gradient(160deg,rgba(234,87,46,.14),rgba(12,14,17,.4))}
+.home-stats .hstat:nth-child(4n+4){background:linear-gradient(160deg,rgba(89,130,144,.18),rgba(12,14,17,.4))}
 .icon-badge{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;font-size:1.45rem;margin-bottom:14px;
   background:linear-gradient(160deg,rgba(229,174,50,.18),rgba(229,174,50,.04));border:1px solid rgba(229,174,50,.2)}
 .icon-badge.cyan{background:linear-gradient(160deg,rgba(146,219,172,.18),rgba(146,219,172,.04));border-color:rgba(146,219,172,.2);color:var(--cyan)}
