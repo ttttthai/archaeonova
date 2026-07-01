@@ -31,8 +31,8 @@
    "Mission Control" dark UI · single-file edition
    ============================================================ */
 :root{
-  --bg:#070809;           /* obsidian */
-  --bg-2:#0c0e11;
+  --bg:#0a1417;           /* deep slate-teal (from palette moss #598290) */
+  --bg-2:#0f1c21;
   --surface:rgba(255,255,255,.035);
   --surface-2:rgba(255,255,255,.055);
   --border:rgba(255,255,255,.10);
@@ -861,7 +861,7 @@ img{max-width:100%;height:auto}
       <a href="#home" data-nav="home">Home</a>
       <a href="#hoabinhian" data-nav="hoabinhian">The Hoabinhian</a>
       <a href="#directory" data-nav="directory">Cave Sites Directory</a>
-      <a href="#about" data-nav="about">SEAR Drones</a>
+      <a href="#about" data-nav="about">SEAR-X</a>
       <a href="#team" data-nav="team">Team</a>
       <a href="#learn" data-nav="learn">Learn</a>
       <a href="#news" data-nav="news">Heritage News</a>
@@ -876,8 +876,8 @@ img{max-width:100%;height:auto}
   <div class="container">
     <div class="footer-grid">
       <div>
-        <h4>ArchaeoNova — Digital Hoabinhian Directory</h4>
-        <p style="max-width:46ch">A research and public-education platform for the prehistoric caves in Northern Vietnam — and the companion to the SEAR integrated drones cave-survey system.</p>
+        <h4>ArchaeoNova — Digital Hoabinhian Sites Directory</h4>
+        <p style="max-width:46ch">A research and public-education platform for the prehistoric caves sites of the Hoabinhian culture center in Northern Vietnam — and the companion to the SEAR integrated drones cave-survey system project.</p>
       </div>
       <div>
         <h4>Navigate</h4>
@@ -889,8 +889,8 @@ img{max-width:100%;height:auto}
       <div>
         <h4>Team</h4>
         <p><a href="#team">Team ArchaeoNova</a></p>
-        <p id="footerSchool">Wellspring Bilingual<br>International School, Hanoi</p>
-        <p><a href="#about">About SEAR Drones →</a></p>
+        <p id="footerSchool"><a href="https://wellspring.edu.vn/" target="_blank" rel="noopener" style="text-decoration:none">Wellspring Bilingual<br>International School, Hanoi</a></p>
+        <p><a href="#about">About the SEAR-X →</a></p>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1055,7 +1055,7 @@ function viewHome(){
       <div class="hero-cta reveal d3">
         <a class="btn ghost" href="#hoabinhian">About the Hoabinhian</a>
         <a class="btn" href="#directory">Launch the Directory <span class="arw">→</span></a>
-        <a class="btn ghost" href="#about">Meet our SEAR Drones</a>
+        <a class="btn ghost" href="#about">Meet the SEAR-X</a>
         <a class="btn ghost" href="#team">Meet the Team</a>
       </div>
     </div>
@@ -1086,7 +1086,7 @@ function viewHome(){
       <h2 class="reveal" style="margin:.3em 0 18px">Three ways in</h2>
       <div class="grid cols-3 home-explore">
         <a class="card hover reveal" href="#directory"><div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg></div><strong>The Hoabinhian Cave Sites Directory</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">Interactive map, site records, stratigraphy and artifacts for all ${CAVES.length} caves.</p></a>
-        <a class="card hover reveal d1" href="#about"><div class="icon-badge cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4z"/><circle cx="12" cy="11" r="2.5"/></svg></div><strong>The SEAR Drones</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">A three-drone system that surveys caves humans can't safely enter.</p></a>
+        <a class="card hover reveal d1" href="#about"><div class="icon-badge cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4z"/><circle cx="12" cy="11" r="2.5"/></svg></div><strong>The SEAR-X</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">A three-part robotic system that surveys caves humans can't safely enter.</p></a>
         <a class="card hover reveal d2" href="#learn"><div class="icon-badge orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H12v16H5.5A2.5 2.5 0 0 0 3 21.5z"/><path d="M21 5.5A2.5 2.5 0 0 0 18.5 3H12v16h6.5A2.5 2.5 0 0 1 21 21.5z"/></svg></div><strong>Learn the story</strong><p class="muted" style="font-size:.86rem;margin:.3em 0 0">Who the Hoabinhian people were, in plain language — no academic papers needed.</p></a>
       </div>
     </div>
@@ -2248,8 +2248,20 @@ function viewAbout(){
     <div class="veil"></div>
     <div class="container reveal">
       <p class="eyebrow cyan">FIELD ROBOTICS · HERITAGE PRESERVATION</p>
-      <h1 class="title-grad" style="font-size:clamp(2.6rem,8vw,5rem);letter-spacing:-.03em">SEAR Drones</h1>
-      <p class="lead">Survey, Exploration &amp; Archaeological Reconnaissance System — an integrated three-drone platform that surveys, maps and digitally preserves prehistoric caves humans can't safely enter, <strong>before</strong> a single trowel touches the ground.</p>
+      <h1 class="title-grad" style="font-size:clamp(2.6rem,8vw,5rem);letter-spacing:-.03em">Meet the SEAR-X</h1>
+      <p class="lead">Survey, Exploration &amp; Archaeological Reconnaissance System — an integrated three-part robotic platform that surveys, maps and digitally preserves prehistoric caves humans can't safely enter, <strong>before</strong> a single trowel touches the ground.</p>
+    </div>
+  </section>
+
+  <section class="section" style="border-top:1px solid var(--border-soft)" id="system">
+    <div class="container">
+      <div class="reveal" style="max-width:none"><p class="eyebrow cyan">THE COMPLETE SYSTEM</p><h2>SEAR-X in the field</h2><p>SEAR-AIR, SEAR-HEX and SEAR-RELAY combine into one deployable expedition system, built for the limestone karst of northern Vietnam — flying in to a remote site, walking into the cave, and holding a live link back to the surface, all before a single trowel touches the ground.</p></div>
+      <figure class="reveal" style="margin:24px 0 0"><img src="sx-4.jpg" alt="The SEAR-X system deploying at a limestone cave mouth in Hòa Bình" loading="lazy" style="width:100%;border-radius:16px;border:1px solid var(--border-soft);display:block"><figcaption class="kicker" style="margin-top:10px;color:var(--muted)">SEAR-X DEPLOYING AT A HOABINHIAN CAVE MOUTH</figcaption></figure>
+      <div class="grid cols-3 reveal" style="margin-top:16px">
+        <figure style="margin:0"><img src="sx-1.jpg" alt="SEAR-X surveying limestone karst terraces" loading="lazy" style="width:100%;border-radius:14px;border:1px solid var(--border-soft);display:block"><figcaption class="kicker" style="margin-top:8px;color:var(--muted)">SURVEYING LIMESTONE KARST TERRAIN</figcaption></figure>
+        <figure style="margin:0"><img src="sx-2.jpg" alt="SEAR-X approaching a highland cave system" loading="lazy" style="width:100%;border-radius:14px;border:1px solid var(--border-soft);display:block"><figcaption class="kicker" style="margin-top:8px;color:var(--muted)">APPROACHING A HIGHLAND CAVE SYSTEM</figcaption></figure>
+        <figure style="margin:0"><img src="sx-3.jpg" alt="SEAR-X full assembly engineering render" loading="lazy" style="width:100%;border-radius:14px;border:1px solid var(--border-soft);display:block"><figcaption class="kicker" style="margin-top:8px;color:var(--muted)">FULL ASSEMBLY · ENGINEERING RENDER</figcaption></figure>
+      </div>
     </div>
   </section>
 
@@ -2282,7 +2294,7 @@ function viewAbout(){
           </div>
         </div>
       </div>
-      <div class="hero-viewport reveal" style="margin-top:18px"><div class="hv-bar"><span><i class="rec-dot"></i> ENGINEERING RENDER</span><span class="vp-coord" id="heroRenderLabel">SEAR-HEX · SPEC SHEET</span></div><img class="hero-render" id="heroRender" src="${SXIMG.hero}" alt="Selected SEAR drone — specification sheet"></div>
+      <div class="hero-viewport reveal" style="margin-top:18px"><div class="hv-bar"><span><i class="rec-dot"></i> ENGINEERING RENDER</span><span class="vp-coord" id="heroRenderLabel">SEAR-HEX · ENGINEERING RENDER</span></div><img class="hero-render" id="heroRender" src="${SXIMG.hero}" alt="Selected SEAR drone — engineering render"></div>
     </div>
   </section>
 
@@ -2802,7 +2814,7 @@ const SUBS={
     desc:"A six-legged walking drone that steps over rubble and braces against walls where wheels and tracks fail. Telescoping limbs cross a chamber or squeeze through a 0.8 m passage, while force-sensing feet protect the cave floor.",
     bars:[["Mobility",95],["Mapping precision",92],["Endurance",70],["Payload",60]],
     tlm:[{k:"O₂",v:"20.9",u:"%",j:1},{k:"LiDAR",v:"12",u:" Hz",j:1},{k:"RANGE",v:"0.87",u:" km",j:1},{k:"BATT",v:"87",u:"%",j:1}],
-    specs:[["Total mass","25.5","kg"],["Operational runtime","3.9–4.4","hours"],["Exploration range","~0.9","km (2 km via relay)"],["LiDAR accuracy","±3","cm @ 100–200 m"],["Photogrammetry","&lt;5","mm/px @ 0.5 m"],["Limb reach","0.8 → 5","m (telescoping)"]]},
+    specs:[["Total mass","25.5","kg"],["Operational runtime","4–6","hours"],["Exploration range","~0.9","km (2 km via relay)"],["LiDAR accuracy","±3","cm @ 100–200 m"],["Photogrammetry","&lt;5","mm/px @ 0.5 m"],["Limb reach","0.8 → 5","m (telescoping)"]]},
   air:{id:"SEAR-AIR",name:"The survey drone",mode:"ENGINEERING RENDER · TOP",foot:"WINGSPAN 2.4–2.8 m · MTOM 46 kg · VTOL ×4",coord:"ALT 50–300 m AGL · LOS 20 km",svg:()=>'<img class="lab-render" alt="SEAR-AIR render" src="'+SXIMG.top+'">',
     desc:"A vertical-take-off fixed-wing aircraft and mission-control platform. It maps terrain from above, locates hidden cave entrances, and carries SEAR-HEX in a ventral cradle to sites with no road access.",
     bars:[["Range",95],["Area coverage",90],["Payload lift",85],["Endurance",80]],
@@ -2814,7 +2826,7 @@ const SUBS={
     tlm:[{k:"NODES",v:"18/20",u:"",j:0},{k:"LINK",v:"96",u:"%",j:1},{k:"HOPS",v:"7",u:"",j:0},{k:"BATT",v:"73",u:"%",j:1}],
     specs:[["Nodes per mission","20","units"],["Mass per node","0.5","kg"],["Comms extension","2","km"],["Node battery life","48–72","hours"],["Radio","2.4 / 5","GHz dual-band"],["Mesh protocol","802.11s","self-healing"]]}
 };
-function stopSearViewer(){ if(window._tlmTimer){clearInterval(window._tlmTimer);window._tlmTimer=null;} }
+function stopSearViewer(){ if(window._tlmTimer){clearInterval(window._tlmTimer);window._tlmTimer=null;} if(window._heroTimer){clearInterval(window._heroTimer);window._heroTimer=null;} }
 function initSearViewer(){
   const stage=document.getElementById('vpStage'); if(!stage)return;
   const $=id=>document.getElementById(id);
@@ -2828,13 +2840,27 @@ function initSearViewer(){
     $('vpId').textContent=s.id; $('vpMode').textContent=s.mode; $('vpFoot').textContent=s.foot; $('vpCoord').textContent=s.coord;
     $('subTag').textContent=s.id; $('subName').textContent=s.name; $('subDesc').textContent=s.desc;
     $('subBars').innerHTML=barsHtml(s.bars); $('subTlm').innerHTML=tlmHtml(s.tlm);
-    const HS={hex:['r-hex-specs.jpg','SEAR-HEX · SPEC SHEET'],air:['r-air-specs.jpg','SEAR-AIR · SPEC SHEET'],relay:['r-relay-specs.jpg','SEAR-RELAY · SPEC SHEET']}[sub];
-    if(HS){const hr=document.getElementById('heroRender');if(hr)hr.src=HS[0];const hl=document.getElementById('heroRenderLabel');if(hl)hl.textContent=HS[1];}
+    const HCYC={hex:['r-hex-specs.jpg','rx-hex3.jpg'],air:['r-air.jpg','r-air-specs.jpg'],relay:['r-relay.jpg','r-relay-specs.jpg']}[sub];
+    const HLBL={hex:'SEAR-HEX · ENGINEERING RENDER',air:'SEAR-AIR · ENGINEERING RENDER',relay:'SEAR-RELAY · ENGINEERING RENDER'}[sub];
+    if(window._heroTimer){clearInterval(window._heroTimer);window._heroTimer=null;}
+    const hr=document.getElementById('heroRender'), hl=document.getElementById('heroRenderLabel');
+    if(hl)hl.textContent=HLBL;
+    if(hr&&HCYC){
+      HCYC.forEach(src=>{const im=new Image();im.src=src;});
+      hr.style.transition='opacity .45s ease';
+      let hi=0; hr.style.opacity='1'; hr.src=HCYC[0];
+      window._heroTimer=setInterval(()=>{
+        if(!document.body.contains(hr)){clearInterval(window._heroTimer);window._heroTimer=null;return;}
+        hi=(hi+1)%HCYC.length;
+        hr.style.opacity='0';
+        setTimeout(()=>{ if(document.body.contains(hr)){hr.src=HCYC[hi];hr.style.opacity='1';} },260);
+      },3000);
+    }
     requestAnimationFrame(()=>setTimeout(()=>document.querySelectorAll('#subBars .bar i').forEach(i=>i.style.width=i.dataset.w+'%'),50));
   }
   document.querySelectorAll('.vp-tab').forEach(b=>b.addEventListener('click',()=>render(b.dataset.sub)));
-  render('hex');
   stopSearViewer();
+  render('hex');
   window._tlmTimer=setInterval(()=>{
     document.querySelectorAll('#subTlm b').forEach(b=>{ if(b.dataset.j!=='1')return;
       const base=parseFloat(b.dataset.base); if(isNaN(base))return;
