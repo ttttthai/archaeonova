@@ -808,6 +808,7 @@ img{max-width:100%;height:auto}
 .hb-tl::before{content:"";position:absolute;left:2px;right:2px;top:7px;height:2px;background:linear-gradient(90deg,var(--amber),var(--cyan))}
 .hb-tl-item{position:relative;padding:24px 12px 0 0}
 .hb-tl-item::before{content:"";position:absolute;left:0;top:1px;width:13px;height:13px;border-radius:50%;background:var(--bg-2);border:2px solid var(--amber);box-shadow:0 0 0 3px rgba(229,174,50,.15)}
+.hb-tl-item::after{content:"";position:absolute;left:13px;right:0;top:6px;height:2px;background:linear-gradient(90deg,var(--amber),var(--cyan));display:none}
 .hb-tl-year{display:block;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--amber);font-weight:600;margin-bottom:5px}
 .hb-tl-txt{display:block;font-size:.8rem;color:var(--text-2);line-height:1.45;padding-right:6px}
 .hb-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -815,7 +816,7 @@ img{max-width:100%;height:auto}
 .hb-dir:hover{color:var(--amber)}
 .hb-sub{display:block;margin-top:5px;font-family:Inter,sans-serif;font-size:.66rem;letter-spacing:0;text-transform:none;color:var(--muted)}
 .hb-dir:hover{color:var(--amber);border-color:var(--amber)}
-@media(max-width:900px){.hb-facts{grid-template-columns:repeat(2,1fr)}.hb-tl{grid-template-columns:repeat(3,1fr);row-gap:22px}.hb-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.hb-facts{grid-template-columns:repeat(2,1fr)}.hb-tl{grid-template-columns:repeat(3,1fr);row-gap:22px}.hb-tl::before{display:none}.hb-tl-item::after{display:block}.hb-cards{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.hb-tl{grid-template-columns:repeat(2,1fr)}.hb-cards{grid-template-columns:1fr}}
 @media(max-width:760px){.hb-split{grid-template-columns:1fr!important}}
 .sources{font-size:.84rem;color:var(--muted);padding-left:1.1em}
@@ -1916,13 +1917,13 @@ function dirSelectorHTML(){
   return `<div class="dir-selector">
     <p class="eyebrow" style="margin-bottom:10px">◎ STEP 1 · CHOOSE A PROVINCE</p>
     <div class="dsel-provs">${provTabs}</div>
-    <p class="eyebrow cyan" style="margin:18px 0 10px">◎ STEP 2 · CHOOSE A SITE — DRIVES THE MAP, RECORD, STRATIGRAPHY &amp; 3D MODEL BELOW</p>
+    <p class="eyebrow cyan" style="margin:18px 0 10px">◎ STEP 2 · CHOOSE A SITE — DRIVES THE MAP, STRATIGRAPHY &amp; 3D MODEL BELOW</p>
     <div class="dsel-sites" id="dselSites"></div>
   </div>`;
 }
 function siteBtnHTML(s){
   const dot=s.basic?'<i class="dsel-dot rec"></i>':`<i class="dsel-dot ${rankClass(s.rank)}"></i>`;
-  const tag=s.basic?'<span class="dsel-mini">record</span>':(s.rank==='National Special'?'<span class="dsel-mini ns">★</span>':'');
+  const tag=s.basic?'':(s.rank==='National Special'?'<span class="dsel-mini ns">★</span>':'');
   return `<button class="dsel-site${s.basic?' basic':''}" type="button" data-id="${s.id}">${dot}<span>${s.name}</span>${tag}</button>`;
 }
 function renderProvSites(p){
