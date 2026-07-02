@@ -430,6 +430,15 @@ img{max-width:100%;height:auto}
 
 /* compare */
 .compare-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--bg-2);border:1px solid var(--border-soft);border-radius:14px;overflow:hidden}
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:26px}
+.spec-box{background:var(--bg-2);border:1px solid var(--border-soft);border-radius:14px;padding:16px 18px 6px;display:flex;flex-direction:column}
+.spec-box .spec-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:8px}
+.spec-box .spec-head h4{margin:0;font-size:.96rem}
+.spec-tbl{width:100%;border-collapse:collapse;font-size:.8rem}
+.spec-tbl th{text-align:left;font-weight:500;color:var(--muted);padding:7px 10px 7px 0;border-top:1px solid var(--border-soft);vertical-align:top}
+.spec-tbl td{text-align:right;color:var(--text);padding:7px 0;border-top:1px solid var(--border-soft);font-family:'Space Grotesk',sans-serif;vertical-align:top}
+.spec-tbl tr:first-child th,.spec-tbl tr:first-child td{border-top:none}
+.spec-box.sx{border-color:rgba(146,219,172,.35);box-shadow:0 0 0 1px rgba(146,219,172,.12)}
 .compare-table th,.compare-table td{padding:14px 16px;border-bottom:1px solid var(--border-soft);text-align:left;font-size:.92rem;vertical-align:top}
 .compare-table thead th{background:rgba(255,255,255,.03);color:#fff;font-family:"Space Grotesk";font-weight:600;font-size:1rem}
 .compare-table tbody th{color:var(--muted);font-weight:500;font-family:"JetBrains Mono",monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;background:rgba(255,255,255,.015)}
@@ -2298,6 +2307,8 @@ function viewAbout(){
     </div>
   </section>
 
+  ${searSpecSection()}
+
   <section class="section">
     <div class="container">
       <div class="reveal" style="max-width:none"><p class="eyebrow">OPERATIONS · DATA FLOW</p><h2>From sky to cave to record</h2><p>One survey mission, four linked stages. Each subsystem hands its data to the next — turning an unexplored, unsafe cave into a permanent digital record published to the Hoabinhian Cave Sites Directory.</p></div>
@@ -2826,6 +2837,26 @@ const SUBS={
     tlm:[{k:"NODES",v:"18/20",u:"",j:0},{k:"LINK",v:"96",u:"%",j:1},{k:"HOPS",v:"7",u:"",j:0},{k:"BATT",v:"73",u:"%",j:1}],
     specs:[["Nodes per mission","20","units"],["Mass per node","0.5","kg"],["Comms extension","2","km"],["Node battery life","48–72","hours"],["Radio","2.4 / 5","GHz dual-band"],["Mesh protocol","802.11s","self-healing"]]}
 };
+const SXSYS_SPECS=[
+  ["Architecture","3 coordinated robots"],
+  ["Subsystems","AIR · HEX · RELAY"],
+  ["Mission","Survey · map · preserve"],
+  ["Regional survey","up to ~50 km²"],
+  ["Mapping output","LiDAR + photogrammetry → 3D twin"],
+  ["Est. system cost","≈ $78,000"],
+  ["Cost per survey","≈ $780"],
+  ["Status","Conceptual design · prototype"]
+];
+function searSpecSection(){
+  const boxes=[
+    {id:"SEAR-X",name:"The complete system",sx:true,rows:SXSYS_SPECS},
+    {id:"SEAR-HEX",name:"The cave hexapod",rows:SUBS.hex.specs.map(r=>[r[0],r[1]+(r[2]?(' '+r[2]):'')])},
+    {id:"SEAR-AIR",name:"The survey aircraft",rows:SUBS.air.specs.map(r=>[r[0],r[1]+(r[2]?(' '+r[2]):'')])},
+    {id:"SEAR-RELAY",name:"The wireless mesh",rows:SUBS.relay.specs.map(r=>[r[0],r[1]+(r[2]?(' '+r[2]):'')])}
+  ];
+  const card=b=>`<div class="spec-box reveal${b.sx?' sx':''}"><div class="spec-head"><span class="tag tech">${b.id}</span><h4>${b.name}</h4></div><table class="spec-tbl"><tbody>${b.rows.map(([k,v])=>`<tr><th>${k}</th><td>${v}</td></tr>`).join('')}</tbody></table></div>`;
+  return `<section class="section" style="border-top:1px solid var(--border-soft)" id="specs"><div class="container"><div class="reveal" style="max-width:none"><p class="eyebrow cyan">TECHNICAL SPECIFICATIONS</p><h2>The numbers behind SEAR-X</h2><p>Key specifications for the complete system and each of its three robots, drawn from the team's SEAR conceptual design study.</p></div><div class="spec-grid">${boxes.map(card).join('')}</div></div></section>`;
+}
 function stopSearViewer(){ if(window._tlmTimer){clearInterval(window._tlmTimer);window._tlmTimer=null;} if(window._heroTimer){clearInterval(window._heroTimer);window._heroTimer=null;} }
 function initSearViewer(){
   const stage=document.getElementById('vpStage'); if(!stage)return;
