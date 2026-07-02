@@ -1060,7 +1060,7 @@ function viewHome(){
     <div class="container">
       <p class="eyebrow nodash reveal">SURVEY · EXPLORATION · ARCHAEOLOGICAL RECONNAISSANCE · CULTURAL PRESERVATION</p>
       <h1 class="reveal d1">A <span class="hl">Digital Directory</span> of Hòa Bình cultural &amp; historical sites in Vietnam</h1>
-      <p class="lead reveal d2">From drone reconnaissance to a permanent digital record — ArchaeoNova maps, documents and protects the Hoabinhian cave sites of Vietnam, an 18,000-year-old Stone-Age culture cradled in Hòa Bình, and opens this heritage to the world.</p>
+      <p class="lead reveal d2">Team ArchaeoNova surveys, maps and researches Vietnam's Hoabinhian cave sites, turning them into a permanent digital record — safeguarding an 18,000-year-old Stone-Age culture cradled in Hòa Bình province, and opening this heritage to the world.</p>
       <div class="hero-cta reveal d3">
         <a class="btn ghost" href="#hoabinhian">About the Hoabinhian</a>
         <a class="btn" href="#directory">Launch the Directory <span class="arw">→</span></a>
@@ -1209,6 +1209,7 @@ function gisGrid(cave){
     legend:lg});
 }
 function viewDirectory(){
+  const find=(src,cap)=>`<figure class="find"><img src="${src}" alt="${cap}" loading="lazy"><figcaption>${cap}</figcaption></figure>`;
   // build grouped catalogue from data
   const grp=c=>c.group||(c.rank==='National Special'?'special':'national');
   const entry=c=>`<a class="cat-item" href="#cave/${c.id}"><span class="cat-dot ${rankClass(c.rank)}"></span><span class="cat-name">${c.name}${c.catalog?' <span class="tag illustrative cat-lim">limited</span>':''}<br><span class="cat-coord">◎ ${c.lat.toFixed(4)}°N, ${c.lng.toFixed(4)}°E · approx</span></span><span class="cat-meta">${c.commune}, ${c.district}</span></a>`;
@@ -1299,10 +1300,32 @@ function viewDirectory(){
     </div>
   </section>
 
+  <!-- FINDS DRAWER -->
+  <section class="section" style="border-top:1px solid var(--border-soft)"><div class="container">
+    <p class="eyebrow reveal">FROM THE FINDS DRAWER</p>
+    <h2 class="reveal" style="margin:.3em 0 .2em">Real artifacts from Hòa Bình caves</h2>
+    <p class="reveal" style="max-width:74ch">A few of the objects that make these caves extraordinary — stone tools shaped from river cobbles, and animal bones that record what people ate 10,000–20,000 years ago. Each is photographed with a scale bar, exactly as researchers record them.</p>
+    <div class="finds-grid reveal" style="margin-top:22px">
+      ${find('n-stone-tools.jpg','Hoabinhian stone tools — short axes &amp; disc tools')}
+      ${find('n-stone-tool.jpg','A single flaked river-cobble tool')}
+      ${find('n-bone-jaw.jpg','Animal jaw bone with excavation scale')}
+      ${find('n-bone-teeth.jpg','Bone &amp; tooth fragments from a cave floor')}
+      ${find('n-hoabinhian-map.jpg','Hoabinhian range across mainland SE Asia')}
+    </div>
+  </div></section>
+
+  <!-- FULL PREHISTORIC REGISTER -->
+  <section class="section" style="border-top:1px solid var(--border-soft)"><div class="container">
+    <p class="eyebrow cyan reveal">05 · FULL REGISTER</p>
+    <h2 class="reveal" style="margin:.3em 0 .2em">The complete prehistoric register</h2>
+    <p class="reveal" style="margin:0 0 4px;font-size:.95rem">All ${PSITES.length} recorded Hoabinhian (Hòa Bình culture) cave &amp; rock-shelter sites across Vietnam, grouped by province with the cradle Hòa Bình first.</p>
+    ${provinceSitesHTML()}
+  </div></section>
+
   <!-- COMPARE CTA -->
   <section class="section center" style="border-top:1px solid var(--border-soft)">
     <div class="container reveal">
-      <p class="eyebrow" style="justify-content:center">05 · RESEARCH TOOL</p>
+      <p class="eyebrow" style="justify-content:center">06 · RESEARCH TOOL</p>
       <h2>Compare caves side by side</h2>
       <p class="muted" style="max-width:54ch;margin:0 auto 24px">Line up dating, finds and features across sites — the kind of comparison archaeologists use to spot patterns.</p>
       <a class="btn" href="#compare">Open the comparison tool <span class="arw">→</span></a>
@@ -1998,20 +2021,6 @@ function viewNews(){
     <p class="reveal" style="max-width:80ch">Nine places of outstanding value to all humanity — six cultural, two natural and one mixed.</p>
     <div class="wh-grid reveal" style="margin-top:20px">${WHSITES.map(whCard).join('')}</div>
     <p class="kicker reveal" style="margin-top:14px;color:var(--muted)">SOURCE · UNESCO WORLD HERITAGE CENTRE</p>
-    <p class="reveal" style="margin:24px 0 0;font-size:.95rem">And our prehistoric register — all ${PSITES.length} recorded Hoabinhian (Hòa Bình culture) cave &amp; rock-shelter sites across Vietnam, grouped by province with the cradle Hòa Bình first.</p>
-    ${provinceSitesHTML()}
-  </div></section>
-  <section class="section" style="border-top:1px solid var(--border-soft)"><div class="container">
-    <p class="eyebrow reveal">FROM THE FINDS DRAWER</p>
-    <h2 class="reveal" style="margin:.3em 0 .2em">Real artifacts from Hòa Bình caves</h2>
-    <p class="reveal" style="max-width:74ch">A few of the objects that make these caves extraordinary — stone tools shaped from river cobbles, and animal bones that record what people ate 10,000–20,000 years ago. Each is photographed with a scale bar, exactly as researchers record them.</p>
-    <div class="finds-grid reveal" style="margin-top:22px">
-      ${find('n-stone-tools.jpg','Hoabinhian stone tools — short axes &amp; disc tools')}
-      ${find('n-stone-tool.jpg','A single flaked river-cobble tool')}
-      ${find('n-bone-jaw.jpg','Animal jaw bone with excavation scale')}
-      ${find('n-bone-teeth.jpg','Bone &amp; tooth fragments from a cave floor')}
-      ${find('n-hoabinhian-map.jpg','Hoabinhian range across mainland SE Asia')}
-    </div>
   </div></section>
   <section class="section center" style="padding-top:8px"><div class="container reveal"><div class="note-banner" style="display:inline-block;text-align:left;max-width:680px"><strong>About this hub:</strong> stories are curated by Team ArchaeoNova from reputable third-party news and research outlets, and each links to its original source — we don’t host their content. Card images are from our own field archive of Vietnamese caves, artifacts and drone renders, used to illustrate each topic. Links open in a new tab.</div></div></section>`;
 }
@@ -3134,11 +3143,11 @@ function router(){
   switch(view){
     case 'home': html=viewHome(); after=()=>{initStarfield();initCounters();}; break;
     case 'hoabinhian': html=viewHoabinhian(); break;
-    case 'directory': html=viewDirectory(); after=()=>{initDirectory();initCounters();initDirMap();initDirSelector();}; break;
+    case 'directory': html=viewDirectory(); after=()=>{initDirectory();initCounters();initDirMap();initDirSelector();initProvinceSites();}; break;
     case 'cave': html=viewCave(param); nav='directory'; after=initCaveMap; break;
     case 'compare': html=viewCompare(); after=initCompare; break;
     case 'learn': html=viewLearn(); break;
-    case 'news': html=viewNews(); after=()=>{initNews();initProvinceSites();}; break;
+    case 'news': html=viewNews(); after=()=>{initNews();}; break;
     case 'contribute': html=viewContribute(); after=initContribute; break;
     case 'about': html=viewAbout(); after=()=>{initStarfield();initSearViewer();}; break;
     case 'team': html=viewTeam(); break;
