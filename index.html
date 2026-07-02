@@ -2270,6 +2270,9 @@ function viewAbout(){
         <figure style="margin:0"><img src="sx-1.jpg" alt="SEAR-X surveying limestone karst terraces" loading="lazy" style="width:100%;border-radius:14px;border:1px solid var(--border-soft);display:block"><figcaption class="kicker" style="margin-top:8px;color:var(--muted)">SURVEYING LIMESTONE KARST TERRAIN</figcaption></figure>
         <figure style="margin:0"><img src="sx-2.jpg" alt="SEAR-X approaching a highland cave system" loading="lazy" style="width:100%;border-radius:14px;border:1px solid var(--border-soft);display:block"><figcaption class="kicker" style="margin-top:8px;color:var(--muted)">APPROACHING A HIGHLAND CAVE SYSTEM</figcaption></figure>
         <figure style="margin:0"><img src="sx-3.jpg" alt="SEAR-X full assembly engineering render" loading="lazy" style="width:100%;border-radius:14px;border:1px solid var(--border-soft);display:block"><figcaption class="kicker" style="margin-top:8px;color:var(--muted)">FULL ASSEMBLY · ENGINEERING RENDER</figcaption></figure>
+        <figure style="margin:0"><img src="sx-5.jpg" alt="SEAR-X inside a cave looking out toward the entrance" loading="lazy" style="width:100%;border-radius:14px;border:1px solid var(--border-soft);display:block"><figcaption class="kicker" style="margin-top:8px;color:var(--muted)">INSIDE A CAVE, LOOKING OUT</figcaption></figure>
+        <figure style="margin:0"><img src="sx-6.jpg" alt="SEAR-X on aerial survey over the forest canopy" loading="lazy" style="width:100%;border-radius:14px;border:1px solid var(--border-soft);display:block"><figcaption class="kicker" style="margin-top:8px;color:var(--muted)">AERIAL SURVEY OVER THE FOREST CANOPY</figcaption></figure>
+        <figure style="margin:0"><img src="sx-7.jpg" alt="SEAR-X exploring a cave interior" loading="lazy" style="width:100%;border-radius:14px;border:1px solid var(--border-soft);display:block"><figcaption class="kicker" style="margin-top:8px;color:var(--muted)">EXPLORING A CAVE INTERIOR</figcaption></figure>
       </div>
     </div>
   </section>
@@ -2278,8 +2281,8 @@ function viewAbout(){
     <div class="container">
       <div class="reveal" style="max-width:none"><p class="eyebrow cyan">DESIGN LAB · INTERACTIVE</p><h2>Inspect the system</h2><p>Select a drone to update the <b style="color:var(--text)">Engineering Render</b> below with its spec sheet, alongside its live readouts and capability profile. Specs are drawn from the team's SEAR conceptual design study.</p></div>
       <div class="vp-tabs reveal" id="vpTabs" style="margin-top:26px">
-        <button class="vp-tab active" data-sub="hex"><span class="vp-ico">◆</span> SEAR-HEX</button>
-        <button class="vp-tab" data-sub="air"><span class="vp-ico">▲</span> SEAR-AIR</button>
+        <button class="vp-tab active" data-sub="air"><span class="vp-ico">▲</span> SEAR-AIR</button>
+        <button class="vp-tab" data-sub="hex"><span class="vp-ico">◆</span> SEAR-HEX</button>
         <button class="vp-tab" data-sub="relay"><span class="vp-ico">◈</span> SEAR-RELAY</button>
       </div>
       <div class="lab-grid reveal" style="margin-top:16px">
@@ -2850,8 +2853,8 @@ const SXSYS_SPECS=[
 function searSpecSection(){
   const boxes=[
     {id:"SEAR-X",name:"The complete system",sx:true,rows:SXSYS_SPECS},
-    {id:"SEAR-HEX",name:"The cave hexapod",rows:SUBS.hex.specs.map(r=>[r[0],r[1]+(r[2]?(' '+r[2]):'')])},
     {id:"SEAR-AIR",name:"The survey aircraft",rows:SUBS.air.specs.map(r=>[r[0],r[1]+(r[2]?(' '+r[2]):'')])},
+    {id:"SEAR-HEX",name:"The cave hexapod",rows:SUBS.hex.specs.map(r=>[r[0],r[1]+(r[2]?(' '+r[2]):'')])},
     {id:"SEAR-RELAY",name:"The wireless mesh",rows:SUBS.relay.specs.map(r=>[r[0],r[1]+(r[2]?(' '+r[2]):'')])}
   ];
   const card=b=>`<div class="spec-box reveal${b.sx?' sx':''}"><div class="spec-head"><span class="tag tech">${b.id}</span><h4>${b.name}</h4></div><table class="spec-tbl"><tbody>${b.rows.map(([k,v])=>`<tr><th>${k}</th><td>${v}</td></tr>`).join('')}</tbody></table></div>`;
@@ -2891,7 +2894,7 @@ function initSearViewer(){
   }
   document.querySelectorAll('.vp-tab').forEach(b=>b.addEventListener('click',()=>render(b.dataset.sub)));
   stopSearViewer();
-  render('hex');
+  render('air');
   window._tlmTimer=setInterval(()=>{
     document.querySelectorAll('#subTlm b').forEach(b=>{ if(b.dataset.j!=='1')return;
       const base=parseFloat(b.dataset.base); if(isNaN(base))return;
